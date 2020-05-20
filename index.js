@@ -1,7 +1,7 @@
-const express = require('express');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const app = express();
+const express = require('express'),
+  morgan = require('morgan'),
+  bodyParser = require('body-parser'),
+  app = express();
 
 // Array of top 10 movies
 let topMovies = [];
@@ -10,7 +10,6 @@ let topMovies = [];
 app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
-app.use(express.static('public'));
 
 // GET requests
 
