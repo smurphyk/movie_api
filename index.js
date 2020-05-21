@@ -151,14 +151,8 @@ app.get('/movies/:title', (req, res) => {
 });
 
 // Gets data about director, by name
-let directors = movies.director;
-
-app.get('/directors', (req, res) => {
-    res.json(directors);
-});
-
 app.get('/directors/:name', (req, res) => {
-  res.json(movies.find((director) =>
+  res.json(directors.find((director) =>
   { return director.name === req.params.name }));
 });
 
