@@ -88,39 +88,39 @@ let movies = [
 
 let genres = [
   {
-    genre: 'Action',
+    name: 'Action',
     description: 'Action movies are defined by risk and stakes. To be appropriately categorized inside the action genre, the bulk of the content must be action-oriented, including fight scenes, stunts, car chases, and general danger.',
   },
   {
-    genre: 'Drama',
+    name: 'Drama',
     description: 'Dramas are defined by conflict and often looks to reality rather than sensationalism. Emotions and intense situations are the focus, but where other genres might use unique or exciting moments to create a feeling, movies in the drama genre focus on common occurrences.',
   },
   {
-    genre: 'Mystery',
+    name: 'Mystery',
     description: 'Mystery movies can often be connected to the crime genre, but may not involve or use law enforcement or the justice system as the main mains characters or backdrop for the story. A mystery story is defined by the plot, and both the character’s and the viewer’s relationship with the motivations and reality behind the events that occur.',
   },
   {
-    genre: 'Sci-Fi',
+    name: 'Sci-Fi',
     description: 'Sci-Fi movies are defined by a mixture of speculation and science. While fantasy will explain through or make use of magic and mysticism, science fiction will use the changes and trajectory of technology and science. Science fiction will often incorporate space, biology, energy, time, and any other observable science.',
   },
   {
-    genre: 'Thriller',
+    name: 'Thriller',
     description: 'Thrillers are mostly about the emotional purpose, which is to elicit strong emotions, mostly dealing with generating suspense and anxiety.',
   },
   {
-    genre: 'Crime',
+    name: 'Crime',
     description: 'Crime movies deal with both sides of the criminal justice system but do not focus on legislative matters or civil suits and legal actions.',
   },
   {
-    genre: 'Comedy',
+    name: 'Comedy',
     description: 'Comedy movies are defined by events that are intended to make someone laugh, no matter if the story is macabre, droll, or zany.',
   },
   {
-    genre: 'Fantasy',
+    name: 'Fantasy',
     description: 'Fantasy movies are defined by both circumstance and setting inside a fictional universe with an unrealistic set of natural laws.',
   },
   {
-    genre: 'Horror',
+    name: 'Horror',
     description: 'Horror movies are centered upon depicting terrifying or macabre events for the sake of entertainment.',
   },
 ];
@@ -142,14 +142,25 @@ app.get('/movies/:title', (req, res) => {
   { return movie.title === req.params.title }));
 });
 
-// Gets data about genre, by title
-app.get('/movies/:title/:genre', (req, res) => {
-  res.json(movies.find((movie) =>
-  //Make sure to test this
-  { return movie.genre === req.params.genre }));
+// Gets data about director, by name
+let directors = movies.director;
+
+app.get('/movies/directors/:name', (req, res) => {
+  res.json(directors.find((director) =>
+  { return director.name === req.params.name }));
 });
 
-// Gets data about director, by name
+// Gets list of all genres and descriptions
+app.get('/genres', (req, res) => {
+  res.json(genres);
+});
+
+// Gets data about genre, by name
+app.get('/genres/:name', (req, res) => {
+  res.json(genres.find((genre) =>
+  //Make sure to test this
+  { return genre.name === req.params.name }));
+});
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
