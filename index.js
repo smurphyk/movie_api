@@ -15,10 +15,8 @@ let movies = [
   {
     id: 1,
     title: 'Fight Club',
-    description: {
-      plot: 'An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.',
-      genre: 'Drama',
-    },
+    description: 'An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.',
+    genre: 'Drama',
     director: {
       name: 'David Fincher',
       bio: '', //Link to bio
@@ -31,10 +29,8 @@ let movies = [
   {
     id: 2,
     title: 'Rubber',
-    description: {
-      plot: 'A homicidal car tire, discovering it has destructive psionic power, sets its sights on a desert town once a mysterious woman becomes its obsession.',
-      genre: 'Comedy, Fantasy, Horror',
-    },
+    description: 'A homicidal car tire, discovering it has destructive psionic power, sets its sights on a desert town once a mysterious woman becomes its obsession.',
+    genre: 'Comedy, Fantasy, Horror',
     director: {
       name:'Quentin Dupieux',
       bio: '',
@@ -47,10 +43,8 @@ let movies = [
   {
     id: 3,
     title: 'The Sunset Limited',
-    description: {
-      plot: 'Through a chance encounter, two men of opposing ideologies deliberate spiritual, philosophical, and profound matters in a New York City apartment.',
-      genre: 'Drama',
-    },
+    description: 'Through a chance encounter, two men of opposing ideologies deliberate spiritual, philosophical, and profound matters in a New York City apartment.',
+    genre: 'Drama',
     director: {
       name: 'Tommy Lee Jones',
       bio: '',
@@ -63,10 +57,8 @@ let movies = [
   {
     id: 4,
     title: 'John Wick',
-    description: {
-      plot: 'An ex-hit-man comes out of retirement to track down the gangsters that killed his dog and took everything from him.',
-      genre: 'Action, Crime, Thriller',
-    },
+    description: 'An ex-hit-man comes out of retirement to track down the gangsters that killed his dog and took everything from him.',
+    genre: 'Action, Crime, Thriller',
     director: {
       name: 'Chad Stahelski, David Leitch (uncredited)',
       bio: '',
@@ -79,10 +71,8 @@ let movies = [
   {
     id: 5,
     title: 'Ex Machina',
-    description: {
-      plot: 'A young programmer is selected to participate in a ground-breaking experiment in synthetic intelligence by evaluating the human qualities of a highly advanced humanoid A.I.',
-      genre: 'Drama, Mystery, Sci-Fi, Thriller',
-    },
+    description: 'A young programmer is selected to participate in a ground-breaking experiment in synthetic intelligence by evaluating the human qualities of a highly advanced humanoid A.I.',
+    genre: 'Drama, Mystery, Sci-Fi, Thriller',
     director: {
       name: 'Alex Garland',
       bio: '',
@@ -91,6 +81,47 @@ let movies = [
     },
     image: 'img/ex_machina.png',
     featured: 'Yes'
+  },
+];
+
+// Array of Genres with descriptions
+
+let genres = [
+  {
+    genre: 'Action',
+    description: 'Action movies are defined by risk and stakes. To be appropriately categorized inside the action genre, the bulk of the content must be action-oriented, including fight scenes, stunts, car chases, and general danger.',
+  },
+  {
+    genre: 'Drama',
+    description: 'Dramas are defined by conflict and often looks to reality rather than sensationalism. Emotions and intense situations are the focus, but where other genres might use unique or exciting moments to create a feeling, movies in the drama genre focus on common occurrences.',
+  },
+  {
+    genre: 'Mystery',
+    description: 'Mystery movies can often be connected to the crime genre, but may not involve or use law enforcement or the justice system as the main mains characters or backdrop for the story. A mystery story is defined by the plot, and both the character’s and the viewer’s relationship with the motivations and reality behind the events that occur.',
+  },
+  {
+    genre: 'Sci-Fi',
+    description: 'Sci-Fi movies are defined by a mixture of speculation and science. While fantasy will explain through or make use of magic and mysticism, science fiction will use the changes and trajectory of technology and science. Science fiction will often incorporate space, biology, energy, time, and any other observable science.',
+  },
+  {
+    genre: 'Thriller',
+    description: 'Thrillers are mostly about the emotional purpose, which is to elicit strong emotions, mostly dealing with generating suspense and anxiety.',
+  },
+  {
+    genre: 'Crime',
+    description: 'Crime movies deal with both sides of the criminal justice system but do not focus on legislative matters or civil suits and legal actions.',
+  },
+  {
+    genre: 'Comedy',
+    description: 'Comedy movies are defined by events that are intended to make someone laugh, no matter if the story is macabre, droll, or zany.',
+  },
+  {
+    genre: 'Fantasy',
+    description: 'Fantasy movies are defined by both circumstance and setting inside a fictional universe with an unrealistic set of natural laws.',
+  },
+  {
+    genre: 'Horror',
+    description: 'Horror movies are centered upon depicting terrifying or macabre events for the sake of entertainment.',
   },
 ];
 
@@ -111,12 +142,14 @@ app.get('/movies/:title', (req, res) => {
   { return movie.title === req.params.title }));
 });
 
-// Gets data about description, by title
-app.get('/movies/:title/:description', (req, res) => {
-  res.json(topMovies.find((movie) =>
+// Gets data about genre, by title
+app.get('/movies/:title/:genre', (req, res) => {
+  res.json(movies.find((movie) =>
   //Make sure to test this
-  { return movie.description === req.params.description }));
+  { return movie.genre === req.params.genre }));
 });
+
+// Gets data about director, by name
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
