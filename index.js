@@ -17,12 +17,7 @@ let movies = [
     title: 'Fight Club',
     description: 'An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.',
     genre: 'Drama',
-    director: {
-      name: 'David Fincher',
-      bio: '', //Link to bio
-      born: 'August 28, 1962',
-      died: 'N/A',
-    },
+    director: 'David Fincher',
     image: 'img/fight_club.png',
     featured: 'Yes'
   },
@@ -31,12 +26,7 @@ let movies = [
     title: 'Rubber',
     description: 'A homicidal car tire, discovering it has destructive psionic power, sets its sights on a desert town once a mysterious woman becomes its obsession.',
     genre: 'Comedy, Fantasy, Horror',
-    director: {
-      name:'Quentin Dupieux',
-      bio: '',
-      born: 'April 14, 1974',
-      died: 'N/A',
-    },
+    director: 'Quentin Dupieux',
     image: 'img/rubber.png',
     featured: 'No'
   },
@@ -45,12 +35,7 @@ let movies = [
     title: 'The Sunset Limited',
     description: 'Through a chance encounter, two men of opposing ideologies deliberate spiritual, philosophical, and profound matters in a New York City apartment.',
     genre: 'Drama',
-    director: {
-      name: 'Tommy Lee Jones',
-      bio: '',
-      born: 'September 15, 1946',
-      died: 'N/A',
-    },
+    director: 'Tommy Lee Jones',
     image: 'img/sunset_limited.png',
     featured: 'No'
   },
@@ -59,12 +44,7 @@ let movies = [
     title: 'John Wick',
     description: 'An ex-hit-man comes out of retirement to track down the gangsters that killed his dog and took everything from him.',
     genre: 'Action, Crime, Thriller',
-    director: {
-      name: 'Chad Stahelski, David Leitch (uncredited)',
-      bio: '',
-      born: 'September 20, 1968',
-      died: 'N/A',
-    },
+    director: 'Chad Stahelski',
     image: 'img/john_wick.png',
     featured: 'Yes'
   },
@@ -73,14 +53,42 @@ let movies = [
     title: 'Ex Machina',
     description: 'A young programmer is selected to participate in a ground-breaking experiment in synthetic intelligence by evaluating the human qualities of a highly advanced humanoid A.I.',
     genre: 'Drama, Mystery, Sci-Fi, Thriller',
-    director: {
-      name: 'Alex Garland',
-      bio: '',
-      born: 'May 26, 1970',
-      died: 'N/A',
-    },
+    director: 'Alex Garland',
     image: 'img/ex_machina.png',
     featured: 'Yes'
+  },
+];
+
+let directors = [
+  {
+    name: 'David Fincher',
+      bio: 'https://www.imdb.com/name/nm0000399/',
+      born: 'August 28, 1962',
+      died: 'N/A',
+  },
+  {
+    name: 'Quentin Dupieux',
+      bio: 'https://www.imdb.com/name/nm1189197/?ref_=fn_al_nm_1',
+      born: 'April 14, 1974',
+      died: 'N/A',
+  },
+  {
+    name: 'Tommy Lee Jones',
+      bio: 'https://www.imdb.com/name/nm0000169/?ref_=fn_al_nm_1',
+      born: 'September 15, 1946',
+      died: 'N/A',
+  },
+  {
+    name: 'Chad Stahelski',
+      bio: 'https://www.imdb.com/name/nm0821432/?ref_=fn_al_nm_1',
+      born: 'September 20, 1968',
+      died: 'N/A',
+  },
+  {
+    name: 'Alex Garland',
+      bio: 'https://www.imdb.com/name/nm0307497/?ref_=fn_al_nm_1',
+      born: 'May 26, 1970',
+      died: 'N/A',
   },
 ];
 
@@ -145,8 +153,12 @@ app.get('/movies/:title', (req, res) => {
 // Gets data about director, by name
 let directors = movies.director;
 
-app.get('/movies/directors/:name', (req, res) => {
-  res.json(directors.find((director) =>
+app.get('/directors', (req, res) => {
+    res.json(directors);
+});
+
+app.get('/directors/:name', (req, res) => {
+  res.json(movies.find((director) =>
   { return director.name === req.params.name }));
 });
 
