@@ -168,6 +168,25 @@ app.get('/genres/:name', (req, res) => {
   { return genre.name === req.params.name }));
 });
 
+// Gets a list of all users
+app.get('/users', (req, res) => {
+  res.json(users);
+});
+
+// Allows new user to register
+app.post('/users', (req, res) => {
+  let newUser = req.body;
+
+  if(!newUser.name) {
+    const message = 'Missing "name" in request body';
+    res.status(400).send(message);
+  } else {
+    newUser.id = uuid.v4();
+    users.push(newUser);
+    res.status(201).send(newUser);
+  }
+});
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something made an Uh-Oh!');
