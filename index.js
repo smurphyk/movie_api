@@ -134,7 +134,21 @@ let genres = [
 ];
 
 // Array of users
-let users = [];
+let users = [
+  {
+    name: 'Sean Murphy',
+    username: 'PapaSmurph',
+    password: 'password123',
+    email: 'noemail@noemail.com',
+    birthday: '03-23-1990',
+    favorites: {
+      'Baby Driver',
+      'The Replacements',
+      'Deadpool',
+      'Kingsmen'
+    }
+  }
+];
 
 // GET requests
 
@@ -201,6 +215,9 @@ app.put('/users/:name/:username', (req, res) => {
     res.status(404).send('Amber Alert! User with the name ' + req.params.name + ' was not found!');
   }
 });
+
+// Allows user to add a movie to list of favorites
+app.post()
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
