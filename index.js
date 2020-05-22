@@ -133,6 +133,9 @@ let genres = [
   },
 ];
 
+// Array of users
+let users = [];
+
 // GET requests
 
 app.get('/', (req, res) => {
@@ -170,7 +173,7 @@ app.get('/genres/:name', (req, res) => {
 
 // Gets a list of all users
 app.get('/users', (req, res) => {
-  res.json(users);
+  res.json(users.find);
 });
 
 // Allows new user to register
@@ -184,6 +187,18 @@ app.post('/users', (req, res) => {
     newUser.id = uuid.v4();
     users.push(newUser);
     res.status(201).send(newUser);
+  }
+});
+
+// Allows user to upddate personal information
+app.put('/users/:name/:username', (req, res) => {
+  let user = users.find((user) => { return user.name === req.params.name });
+
+  if (user) {
+    user.username[req.params.username] = parseInt(req.params.username);
+    res.status(201).send('User ' + req.params.name + ' successfully changed username to ' + req.params.username +'!');
+  } else {
+    res.status(404).send('Amber Alert! User with the name ' + req.params.name + ' was not found!');
   }
 });
 
