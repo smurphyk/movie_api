@@ -18,7 +18,7 @@ let movies = [
     description: 'An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.',
     genre: 'Drama',
     director: 'David Fincher',
-    image: 'img/fight_club.png',
+    imageURL: 'https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
     featured: 'Yes'
   },
   {
@@ -27,7 +27,7 @@ let movies = [
     description: 'A homicidal car tire, discovering it has destructive psionic power, sets its sights on a desert town once a mysterious woman becomes its obsession.',
     genre: 'Comedy, Fantasy, Horror',
     director: 'Quentin Dupieux',
-    image: 'img/rubber.png',
+    imageURL: 'https://m.media-amazon.com/images/M/MV5BYzUyZjg4YzktZmVlMy00MGQ2LThiZTEtNmUwZWQwOTUzMWYzXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SY1000_CR0,0,706,1000_AL_.jpg',
     featured: 'No'
   },
   {
@@ -36,7 +36,7 @@ let movies = [
     description: 'Through a chance encounter, two men of opposing ideologies deliberate spiritual, philosophical, and profound matters in a New York City apartment.',
     genre: 'Drama',
     director: 'Tommy Lee Jones',
-    image: 'img/sunset_limited.png',
+    imageURL: 'https://m.media-amazon.com/images/M/MV5BMTM3MjUyMTY1MV5BMl5BanBnXkFtZTcwNzE0MDQ0NA@@._V1_SY1000_CR0,0,678,1000_AL_.jpg',
     featured: 'No'
   },
   {
@@ -45,7 +45,7 @@ let movies = [
     description: 'An ex-hit-man comes out of retirement to track down the gangsters that killed his dog and took everything from him.',
     genre: 'Action, Crime, Thriller',
     director: 'Chad Stahelski',
-    image: 'img/john_wick.png',
+    imageURL: 'https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_SY1000_CR0,0,666,1000_AL_.jpg',
     featured: 'Yes'
   },
   {
@@ -54,7 +54,7 @@ let movies = [
     description: 'A young programmer is selected to participate in a ground-breaking experiment in synthetic intelligence by evaluating the human qualities of a highly advanced humanoid A.I.',
     genre: 'Drama, Mystery, Sci-Fi, Thriller',
     director: 'Alex Garland',
-    image: 'img/ex_machina.png',
+    imageURL: 'https://m.media-amazon.com/images/M/MV5BMTUxNzc0OTIxMV5BMl5BanBnXkFtZTgwNDI3NzU2NDE@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
     featured: 'Yes'
   },
 ];
@@ -141,13 +141,19 @@ let users = [
     password: 'password123',
     email: 'noemail@noemail.com',
     birthday: '03-23-1990',
-    favorites: {
-      'Baby Driver',
-      'The Replacements',
-      'Deadpool',
-      'Kingsmen'
-    }
-  }
+  },
+];
+
+let favorites = [
+  {
+    id: 1,
+    title: 'Fight Club',
+    description: 'An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.',
+    genre: 'Drama',
+    director: 'David Fincher',
+    imageURL: 'https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
+    featured: 'Yes'
+  },
 ];
 
 // GET requests
@@ -217,7 +223,34 @@ app.put('/users/:name/:username', (req, res) => {
 });
 
 // Allows user to add a movie to list of favorites
-app.post()
+app.post('/users/:username/favorites', (req, res) => {
+  let user = users.find((user) => { return user.username === req.params.username });
+  let newFav = req.body;
+
+  if (user) {
+    users.push(newFav);
+    res.json(newFav);
+  };
+});
+
+// Allows user to remove a movie from list of favorites by ID
+app.delete('/users/:username/favorites/:title', (req, res) => {
+  let user = users.find((user) => { return user.username === req.params.username });
+
+  if (user) {
+    let title = favorites.find((title) => { return favorites.title === req.params.title });
+    res.status(201).send('User ' + req.params.username + ' successfully removed ' + req.params.title + ' from their favorites!');
+  };
+});
+
+// Allows users to deregister
+app.delete('/users/:username', (req, res) => {
+  let user = users.find((user) => { return user.username === req.params.username });
+
+  if (user) {
+    res.status(201).send('User ' + req.params.username + ' has been successfully murdered!');
+  };
+});
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
