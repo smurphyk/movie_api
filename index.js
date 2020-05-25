@@ -211,8 +211,9 @@ app.post('/users', (req, res) => {
 });
 
 // Allows user to upddate personal information
-app.put('/users/:name/:username', (req, res) => {
-  let user = users.find((user) => { return user.name === req.params.name });
+app.put('/users/:username', (req, res) => {
+  let user = users.find((user) => { return user.username === req.params.username });
+  let newInfo = req.body
 
   if (user) {
     user.username[req.params.username] = parseInt(req.params.username);

@@ -6,6 +6,7 @@
   </head>
   <body>
     <h1 class="api_title">Murph's Movie API</h1>
+    <h2>Documentation</h2>
     <p>
       Welcome to my first API!  This is a one-stop shop for all you movie junkies
       out there.  With my API, you will be able to access all pertinent
@@ -13,5 +14,110 @@
       sign up, update all your personal information, and create a list of your favorite
       movies!
     </p>
+    <table class="endpoint-table">
+      <caption style="text-decoration: underline">Web Server Request Enpoints Documentation</caption>
+      <br>
+      <thead>
+        <tr class="table-headers">
+          <th scope="col"> REQUEST </th>
+          <th scope="col"> URL </th>
+          <th scope="col"> HTTP METHOD </th>
+          <th scope="col"> REQUEST DATA FORMAT </th>
+          <th scope="col"> RESPONSE DATA BODY FORMAT </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="row"> Return a list of all movies to user </td>
+          <td> /movies </td>
+          <td style="color: #00c410"> GET </td>
+          <td> None </td>
+          <td> A JSON object containing data for all movies </td>
+        </tr>
+        <tr>
+          <td scope="row"> Return data about a single movie, by title </td>
+          <td> /movies/[TITLE] </td>
+          <td style="color: #00c410"> GET </td>
+          <td> None </td>
+          <td> A JSON object containing data about a single movie,
+              including ID, title, description, genre, director info, image,
+              and featured status:
+              <p style="color: #157cd1">
+                {
+                  id: 1,
+                  title: 'Fight Club',
+                  description: 'An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.',
+                  genre: 'Drama',
+                  director: 'David Fincher',
+                  imageURL: 'https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
+                  featured: 'Yes'
+                }
+              </p>
+          </td>
+        </tr>
+        <tr>
+          <td scope="row"> Return data about a single director, by name</td>
+          <td> /directors/[NAME] </td>
+          <td style="color: #00c410"> GET </td>
+          <td> None </td>
+          <td> A JSON object containing data about a single director,
+            including name, link to bio, birthdate, and death date:
+            <p style="color: #157cd1">
+              {
+                name: 'David Fincher',
+                  bio: 'https://www.imdb.com/name/nm0000399/',
+                  born: 'August 28, 1962',
+                  died: 'N/A',
+              }
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td scope="row"> Return data about a genre, by name </td>
+          <td> /genres/[NAME] </td>
+          <td style="color: #00c410"> GET </td>
+          <td> None </td>
+          <td> A JSON object containing data about a single genre,
+            including name and description:
+            <p style="color: #157cd1">
+              {
+                name: 'Action',
+                description: 'Action movies are defined by risk and stakes. To be appropriately categorized inside the action genre, the bulk of the content must be action-oriented, including fight scenes, stunts, car chases, and general danger.',
+              }
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td scope="row"> Allows a new user to register</td>
+          <td> /users </td>
+          <td style="color: #fff019"> POST </td>
+          <td> A JSON object containing data about new user, including
+            name, username, password, email, and birthday:
+            <p style="color: #157cd1">
+              {
+                name: 'Sean Murphy',
+                username: 'PapaSmurph',
+                password: 'password123',
+                email: 'noemail@noemail.com',
+                birthday: '03-23-1990',
+              }
+            </p>
+          </td>
+          <td> A JSON object containing data about new user and new, unique ID:
+            <p style="color: #157cd1">
+              {
+                name: 'Sean Murphy',
+                username: 'PapaSmurph',
+                password: 'password123',
+                email: 'noemail@noemail.com',
+                birthday: '03-23-1990',
+                id: 'ef808594-628e-4ec2-81fe-cb15ac727130'
+              }
+        </tr>
+        <tr>
+          <td scope="row"> Allows user to update personal information </td>
+          <td> /users/[NAME]/[USERNAME] </td>
+          <td style="color: #157cd1"> PUT </td>
+          <td>
   </body>
 </html>
