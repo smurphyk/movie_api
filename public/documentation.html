@@ -2,10 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/styles.css"/>
     <title>Murph's Movie API</title>
   </head>
   <body>
+   <header class="main_header">
     <h1 class="api_title">Murph's Movie API</h1>
+  </header>
+  <div class="intro">
     <h2>Documentation</h2>
     <p>
       Welcome to my first API!  This is a one-stop shop for all you movie junkies
@@ -14,19 +25,22 @@
       sign up, update all your personal information, and create a list of your favorite
       movies!
     </p>
-    <table class="endpoint-table">
-      <caption style="text-decoration: underline">Web Server Request Enpoints Documentation</caption>
-      <br>
-      <thead>
-        <tr class="table-headers">
-          <th scope="col"> REQUEST </th>
-          <th scope="col"> URL </th>
-          <th scope="col"> HTTP METHOD </th>
-          <th scope="col"> REQUEST DATA FORMAT </th>
-          <th scope="col"> RESPONSE DATA BODY FORMAT </th>
-        </tr>
-      </thead>
-      <tbody>
+  </div>
+  <div class="row">
+      <div class="endpoint_table col-8">
+        <table>
+          <caption style="text-decoration: underline">Web Server Request Enpoints Documentation</caption>
+          <br>
+          <thead>
+            <tr class="table_headers">
+              <th scope="col"> REQUEST </th>
+              <th scope="col"> URL </th>
+              <th scope="col"> HTTP METHOD </th>
+              <th scope="col"> REQUEST DATA FORMAT </th>
+              <th scope="col"> RESPONSE DATA BODY FORMAT </th>
+            </tr>
+          </thead>
+      <tbody style="border: solid 1px #000">
         <tr>
           <td scope="row"> Return a list of all movies to user </td>
           <td> /movies </td>
@@ -113,11 +127,69 @@
                 birthday: '03-23-1990',
                 id: 'ef808594-628e-4ec2-81fe-cb15ac727130'
               }
+            </td>
         </tr>
         <tr>
           <td scope="row"> Allows user to update personal information </td>
-          <td> /users/[NAME]/[USERNAME] </td>
+          <td> /users/[USERNAME] </td>
           <td style="color: #157cd1"> PUT </td>
-          <td>
+          <td> A JSON object containing updated user info, including
+            name, username, password, email, birthday, and ID:
+            <p style="color: #157cd1">
+              {
+                name: 'Sean Murphy',
+                username: 'PapaSmurph',
+                password: 'password123',
+                email: 'noemail@noemail.com',
+                birthday: '03-23-1990',
+                id: 'ef808594-628e-4ec2-81fe-cb15ac727130'
+              }
+            </p>
+            <td> A status message confirming that information was updated:
+              <p> User [USERNAME] successfully updated their info! </p>
+            </td>
+          </tr>
+          <tr>
+            <td scope="row"> Allows user to add a movie to their list of favorites </td>
+            <td> /users/[USERNAME]/favorites </td>
+            <td style="color: #fff019"> POST </td>
+            <td> A JSON object containing information about movie to add:
+              <p style="color: #157cd1">
+                {
+                  id: 1,
+                  title: 'Fight Club',
+                  description: 'An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.',
+                  genre: 'Drama',
+                  director: 'David Fincher',
+                  imageURL: 'https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
+                  featured: 'Yes'
+                }
+              </p>
+            </td>
+            <td> A status message confirming that the new movie was added to favorites:
+              <p> User [USERNAME] successfully added [TITLE] to favorites!</p>
+            </td>
+          </tr>
+          <tr>
+            <td scope="row"> Allows User to removie a movie from favorites, by title </td>
+            <td> /users/[USERNAME]/favorites/[TITLE] </td>
+            <td style="color: #ff0015"> DELETE </td>
+            <td> None </td>
+            <td> A status message confirming that the movie was removied from favorites:
+              <p> User [USERNAME] successfully removed [TITLE] from their favorites!</p>
+            </td>
+          </tr>
+          <tr>
+            <td scope="row"> Allows users to deregister </td>
+            <td> /users/[USERNAME] </td>
+            <td style="color: #ff0015"> DELETE </td>
+            <td> None </td>
+            <td> A status message confirming that the user was deleted:
+              <p> User [USERNAME] has been successfully deregistered! </p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </body>
 </html>

@@ -217,9 +217,9 @@ app.put('/users/:username', (req, res) => {
 
   if (user) {
     user.username[req.params.username] = parseInt(req.params.username);
-    res.status(201).send('User ' + req.params.name + ' successfully changed username to ' + req.params.username +'!');
+    res.status(201).send('User ' + req.params.username + ' successfully updated their info!');
   } else {
-    res.status(404).send('Amber Alert! User with the name ' + req.params.name + ' was not found!');
+    res.status(404).send('Amber Alert! User with the name ' + req.params.username + ' was not found!');
   }
 });
 
@@ -230,11 +230,11 @@ app.post('/users/:username/favorites', (req, res) => {
 
   if (user) {
     users.push(newFav);
-    res.json(newFav);
+    res.status(201).send('User ' + req.params.username + ' successfully added ' + newFav.title + ' to favorites!');
   };
 });
 
-// Allows user to remove a movie from list of favorites by ID
+// Allows user to remove a movie from list of favorites by title
 app.delete('/users/:username/favorites/:title', (req, res) => {
   let user = users.find((user) => { return user.username === req.params.username });
 

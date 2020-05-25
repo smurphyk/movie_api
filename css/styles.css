@@ -1,0 +1,27 @@
+.main_header {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.intro {
+  text-align: center;
+}
+
+table {
+  border: solid 4px #000;
+}
+
+.table_headers {
+  border: solid 3px #000;
+  text-align: center;
+}
+
+th {
+  padding: 10px;
+  border: solid 2px #000;
+}
+
+td {
+  border: solid 1px #000;
+  text-align: center;
+}
