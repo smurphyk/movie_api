@@ -62,13 +62,13 @@ let movies = [
 let directors = [
   {
     name: 'David Fincher',
-      bio: 'https://www.imdb.com/name/nm0000399/',
+      bio: 'David Andrew Leo Fincher is an American director and producer of films, television, and music videos.',
       born: 'August 28, 1962',
       died: 'N/A',
   },
   {
     name: 'Quentin Dupieux',
-      bio: 'https://www.imdb.com/name/nm1189197/?ref_=fn_al_nm_1',
+      bio: 'Quentin Dupieux, also known by his stage name Mr. Oizo, is a French electronic musician, DJ and film director.',
       born: 'April 14, 1974',
       died: 'N/A',
   },
