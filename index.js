@@ -18,152 +18,6 @@ app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
-// In-memory array of movies
-let movies = [
-  {
-    id: 1,
-    title: 'Fight Club',
-    description: 'An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.',
-    genre: 'Drama',
-    director: 'David Fincher',
-    imageURL: 'https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
-    featured: 'Yes'
-  },
-  {
-    id: 2,
-    title: 'Rubber',
-    description: 'A homicidal car tire, discovering it has destructive psionic power, sets its sights on a desert town once a mysterious woman becomes its obsession.',
-    genre: 'Comedy, Fantasy, Horror',
-    director: 'Quentin Dupieux',
-    imageURL: 'https://m.media-amazon.com/images/M/MV5BYzUyZjg4YzktZmVlMy00MGQ2LThiZTEtNmUwZWQwOTUzMWYzXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SY1000_CR0,0,706,1000_AL_.jpg',
-    featured: 'No'
-  },
-  {
-    id: 3,
-    title: 'The Sunset Limited',
-    description: 'Through a chance encounter, two men of opposing ideologies deliberate spiritual, philosophical, and profound matters in a New York City apartment.',
-    genre: 'Drama',
-    director: 'Tommy Lee Jones',
-    imageURL: 'https://m.media-amazon.com/images/M/MV5BMTM3MjUyMTY1MV5BMl5BanBnXkFtZTcwNzE0MDQ0NA@@._V1_SY1000_CR0,0,678,1000_AL_.jpg',
-    featured: 'No'
-  },
-  {
-    id: 4,
-    title: 'John Wick',
-    description: 'An ex-hit-man comes out of retirement to track down the gangsters that killed his dog and took everything from him.',
-    genre: 'Action, Crime, Thriller',
-    director: 'Chad Stahelski',
-    imageURL: 'https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_SY1000_CR0,0,666,1000_AL_.jpg',
-    featured: 'Yes'
-  },
-  {
-    id: 5,
-    title: 'Ex Machina',
-    description: 'A young programmer is selected to participate in a ground-breaking experiment in synthetic intelligence by evaluating the human qualities of a highly advanced humanoid A.I.',
-    genre: 'Drama, Mystery, Sci-Fi, Thriller',
-    director: 'Alex Garland',
-    imageURL: 'https://m.media-amazon.com/images/M/MV5BMTUxNzc0OTIxMV5BMl5BanBnXkFtZTgwNDI3NzU2NDE@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
-    featured: 'Yes'
-  },
-];
-
-let directors = [
-  {
-    name: 'David Fincher',
-      bio: 'David Andrew Leo Fincher is an American director and producer of films, television, and music videos.',
-      born: 'August 28, 1962',
-      died: 'N/A',
-  },
-  {
-    name: 'Quentin Dupieux',
-      bio: 'Quentin Dupieux, also known by his stage name Mr. Oizo, is a French electronic musician, DJ and film director.',
-      born: 'April 14, 1974',
-      died: 'N/A',
-  },
-  {
-    name: 'Tommy Lee Jones',
-      bio: 'https://www.imdb.com/name/nm0000169/?ref_=fn_al_nm_1',
-      born: 'September 15, 1946',
-      died: 'N/A',
-  },
-  {
-    name: 'Chad Stahelski',
-      bio: 'https://www.imdb.com/name/nm0821432/?ref_=fn_al_nm_1',
-      born: 'September 20, 1968',
-      died: 'N/A',
-  },
-  {
-    name: 'Alex Garland',
-      bio: 'https://www.imdb.com/name/nm0307497/?ref_=fn_al_nm_1',
-      born: 'May 26, 1970',
-      died: 'N/A',
-  },
-];
-
-// Array of Genres with descriptions
-
-let genres = [
-  {
-    name: 'Action',
-    description: 'Action movies are defined by risk and stakes. To be appropriately categorized inside the action genre, the bulk of the content must be action-oriented, including fight scenes, stunts, car chases, and general danger.',
-  },
-  {
-    name: 'Drama',
-    description: 'Dramas are defined by conflict and often looks to reality rather than sensationalism. Emotions and intense situations are the focus, but where other genres might use unique or exciting moments to create a feeling, movies in the drama genre focus on common occurrences.',
-  },
-  {
-    name: 'Mystery',
-    description: 'Mystery movies can often be connected to the crime genre, but may not involve or use law enforcement or the justice system as the main mains characters or backdrop for the story. A mystery story is defined by the plot, and both the character’s and the viewer’s relationship with the motivations and reality behind the events that occur.',
-  },
-  {
-    name: 'Sci-Fi',
-    description: 'Sci-Fi movies are defined by a mixture of speculation and science. While fantasy will explain through or make use of magic and mysticism, science fiction will use the changes and trajectory of technology and science. Science fiction will often incorporate space, biology, energy, time, and any other observable science.',
-  },
-  {
-    name: 'Thriller',
-    description: 'Thrillers are mostly about the emotional purpose, which is to elicit strong emotions, mostly dealing with generating suspense and anxiety.',
-  },
-  {
-    name: 'Crime',
-    description: 'Crime movies deal with both sides of the criminal justice system but do not focus on legislative matters or civil suits and legal actions.',
-  },
-  {
-    name: 'Comedy',
-    description: 'Comedy movies are defined by events that are intended to make someone laugh, no matter if the story is macabre, droll, or zany.',
-  },
-  {
-    name: 'Fantasy',
-    description: 'Fantasy movies are defined by both circumstance and setting inside a fictional universe with an unrealistic set of natural laws.',
-  },
-  {
-    name: 'Horror',
-    description: 'Horror movies are centered upon depicting terrifying or macabre events for the sake of entertainment.',
-  },
-];
-
-// Array of users
-let users = [
-  {
-    name: 'Sean Murphy',
-    username: 'PapaSmurph',
-    password: 'password123',
-    email: 'noemail@noemail.com',
-    birthday: '03-23-1990',
-  },
-];
-
-let favorites = [
-  {
-    id: 1,
-    title: 'Fight Club',
-    description: 'An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.',
-    genre: 'Drama',
-    director: 'David Fincher',
-    imageURL: 'https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
-    featured: 'Yes'
-  },
-];
-
 // GET requests
 
 app.get('/', (req, res) => {
@@ -201,21 +55,50 @@ app.get('/genres/:name', (req, res) => {
 
 // Gets a list of all users
 app.get('/users', (req, res) => {
-  res.json(users.find);
+  Users.find()
+    .then((users) => {
+      res.status(201).json(users);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
-// Allows new user to register
-app.post('/users', (req, res) => {
-  let newUser = req.body;
+// Add a User
+/* Expect Json in this format:
+{
+  ID: Integer,
+  Username: String,
+  Password: String,
+  Email: String,
+  Birthday: Date
+} */
 
-  if(!newUser.name) {
-    const message = 'Missing "name" in request body';
-    res.status(400).send(message);
-  } else {
-    newUser.id = uuid.v4();
-    users.push(newUser);
-    res.status(201).send(newUser);
-  }
+app.post('/users', (req, res) => {
+  Users.findOne({ Username: req.body.Username })
+    .then((user) => {
+      if (user) {
+        return res.status(400).send(req.body.Username + 'already exists');
+      } else {
+        Users
+          .create({
+            Username: req.body.Username,
+            Password: req.body.Password,
+            Email: req.body.Email,
+            Birthday: req.body.Birthday
+          })
+          .then((user) => {res.status(201).json(user) })
+        .catch((error) => {
+          console.error(error);
+          res.status(500).send('Error: ' + error);
+        })
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
 });
 
 // Allows user to upddate personal information
