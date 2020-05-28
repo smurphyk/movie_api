@@ -45,9 +45,12 @@ app.get('/movies/:title', (req, res) => {
 
 // Gets data about director, by name
 app.get('/directors/:name', (req, res) => {
-  res.json(directors.find((director) =>
-  { return director.name === req.params.name }));
-});
+  Movies.findOne({ 'Director.Name': req.params.name })
+    .then((movies) => {
+      res.json(movies.Director);
+    });
+  }
+);
 
 // Gets data about genre, by name
 app.get('/genres/:name', (req, res) => {
