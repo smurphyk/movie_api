@@ -24,16 +24,24 @@ app.get('/', (req, res) => {
   res.send("Welcome to Murph's Movie API! If we don't have it, you don't need it!");
 });
 
-// Gets the list of data for ALL top movies
+// Gets data for all movies
 app.get('/movies', (req, res) => {
-  res.json(movies);
+  Movies.find().then(movies => res.json(movies));
 });
 
 // Gets data about a single movie, by title
 app.get('/movies/:title', (req, res) => {
-  res.json(movies.find((movie) =>
-  { return movie.title === req.params.title }));
-});
+  Movies.findOne({ Title: req.params.title })
+    .then((movie) => {
+      res.json(movie);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+  }
+);
+
 
 // Gets data about director, by name
 app.get('/directors/:name', (req, res) => {
@@ -188,4 +196,14 @@ app.delete('/users/:Username', (req, res) => {
       console.error(err);
       res.status(500).send('Error: ' + err);
     });
+});
+
+app.use((err, req, res, next) => {
+console.error(err.stack);
+res.status(500).send('Something made an Uh-Oh!');
+});
+
+//listen for requests
+app.listen(8080, () => {
+console.log('All Ears on Port 8080!');
 });
