@@ -113,28 +113,54 @@ app.get('/users/:Username', (req, res) => {
     });
 });
 
-// Allows user to upddate personal information
-app.put('/users/:username', (req, res) => {
-  let user = users.find((user) => { return user.username === req.params.username });
-  let newInfo = req.body
+// Update user info, by Username
+/* Expect Json in this format:
+{
+  Username: String,
+  (required)
+  Password: String,
+  (required)
+  Email: String,
+  (required)
+  Birthday: Date
+} */
 
-  if (user) {
-    user.username[req.params.username] = parseInt(req.params.username);
-    res.status(201).send('User ' + req.params.username + ' successfully updated their info!');
-  } else {
-    res.status(404).send('Amber Alert! User with the name ' + req.params.username + ' was not found!');
-  }
+app.put('/users/:Username', (req, res) => {
+  Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
+    {
+      Username: req.body.Username,
+      Password: req.body.Password,
+      Email: req.body.Email,
+      Birthday: req.body.Birthday
+    }
+  },
+  { new: true }, // This line makes sure that the updated document is returned
+  (err, updatedUser) => {
+    if(err) {
+      console.error(err);
+      res.statuse(500).send('Error: ' + err);
+    } else {
+      res.json(updatedUser);
+    }
+  });
 });
 
-// Allows user to add a movie to list of favorites
-app.post('/users/:username/favorites', (req, res) => {
-  let user = users.find((user) => { return user.username === req.params.username });
-  let newFav = req.body;
 
-  if (user) {
-    users.push(newFav);
-    res.status(201).send('User ' + req.params.username + ' successfully added ' + newFav.title + ' to favorites!');
-  };
+// Allows user to add a movie to list of favorites
+
+app.post('/users/:Username/Movies/:MovieID', (req, res) => {
+  Users.findOneAndUpdate({ Username: req.params.Username }, {
+    $push: { FavoriteMovies: req.params.MovieID }
+  },
+  {new: true },
+  (err, updatedUser) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    } else {
+      res.json(updatedUser);
+    }
+  });
 });
 
 // Allows user to remove a movie from list of favorites by title
@@ -147,21 +173,19 @@ app.delete('/users/:username/favorites/:title', (req, res) => {
   };
 });
 
-// Allows users to deregister
-app.delete('/users/:username', (req, res) => {
-  let user = users.find((user) => { return user.username === req.params.username });
+// Delete a user by username
 
-  if (user) {
-    res.status(201).send('User ' + req.params.username + ' has been successfully murdered!');
-  };
-});
-
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something made an Uh-Oh!');
-});
-
-//listen for requests
-app.listen(8080, () => {
-  console.log('All Ears on Port 8080!');
+app.delete('/users/:Username', (req, res) => {
+  Users.findOneAndRemove({ Username: req.params.Username })
+    .then((user) => {
+      if(!user) {
+        res.status(400).send(req.params.Username + ' was not found');
+      } else {
+        res.status(200).send(req.params.Username + ' was deleted. ');
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
