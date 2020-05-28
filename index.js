@@ -91,7 +91,7 @@ app.post('/users', (req, res) => {
   Users.findOne({ Username: req.body.Username })
     .then((user) => {
       if (user) {
-        return res.status(400).send(req.body.Username + 'already exists');
+        return res.status(400).send(req.body.Username + ' already exists');
       } else {
         Users
           .create({
@@ -176,14 +176,22 @@ app.post('/users/:Username/Movies/:MovieID', (req, res) => {
 });
 
 // Allows user to remove a movie from list of favorites by title
-app.delete('/users/:username/favorites/:title', (req, res) => {
-  let user = users.find((user) => { return user.username === req.params.username });
-
-  if (user) {
-    let title = favorites.find((title) => { return favorites.title === req.params.title });
-    res.status(201).send('User ' + req.params.username + ' successfully removed ' + req.params.title + ' from their favorites!');
-  };
-});
+app.delete('/users/:Username/Movies/:MovieID', (req, res) => {
+  Users.findOneAndUpdate(
+    { Username: req.params.Username },
+    { $pull: { FavoriteMovies: req.params.MovieID } },
+    { new: true },
+    (error, updatedUser) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send('Error: ' + error);
+      } else {
+        res.json(updatedUser);
+      }
+    }
+  );
+}
+);
 
 // Delete a user by username
 
@@ -193,7 +201,7 @@ app.delete('/users/:Username', (req, res) => {
       if(!user) {
         res.status(400).send(req.params.Username + ' was not found');
       } else {
-        res.status(200).send(req.params.Username + ' was deleted. ');
+        res.status(200).send(req.params.Username + ' was deleted! ');
       }
     })
     .catch((err) => {

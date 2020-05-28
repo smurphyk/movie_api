@@ -26,8 +26,8 @@
       movies!
     </p>
   </div>
-  <div class="row">
-      <div class="endpoint_table col-8">
+  <div class="row col">
+      <div class="endpoint_table col">
         <table>
           <caption style="text-decoration: underline">Web Server Request Enpoints Documentation</caption>
           <br>
@@ -57,15 +57,24 @@
               including ID, title, description, genre, director info, image,
               and featured status:
               <p style="color: #157cd1">
-                {
-                  id: 1,
-                  title: 'Fight Club',
-                  description: 'An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.',
-                  genre: 'Drama',
-                  director: 'David Fincher',
-                  imageURL: 'https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
-                  featured: 'Yes'
-                }
+              {
+                "Genre": {
+                  "Name": "Drama",
+                  "Description": "Dramas are defined by conflict and often looks to reality rather than sensationalism. Emotions and intense situations are the focus, but where other genres might use unique or exciting moments to create a feeling, movies in the drama genre focus on common occurrences."
+                  },
+                "Director": {
+                  "Name": "David Fincher",
+                  "Bio": "David Andrew Leo Fincher is an American director and producer of films, television, and music videos.",
+                  "Birth": "1962",
+                  "Death": "N/A"
+                },
+                "Actors": [],
+                "_id": "5ecd794a88f3d67a9315eb66",
+                "Title": "Fight Club",
+                "Description": "A nameless first person narrator (Edward Norton) attends support groups in attempt to subdue his emotional state and relieve his insomniac state. When he meets Marla (Helena Bonham Carter), another fake attendee of support groups, his life seems to become a little more bearable. However when he associates himself with Tyler (Brad Pitt) he is dragged into an underground fight club and soap making scheme. Together the two men spiral out of control and engage in competitive rivalry for love and power. When the narrator is exposed to the hidden agenda of Tyler's fight club, he must accept the awful truth that Tyler may not be who he says he is.",
+                "ImagePath": "fight_club.png",
+                "Featured": true,
+              }
               </p>
           </td>
         </tr>
@@ -75,13 +84,13 @@
           <td style="color: #00c410"> GET </td>
           <td> None </td>
           <td> A JSON object containing data about a single director,
-            including name, link to bio, birthdate, and death date:
+            including name, bio, birthdate, and death date:
             <p style="color: #157cd1">
               {
-                name: 'David Fincher',
-                  bio: 'https://www.imdb.com/name/nm0000399/',
-                  born: 'August 28, 1962',
-                  died: 'N/A',
+                "Name": "David Fincher",
+                "Bio": "David Andrew Leo Fincher is an American director and producer of films, television, and music videos.",
+                "Birth": "1962",
+                "Death": "N/A"
               }
             </p>
           </td>
@@ -109,24 +118,25 @@
             name, username, password, email, and birthday:
             <p style="color: #157cd1">
               {
-                name: 'Sean Murphy',
-                username: 'PapaSmurph',
-                password: 'password123',
-                email: 'noemail@noemail.com',
-                birthday: '03-23-1990',
-              }
+	               "Username": "AceofHearts",
+	               "Password": "password2",
+	               "Email": "aceofhearts@noemail.com",
+	               "Birthday": "1990-12-13"
+               }
             </p>
           </td>
           <td> A JSON object containing data about new user and new, unique ID:
             <p style="color: #157cd1">
               {
-                name: 'Sean Murphy',
-                username: 'PapaSmurph',
-                password: 'password123',
-                email: 'noemail@noemail.com',
-                birthday: '03-23-1990',
-                id: 'ef808594-628e-4ec2-81fe-cb15ac727130'
+                "FavoriteMovies": [],
+                "_id": "5ed01e50721dbd07e4783d41",
+                "Username": "AceofHearts",
+                "Password": "password2",
+                "Email": "aceofhearts@noemail.com",
+                "Birthday": "1990-12-13T00:00:00.000Z",
+                "__v": 0
               }
+            </p>
             </td>
         </tr>
         <tr>
@@ -134,10 +144,9 @@
           <td> /users/[USERNAME] </td>
           <td style="color: #157cd1"> PUT </td>
           <td> A JSON object containing updated user info, including
-            name, username, password, email, birthday, and ID:
+            username, password, email, birthday, and ID:
             <p style="color: #157cd1">
               {
-                name: 'Sean Murphy',
                 username: 'PapaSmurph',
                 password: 'password123',
                 email: 'noemail@noemail.com',
@@ -145,38 +154,65 @@
                 id: 'ef808594-628e-4ec2-81fe-cb15ac727130'
               }
             </p>
-            <td> A status message confirming that information was updated:
-              <p> User [USERNAME] successfully updated their info! </p>
+            <td> A JSON object containing user information, including any updates:
+              <p style="color: #157cd1">
+                {
+                  username: 'PapaSmurph',
+                  password: 'password123',
+                  email: 'noemail@noemail.com',
+                  birthday: '03-23-1990',
+                  id: 'ef808594-628e-4ec2-81fe-cb15ac727130'
+                }
+              </p>
             </td>
           </tr>
           <tr>
             <td scope="row"> Allows user to add a movie to their list of favorites </td>
-            <td> /users/[USERNAME]/favorites </td>
+            <td> /users/[Username]/Movies/[MovieID] </td>
             <td style="color: #fff019"> POST </td>
-            <td> A JSON object containing information about movie to add:
+            <td> None </td>
+            <td> A JSON object containing data about the user, including the added movie:
               <p style="color: #157cd1">
                 {
-                  id: 1,
-                  title: 'Fight Club',
-                  description: 'An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.',
-                  genre: 'Drama',
-                  director: 'David Fincher',
-                  imageURL: 'https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
-                  featured: 'Yes'
+                  "FavoriteMovies": [
+                  "5ece831616aa8b43be26d488"
+                  ],
+                  "_id": "5ece873516aa8b43be26d48d",
+                  "Username": "SirMeliodas",
+                  "Password": "SinofWrath",
+                  "Email": "meliodas@noemail.com",
+                  "Birthday": "1500-10-02T00:00:00.000Z",
+                  "Favorites": [
+                    "5ece7d5516aa8b43be26d484",
+                    "5ece7c5916aa8b43be26d483",
+                    "5ece7b1016aa8b43be26d482",
+                    "5ecd794a88f3d67a9315eb66"
+                    ]
                 }
-              </p>
-            </td>
-            <td> A status message confirming that the new movie was added to favorites:
-              <p> User [USERNAME] successfully added [TITLE] to favorites!</p>
             </td>
           </tr>
           <tr>
-            <td scope="row"> Allows User to removie a movie from favorites, by title </td>
-            <td> /users/[USERNAME]/favorites/[TITLE] </td>
+            <td scope="row"> Allows User to removie a movie from favorites, by ID </td>
+            <td> /users/[USERNAME]/Movies/[MovieID] </td>
             <td style="color: #ff0015"> DELETE </td>
             <td> None </td>
-            <td> A status message confirming that the movie was removied from favorites:
-              <p> User [USERNAME] successfully removed [TITLE] from their favorites!</p>
+            <td> A JSON object containing data about the user while reflecting the removal of the movie:
+              <p style="color: #157cd1">
+                {
+                  "FavoriteMovies": [],
+                  "_id": "5ece873516aa8b43be26d48d",
+                  "Username": "SirMeliodas",
+                  "Password": "SinofWrath",
+                  "Email": "meliodas@noemail.com",
+                  "Birthday": "1500-10-02T00:00:00.000Z",
+                  "Favorites": [
+                    "5ece7d5516aa8b43be26d484",
+                    "5ece7c5916aa8b43be26d483",
+                    "5ece7b1016aa8b43be26d482",
+                    "5ecd794a88f3d67a9315eb66"
+                  ]
+                }
+              </p>
             </td>
           </tr>
           <tr>
@@ -185,7 +221,7 @@
             <td style="color: #ff0015"> DELETE </td>
             <td> None </td>
             <td> A status message confirming that the user was deleted:
-              <p> User [USERNAME] has been successfully deregistered! </p>
+              <p> User [USERNAME] was deleted! </p>
             </td>
           </tr>
         </table>

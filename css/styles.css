@@ -24,4 +24,9 @@ th {
 td {
   border: solid 1px #000;
   text-align: center;
+  padding: 20px;
+}
+
+p {
+  width: 100%;
 }
