@@ -1,9 +1,10 @@
 const jwtSecret = 'your_jwt_secret'; // Has to be same key used in the JWTStrategy
-const jwt = require('jsonwebtoken');
-const passport = require('passport');
+const jwt = require('jsonwebtoken'),
+  passport = require('passport');
+
 require('./passport'); // Local passport files
 
-let generate JWTToken = (user => {
+let generateJWTToken = (user) => {
   return jwt.sign(user, jwtSecret, {
     subject: user.Username, // Username being encoded in the JWT
     expiresIn: '7d',
@@ -11,7 +12,7 @@ let generate JWTToken = (user => {
   });
 }
 
-// POST login.
+/* POST login. */
 module.exports = (router) => {
   router.post('/login', (req, res) => {
     passport.authenticate('local', { session: false },
