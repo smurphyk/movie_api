@@ -1,20 +1,19 @@
-const mongoose = require('mongoose');
-const Models = require('./models.js');
-
-const Movies = Models.Movie;
-const Users = Models.User;
-
-mongoose.connect('mongodb://localhost:27017/movie_apiDB', { useNewUrlParser: true, useUnifiedTopology: true });
-
 const express = require('express'),
-  morgan = require('morgan'),
-  uuid = require('uuid');
+  app = express(),
+  morgan = require('morgan');
 
 const bodyParser = require('body-parser'),
-  app = express();
+  uuid = require('uuid'),
+  mongoose = require('mongoose');
+
+const Models = require('./models.js'),
+  Movies = Models.Movie,
+  Users = Models.User;
 
 const passport = require('passport');
 require('./passport');
+
+mongoose.connect('mongodb://localhost:27017/movie_apiDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Middleware
 app.use(express.static('public'));
@@ -30,8 +29,16 @@ app.get('/', (req, res) => {
 });
 
 // Gets data for all movies
-app.get('/movies', (req, res) => {
-  Movies.find().then(movies => res.json(movies));
+app.get('/movies', passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+  Movies.find()
+    .then((movies) => {
+      res.status(201).json(movies);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
 });
 
 // Gets data about a single movie, by title
