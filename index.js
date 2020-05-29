@@ -13,6 +13,8 @@ const Models = require('./models.js'),
 const passport = require('passport');
 require('./passport');
 
+const { check, validationResult } = require('express-validator');
+
 mongoose.connect('mongodb://localhost:27017/movie_apiDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Middleware
@@ -132,7 +134,7 @@ app.post('/users', passport.authenticate('jwt', { session: false }),
         Users
           .create({
             Username: req.body.Username,
-            Password: hashedPassword,
+            Password: hashedPassword(req.body.Password),
             Email: req.body.Email,
             Birthday: req.body.Birthday
           })
