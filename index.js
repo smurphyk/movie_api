@@ -22,6 +22,9 @@ app.use(bodyParser.json());
 
 let auth = require('./auth')(app);
 
+const cors = require('cors');
+app.use(cors());
+
 // GET requests
 
 app.get('/', (req, res) => {
