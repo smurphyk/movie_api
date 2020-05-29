@@ -13,10 +13,15 @@ const express = require('express'),
 const bodyParser = require('body-parser'),
   app = express();
 
+const passport = require('passport');
+require('./passport');
+
 // Middleware
 app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
+
+let auth = reqire('./auth')(app);
 
 // GET requests
 
