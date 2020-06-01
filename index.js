@@ -273,6 +273,7 @@ res.status(500).send('Something made an Uh-Oh!');
 });
 
 //listen for requests
-app.listen(8080, () => {
-console.log('All Ears on Port 8080!');
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0', () => {
+console.log('All Ears on Port ' + port + '!');
 });
