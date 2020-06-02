@@ -10,10 +10,10 @@ const Models = require('./models.js'),
   Movies = Models.Movie,
   Users = Models.User;
 
+const { check, validationResult } = require('express-validator');
+
 const passport = require('passport');
 require('./passport');
-
-const { check, validationResult } = require('express-validator');
 
 mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 //mongoose.connect('mongodb://localhost:27017/movie_apiDB', { useNewUrlParser: true, useUnifiedTopology: true });
