@@ -131,7 +131,6 @@ app.post('/users',
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
   ], (req, res) => {
-
   // check validation object for errors
   let errors = validationResult(req);
 
@@ -148,7 +147,7 @@ app.post('/users',
         Users
           .create({
             Username: req.body.Username,
-            Password: hashedPassword(req.body.Password),
+            Password: hashedPassword,
             Email: req.body.Email,
             Birthday: req.body.Birthday
           })
