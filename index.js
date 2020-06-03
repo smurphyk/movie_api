@@ -25,10 +25,10 @@ app.use(bodyParser.json());
 
 let auth = require('./auth')(app);
 
-const cors = require('cors');
+/* const cors = require('cors');
 let allowedOrigins = ['http://localhost:1234', '*'];
 
-/* app.use(cors({
+ app.use(cors({
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
     if (allowedOrigins.indexOf(origin) === -1) { // If a specific origin isn't found on the list of allowed allowedOrigins
