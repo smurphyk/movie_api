@@ -30096,8 +30096,13 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
   _createClass(MovieCard, [{
     key: "render",
     value: function render() {
-      var movie = this.props.movie;
+      var _this$props = this.props,
+          movie = _this$props.movie,
+          _onClick = _this$props.onClick;
       return _react.default.createElement("div", {
+        onClick: function onClick() {
+          return _onClick(movie);
+        },
         className: "movie-card"
       }, movie.Title);
     }
@@ -30107,6 +30112,97 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.MovieCard = MovieCard;
+},{"react":"../node_modules/react/index.js"}],"components/movie-view/movie-view.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MovieView = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var MovieView = /*#__PURE__*/function (_React$Component) {
+  _inherits(MovieView, _React$Component);
+
+  var _super = _createSuper(MovieView);
+
+  function MovieView() {
+    var _this;
+
+    _classCallCheck(this, MovieView);
+
+    _this = _super.call(this);
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(MovieView, [{
+    key: "render",
+    value: function render() {
+      var movie = this.props.movie;
+      if (!movie) return null;
+      return _react.default.createElement("div", {
+        className: "movie-view"
+      }, _react.default.createElement("img", {
+        className: "movie-poster",
+        src: movie.ImagePath
+      }), _react.default.createElement("div", {
+        className: "movie-title"
+      }, _react.default.createElement("span", {
+        className: "label"
+      }, "Title: "), _react.default.createElement("span", {
+        className: "value"
+      }, movie.Title)), _react.default.createElement("div", {
+        className: "movie-description"
+      }, _react.default.createElement("span", {
+        className: "label"
+      }, "Description: "), _react.default.createElement("span", {
+        className: "value"
+      }, movie.Description)), _react.default.createElement("div", {
+        className: "movie-genre"
+      }, _react.default.createElement("span", {
+        className: "label"
+      }, "Genre: "), _react.default.createElement("span", {
+        className: "value"
+      }, movie.Genre.Name)), _react.default.createElement("div", {
+        className: "movie-director"
+      }, _react.default.createElement("span", {
+        className: "label"
+      }, "Director: "), _react.default.createElement("span", {
+        className: "value"
+      }, movie.Director.Name)));
+    }
+  }]);
+
+  return MovieView;
+}(_react.default.Component);
+
+exports.MovieView = MovieView;
 },{"react":"../node_modules/react/index.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
 "use strict";
 
@@ -30120,6 +30216,8 @@ var _react = _interopRequireDefault(require("react"));
 var _axios = _interopRequireDefault(require("axios"));
 
 var _movieCard = require("../movie-card/movie-card");
+
+var _movieView = require("../movie-view/movie-view");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30157,7 +30255,10 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this); // Initialize the state to an empty object so we can destructrue it later
 
-    _this.state = {};
+    _this.state = {
+      movies: null,
+      selectedMovie: null
+    };
     return _this;
   }
 
@@ -30174,23 +30275,39 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }).catch(function (error) {
         console.log(error);
       });
+    }
+  }, {
+    key: "onMovieClick",
+    value: function onMovieClick(movie) {
+      this.setState({
+        selectedMovie: movie
+      });
     } // this overrides the render() method of the superclass
 
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       // Before data is initially loaded
-      var movies = this.state.movies; // Before movies have been loaded
+      var _this$state = this.state,
+          movies = _this$state.movies,
+          selectedMovie = _this$state.selectedMovie; // Before movies have been loaded
 
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
       });
       return _react.default.createElement("div", {
         className: "main-view"
-      }, movies.map(function (movie) {
+      }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
+        movie: selectedMovie
+      }) : movies.map(function (movie) {
         return _react.default.createElement(_movieCard.MovieCard, {
           key: movie.id,
-          movie: movie
+          movie: movie,
+          onClick: function onClick(movie) {
+            return _this3.onMovieClick(movie);
+          }
         });
       }));
     }
@@ -30200,7 +30317,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.MainView = MainView;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../movie-card/movie-card":"components/movie-card/movie-card.jsx"}],"../../../../../../../../../home/smurphyk/.nvm/versions/node/v12.16.3/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx"}],"../../../../../../../../../home/smurphyk/.nvm/versions/node/v12.16.3/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -30361,7 +30478,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50610" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51707" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
