@@ -1,17 +1,16 @@
-const express = require('express'),
-  app = express(),
-  morgan = require('morgan');
+const express = require('express');
+const app = express();
+const morgan = require('morgan');
 
-const bodyParser = require('body-parser'),
-  uuid = require('uuid'),
-  mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const uuid = require('uuid');
+const mongoose = require('mongoose');
 
-const Models = require('./models.js'),
-  Movies = Models.Movie,
-  Users = Models.User;
+const Models = require('./models.js');
+const Movies = Models.Movie;
+const Users = Models.User;
 
-
-
+const cors = require('cors');
 const { check, validationResult } = require('express-validator');
 
 const passport = require('passport');
@@ -26,7 +25,7 @@ mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnified
 app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
-
+app.use(cors());
 
 // GET requests
 
