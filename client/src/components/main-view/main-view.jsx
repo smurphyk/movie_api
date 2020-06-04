@@ -10,7 +10,7 @@ export class MainView extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('https://murphmoives.herokuapp.com/movies')
+    axios.get('https://murphmovies.herokuapp.com/movies')
       .then(resoponse => {
         // Assign the result to the state
         this.setState({
