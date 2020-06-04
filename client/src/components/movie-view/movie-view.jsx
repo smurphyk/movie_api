@@ -32,7 +32,9 @@ export class MovieView extends React.Component {
           <span className="label">Director: </span>
           <span className="value">{movie.Director.Name}</span>
         </div>
-        <button>Back</button>
+        <div className="button-container">
+          <button type="button">Back</button>
+        </div>
     );
   }
 }
