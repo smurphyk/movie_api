@@ -28,7 +28,7 @@ app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(cors());
 
-var allowedOrigins = ['http://localhost:1234', '*'];
+/* var allowedOrigins = ['http://localhost:1234', '*'];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -40,6 +40,7 @@ app.use(cors({
     return callback(null, true);
   }
 }));
+*/
 
 // GET requests
 
