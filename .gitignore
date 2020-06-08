@@ -1,3 +1,4 @@
 node_modules
 .cache
 client/.cache
+client/node_modules
