@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -28,7 +28,7 @@ export function ResgistrationView(props) {
         console.log(data);
         window.open('/client', '_self');
       })
-      .catch((error) => {
+      .catch((e) => {
         console.log('Swing and a miss! Error registering user');
       });
   };

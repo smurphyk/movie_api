@@ -6,7 +6,17 @@ import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from "../registration-view/registration-view";
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
-import { Button } from "react-bootstrap";
+import {
+  Button,
+  Form,
+  FormControl,
+  Row,
+  Col,
+} from "react-bootstrap";
+
+import Container from 'react-bootstrap/Container';
+
+import { Link } from 'react-router-dom';
 
 export class MainView extends React.Component {
   constructor() {
