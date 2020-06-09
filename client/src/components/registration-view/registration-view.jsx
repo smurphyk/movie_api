@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './registration-view.scss';
 
-export function ResgistrationView(props) {
+export function RegistrationView(props) {
   const [username, createUsername] = useState('');
   const [password, createPassword] = useState('');
   const [email, createEmail] = useState('');
@@ -29,7 +29,7 @@ export function ResgistrationView(props) {
         window.open('/client', '_self');
       })
       .catch((e) => {
-        console.log('Swing and a miss! Error registering user');
+        console.log('Swing and a miss! There was an error registering user');
       });
   };
 
