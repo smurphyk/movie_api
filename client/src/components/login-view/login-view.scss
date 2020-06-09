@@ -4,21 +4,23 @@ $font-stack: sans-serif;
 
 .login-container {
   background-color: $primaryColor;
+  border: 5px groove $secondaryColor;
   border-radius: 5px;
-  margin-top: 20px;
+  margin-top: 33vh;
   font-family: sans-serif;
-  width: 15rem;
+  width: 30vw;
   padding: 10px;
 }
 
-.register-button, .login-submit {
+.register-button, .submit-login {
   color: #000;
   background-color: $secondaryColor;
   border: 2px solid #000;
   border-radius: 5px;
-  padding: 3px;
+  padding: 5px;
   text-align: center;
   text-decoration: underline;
+  margin: 5px;
 }
 
 Button:hover {

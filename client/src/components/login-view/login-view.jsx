@@ -6,6 +6,10 @@ import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import './login-view.scss';
 import { Link } from 'react-router-dom';
+import {
+  row,
+  col,
+} from 'react-bootstrap';
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
@@ -45,14 +49,12 @@ export function LoginView(props) {
             value={password}
             onChange={(e) => setPassword(e.target.value)} />
         </Form.Group>
-        <Button className="submit-login" variant="primary" type="submit" onClick={handleSubmit}>
+        <Button className="submit-login" variant="link" type="submit" onClick={handleSubmit}>
           Login
         </Button>
-        <Link to={`/register`}>
-          <Button variant="link" className="register-button" type="submit">
-            Register
+        <Button variant="link" className="register-button" type="submit">
+          Register
           </Button>
-        </Link>
       </Form>
     </Container>
   );
@@ -60,8 +62,7 @@ export function LoginView(props) {
 
 LoginView.propTypes = {
   user: PropTypes.shape({
-    username: PropTypes.string,
-    password: PropTypes.string
-  }).isRequired,
-  handleSubmit: PropTypes.func.isRequired
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired
+  })
 };
