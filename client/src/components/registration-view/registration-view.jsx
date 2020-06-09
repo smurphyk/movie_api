@@ -7,6 +7,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './registration-view.scss';
 
+import { MainView } from '../main-view/main-view';
+
 export function RegistrationView(props) {
   const [username, createUsername] = useState('');
   const [password, createPassword] = useState('');
@@ -17,7 +19,7 @@ export function RegistrationView(props) {
     e.preventDefault();
 
     axios
-      .post('https://murphmovies.herokuapp.com/login', {
+      .post('https://murphmovies.herokuapp.com/users', {
         Username: username,
         Password: password,
         Email: email,
