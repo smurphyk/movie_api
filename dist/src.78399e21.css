@@ -1,6 +1,6 @@
 .login-container {
   background-color: #b5b5b5;
-  border: 5px groove #ff841f;
+  border: 5px groove #e93d04;
   border-radius: 5px;
   margin-top: 33vh;
   font-family: sans-serif;
@@ -10,25 +10,52 @@
 
 .register-button, .submit-login {
   color: #000;
-  background-color: #ff841f;
+  background-color: #e93d04;
   border: 2px solid #000;
   border-radius: 5px;
   padding: 5px;
   text-align: center;
-  text-decoration: underline;
   margin: 5px;
+  font-weight: bold;
 }
 
 Button:hover {
-  opacity: 0.8;
+  background-color: #00b7ff;
+  font-weight: bold;
   text-decoration: none;
 }
 .registration-container {
   background-color: #b5b5b5;
   border-radius: 5px;
 }
-.my-flix {
-  color: steelblue;
+.card-container {
+  width: 100vw;
+  background-color: #000;
+  margin: 0 auto;
+}
+
+.movie-card {
+  background-color: #b5b5b5;
+  text-align: center;
+  border: 5px groove #e93d04;
+  padding: 2%;
+  color: #000;
+  font-weight: bold;
+  width: 33vw;
+  margin: 0 auto;
+}
+
+.movie-poster {
+  border: 5px outset #b4b4b4;
+}
+
+.movie-title {
+  text-decoration: underline;
+  font-size: 180%;
+  color: #e93d04;
+}
+body {
+  background-color: #000;
 }
 
 /*# sourceMappingURL=/src.78399e21.css.map */

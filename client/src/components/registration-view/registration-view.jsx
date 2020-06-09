@@ -27,7 +27,7 @@ export function RegistrationView(props) {
         const data = response.data;
         alert("You now exist in the world of Murph's Movies! Please log in, if you dare!");
         console.log(data);
-        window.open('/', '_self');
+        window.open('/login', '_self');
       })
       .catch((e) => {
         console.log('Swing and a miss! There was an error registering user');
@@ -41,7 +41,7 @@ export function RegistrationView(props) {
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Username"
+            placeholder="Create Username"
             value={username}
             onChange={(e) => createUsername(e.target.value)} />
         </Form.Group>
@@ -49,7 +49,7 @@ export function RegistrationView(props) {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Password"
+            placeholder="Create Password"
             value={password}
             onChange={(e) => createPassword(e.target.value)} />
         </Form.Group>

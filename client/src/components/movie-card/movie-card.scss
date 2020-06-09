@@ -1,0 +1,30 @@
+$primaryColor: #b5b5b5;
+$secondaryColor: #e93d04;
+$font-stack: sans-serif;
+
+.card-container {
+  width: 100vw;
+  background-color: #000;
+  margin: 0 auto;
+}
+
+.movie-card {
+  background-color: $primaryColor;
+  text-align: center;
+  border: 5px groove $secondaryColor;
+  padding: 2%;
+  color: #000;
+  font-weight: bold;
+  width: 33vw;
+  margin: 0 auto;
+}
+
+.movie-poster {
+  border: 5px outset #b4b4b4;
+}
+
+.movie-title {
+  text-decoration: underline;
+  font-size: 180%;
+  color: $secondaryColor;
+}

@@ -6,10 +6,6 @@ import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import './login-view.scss';
 import { Link } from 'react-router-dom';
-import {
-  row,
-  col,
-} from 'react-bootstrap';
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
@@ -17,16 +13,9 @@ export function LoginView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('https://murphmovies.herokuapp.com/login', {
-      Username: username,
-      Password: password,
-    }).then((response) => {
-      const data = response.data;
-      props.onLoggedIn(data);
-    })
-      .catch((e) => {
-        console.log('User does not exist');
-      });
+    console.log(username, password);
+    // Send request to server for auth
+    props.onLoggedIn(username);
   };
 
   return (
@@ -49,10 +38,10 @@ export function LoginView(props) {
             value={password}
             onChange={(e) => setPassword(e.target.value)} />
         </Form.Group>
-        <Button className="submit-login" variant="link" type="submit" onClick={handleSubmit}>
+        <Button className="submit-login" variant="button" type="submit" onClick={handleSubmit}>
           Login
         </Button>
-        <Button variant="link" className="register-button" type="submit">
+        <Button onClick={() => window.open("RegistrationView", "_self")} variant="button" className="register-button" type="submit">
           Register
           </Button>
       </Form>

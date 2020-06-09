@@ -1,15 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import {
-  Button,
-  Form,
-  FormControl,
-} from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
-import { Link } from 'react-router-dom';
 
 
 import { LoginView } from '../login-view/login-view';
@@ -66,14 +58,14 @@ export class MainView extends React.Component {
     if (!movies) return <div className="main-view" />;
 
     return (
-      <div className="main-view">
+      <Container className="main-view">
         {selectedMovie
           ? <MovieView movie={selectedMovie} />
           : movies.map(movie => (
             <MovieCard key={movie.id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
           ))
         }
-      </div>
+      </Container>
     );
   }
 }

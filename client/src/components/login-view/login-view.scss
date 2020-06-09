@@ -1,5 +1,5 @@
 $primaryColor: #b5b5b5;
-$secondaryColor: #ff841f;
+$secondaryColor: #e93d04;
 $font-stack: sans-serif;
 
 .login-container {
@@ -19,11 +19,12 @@ $font-stack: sans-serif;
   border-radius: 5px;
   padding: 5px;
   text-align: center;
-  text-decoration: underline;
   margin: 5px;
+  font-weight: bold;
 }
 
 Button:hover {
-  opacity: 0.8;
+  background-color: #00b7ff;
+  font-weight: bold;
   text-decoration: none;
 }
