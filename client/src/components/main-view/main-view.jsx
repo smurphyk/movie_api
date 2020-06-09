@@ -1,14 +1,21 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {
+  Button,
+  Form,
+  FormControl,
+} from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import { Link } from 'react-router-dom';
+
 
 import { RegistrationView } from "../registration-view/registration-view";
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
-
-
-import Container from 'react-bootstrap/Container';
 
 export class MainView extends React.Component {
   constructor() {
