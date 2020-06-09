@@ -2,6 +2,29 @@
   background-color: #b5b5b5;
   border-radius: 5px;
 }
+.login-container {
+  background-color: #b5b5b5;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-family: sans-serif;
+  width: 15rem;
+  padding: 10px;
+}
+
+.register-button, .login-submit {
+  color: #000;
+  background-color: #ff841f;
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 3px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+Button:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
 .my-flix {
   color: steelblue;
 }
