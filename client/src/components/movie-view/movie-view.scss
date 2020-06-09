@@ -1,0 +1,41 @@
+$primaryColor: #b5b5b5;
+$secondaryColor: #e93d04;
+$font-stack: sans-serif;
+
+.movie-view {
+  text-align: center;
+  margin: 5vh auto;
+  background-color: $primaryColor;
+  border: 8px groove $secondaryColor;
+  padding: 5%;
+}
+
+.movie-title {
+  margin: 3vh auto;
+}
+
+.movie-description {
+  color: #000;
+}
+
+.movieView-poster {
+    border: 7px outset #cecece;
+    border-radius: 15px;
+    width: 25vw;
+}
+
+.movie-genre {
+  margin: 3vh auto;
+}
+
+.back-button {
+  margin: 5vh auto;
+  border-radius: 5px;
+  color: $secondaryColor;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 120%;
+  color: $secondaryColor;
+}

@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
 import { MainView } from '../main-view/main-view';
+
+import './movie-view.scss';
 
 export class MovieView extends React.Component {
 
@@ -20,10 +24,9 @@ export class MovieView extends React.Component {
     if (!movie) return null;
 
     return (
-      <div className="movie-view">
-        <img className="movie-poster" src={movie.ImagePath} />
+      <Container className="movie-view">
+        <img className="movieView-poster" src={movie.ImagePath} />
         <div className="movie-title">
-          <span className="label">Title: </span>
           <span className="value">{movie.Title}</span>
         </div>
         <div className="movie-description">
@@ -39,9 +42,9 @@ export class MovieView extends React.Component {
           <span className="value">{movie.Director.Name}</span>
         </div>
         <div className="back-button">
-          <button onClick={() => window.open("mainView", "_self")} className="button">Back</button>
+          <Button onClick={() => window.open(mainView, "_self")} className="back-button" variant="outline-primary" size="lg">Back</Button>
         </div>
-      </div >
+      </Container>
     );
   }
 }

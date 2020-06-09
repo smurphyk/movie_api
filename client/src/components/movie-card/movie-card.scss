@@ -12,6 +12,7 @@ $font-stack: sans-serif;
   background-color: $primaryColor;
   text-align: center;
   border: 5px groove $secondaryColor;
+  border-radius: 15px;
   padding: 2%;
   color: #000;
   font-weight: bold;
@@ -20,11 +21,16 @@ $font-stack: sans-serif;
 }
 
 .movie-poster {
-  border: 5px outset #b4b4b4;
+  border: 7px outset #cecece;
+  border-radius: 15px;
 }
 
 .movie-title {
   text-decoration: underline;
   font-size: 180%;
   color: $secondaryColor;
+}
+
+.open-button {
+  margin-top: 5vh;
 }

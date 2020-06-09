@@ -6,10 +6,10 @@ $font-stack: sans-serif;
   background-color: $primaryColor;
   border: 5px groove $secondaryColor;
   border-radius: 5px;
-  margin-top: 33vh;
+  margin: 33vh auto;
   font-family: sans-serif;
-  width: 30vw;
-  padding: 10px;
+  width: 40vw;
+  padding: 3%;
 }
 
 .register-button, .submit-login {

@@ -2,10 +2,10 @@
   background-color: #b5b5b5;
   border: 5px groove #e93d04;
   border-radius: 5px;
-  margin-top: 33vh;
+  margin: 33vh auto;
   font-family: sans-serif;
-  width: 30vw;
-  padding: 10px;
+  width: 40vw;
+  padding: 3%;
 }
 
 .register-button, .submit-login {
@@ -38,6 +38,7 @@ Button:hover {
   background-color: #b5b5b5;
   text-align: center;
   border: 5px groove #e93d04;
+  border-radius: 15px;
   padding: 2%;
   color: #000;
   font-weight: bold;
@@ -46,12 +47,54 @@ Button:hover {
 }
 
 .movie-poster {
-  border: 5px outset #b4b4b4;
+  border: 7px outset #cecece;
+  border-radius: 15px;
 }
 
 .movie-title {
   text-decoration: underline;
   font-size: 180%;
+  color: #e93d04;
+}
+
+.open-button {
+  margin-top: 5vh;
+}
+.movie-view {
+  text-align: center;
+  margin: 5vh auto;
+  background-color: #b5b5b5;
+  border: 8px groove #e93d04;
+  padding: 5%;
+}
+
+.movie-title {
+  margin: 3vh auto;
+}
+
+.movie-description {
+  color: #000;
+}
+
+.movieView-poster {
+  border: 7px outset #cecece;
+  border-radius: 15px;
+  width: 25vw;
+}
+
+.movie-genre {
+  margin: 3vh auto;
+}
+
+.back-button {
+  margin: 5vh auto;
+  border-radius: 5px;
+  color: #e93d04;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 120%;
   color: #e93d04;
 }
 body {
