@@ -37,7 +37,7 @@ export function RegistrationView(props) {
   return (
     <Container className="registration-container">
       <Form className="registration-form">
-        <Form.Group controlID="formBasicUsername">
+        <Form.Group controlId="formBasicUsername">
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"
@@ -45,7 +45,7 @@ export function RegistrationView(props) {
             value={username}
             onChange={(e) => createUsername(e.target.value)} />
         </Form.Group>
-        <Form.Group controlID="formBasicPassword">
+        <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -64,7 +64,7 @@ export function RegistrationView(props) {
             Your info is safe with us! We will never share with anyone, even your own mother.
             </Form.Text>
         </Form.Group>
-        <Form.Group controlID="formBasicDob">
+        <Form.Group controlId="formBasicDob">
           <Form.Label>Birthday</Form.Label>
           <Form.Control
             type="date"

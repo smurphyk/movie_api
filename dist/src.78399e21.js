@@ -38827,7 +38827,7 @@ function RegistrationView(props) {
   }, _react.default.createElement(_Form.default, {
     className: "registration-form"
   }, _react.default.createElement(_Form.default.Group, {
-    controlID: "formBasicUsername"
+    controlId: "formBasicUsername"
   }, _react.default.createElement(_Form.default.Label, null, "Username"), _react.default.createElement(_Form.default.Control, {
     type: "text",
     placeholder: "Create Username",
@@ -38836,7 +38836,7 @@ function RegistrationView(props) {
       return createUsername(e.target.value);
     }
   })), _react.default.createElement(_Form.default.Group, {
-    controlID: "formBasicPassword"
+    controlId: "formBasicPassword"
   }, _react.default.createElement(_Form.default.Label, null, "Password"), _react.default.createElement(_Form.default.Control, {
     type: "password",
     placeholder: "Create Password",
@@ -38856,7 +38856,7 @@ function RegistrationView(props) {
   }), _react.default.createElement(_Form.default.Text, {
     className: "text-muted"
   }, "Your info is safe with us! We will never share with anyone, even your own mother.")), _react.default.createElement(_Form.default.Group, {
-    controlID: "formBasicDob"
+    controlId: "formBasicDob"
   }, _react.default.createElement(_Form.default.Label, null, "Birthday"), _react.default.createElement(_Form.default.Control, {
     type: "date",
     placeholder: "mm/dd/yyyy",
@@ -39564,7 +39564,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58679" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60788" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
