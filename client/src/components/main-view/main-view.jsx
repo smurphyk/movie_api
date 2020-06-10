@@ -15,7 +15,7 @@ export class MainView extends React.Component {
 
     // Initialize the state to an empty object so we can destructrue it later
     this.state = {
-      movies: null,
+      movies: [],
       user: null
     };
   }
@@ -62,17 +62,20 @@ export class MainView extends React.Component {
     // Before data is initially loaded
     const { movies, user } = this.state;
 
-    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-
     // Before movies have been loaded
     if (!movies) return <div className="main-view" />;
 
     return (
       <Router>
         <Container className="main-view">
-          <Route exact path="/" render={/* Welcome */} />
-          <Route exact path="/movies/:movieId" render={({ match })} =>
-          <MovieView movie={movies.find(m => m._id === match.params.movieId) />} />
+          <Route exact path="/" render={() => {
+            if (!user)
+              return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
+            return movies.map(m => <MovieCard key={m._id} movie={m} />);
+          }} />
+          <Route path="/register" render={() => <RegistrationView />} />
+          <Route exact path="/movies/:movieId" render={({ match }) =>
+            <MovieView movie={movies.find(m => m._id === match.params.movieId)} />} />
           <Route exact path="/genres/:name" render={({ match }) => {
             if (!movies) return <Container className="main-view" />;
             return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} />

@@ -51,6 +51,7 @@ export class MovieView extends React.Component {
             <Button className="genre-button" variant="outline-link" size="lg">Genres</Button>
           </Link>
         </Container >
+      </Container>
     );
   }
 }

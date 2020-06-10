@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import './login-view.scss';
+import { Link } from 'react-router-dom';
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
@@ -49,9 +50,11 @@ export function LoginView(props) {
         <Button className="submit-login" variant="button" type="submit" onClick={handleSubmit}>
           Login
         </Button>
-        <Button onClick={() => window.open({ RegistrationView }, "_self")} variant="button" className="register-button">
-          Register
+        <Link to={`/register`}>
+          <Button variant="link" className="register-button" type="submit">
+            Register
           </Button>
+        </Link>
       </Form>
     </Container>
   );
