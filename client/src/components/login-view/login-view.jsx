@@ -6,8 +6,6 @@ import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import './login-view.scss';
 
-import { RegistrationView } from '../registration-view/registration-view';
-
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -44,14 +42,14 @@ export function LoginView(props) {
           <Form.Label>Password:</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Password"
+            placeholder="Enter Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)} />
         </Form.Group>
         <Button className="submit-login" variant="button" type="submit" onClick={handleSubmit}>
           Login
         </Button>
-        <Button onClick={() => window.open({ RegistrationView }, "_self")} variant="link" className="register-button" type="submit">
+        <Button onClick={() => window.open({ RegistrationView }, "_self")} variant="button" className="register-button">
           Register
           </Button>
       </Form>
