@@ -46,6 +46,12 @@ export class MainView extends React.Component {
     });
   }
 
+  onRegisterClick(newUser) {
+    this.setState({
+      RegistrationView
+    });
+  }
+
   // this overrides the render() method of the superclass
   render() {
 

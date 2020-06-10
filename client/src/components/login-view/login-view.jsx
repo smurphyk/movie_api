@@ -12,9 +12,18 @@ export function LoginView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
     // Send request to server for auth
-    props.onLoggedIn(username);
+    axios.post('https://murphmovies.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    })
+      .then(response => {
+        const data = response.data;
+        props.onLoggedIn(data);
+      })
+      .catch(e => {
+        console.log('no such user')
+      });
   };
 
   return (
@@ -40,7 +49,7 @@ export function LoginView(props) {
         <Button className="submit-login" variant="button" type="submit" onClick={handleSubmit}>
           Login
         </Button>
-        <Button onClick={() => window.open("RegistrationView", "_self")} variant="button" className="register-button" type="submit">
+        <Button onClick={() => onRegisterClick(newUser)} variant="link" className="register-button" type="submit">
           Register
           </Button>
       </Form>

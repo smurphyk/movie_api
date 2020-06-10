@@ -32621,10 +32621,17 @@ function LoginView(props) {
       setPassword = _useState4[1];
 
   var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-    console.log(username, password); // Send request to server for auth
+    e.preventDefault(); // Send request to server for auth
 
-    props.onLoggedIn(username);
+    _axios.default.post('https://murphmovies.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    }).then(function (response) {
+      var data = response.data;
+      props.onLoggedIn(data);
+    }).catch(function (e) {
+      console.log('no such user');
+    });
   };
 
   return _react.default.createElement(_Container.default, {
@@ -32654,9 +32661,9 @@ function LoginView(props) {
     onClick: handleSubmit
   }, "Login"), _react.default.createElement(_Button.default, {
     onClick: function onClick() {
-      return window.open("RegistrationView", "_self");
+      return onRegisterClick(newUser);
     },
-    variant: "button",
+    variant: "link",
     className: "register-button",
     type: "submit"
   }, "Register")));
@@ -32694,8 +32701,6 @@ var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
 require("./registration-view.scss");
-
-var _mainView = require("../main-view/main-view");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32811,7 +32816,7 @@ RegistrationView.propTypes = {
     birthday: _propTypes.default.string.isRequired
   })
 };
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./registration-view.scss":"components/registration-view/registration-view.scss","../main-view/main-view":"components/main-view/main-view.jsx"}],"../node_modules/react-bootstrap/esm/divWithClassName.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"../node_modules/react-bootstrap/esm/divWithClassName.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33155,8 +33160,8 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           movie = _this$props.movie,
           onClick = _this$props.onClick,
-          button = _this$props.button;
-      var mainView = this.state.mainView;
+          button = _this$props.button; //const { mainView } = this.state;
+
       if (!movie) return null;
       return _react.default.createElement(_Container.default, {
         className: "movie-view"
@@ -33189,7 +33194,9 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "back-button"
       }, _react.default.createElement(_Button.default, {
         onClick: function onClick() {
-          return window.open(mainView, "_self");
+          return window.open({
+            MainView: _mainView.MainView
+          }, "_self");
         },
         className: "back-button",
         variant: "outline-primary",
@@ -33296,6 +33303,13 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     value: function onLoggedIn(user) {
       this.setState({
         user: user
+      });
+    }
+  }, {
+    key: "onRegisterClick",
+    value: function onRegisterClick(newUser) {
+      this.setState({
+        RegistrationView: _registrationView.RegistrationView
       });
     } // this overrides the render() method of the superclass
 
@@ -33432,7 +33446,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64340" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52905" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
