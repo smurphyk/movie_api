@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 
@@ -41,10 +40,17 @@ export class MovieView extends React.Component {
           <span className="label">Director: </span>
           <span className="value">{movie.Director.Name}</span>
         </div>
-        <div className="back-button">
-          <Button onClick={() => window.open({ MainView }, "_self")} className="back-button" variant="outline-primary" size="lg">Back</Button>
-        </div>
-      </Container>
+        <Container className="button-container">
+          <Link to={`/`}>
+            <Button className="back-button" variant="outline-link" size="lg">Back</Button>
+          </Link>
+          <Link to={`/directors/${movie.Director.Name}`}>
+            <Button classname="director-button" variant="outline-link" size="lg">Directors</Button>
+          </Link>
+          <Link to={`/genres/${movie.Genre.Name}`}>
+            <Button className="genre-button" variant="outline-link" size="lg">Genres</Button>
+          </Link>
+        </Container >
     );
   }
 }
