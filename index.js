@@ -10,7 +10,7 @@ const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 
-const cors = require('cors');
+var cors = require('cors');
 const { check, validationResult } = require('express-validator');
 
 const passport = require('passport');
@@ -24,7 +24,7 @@ mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnified
 app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
-app.use(cors({}));
+app.use(cors());
 
 // GET requests
 
