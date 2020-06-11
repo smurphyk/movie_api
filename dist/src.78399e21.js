@@ -38694,7 +38694,7 @@ function LoginView(props) {
       var data = response.data;
       props.onLoggedIn(data);
     }).catch(function (e) {
-      console.log(username, password);
+      console.log('no such user');
     });
   };
 
@@ -38726,7 +38726,7 @@ function LoginView(props) {
   }, "Login"), _react.default.createElement(_reactRouterDom.Link, {
     to: "/register"
   }, _react.default.createElement(_Button.default, {
-    variant: "link",
+    variant: "button",
     className: "register-button",
     type: "submit"
   }, "Register"))));
@@ -39375,8 +39375,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       localStorage.setItem('token', authData.token);
       localStorage.setItem('user', authData.user.Username);
       this.getMovies(authData.token);
-    } // this overrides the render() method of the superclass
-
+    }
   }, {
     key: "render",
     value: function render() {
@@ -39554,7 +39553,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54137" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58097" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
