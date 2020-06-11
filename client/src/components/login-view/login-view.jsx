@@ -16,14 +16,14 @@ export function LoginView(props) {
     // Send request to server for auth
     axios.post('https://murphmovies.herokuapp.com/login', {
       Username: username,
-      Password: password,
+      Password: password
     })
       .then(response => {
         const data = response.data;
         props.onLoggedIn(data);
       })
       .catch(e => {
-        console.log('no such user')
+        console.log(username, password)
       });
   };
 

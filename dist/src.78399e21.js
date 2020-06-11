@@ -38694,7 +38694,7 @@ function LoginView(props) {
       var data = response.data;
       props.onLoggedIn(data);
     }).catch(function (e) {
-      console.log('no such user');
+      console.log(username, password);
     });
   };
 
@@ -39554,7 +39554,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52482" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53208" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
