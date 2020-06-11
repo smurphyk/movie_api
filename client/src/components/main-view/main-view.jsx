@@ -56,7 +56,6 @@ export class MainView extends React.Component {
     this.getMovies(authData.token);
   }
 
-  // this overrides the render() method of the superclass
   render() {
 
     // Before data is initially loaded

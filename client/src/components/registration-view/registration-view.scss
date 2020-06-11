@@ -1,7 +1,23 @@
 $primaryColor: #b5b5b5;
-$secondaryColor: #ff841f;
+$secondaryColor: #e93d04;
+$font-stack: sans-serif;
 
 .registration-container {
   background-color: $primaryColor;
+  border: 5px groove $secondaryColor;
   border-radius: 5px;
+  margin: 33vh auto;
+  font-family: sans-serif;
+  padding: 3%;
+}
+
+.submit-user {
+  color: #000;
+  background-color: $secondaryColor;
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  margin: 5px;
+  font-weight: bold;
 }
