@@ -20,6 +20,16 @@ export class MainView extends React.Component {
     };
   }
 
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+    }
+  }
+
   getMovies(token) {
     axios.get('https://murphmovies.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
@@ -33,16 +43,6 @@ export class MainView extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
-  }
-
-  componentDidMount() {
-    let accessToken = localStorage.getItem('token');
-    if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user')
-      });
-      this.getMovies(accessToken);
-    }
   }
 
   onLoggedIn(authData) {
