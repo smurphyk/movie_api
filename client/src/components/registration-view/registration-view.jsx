@@ -24,7 +24,7 @@ export function RegistrationView(props) {
       })
       .then(response => {
         const data = response.data;
-        // alert("You now exist in the world of Murph's Movies! Please log in, if you dare!");
+        alert("You now exist in the world of Murph's Movies! Please log in, if you dare!");
         console.log(data);
         window.open('/', '_self');
       })
