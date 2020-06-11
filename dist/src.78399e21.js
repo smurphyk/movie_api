@@ -38731,13 +38731,12 @@ function LoginView(props) {
     type: "submit"
   }, "Register"))));
 }
-
-LoginView.propTypes = {
-  user: _propTypes.default.shape({
-    username: _propTypes.default.string.isRequired,
-    password: _propTypes.default.string.isRequired
+/* LoginView.propTypes = {
+  user: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired
   })
-};
+}; */
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -38813,8 +38812,8 @@ function RegistrationView(props) {
       Email: email,
       Birthday: birthday
     }).then(function (response) {
-      var data = response.data; // alert("You now exist in the world of Murph's Movies! Please log in, if you dare!");
-
+      var data = response.data;
+      alert("You now exist in the world of Murph's Movies! Please log in, if you dare!");
       console.log(data);
       window.open('/', '_self');
     }).catch(function (e) {
@@ -39555,7 +39554,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51771" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52482" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

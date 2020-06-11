@@ -16,7 +16,7 @@ export function LoginView(props) {
     // Send request to server for auth
     axios.post('https://murphmovies.herokuapp.com/login', {
       Username: username,
-      Password: password
+      Password: password,
     })
       .then(response => {
         const data = response.data;
@@ -60,9 +60,9 @@ export function LoginView(props) {
   );
 }
 
-LoginView.propTypes = {
+/* LoginView.propTypes = {
   user: PropTypes.shape({
     username: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired
   })
-};
+}; */
