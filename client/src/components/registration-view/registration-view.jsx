@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -25,13 +24,13 @@ export function RegistrationView(props) {
       })
       .then(response => {
         const data = response.data;
-        alert("You now exist in the world of Murph's Movies! Please log in, if you dare!");
+        // alert("You now exist in the world of Murph's Movies! Please log in, if you dare!");
         console.log(data);
         window.open('/', '_self');
       })
       .catch((e) => {
         console.log('Swing and a miss! There was an error registering user');
-      })
+      });
   };
 
   return (
@@ -79,12 +78,3 @@ export function RegistrationView(props) {
     </Container>
   );
 }
-
-RegistrationView.propTypes = {
-  newUser: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    birthday: PropTypes.string.isRequired,
-  })
-};
