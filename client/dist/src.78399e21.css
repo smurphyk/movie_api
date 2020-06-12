@@ -1,0 +1,119 @@
+.login-container {
+  background-color: #b5b5b5;
+  border: 5px groove #e93d04;
+  border-radius: 5px;
+  margin: 33vh auto;
+  font-family: sans-serif;
+  width: 40vw;
+  padding: 3%;
+}
+
+.register-button, .submit-login {
+  color: #000;
+  background-color: #e93d04;
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  margin: 5px;
+  font-weight: bold;
+}
+
+Button:hover {
+  background-color: #00b7ff;
+  font-weight: bold;
+  text-decoration: none;
+}
+.registration-container {
+  background-color: #b5b5b5;
+  border: 5px groove #e93d04;
+  border-radius: 5px;
+  margin: 33vh auto;
+  font-family: sans-serif;
+  padding: 3%;
+}
+
+.submit-user {
+  color: #000;
+  background-color: #e93d04;
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  margin: 5px;
+  font-weight: bold;
+}
+.card-container {
+  width: 100vw;
+  background-color: #000;
+  margin: 0 auto;
+}
+
+.movie-card {
+  background-color: #b5b5b5;
+  text-align: center;
+  border: 5px groove #e93d04;
+  border-radius: 15px;
+  padding: 2%;
+  color: #000;
+  font-weight: bold;
+  width: 33vw;
+  margin: 0 auto;
+}
+
+.movie-poster {
+  border: 7px outset #cecece;
+  border-radius: 15px;
+}
+
+.movie-title {
+  text-decoration: underline;
+  font-size: 180%;
+  color: #e93d04;
+}
+
+.open-button {
+  margin-top: 5vh;
+}
+.movie-view {
+  text-align: center;
+  margin: 5vh auto;
+  background-color: #b5b5b5;
+  border: 8px groove #e93d04;
+  padding: 5%;
+}
+
+.movie-title {
+  margin: 3vh auto;
+}
+
+.movie-description {
+  color: #000;
+}
+
+.movieView-poster {
+  border: 7px outset #cecece;
+  border-radius: 15px;
+  width: 25vw;
+}
+
+.movie-genre {
+  margin: 3vh auto;
+}
+
+.back-button {
+  margin: 5vh auto;
+  border-radius: 5px;
+  color: #e93d04;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 120%;
+  color: #e93d04;
+}
+body {
+  background-color: #000;
+}
+
+/*# sourceMappingURL=/src.78399e21.css.map */
