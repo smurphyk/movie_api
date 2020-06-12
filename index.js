@@ -11,13 +11,15 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 const cors = require('cors');
+app.use(cors());
 const { check, validationResult } = require('express-validator');
 
 const passport = require('passport');
 require('./passport');
 
-let auth = require('./auth')(app);
+const auth = require('./auth')(app);
 
+//mongoose.connect('mongodb://localhost:27017/movie_apiDB', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Middleware
@@ -25,17 +27,7 @@ app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
-let allowedOrigins = [`https://murphmovies.herokuapp.com/:1pp.com/login`, 'http://localhost:1234'];
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      let message = `The CORS policy for this application does not allow access from origin: ${origin}`;
-      return callback(new Error(message), false);
-    }
-    return callback(null, true);
-  }
-}));
+
 
 // GET requests
 
