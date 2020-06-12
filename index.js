@@ -25,7 +25,7 @@ app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
-let allowedOrigins = [`https://murphmovies.herokuapp.com/`, 'http://localhost:1234'];
+let allowedOrigins = [`https://murphmovies.herokuapp.com/:1pp.com/login`, 'http://localhost:1234'];
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
