@@ -39675,8 +39675,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       // Before data is initially loaded
-      var movies = this.props.movies;
-      var user = this.state.user; // Before movies have been loaded
+      var _this$state = this.state,
+          movies = _this$state.movies,
+          user = _this$state.user; // Before movies have been loaded
 
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
@@ -39741,6 +39742,17 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             director: movies.find(function (m) {
               return m.Director.Name === match.params.name;
             }).Director
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
+        path: "/users/:username",
+        render: function render(_ref4) {
+          var match = _ref4.match;
+          return _react.default.createElement(_profileView.ProfileView, {
+            profile: useParams.find(function (m) {
+              return m.User.Username === match.params.username;
+            }).User
           });
         }
       })));
@@ -39845,7 +39857,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54074" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54114" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
