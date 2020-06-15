@@ -16,11 +16,13 @@ export function RegistrationView(props) {
     e.preventDefault();
 
     axios
-      .post('https://murphmovies.herokuapp.com/users', {
-        Username: username,
-        Password: password,
-        Email: email,
-        Birthday: birthday,
+      .post('https://murphmovies.herokuapp.com/users', null, {
+        params: {
+          Username: username,
+          Password: password,
+          Email: email,
+          Birthday: birthday,
+        }
       })
       .then(response => {
         const data = response.data;
