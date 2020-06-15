@@ -1,6 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
+import {
+  Navbar,
+  Nav,
+} from 'react-bootstrap';
+
+import { Link } from 'react-router-dom';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -11,6 +17,8 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
+
+import './main-view.scss';
 
 export class MainView extends React.Component {
   constructor() {
@@ -62,13 +70,25 @@ export class MainView extends React.Component {
   render() {
 
     // Before data is initially loaded
-    const { movies, user } = this.state;
+    const { movies } = this.props;
+    let { user } = this.state;
 
     // Before movies have been loaded
     if (!movies) return <div className="main-view" />;
 
     return (
       <Router>
+        <Navbar expand="lg">
+          <Navbar.Brand as={Link} to="/">Murph's Movie API</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link as={Link} to="/">Home</Nav.Link>
+              <Nav.Link as={Link} to="/users/:username">Profile</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+        <br></br>
         <Container className="main-view">
           <Route exact path="/" render={() => {
             if (!user)
@@ -86,9 +106,7 @@ export class MainView extends React.Component {
             if (!movies) return <Container className="main-view" />;
             return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} />
           }} />
-          <Route exact path="/users/:username" render={({ match }) => {
-            return <ProfileView profile={useParams.find(m => m.User.Username === match.params.username).User} />
-          }} />
+          <Route exact path="/user" render={() => <ProfileView movies={movies} />} />
         </Container>
       </Router>
     );

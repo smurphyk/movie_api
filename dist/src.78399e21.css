@@ -79,10 +79,11 @@ Button:hover {
 }
 .movie-view {
   text-align: center;
-  margin: 5vh auto;
+  width: 40vw;
+  margin: 0 auto;
   background-color: #b5b5b5;
   border: 8px groove #e93d04;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 5%;
 }
 
@@ -112,6 +113,16 @@ Button:hover {
   padding: 5px;
   text-align: center;
   margin: 5px;
+  font-weight: bold;
+}
+
+.add-favorite {
+  margin-top: 4%;
+  color: #e93d04;
+  background-color: #000;
+  border: 2px solid #e93d04;
+  border-radius: 5px;
+  text-align: center;
   font-weight: bold;
 }
 
@@ -156,6 +167,16 @@ Button:hover {
   text-decoration: underline;
   font-size: 200%;
   margin-bottom: 7%;
+}
+.main-view {
+  background-color: #000;
+}
+
+.navbar {
+  background-color: #b5b5b5;
+  position: fixed;
+  border: 1px solid #e93d04;
+  border-radius: 5px;
 }
 body {
   background-color: #000;

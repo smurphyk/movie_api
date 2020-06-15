@@ -4,10 +4,11 @@ $font-stack: sans-serif;
 
 .movie-view {
   text-align: center;
-  margin: 5vh auto;
+  width: 40vw;
+  margin: 0 auto;
   background-color: $primaryColor;
   border: 8px groove $secondaryColor;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 5%;
 }
 
@@ -38,6 +39,16 @@ $font-stack: sans-serif;
   text-align: center;
   margin: 5px;
   font-weight: bold;  
+}
+
+.add-favorite {
+  margin-top: 4%;
+  color: $secondaryColor;
+  background-color: #000;
+  border: 2px solid $secondaryColor;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
 }
 
 .button-container {

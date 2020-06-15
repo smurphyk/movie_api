@@ -5,3 +5,10 @@ $font-stack: sans-serif;
 .main-view {
   background-color: #000;
 }
+
+.navbar {
+  background-color: $primaryColor;
+  position: fixed;
+  border: 1px solid $secondaryColor;
+  border-radius: 5px;
+}

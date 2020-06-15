@@ -11,9 +11,7 @@ export class MovieView extends React.Component {
   constructor() {
     super();
 
-    this.state = {
-      mainView: null
-    };
+    this.state = {};
   }
 
   render() {
@@ -50,8 +48,10 @@ export class MovieView extends React.Component {
           <Link to={`/genres/${movie.Genre.Name}`}>
             <Button className="genre-button" size="lg">Genres</Button>
           </Link>
+          <br></br>
+          <Button className="add-favorite" size="lg" onClick>Add to Favorites</Button>
         </Container >
-      </Container>
+      </Container >
     );
   }
 }
