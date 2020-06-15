@@ -14,8 +14,10 @@ export function LoginView(props) {
     e.preventDefault();
     // Send request to server for auth
     axios.post('https://murphmovies.herokuapp.com/login', null, {
-      Username: username,
-      Password: password
+      params: {
+        Username: username,
+        Password: password
+      }
     })
       .then(response => {
         const data = response.data;
