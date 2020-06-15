@@ -8,6 +8,9 @@ import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from "../registration-view/registration-view";
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { DirectorView } from '../director-view/director-view';
+import { GenreView } from '../genre-view/genre-view';
+import { ProfileView } from '../profile-view/profile-view';
 
 export class MainView extends React.Component {
   constructor() {
@@ -59,7 +62,7 @@ export class MainView extends React.Component {
   render() {
 
     // Before data is initially loaded
-    const { movies, user } = this.state;
+    const { movies, user, director, genre } = this.state;
 
     // Before movies have been loaded
     if (!movies) return <div className="main-view" />;

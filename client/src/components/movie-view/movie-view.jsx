@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 
-import { MainView } from '../main-view/main-view';
+import { Link } from 'react-router-dom';
 
 import './movie-view.scss';
 
@@ -42,13 +42,13 @@ export class MovieView extends React.Component {
         </div>
         <Container className="button-container">
           <Link to={`/`}>
-            <Button className="back-button" variant="outline-link" size="lg">Back</Button>
+            <Button className="back-button" size="lg">Back</Button>
           </Link>
           <Link to={`/directors/${movie.Director.Name}`}>
-            <Button classname="director-button" variant="outline-link" size="lg">Directors</Button>
+            <Button className="director-button" size="lg">Directors</Button>
           </Link>
           <Link to={`/genres/${movie.Genre.Name}`}>
-            <Button className="genre-button" variant="outline-link" size="lg">Genres</Button>
+            <Button className="genre-button" size="lg">Genres</Button>
           </Link>
         </Container >
       </Container>

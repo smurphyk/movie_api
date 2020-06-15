@@ -1,0 +1,20 @@
+$primaryColor: #b5b5b5;
+$secondaryColor: #e93d04;
+$font-stack: sans-serif;
+
+.genre-view {
+  text-align: center;
+  width: 45vw;
+  margin: 15vh auto;
+  background-color: $primaryColor;
+  border: 8px groove $secondaryColor;
+  border-radius: 10px;
+  padding: 4%;
+}
+
+.genre-name {
+  color: $secondaryColor;
+  text-decoration: underline;
+  font-size: 200%;
+  margin-bottom: 7%;
+}

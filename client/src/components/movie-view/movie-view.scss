@@ -7,6 +7,7 @@ $font-stack: sans-serif;
   margin: 5vh auto;
   background-color: $primaryColor;
   border: 8px groove $secondaryColor;
+  border-radius: 5px;
   padding: 5%;
 }
 
@@ -28,10 +29,19 @@ $font-stack: sans-serif;
   margin: 3vh auto;
 }
 
-.back-button {
-  margin: 5vh auto;
+.back-button, .director-button, .genre-button {
+  color: #000;
+  background-color: $secondaryColor;
+  border: 2px solid #000;
   border-radius: 5px;
-  color: $secondaryColor;
+  padding: 5px;
+  text-align: center;
+  margin: 5px;
+  font-weight: bold;  
+}
+
+.button-container {
+  margin: 5% auto;
 }
 
 .label {
