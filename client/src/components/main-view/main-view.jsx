@@ -62,7 +62,8 @@ export class MainView extends React.Component {
   render() {
 
     // Before data is initially loaded
-    const { movies, user, director, genre } = this.state;
+    const { movies } = this.props;
+    const { user } = this.state;
 
     // Before movies have been loaded
     if (!movies) return <div className="main-view" />;
