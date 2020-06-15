@@ -38685,7 +38685,7 @@ function LoginView(props) {
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault(); // Send request to server for auth
 
-    _axios.default.post('https://murphmovies.herokuapp.com/login', {
+    _axios.default.post('https://murphmovies.herokuapp.com/login', null, {
       Username: username,
       Password: password
     }).then(function (response) {
@@ -39545,7 +39545,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56890" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62727" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
