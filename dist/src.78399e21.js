@@ -52734,7 +52734,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
-        path: "/users/:username",
+        path: "/user",
         render: function render(_ref4) {
           var match = _ref4.match;
           return _react.default.createElement(_profileView.ProfileView, {
@@ -52845,7 +52845,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55771" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57369" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

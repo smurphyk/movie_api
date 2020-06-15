@@ -70,8 +70,7 @@ export class MainView extends React.Component {
   render() {
 
     // Before data is initially loaded
-    const { movies } = this.props;
-    let { user } = this.state;
+    const { movies, user } = this.state;
 
     // Before movies have been loaded
     if (!movies) return <div className="main-view" />;
@@ -106,7 +105,9 @@ export class MainView extends React.Component {
             if (!movies) return <Container className="main-view" />;
             return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} />
           }} />
-          <Route exact path="/user" render={() => <ProfileView movies={movies} />} />
+          <Route exact path="/user" render={({ match }) => {
+            return <ProfileView profile={users.find(m => m.User.Username === match.params.username).User} />
+          }} />
         </Container>
       </Router>
     );
