@@ -13,7 +13,6 @@ export class ProfileView extends React.Component {
     super(props);
 
     this.state = {
-      user: null,
       Username: null,
       Password: null,
       Email: null,
@@ -53,8 +52,7 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { user } = this.state;
-    const { movies } = this.props;
+    const { user } = this.props;
 
     return (
       <Container className="profile-view">
