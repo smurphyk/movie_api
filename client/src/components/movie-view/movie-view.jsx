@@ -15,8 +15,7 @@ export class MovieView extends React.Component {
   }
 
   render() {
-    const { movie, onClick, button } = this.props;
-    //const { mainView } = this.state;
+    const { movie } = this.props;
 
     if (!movie) return null;
 
@@ -38,18 +37,19 @@ export class MovieView extends React.Component {
           <span className="label">Director: </span>
           <span className="value">{movie.Director.Name}</span>
         </div>
+        <br></br>
         <Container className="button-container">
-          <Link to={`/`}>
-            <Button className="back-button" size="lg">Back</Button>
-          </Link>
           <Link to={`/directors/${movie.Director.Name}`}>
-            <Button className="director-button" size="lg">Directors</Button>
+            <Button className="director-button" size="lg">Director Info</Button>
           </Link>
           <Link to={`/genres/${movie.Genre.Name}`}>
-            <Button className="genre-button" size="lg">Genres</Button>
+            <Button className="genre-button" size="lg">Genre Info</Button>
           </Link>
           <br></br>
-          <Button className="add-favorite" size="lg" onClick>Add to Favorites</Button>
+          <br></br>
+          <Link to={`/`}>
+            <Button className="back-button" size="lg" block>Back</Button>
+          </Link>
         </Container >
       </Container >
     );

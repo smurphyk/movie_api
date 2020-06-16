@@ -46,20 +46,20 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { movies } = this.props;
-    const favoriteMovieList = movies.filter((movie) =>
-      this.state.favoriteMovies.includes(movie._id)
-    );
+    const { movies, user } = this.props;
+    //const favoriteMovieList = movies.filter((movie) =>
+    //this.state.favoriteMovies.includes(movie._id)
+    // );
 
     return (
       <Container className="profile-container">
-        <h1>{this.state.Username}'s Profile</h1>
+        <h1>My Profile</h1>
         <Card className="profile-card">
           <Card.Body>
-            <Card.Text>Username: {this.state.Username}</Card.Text>
+            <Card.Text>Username: {user.Username}</Card.Text>
             <Card.Text>Password: *****</Card.Text>
-            <Card.Text>Email: {this.state.Email}</Card.Text>
-            <Card.Text>Birthday {this.state.Birthday}</Card.Text>
+            <Card.Text>Email: {user.Email}</Card.Text>
+            <Card.Text>Birthday {user.Birthday}</Card.Text>
             Favorite Movies: {
               favoriteMovieList.map((movie) => {
                 <div key={movie._id} className="favorites-button">

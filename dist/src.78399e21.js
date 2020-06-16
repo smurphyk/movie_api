@@ -52137,11 +52137,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   _createClass(MovieView, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          movie = _this$props.movie,
-          onClick = _this$props.onClick,
-          button = _this$props.button; //const { mainView } = this.state;
-
+      var movie = this.props.movie;
       if (!movie) return null;
       return _react.default.createElement(_Container.default, {
         className: "movie-view"
@@ -52170,28 +52166,25 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "label"
       }, "Director: "), _react.default.createElement("span", {
         className: "value"
-      }, movie.Director.Name)), _react.default.createElement(_Container.default, {
+      }, movie.Director.Name)), _react.default.createElement("br", null), _react.default.createElement(_Container.default, {
         className: "button-container"
       }, _react.default.createElement(_reactRouterDom.Link, {
-        to: "/"
-      }, _react.default.createElement(_Button.default, {
-        className: "back-button",
-        size: "lg"
-      }, "Back")), _react.default.createElement(_reactRouterDom.Link, {
         to: "/directors/".concat(movie.Director.Name)
       }, _react.default.createElement(_Button.default, {
         className: "director-button",
         size: "lg"
-      }, "Directors")), _react.default.createElement(_reactRouterDom.Link, {
+      }, "Director Info")), _react.default.createElement(_reactRouterDom.Link, {
         to: "/genres/".concat(movie.Genre.Name)
       }, _react.default.createElement(_Button.default, {
         className: "genre-button",
         size: "lg"
-      }, "Genres")), _react.default.createElement("br", null), _react.default.createElement(_Button.default, {
-        className: "add-favorite",
+      }, "Genre Info")), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_reactRouterDom.Link, {
+        to: "/"
+      }, _react.default.createElement(_Button.default, {
+        className: "back-button",
         size: "lg",
-        onClick: true
-      }, "Add to Favorites")));
+        block: true
+      }, "Back"))));
     }
   }]);
 
@@ -52483,13 +52476,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var movies = this.props.movies;
-      var favoriteMovieList = movies.filter(function (movie) {
-        return _this3.state.favoriteMovies.includes(movie._id);
-      });
+      var movies = this.props.movies; //const favoriteMovieList = movies.filter((movie) =>
+      //this.state.favoriteMovies.includes(movie._id)
+      // );
+
       return _react.default.createElement(_Container.default, {
         className: "profile-container"
-      }, _react.default.createElement("h1", null, this.state.Username, "'s Profile"), _react.default.createElement(_Card.default, {
+      }, _react.default.createElement("h1", null, "My Profile"), _react.default.createElement(_Card.default, {
         className: "profile-card"
       }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, null, "Username: ", this.state.Username), _react.default.createElement(_Card.default.Text, null, "Password: *****"), _react.default.createElement(_Card.default.Text, null, "Email: ", this.state.Email), _react.default.createElement(_Card.default.Text, null, "Birthday ", this.state.Birthday), "Favorite Movies: ", favoriteMovieList.map(function (movie) {
         _react.default.createElement("div", {
@@ -52669,7 +52662,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         to: "/"
       }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
         as: _reactRouterDom.Link,
-        to: "/users/:username"
+        to: "/user"
       }, "Profile")))), _react.default.createElement("br", null), _react.default.createElement(_Container.default, {
         className: "main-view"
       }, _react.default.createElement(_reactRouterDom.Route, {
@@ -52845,7 +52838,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57369" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57732" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

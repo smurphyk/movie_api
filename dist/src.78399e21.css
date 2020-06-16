@@ -116,16 +116,6 @@ Button:hover {
   font-weight: bold;
 }
 
-.add-favorite {
-  margin-top: 4%;
-  color: #e93d04;
-  background-color: #000;
-  border: 2px solid #e93d04;
-  border-radius: 5px;
-  text-align: center;
-  font-weight: bold;
-}
-
 .button-container {
   margin: 5% auto;
 }
