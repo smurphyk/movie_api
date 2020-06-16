@@ -52459,13 +52459,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
-      }).then(function (res) {
+      }).then(function (response) {
         _this2.setState({
-          Username: res.data.Username,
-          Password: res.data.Password,
-          Email: res.data.Email,
-          Birthday: res.data.Birthday,
-          FavoriteMovies: res.data.FavoriteMovies
+          Username: _this2.props.data,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: response.data.Birthday,
+          FavoriteMovies: response.data.FavoriteMovies
         });
       }).catch(function (error) {
         console.log(error);
@@ -52492,7 +52492,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "profile-view"
       }, _react.default.createElement("h1", null, "My Profile"), _react.default.createElement(_Card.default, {
         className: "profile-card"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, null, "Username: ", user.Username), _react.default.createElement(_Card.default.Text, null, "Password: *****"), _react.default.createElement(_Card.default.Text, null, "Email: ", user.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", user.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorite Movies: ", user.FavoriteMovies), _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, null, "Username: ", this.Username), _react.default.createElement(_Card.default.Text, null, "Password: *****"), _react.default.createElement(_Card.default.Text, null, "Email: ", this.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", this.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorite Movies: ", this.FavoriteMovies), _react.default.createElement(_reactRouterDom.Link, {
         to: '/user/update'
       }, _react.default.createElement(_Button.default, {
         className: "update-button"
@@ -52739,13 +52739,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        exact: true,
         path: "/user",
-        render: function render(_ref4) {
-          var match = _ref4.match;
-          return _react.default.createElement(_profileView.ProfileView, null);
-        }
-      })));
+        component: _profileView.ProfileView
+      }), ")"));
     }
   }]);
 
@@ -52847,7 +52843,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56520" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58079" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

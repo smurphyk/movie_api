@@ -13,6 +13,7 @@ export class ProfileView extends React.Component {
     super(props);
 
     this.state = {
+      user: null,
       Username: null,
       Password: null,
       Email: null,
@@ -27,13 +28,13 @@ export class ProfileView extends React.Component {
     axios.get('https://murphmovies.herokuapp.com/users', {
       headers: { Authorization: `Bearer ${token}` },
     })
-      .then((res) => {
+      .then((response) => {
         this.setState({
-          Username: res.data.Username,
-          Password: res.data.Password,
-          Email: res.data.Email,
-          Birthday: res.data.Birthday,
-          FavoriteMovies: res.data.FavoriteMovies,
+          Username: this.props.data,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: response.data.Birthday,
+          FavoriteMovies: response.data.FavoriteMovies,
         });
       })
       .catch(function (error) {
@@ -52,18 +53,19 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { user } = this.props;
+    const { user } = this.state;
+    const { movies } = this.props;
 
     return (
       <Container className="profile-view">
         <h1>My Profile</h1>
         <Card className="profile-card">
           <Card.Body>
-            <Card.Text>Username: {user.Username}</Card.Text>
+            <Card.Text>Username: {this.Username}</Card.Text>
             <Card.Text>Password: *****</Card.Text>
-            <Card.Text>Email: {user.Email}</Card.Text>
-            <Card.Text>Birthday: {user.Birthday}</Card.Text>
-            <Card.Text>Favorite Movies: {user.FavoriteMovies}</Card.Text>
+            <Card.Text>Email: {this.Email}</Card.Text>
+            <Card.Text>Birthday: {this.Birthday}</Card.Text>
+            <Card.Text>Favorite Movies: {this.FavoriteMovies}</Card.Text>
             <Link to={'/user/update'}>
               <Button className="update-button">Update Profile</Button>
             </Link>

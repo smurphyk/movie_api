@@ -1,133 +1,143 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="../css/styles.css"/>
-    <title>Murph's Movie API</title>
-  </head>
-  <body>
-   <header class="main_header">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <title>Murph's Movie API</title>
+</head>
+
+<body>
+  <header class="main_header">
     <h1 class="api_title">Murph's Movie API</h1>
   </header>
   <div class="intro">
     <h2>Documentation</h2>
     <p>
-      Welcome to my first API!  This is a one-stop shop for all you movie junkies
-      out there.  With my API, you will be able to access all pertinent
-      information about your favorite movies!  First things first, make sure you
+      Welcome to my first API! This is a one-stop shop for all you movie junkies
+      out there. With my API, you will be able to access all pertinent
+      information about your favorite movies! First things first, make sure you
       sign up, update all your personal information, and create a list of your favorite
       movies!
     </p>
   </div>
   <div class="row col">
-      <div class="endpoint_table col">
-        <table>
-          <caption style="text-decoration: underline">Web Server Request Enpoints Documentation</caption>
-          <br>
-          <thead>
-            <tr class="table_headers">
-              <th scope="col"> REQUEST </th>
-              <th scope="col"> URL </th>
-              <th scope="col"> HTTP METHOD </th>
-              <th scope="col"> REQUEST DATA FORMAT </th>
-              <th scope="col"> RESPONSE DATA BODY FORMAT </th>
-            </tr>
-          </thead>
-      <tbody style="border: solid 1px #000">
-        <tr>
-          <td scope="row"> Return a list of all movies to user </td>
-          <td> /movies </td>
-          <td style="color: #00c410"> GET </td>
-          <td> None </td>
-          <td> A JSON object containing data for all movies </td>
-        </tr>
-        <tr>
-          <td scope="row"> Return data about a single movie, by title </td>
-          <td> /movies/[TITLE] </td>
-          <td style="color: #00c410"> GET </td>
-          <td> None </td>
-          <td> A JSON object containing data about a single movie,
+    <div class="endpoint_table col">
+      <table>
+        <caption style="text-decoration: underline">Web Server Request Enpoints Documentation</caption>
+        <br>
+        <thead>
+          <tr class="table_headers">
+            <th scope="col"> REQUEST </th>
+            <th scope="col"> URL </th>
+            <th scope="col"> HTTP METHOD </th>
+            <th scope="col"> REQUEST DATA FORMAT </th>
+            <th scope="col"> RESPONSE DATA BODY FORMAT </th>
+          </tr>
+        </thead>
+        <tbody style="border: solid 1px #000">
+          <tr>
+            <td scope="row"> Return a list of all movies to user </td>
+            <td> /movies </td>
+            <td style="color: #00c410"> GET </td>
+            <td> None </td>
+            <td> A JSON object containing data for all movies </td>
+          </tr>
+          <tr>
+            <td scope="row"> Return data about a single movie, by title </td>
+            <td> /movies/[TITLE] </td>
+            <td style="color: #00c410"> GET </td>
+            <td> None </td>
+            <td> A JSON object containing data about a single movie,
               including ID, title, description, genre, director info, image,
               and featured status:
               <p style="color: #157cd1">
-              {
+                {
                 "Genre": {
-                  "Name": "Drama",
-                  "Description": "Dramas are defined by conflict and often looks to reality rather than sensationalism. Emotions and intense situations are the focus, but where other genres might use unique or exciting moments to create a feeling, movies in the drama genre focus on common occurrences."
-                  },
+                "Name": "Drama",
+                "Description": "Dramas are defined by conflict and often looks to reality rather than sensationalism.
+                Emotions and intense situations are the focus, but where other genres might use unique or exciting
+                moments to create a feeling, movies in the drama genre focus on common occurrences."
+                },
                 "Director": {
-                  "Name": "David Fincher",
-                  "Bio": "David Andrew Leo Fincher is an American director and producer of films, television, and music videos.",
-                  "Birth": "1962",
-                  "Death": "N/A"
+                "Name": "David Fincher",
+                "Bio": "David Andrew Leo Fincher is an American director and producer of films, television, and music
+                videos.",
+                "Birth": "1962",
+                "Death": "N/A"
                 },
                 "Actors": [],
                 "_id": "5ecd794a88f3d67a9315eb66",
                 "Title": "Fight Club",
-                "Description": "A nameless first person narrator (Edward Norton) attends support groups in attempt to subdue his emotional state and relieve his insomniac state. When he meets Marla (Helena Bonham Carter), another fake attendee of support groups, his life seems to become a little more bearable. However when he associates himself with Tyler (Brad Pitt) he is dragged into an underground fight club and soap making scheme. Together the two men spiral out of control and engage in competitive rivalry for love and power. When the narrator is exposed to the hidden agenda of Tyler's fight club, he must accept the awful truth that Tyler may not be who he says he is.",
+                "Description": "A nameless first person narrator (Edward Norton) attends support groups in attempt to
+                subdue his emotional state and relieve his insomniac state. When he meets Marla (Helena Bonham Carter),
+                another fake attendee of support groups, his life seems to become a little more bearable. However when
+                he associates himself with Tyler (Brad Pitt) he is dragged into an underground fight club and soap
+                making scheme. Together the two men spiral out of control and engage in competitive rivalry for love and
+                power. When the narrator is exposed to the hidden agenda of Tyler's fight club, he must accept the awful
+                truth that Tyler may not be who he says he is.",
                 "ImagePath": "fight_club.png",
                 "Featured": true,
-              }
+                }
               </p>
-          </td>
-        </tr>
-        <tr>
-          <td scope="row"> Return data about a single director, by name</td>
-          <td> /directors/[NAME] </td>
-          <td style="color: #00c410"> GET </td>
-          <td> None </td>
-          <td> A JSON object containing data about a single director,
-            including name, bio, birthdate, and death date:
-            <p style="color: #157cd1">
-              {
+            </td>
+          </tr>
+          <tr>
+            <td scope="row"> Return data about a single director, by name</td>
+            <td> /directors/[NAME] </td>
+            <td style="color: #00c410"> GET </td>
+            <td> None </td>
+            <td> A JSON object containing data about a single director,
+              including name, bio, birthdate, and death date:
+              <p style="color: #157cd1">
+                {
                 "Name": "David Fincher",
-                "Bio": "David Andrew Leo Fincher is an American director and producer of films, television, and music videos.",
+                "Bio": "David Andrew Leo Fincher is an American director and producer of films, television, and music
+                videos.",
                 "Birth": "1962",
                 "Death": "N/A"
-              }
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td scope="row"> Return data about a genre, by name </td>
-          <td> /genres/[NAME] </td>
-          <td style="color: #00c410"> GET </td>
-          <td> None </td>
-          <td> A JSON object containing data about a single genre,
-            including name and description:
-            <p style="color: #157cd1">
-              {
+                }
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td scope="row"> Return data about a genre, by name </td>
+            <td> /genres/[NAME] </td>
+            <td style="color: #00c410"> GET </td>
+            <td> None </td>
+            <td> A JSON object containing data about a single genre,
+              including name and description:
+              <p style="color: #157cd1">
+                {
                 name: 'Action',
-                description: 'Action movies are defined by risk and stakes. To be appropriately categorized inside the action genre, the bulk of the content must be action-oriented, including fight scenes, stunts, car chases, and general danger.',
-              }
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td scope="row"> Allows a new user to register</td>
-          <td> /users </td>
-          <td style="color: #fff019"> POST </td>
-          <td> A JSON object containing data about new user, including
-            name, username, password, email, and birthday:
-            <p style="color: #157cd1">
-              {
-	               "Username": "AceofHearts",
-	               "Password": "password2",
-	               "Email": "aceofhearts@noemail.com",
-	               "Birthday": "1990-12-13"
-               }
-            </p>
-          </td>
-          <td> A JSON object containing data about new user and new, unique ID:
-            <p style="color: #157cd1">
-              {
+                description: 'Action movies are defined by risk and stakes. To be appropriately categorized inside the
+                action genre, the bulk of the content must be action-oriented, including fight scenes, stunts, car
+                chases, and general danger.',
+                }
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td scope="row"> Allows a new user to register</td>
+            <td> /users </td>
+            <td style="color: #fff019"> POST </td>
+            <td> A JSON object containing data about new user, including
+              name, username, password, email, and birthday:
+              <p style="color: #157cd1">
+                {
+                "Username": "AceofHearts",
+                "Password": "password2",
+                "Email": "aceofhearts@noemail.com",
+                "Birthday": "1990-12-13"
+                }
+              </p>
+            </td>
+            <td> A JSON object containing data about new user and new, unique ID:
+              <p style="color: #157cd1">
+                {
                 "FavoriteMovies": [],
                 "_id": "5ed01e50721dbd07e4783d41",
                 "Username": "AceofHearts",
@@ -135,11 +145,33 @@
                 "Email": "aceofhearts@noemail.com",
                 "Birthday": "1990-12-13T00:00:00.000Z",
                 "__v": 0
-              }
-            </p>
+                }
+              </p>
             </td>
-        </tr>
-        <tr>
+          </tr>
+          <tr>
+            <td scope="row"> Allows user to login </td>
+            <td> /login </td>
+            <td style="color: #fff019"> POST </td>
+            <td> A key-value input containing username and password of an existing User</td>
+            <td> A JSON object containing user data, including a unique Bearer Token for Authentication:
+              <p style="color: #157cd1">
+                {
+                "user": {
+                "FavoriteMovies": [],
+                "_id": "5ee784e13f30740017e243fa",
+                "Username": "smurphyk",
+                "Password": "$2b$10$JKlXxNB/uZgspR/eyq1OcuB4qgbaJXckw5zpyLNfPmecDDPo4/Vxq",
+                "Email": "test@email.com",
+                "Birthday": "1111-11-11T00:00:00.000Z",
+                "__v": 0
+                },
+                "token":
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJGYXZvcml0ZU1vdmllcyI6W10sIl9pZCI6IjVlZTc4NGUxM2YzMDc0MDAxN2UyNDNmYSIsIlVzZXJuYW1lIjoic211cnBoeWsiLCJQYXNzd29yZCI6IiQyYiQxMCRKS2xYeE5CL3VaZ3NwUi9leXExT2N1QjRxZ2JhSlhja3c1enB5TE5mUG1lY0REUG80L1Z4cSIsIkVtYWlsIjoidGVzdEBlbWFpbC5jb20iLCJCaXJ0aGRheSI6IjExMTEtMTEtMTFUMDA6MDA6MDAuMDAwWiIsIl9fdiI6MCwiaWF0IjoxNTkyMzM1Njg2LCJleHAiOjE1OTI5NDA0ODYsInN1YiI6InNtdXJwaHlrIn0.oVasCRy1Ja73mPVkIa51Ch2Rys4idOGhGj03lflvuNQ"
+                }
+              </p>
+            </td>
+          </tr>
           <td scope="row"> Allows user to update personal information </td>
           <td> /users/[USERNAME] </td>
           <td style="color: #157cd1"> PUT </td>
@@ -147,24 +179,24 @@
             username, password, email, birthday, and ID:
             <p style="color: #157cd1">
               {
-                username: 'PapaSmurph',
-                password: 'password123',
-                email: 'noemail@noemail.com',
-                birthday: '03-23-1990',
-                id: 'ef808594-628e-4ec2-81fe-cb15ac727130'
+              username: 'PapaSmurph',
+              password: 'password123',
+              email: 'noemail@noemail.com',
+              birthday: '03-23-1990',
+              id: 'ef808594-628e-4ec2-81fe-cb15ac727130'
               }
             </p>
-            <td> A JSON object containing user information, including any updates:
-              <p style="color: #157cd1">
-                {
-                  username: 'PapaSmurph',
-                  password: 'password123',
-                  email: 'noemail@noemail.com',
-                  birthday: '03-23-1990',
-                  id: 'ef808594-628e-4ec2-81fe-cb15ac727130'
-                }
-              </p>
-            </td>
+          <td> A JSON object containing user information, including any updates:
+            <p style="color: #157cd1">
+              {
+              username: 'PapaSmurph',
+              password: 'password123',
+              email: 'noemail@noemail.com',
+              birthday: '03-23-1990',
+              id: 'ef808594-628e-4ec2-81fe-cb15ac727130'
+              }
+            </p>
+          </td>
           </tr>
           <tr>
             <td scope="row"> Allows user to add a movie to their list of favorites </td>
@@ -174,20 +206,20 @@
             <td> A JSON object containing data about the user, including the added movie:
               <p style="color: #157cd1">
                 {
-                  "FavoriteMovies": [
-                  "5ece831616aa8b43be26d488"
-                  ],
-                  "_id": "5ece873516aa8b43be26d48d",
-                  "Username": "SirMeliodas",
-                  "Password": "SinofWrath",
-                  "Email": "meliodas@noemail.com",
-                  "Birthday": "1500-10-02T00:00:00.000Z",
-                  "Favorites": [
-                    "5ece7d5516aa8b43be26d484",
-                    "5ece7c5916aa8b43be26d483",
-                    "5ece7b1016aa8b43be26d482",
-                    "5ecd794a88f3d67a9315eb66"
-                    ]
+                "FavoriteMovies": [
+                "5ece831616aa8b43be26d488"
+                ],
+                "_id": "5ece873516aa8b43be26d48d",
+                "Username": "SirMeliodas",
+                "Password": "SinofWrath",
+                "Email": "meliodas@noemail.com",
+                "Birthday": "1500-10-02T00:00:00.000Z",
+                "Favorites": [
+                "5ece7d5516aa8b43be26d484",
+                "5ece7c5916aa8b43be26d483",
+                "5ece7b1016aa8b43be26d482",
+                "5ecd794a88f3d67a9315eb66"
+                ]
                 }
             </td>
           </tr>
@@ -199,18 +231,18 @@
             <td> A JSON object containing data about the user while reflecting the removal of the movie:
               <p style="color: #157cd1">
                 {
-                  "FavoriteMovies": [],
-                  "_id": "5ece873516aa8b43be26d48d",
-                  "Username": "SirMeliodas",
-                  "Password": "SinofWrath",
-                  "Email": "meliodas@noemail.com",
-                  "Birthday": "1500-10-02T00:00:00.000Z",
-                  "Favorites": [
-                    "5ece7d5516aa8b43be26d484",
-                    "5ece7c5916aa8b43be26d483",
-                    "5ece7b1016aa8b43be26d482",
-                    "5ecd794a88f3d67a9315eb66"
-                  ]
+                "FavoriteMovies": [],
+                "_id": "5ece873516aa8b43be26d48d",
+                "Username": "SirMeliodas",
+                "Password": "SinofWrath",
+                "Email": "meliodas@noemail.com",
+                "Birthday": "1500-10-02T00:00:00.000Z",
+                "Favorites": [
+                "5ece7d5516aa8b43be26d484",
+                "5ece7c5916aa8b43be26d483",
+                "5ece7b1016aa8b43be26d482",
+                "5ecd794a88f3d67a9315eb66"
+                ]
                 }
               </p>
             </td>
@@ -224,8 +256,9 @@
               <p> User [USERNAME] was deleted! </p>
             </td>
           </tr>
-        </table>
-      </div>
+      </table>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

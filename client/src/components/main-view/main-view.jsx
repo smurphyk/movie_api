@@ -100,9 +100,7 @@ export class MainView extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-
         <br></br>
-
         <Container className="main-view">
           <Route exact path="/" render={() => {
             if (!user)
@@ -120,9 +118,8 @@ export class MainView extends React.Component {
             if (!movies) return <Container className="main-view" />;
             return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} />
           }} />
-          <Route exact path="/user" render={({ match }) => {
-            return <ProfileView />
-          }} />
+          <Route path="/user" component={ProfileView} />
+          )
         </Container>
       </Router>
     );
