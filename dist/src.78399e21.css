@@ -158,6 +158,31 @@ Button:hover {
   font-size: 200%;
   margin-bottom: 7%;
 }
+.profile-view {
+  width: 50vw;
+  margin: 5% auto;
+  background-color: #b5b5b5;
+  border: 8px groove #e93d04;
+  border-radius: 10px;
+  padding: 4%;
+}
+
+h1 {
+  text-align: center;
+  text-decoration: underline;
+  margin-bottom: 5%;
+}
+
+.update-button {
+  color: #000;
+  background-color: #e93d04;
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  margin: 5px;
+  font-weight: bold;
+}
 .main-view {
   background-color: #000;
 }

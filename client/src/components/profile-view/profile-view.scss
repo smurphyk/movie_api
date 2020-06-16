@@ -1,0 +1,29 @@
+$primaryColor: #b5b5b5;
+$secondaryColor: #e93d04;
+$font-stack: sans-serif;
+
+.profile-view {
+  width: 50vw;
+  margin: 5% auto;
+  background-color: $primaryColor;
+  border: 8px groove $secondaryColor;
+  border-radius: 10px;
+  padding: 4%;
+}
+
+h1 {
+  text-align: center;
+  text-decoration: underline;
+  margin-bottom: 5%;
+}
+
+.update-button {
+  color: #000;
+  background-color: $secondaryColor;
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  margin: 5px;
+  font-weight: bold;
+}

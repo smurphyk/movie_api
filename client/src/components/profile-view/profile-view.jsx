@@ -6,38 +6,35 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 
+import './profile-view.scss';
+
 export class ProfileView extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: null,
-      password: null,
-      email: null,
-      birthday: null,
-      favoriteMovies: [],
+      user: null,
+      Username: null,
+      Password: null,
+      Email: null,
+      Birthday: null,
+      FavoriteMovies: [],
       movies: [],
     };
   }
 
-  componentDidMount() {
-    const accessToken = localStorage.getItem('token');
-    this.getUser(accessToken);
-  }
-
   getUser(token) {
-    const username = localStorage.getItem('user');
 
-    axios.get('https://murphmovies.herokuapp.com/users/${username}', {
+    axios.get('https://murphmovies.herokuapp.com/users/:Username', {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
         this.setState({
-          Username: res.data.Username,
-          Password: res.data.Password,
-          Email: res.data.Email,
-          Birthday: res.data.Birthday,
-          FavoriteMovies: res.data.FavoriteMovies,
+          Username: localStorage.getItem('Username'),
+          Password: localStorage.getItem('Password'),
+          Email: localStorage.getItem('Email'),
+          Birthday: localStorage.getItem('Birthday'),
+          FavoriteMovies: localStorage.getItem('FavoriteMovies'),
         });
       })
       .catch(function (error) {
@@ -45,37 +42,36 @@ export class ProfileView extends React.Component {
       });
   }
 
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user'),
+      });
+      this.getUser(accessToken);
+    }
+  }
+
   render() {
-    const { movies, user } = this.props;
-    //const favoriteMovieList = movies.filter((movie) =>
-    //this.state.favoriteMovies.includes(movie._id)
-    // );
+    const { user } = this.state;
+    const { movies } = this.props;
 
     return (
-      <Container className="profile-container">
+      <Container className="profile-view">
         <h1>My Profile</h1>
         <Card className="profile-card">
           <Card.Body>
-            <Card.Text>Username: {user.Username}</Card.Text>
+            <Card.Text>Username: {this.state.Username}</Card.Text>
             <Card.Text>Password: *****</Card.Text>
-            <Card.Text>Email: {user.Email}</Card.Text>
-            <Card.Text>Birthday {user.Birthday}</Card.Text>
-            Favorite Movies: {
-              favoriteMovieList.map((movie) => {
-                <div key={movie._id} className="favorites-button">
-                  <Link to={`/movies/${movie._id}`}>
-                    <Button variant="link">{movie.Title}</Button>
-                  </Link>
-                  <Button size="md" onClick={(e) => this.deleteFavorite(movie._id)}>
-                    Remove From Favorites
-                  </Button>
-                </div>
-              })}
-            }
+            <Card.Text>Email: {this.state.Email}</Card.Text>
+            <Card.Text>Birthday: {this.state.Birthday}</Card.Text>
+            <Card.Text>Favorite Movies: {this.state.FavoriteMovies}</Card.Text>
             <Link to={'/user/update'}>
-              <Button>Update Profile</Button>
+              <Button className="update-button">Update Profile</Button>
             </Link>
-            <Link to={`/`}>Back</Link>
+            <Link to={`/`}>
+              <Button className="back-button">Back</Button>
+            </Link>
           </Card.Body>
         </Card>
       </Container>

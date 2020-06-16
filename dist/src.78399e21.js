@@ -52376,7 +52376,12 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.GenreView = GenreView;
-},{"react":"../node_modules/react/index.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./genre-view.scss":"components/genre-view/genre-view.scss"}],"components/profile-view/profile-view.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./genre-view.scss":"components/genre-view/genre-view.scss"}],"components/profile-view/profile-view.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../../../../../../home/smurphyk/.nvm/versions/node/v12.16.3/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/profile-view/profile-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52395,6 +52400,8 @@ var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
 
 var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
+
+require("./profile-view.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -52432,77 +52439,68 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      username: null,
-      password: null,
-      email: null,
-      birthday: null,
-      favoriteMovies: [],
+      user: null,
+      Username: null,
+      Password: null,
+      Email: null,
+      Birthday: null,
+      FavoriteMovies: [],
       movies: []
     };
     return _this;
   }
 
   _createClass(ProfileView, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var accessToken = localStorage.getItem('token');
-      this.getUser(accessToken);
-    }
-  }, {
     key: "getUser",
     value: function getUser(token) {
       var _this2 = this;
 
-      var username = localStorage.getItem('user');
-
-      _axios.default.get('https://murphmovies.herokuapp.com/users/${username}', {
+      _axios.default.get('https://murphmovies.herokuapp.com/users/:Username', {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
       }).then(function (res) {
         _this2.setState({
-          Username: res.data.Username,
-          Password: res.data.Password,
-          Email: res.data.Email,
-          Birthday: res.data.Birthday,
-          FavoriteMovies: res.data.FavoriteMovies
+          Username: localStorage.getItem('Username'),
+          Password: localStorage.getItem('Password'),
+          Email: localStorage.getItem('Email'),
+          Birthday: localStorage.getItem('Birthday'),
+          FavoriteMovies: localStorage.getItem('FavoriteMovies')
         });
       }).catch(function (error) {
         console.log(error);
       });
     }
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var accessToken = localStorage.getItem('token');
+
+      if (accessToken !== null) {
+        this.setState({
+          user: localStorage.getItem('user')
+        });
+        this.getUser(accessToken);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
-
-      var movies = this.props.movies; //const favoriteMovieList = movies.filter((movie) =>
-      //this.state.favoriteMovies.includes(movie._id)
-      // );
-
+      var user = this.state.user;
+      var movies = this.props.movies;
       return _react.default.createElement(_Container.default, {
-        className: "profile-container"
+        className: "profile-view"
       }, _react.default.createElement("h1", null, "My Profile"), _react.default.createElement(_Card.default, {
         className: "profile-card"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, null, "Username: ", this.state.Username), _react.default.createElement(_Card.default.Text, null, "Password: *****"), _react.default.createElement(_Card.default.Text, null, "Email: ", this.state.Email), _react.default.createElement(_Card.default.Text, null, "Birthday ", this.state.Birthday), "Favorite Movies: ", favoriteMovieList.map(function (movie) {
-        _react.default.createElement("div", {
-          key: movie._id,
-          className: "favorites-button"
-        }, _react.default.createElement(_reactRouterDom.Link, {
-          to: "/movies/".concat(movie._id)
-        }, _react.default.createElement(_Button.default, {
-          variant: "link"
-        }, movie.Title)), _react.default.createElement(_Button.default, {
-          size: "md",
-          onClick: function onClick(e) {
-            return _this3.deleteFavorite(movie._id);
-          }
-        }, "Remove From Favorites"));
-      }), "}", _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, null, "Username: ", this.state.Username), _react.default.createElement(_Card.default.Text, null, "Password: *****"), _react.default.createElement(_Card.default.Text, null, "Email: ", this.state.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorite Movies: ", this.state.FavoriteMovies), _react.default.createElement(_reactRouterDom.Link, {
         to: '/user/update'
-      }, _react.default.createElement(_Button.default, null, "Update Profile")), _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_Button.default, {
+        className: "update-button"
+      }, "Update Profile")), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
-      }, "Back"))));
+      }, _react.default.createElement(_Button.default, {
+        className: "back-button"
+      }, "Back")))));
     }
   }]);
 
@@ -52510,7 +52508,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.ProfileView = ProfileView;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","./profile-view.scss":"components/profile-view/profile-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -52634,6 +52632,16 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       this.getMovies(authData.token);
     }
   }, {
+    key: "onLoggedOut",
+    value: function onLoggedOut() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      this.setState({
+        user: null
+      });
+      window.open('/', '_self');
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -52662,8 +52670,13 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         to: "/"
       }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
         as: _reactRouterDom.Link,
-        to: "/user"
-      }, "Profile")))), _react.default.createElement("br", null), _react.default.createElement(_Container.default, {
+        to: "/users/:Username"
+      }, "Profile"), _react.default.createElement(_reactBootstrap.Button, {
+        size: "sm",
+        onClick: function onClick() {
+          return _this3.onLoggedOut();
+        }
+      }, _react.default.createElement("b", null, "Log Out"))))), _react.default.createElement("br", null), _react.default.createElement(_Container.default, {
         className: "main-view"
       }, _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
@@ -52727,14 +52740,10 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
-        path: "/user",
+        path: "/users/:Username",
         render: function render(_ref4) {
           var match = _ref4.match;
-          return _react.default.createElement(_profileView.ProfileView, {
-            profile: users.find(function (m) {
-              return m.User.Username === match.params.username;
-            }).User
-          });
+          return _react.default.createElement(_profileView.ProfileView, null);
         }
       })));
     }
@@ -52838,7 +52847,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57732" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50660" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
