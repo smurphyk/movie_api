@@ -52455,17 +52455,17 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     value: function getUser(token) {
       var _this2 = this;
 
-      _axios.default.get('https://murphmovies.herokuapp.com/users/:Username', {
+      _axios.default.get('https://murphmovies.herokuapp.com/users', {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
       }).then(function (res) {
         _this2.setState({
-          Username: localStorage.getItem('Username'),
-          Password: localStorage.getItem('Password'),
-          Email: localStorage.getItem('Email'),
-          Birthday: localStorage.getItem('Birthday'),
-          FavoriteMovies: localStorage.getItem('FavoriteMovies')
+          Username: res.data.Username,
+          Password: res.data.Password,
+          Email: res.data.Email,
+          Birthday: res.data.Birthday,
+          FavoriteMovies: res.data.FavoriteMovies
         });
       }).catch(function (error) {
         console.log(error);
@@ -52492,7 +52492,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "profile-view"
       }, _react.default.createElement("h1", null, "My Profile"), _react.default.createElement(_Card.default, {
         className: "profile-card"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, null, "Username: ", this.state.Username), _react.default.createElement(_Card.default.Text, null, "Password: *****"), _react.default.createElement(_Card.default.Text, null, "Email: ", this.state.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorite Movies: ", this.state.FavoriteMovies), _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, null, "Username: ", user.Username), _react.default.createElement(_Card.default.Text, null, "Password: *****"), _react.default.createElement(_Card.default.Text, null, "Email: ", user.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", user.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorite Movies: ", user.FavoriteMovies), _react.default.createElement(_reactRouterDom.Link, {
         to: '/user/update'
       }, _react.default.createElement(_Button.default, {
         className: "update-button"
@@ -52670,7 +52670,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         to: "/"
       }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
         as: _reactRouterDom.Link,
-        to: "/users/:Username"
+        to: "/user"
       }, "Profile"), _react.default.createElement(_reactBootstrap.Button, {
         size: "sm",
         onClick: function onClick() {
@@ -52740,7 +52740,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
-        path: "/users/:Username",
+        path: "/user",
         render: function render(_ref4) {
           var match = _ref4.match;
           return _react.default.createElement(_profileView.ProfileView, null);
@@ -52847,7 +52847,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50660" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56520" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

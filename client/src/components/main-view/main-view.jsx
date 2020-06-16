@@ -93,7 +93,7 @@ export class MainView extends React.Component {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link as={Link} to="/">Home</Nav.Link>
-              <Nav.Link as={Link} to="/users/:Username">Profile</Nav.Link>
+              <Nav.Link as={Link} to="/user">Profile</Nav.Link>
               <Button size="sm" onClick={() => this.onLoggedOut()}>
                 <b>Log Out</b>
               </Button>
@@ -120,7 +120,9 @@ export class MainView extends React.Component {
             if (!movies) return <Container className="main-view" />;
             return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} />
           }} />
-          <Route exact path="/users/:Username" render={ProfileView} />
+          <Route exact path="/user" render={({ match }) => {
+            return <ProfileView />
+          }} />
         </Container>
       </Router>
     );
