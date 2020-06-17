@@ -12,19 +12,13 @@ export class ProfileView extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      username: null,
-      password: null,
-      email: null,
-      birthday: null,
-      favoriteMovies: [],
-      movies: [],
-    };
+    this.state = {};
   }
 
   getUser(token) {
+    let username = localStorage.getItem('user');
 
-    axios.get(`https://murphmovies.herokuapp.com/users`, {
+    axios.get(`https://murphmovies.herokuapp.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
@@ -34,7 +28,6 @@ export class ProfileView extends React.Component {
             Password: response.data.Password,
             Email: response.data.Email,
             Birthday: response.data.Birthday,
-            FavoriteMovies: response.data.FavoriteMovies
           }
         });
       })
@@ -58,7 +51,7 @@ export class ProfileView extends React.Component {
     const password = localStorage.getItem('password');
     const email = localStorage.getItem('email');
     const birthday = localStorage.getItem('birthday');
-    const favoriteMovies = localStorage.getItem('FavoriteMovies');
+    const { users } = this.props;
     const { user } = this.state;
 
     return (
@@ -70,7 +63,7 @@ export class ProfileView extends React.Component {
             <Card.Text>Password: {password} </Card.Text>
             <Card.Text>Email: {email}</Card.Text>
             <Card.Text>Birthday: {birthday}</Card.Text>
-            <Card.Text>Favorite Movies: {favoriteMovies}</Card.Text>
+            <Card.Text>Favorite Movies: </Card.Text>
             <Link to={'/users/update'}>
               <Button className="update-button">Update Profile</Button>
             </Link>
