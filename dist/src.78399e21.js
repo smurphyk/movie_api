@@ -52432,13 +52432,20 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(ProfileView);
 
-  function ProfileView() {
+  function ProfileView(props) {
     var _this;
 
     _classCallCheck(this, ProfileView);
 
-    _this = _super.call(this);
-    _this.state = {};
+    _this = _super.call(this, props);
+    _this.state = {
+      username: null,
+      password: null,
+      email: null,
+      birthday: null,
+      favoriteMovies: [],
+      movies: []
+    };
     return _this;
   }
 
@@ -52453,7 +52460,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         }
       }).then(function (response) {
         _this2.setState({
-          Username: _this2.username
+          user: {
+            Username: response.data.Username,
+            Password: response.data.Password,
+            Email: response.data.Email,
+            Birthday: response.data.Birthday,
+            FavoriteMovies: response.data.FavoriteMovies
+          }
         });
       }).catch(function (error) {
         console.log(error);
@@ -52475,12 +52488,16 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var username = localStorage.getItem('user');
-      var user = this.props.user;
+      var password = localStorage.getItem('password');
+      var email = localStorage.getItem('email');
+      var birthday = localStorage.getItem('birthday');
+      var favoriteMovies = localStorage.getItem('FavoriteMovies');
+      var user = this.state.user;
       return _react.default.createElement(_Container.default, {
         className: "profile-view"
       }, _react.default.createElement("h1", null, "My Profile"), _react.default.createElement(_Card.default, {
         className: "profile-card"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, null, "Username: ", this.Username, " "), _react.default.createElement(_Card.default.Text, null, "Password: *****"), _react.default.createElement(_Card.default.Text, null, "Email: ", this.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", this.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorite Movies: ", this.FavoriteMovies), _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, null, "Username: ", username, " "), _react.default.createElement(_Card.default.Text, null, "Password: ", password, " "), _react.default.createElement(_Card.default.Text, null, "Email: ", email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", birthday), _react.default.createElement(_Card.default.Text, null, "Favorite Movies: ", favoriteMovies), _react.default.createElement(_reactRouterDom.Link, {
         to: '/users/update'
       }, _react.default.createElement(_Button.default, {
         className: "update-button"
@@ -52579,6 +52596,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
     _this.state = {
       movies: [],
+      users: [],
       user: null
     };
     return _this;
@@ -52597,23 +52615,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         // Assign the result to the state
         _this2.setState({
           movies: response.data
-        });
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-  }, {
-    key: "getUsers",
-    value: function getUsers(token) {
-      var _this3 = this;
-
-      _axios.default.get('https://murphmovies.herokuapp.com/users', {
-        headers: {
-          Authorization: "Bearer ".concat(token)
-        }
-      }).then(function (response) {
-        _this3.setState({
-          users: response.data
         });
       }).catch(function (error) {
         console.log(error);
@@ -52655,11 +52656,12 @@ var MainView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       // Before data is initially loaded
-      var movies = this.state.movies;
-      var user = this.props.user;
+      var _this$state = this.state,
+          user = _this$state.user,
+          movies = _this$state.movies;
       var username = localStorage.getItem('user'); // Before movies have been loaded
 
       if (!movies) return _react.default.createElement("div", {
@@ -52685,7 +52687,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, "Profile"), _react.default.createElement(_reactBootstrap.Button, {
         size: "sm",
         onClick: function onClick() {
-          return _this4.onLoggedOut();
+          return _this3.onLoggedOut();
         }
       }, _react.default.createElement("b", null, "Log Out"))))), _react.default.createElement("br", null), _react.default.createElement(_Container.default, {
         className: "main-view"
@@ -52695,7 +52697,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         render: function render() {
           if (!user) return _react.default.createElement(_loginView.LoginView, {
             onLoggedIn: function onLoggedIn(user) {
-              return _this4.onLoggedIn(user);
+              return _this3.onLoggedIn(user);
             }
           });
           return movies.map(function (m) {

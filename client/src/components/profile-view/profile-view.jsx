@@ -9,10 +9,17 @@ import Card from 'react-bootstrap/Card';
 import './profile-view.scss';
 
 export class ProfileView extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.state = {};
+    this.state = {
+      username: null,
+      password: null,
+      email: null,
+      birthday: null,
+      favoriteMovies: [],
+      movies: [],
+    };
   }
 
   getUser(token) {
@@ -22,7 +29,13 @@ export class ProfileView extends React.Component {
     })
       .then((response) => {
         this.setState({
-          Username: this.username
+          user: {
+            Username: response.data.Username,
+            Password: response.data.Password,
+            Email: response.data.Email,
+            Birthday: response.data.Birthday,
+            FavoriteMovies: response.data.FavoriteMovies
+          }
         });
       })
       .catch(function (error) {
@@ -42,18 +55,22 @@ export class ProfileView extends React.Component {
 
   render() {
     const username = localStorage.getItem('user');
-    const { user } = this.props;
+    const password = localStorage.getItem('password');
+    const email = localStorage.getItem('email');
+    const birthday = localStorage.getItem('birthday');
+    const favoriteMovies = localStorage.getItem('FavoriteMovies');
+    const { user } = this.state;
 
     return (
       <Container className="profile-view">
         <h1>My Profile</h1>
         <Card className="profile-card">
           <Card.Body>
-            <Card.Text>Username: {this.Username} </Card.Text>
-            <Card.Text>Password: *****</Card.Text>
-            <Card.Text>Email: {this.Email}</Card.Text>
-            <Card.Text>Birthday: {this.Birthday}</Card.Text>
-            <Card.Text>Favorite Movies: {this.FavoriteMovies}</Card.Text>
+            <Card.Text>Username: {username} </Card.Text>
+            <Card.Text>Password: {password} </Card.Text>
+            <Card.Text>Email: {email}</Card.Text>
+            <Card.Text>Birthday: {birthday}</Card.Text>
+            <Card.Text>Favorite Movies: {favoriteMovies}</Card.Text>
             <Link to={'/users/update'}>
               <Button className="update-button">Update Profile</Button>
             </Link>

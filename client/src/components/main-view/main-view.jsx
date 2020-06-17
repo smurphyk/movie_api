@@ -29,6 +29,7 @@ export class MainView extends React.Component {
     // Initialize the state to an empty object so we can destructrue it later
     this.state = {
       movies: [],
+      users: [],
       user: null
     };
   }
@@ -41,20 +42,6 @@ export class MainView extends React.Component {
         // Assign the result to the state
         this.setState({
           movies: response.data
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
-  getUsers(token) {
-    axios.get('https://murphmovies.herokuapp.com/users', {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then(response => {
-        this.setState({
-          users: response.data
         });
       })
       .catch(function (error) {
@@ -95,8 +82,7 @@ export class MainView extends React.Component {
   render() {
 
     // Before data is initially loaded
-    const { movies } = this.state;
-    const { user } = this.props;
+    const { user, movies } = this.state;
     const username = localStorage.getItem('user');
 
     // Before movies have been loaded
