@@ -20,6 +20,7 @@ import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
 
 import './main-view.scss';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 export class MainView extends React.Component {
   constructor() {
@@ -40,6 +41,20 @@ export class MainView extends React.Component {
         // Assign the result to the state
         this.setState({
           movies: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  getUsers(token) {
+    axios.get('https://murphmovies.herokuapp.com/users', {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(response => {
+        this.setState({
+          users: response.data
         });
       })
       .catch(function (error) {
@@ -80,7 +95,9 @@ export class MainView extends React.Component {
   render() {
 
     // Before data is initially loaded
-    const { movies, user } = this.state;
+    const { movies } = this.state;
+    const { user } = this.props;
+    const username = localStorage.getItem('user');
 
     // Before movies have been loaded
     if (!movies) return <div className="main-view" />;
@@ -93,7 +110,7 @@ export class MainView extends React.Component {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link as={Link} to="/">Home</Nav.Link>
-              <Nav.Link as={Link} to="/user">Profile</Nav.Link>
+              <Nav.Link as={Link} to={`/users/${username}`}>Profile</Nav.Link>
               <Button size="sm" onClick={() => this.onLoggedOut()}>
                 <b>Log Out</b>
               </Button>
@@ -118,10 +135,11 @@ export class MainView extends React.Component {
             if (!movies) return <Container className="main-view" />;
             return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} />
           }} />
-          <Route path="/user" component={ProfileView} />
-          )
+          <Route exact path="/users/:username" render={({ match }) => {
+            return <ProfileView />
+          }} />
         </Container>
-      </Router>
+      </Router >
     );
   }
 }
