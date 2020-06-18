@@ -52037,9 +52037,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
   _createClass(MovieCard, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          movie = _this$props.movie,
-          onClick = _this$props.onClick;
+      var movie = this.props.movie;
       return _react.default.createElement(_Container.default, {
         className: "card-container"
       }, _react.default.createElement(_Card.default, {
@@ -52052,20 +52050,14 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
         className: "movie-title"
       }, movie.Title), _react.default.createElement(_Card.default.Text, {
         className: "movie-description"
-      }, movie.Description), _react.default.createElement(_Container.default, {
-        className: "button-container"
-      }, _react.default.createElement(_reactRouterDom.Link, {
+      }, movie.Description), _react.default.createElement(_reactRouterDom.Link, {
         to: "/movies/".concat(movie._id)
       }, _react.default.createElement(_Button.default, {
         variant: "link",
         size: "lg",
         block: true,
         className: "open-button"
-      }, "Open")), _react.default.createElement(_Button.default, {
-        size: "lg",
-        block: true,
-        className: "favorite-button"
-      }, "Add to Favorites")))));
+      }, "Open")))));
     }
   }]);
 
@@ -52140,7 +52132,10 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this);
     _this.state = {};
     return _this;
-  }
+  } //handleAddFavorite(movie) => {
+  // axios.put(`/users/:Username/Movies/:MovieID`)
+  //}
+
 
   _createClass(MovieView, [{
     key: "render",
@@ -52186,7 +52181,11 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_Button.default, {
         className: "genre-button",
         size: "lg"
-      }, "Genre Info")), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_reactRouterDom.Link, {
+      }, "Genre Info")), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Button.default, {
+        size: "lg",
+        block: true,
+        className: "favorite-button"
+      }, "Add to Favorites"), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_Button.default, {
         className: "back-button",
@@ -52197,7 +52196,8 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return MovieView;
-}(_react.default.Component);
+}(_react.default.Component); // TRY TO PUSH MOVIE BY ID INTO FAVORITES
+
 
 exports.MovieView = MovieView;
 },{"react":"../node_modules/react/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./movie-view.scss":"components/movie-view/movie-view.scss"}],"components/director-view/director-view.scss":[function(require,module,exports) {
@@ -52446,7 +52446,15 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, ProfileView);
 
     _this = _super.call(this, props);
-    _this.state = {};
+    _this.state = {
+      user: {
+        Username: null,
+        Password: null,
+        Email: null,
+        Birthday: null,
+        FavoriteMovies: []
+      }
+    };
     return _this;
   }
 
@@ -52462,6 +52470,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Authorization: "Bearer ".concat(token)
         }
       }).then(function (response) {
+        console.log(response.data);
+
         _this2.setState({
           user: {
             Username: response.data.Username,
@@ -52489,17 +52499,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var username = localStorage.getItem('user');
-      var password = localStorage.getItem('password');
-      var email = localStorage.getItem('email');
-      var birthday = localStorage.getItem('birthday');
       var users = this.props.users;
       var user = this.state.user;
       return _react.default.createElement(_Container.default, {
         className: "profile-view"
       }, _react.default.createElement("h1", null, "My Profile"), _react.default.createElement(_Card.default, {
         className: "profile-card"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, null, "Username: ", username, " "), _react.default.createElement(_Card.default.Text, null, "Password: ", password, " "), _react.default.createElement(_Card.default.Text, null, "Email: ", email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", birthday), _react.default.createElement(_Card.default.Text, null, "Favorite Movies: "), _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, null, "Username: ", user.Username, " "), _react.default.createElement(_Card.default.Text, null, "Password: ", user.Password, " "), _react.default.createElement(_Card.default.Text, null, "Email: ", user.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", user.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorite Movies: "), _react.default.createElement(_reactRouterDom.Link, {
         to: '/users/update'
       }, _react.default.createElement(_Button.default, {
         className: "update-button"

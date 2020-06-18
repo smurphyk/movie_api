@@ -9,8 +9,9 @@ import { Link } from 'react-router-dom';
 import './movie-card.scss';
 
 export class MovieCard extends React.Component {
+
   render() {
-    const { movie, onClick } = this.props;
+    const { movie } = this.props;
 
     return (
       <Container className="card-container">
@@ -19,12 +20,9 @@ export class MovieCard extends React.Component {
           <Card.Body>
             <Card.Title className="movie-title">{movie.Title}</Card.Title>
             <Card.Text className="movie-description">{movie.Description}</Card.Text>
-            <Container className="button-container">
-              <Link to={`/movies/${movie._id}`}>
-                <Button variant="link" size="lg" block className="open-button">Open</Button>
-              </Link>
-              <Button size="lg" block className="favorite-button">Add to Favorites</Button>
-            </Container>
+            <Link to={`/movies/${movie._id}`}>
+              <Button variant="link" size="lg" block className="open-button">Open</Button>
+            </Link>
           </Card.Body>
         </Card>
       </Container >

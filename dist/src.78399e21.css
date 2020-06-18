@@ -127,14 +127,26 @@ Button:hover {
   margin: 3vh auto;
 }
 
-.back-button, .director-button, .genre-button {
+.director-button, .genre-button {
   color: #000;
   background-color: #e93d04;
   border: 2px solid #000;
   border-radius: 5px;
   padding: 5px;
   text-align: center;
-  margin: 5px;
+  font-weight: bold;
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+
+.back-button, .favorite-button {
+  color: #000;
+  background-color: #e93d04;
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  margin: 3% auto;
   font-weight: bold;
 }
 
