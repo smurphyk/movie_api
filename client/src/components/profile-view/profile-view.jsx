@@ -18,7 +18,8 @@ export class ProfileView extends React.Component {
         Password: null,
         Email: null,
         Birthday: null,
-        FavoriteMovies: []
+        FavoriteMovies: [],
+        movies: [],
       }
     };
   }
@@ -38,6 +39,7 @@ export class ProfileView extends React.Component {
             Password: response.data.Password,
             Email: response.data.Email,
             Birthday: response.data.Birthday,
+            FavoriteMovies: response.data.FavoriteMovies
           }
         });
       })
@@ -57,7 +59,7 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { users } = this.props;
+    const { movies } = this.props;
     const { user } = this.state;
 
     return (
@@ -69,7 +71,7 @@ export class ProfileView extends React.Component {
             <Card.Text>Password: {user.Password} </Card.Text>
             <Card.Text>Email: {user.Email}</Card.Text>
             <Card.Text>Birthday: {user.Birthday}</Card.Text>
-            <Card.Text>Favorite Movies: </Card.Text>
+            Favorite Movies:
             <Link to={'/users/update'}>
               <Button className="update-button">Update Profile</Button>
             </Link>

@@ -20,7 +20,6 @@ import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
 
 import './main-view.scss';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 export class MainView extends React.Component {
   constructor() {

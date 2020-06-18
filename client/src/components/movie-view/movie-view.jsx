@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 
@@ -13,10 +14,6 @@ export class MovieView extends React.Component {
 
     this.state = {};
   }
-
-  //handleAddFavorite(movie) => {
-  // axios.put(`/users/:Username/Movies/:MovieID`)
-  //}
 
   render() {
     const { movie } = this.props;
@@ -51,7 +48,7 @@ export class MovieView extends React.Component {
           </Link>
           <br></br>
           <br></br>
-          <Button size="lg" block className="favorite-button">Add to Favorites</Button>
+          <Button size="lg" block className="favorite-button" onClick={() => console.log(movie)}>Add to Favorites</Button>
           <Link to={`/`}>
             <Button className="back-button" size="lg" block>Back</Button>
           </Link>
@@ -60,5 +57,3 @@ export class MovieView extends React.Component {
     );
   }
 }
-
-// TRY TO PUSH MOVIE BY ID INTO FAVORITES
