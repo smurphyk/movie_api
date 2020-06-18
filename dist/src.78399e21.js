@@ -52132,9 +52132,19 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, MovieView);
 
     _this = _super.call(this);
-    _this.state = {};
+    _this.state = {// FavoriteMovies: [],
+    };
     return _this;
-  }
+  } // handleAddFavorite(e => {
+  // e.preventDefault();
+  // axios.put(`https://murphmovies.herokuapp.com/users/:Username, {
+  // this.movie._id   
+  // })
+  // .then(response => {
+  // console.log(response)
+  //  })
+  //})
+
 
   _createClass(MovieView, [{
     key: "render",

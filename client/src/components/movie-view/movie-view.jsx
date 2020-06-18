@@ -12,8 +12,22 @@ export class MovieView extends React.Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      // FavoriteMovies: [],
+    };
   }
+
+  // handleAddFavorite(e => {
+  // e.preventDefault();
+
+  // axios.put(`https://murphmovies.herokuapp.com/users/:Username, {
+  // this.movie._id   
+  // })
+  // .then(response => {
+  // console.log(response)
+  //  })
+
+  //})
 
   render() {
     const { movie } = this.props;
