@@ -58,6 +58,18 @@ export class ProfileView extends React.Component {
     }
   }
 
+  handleAddFavorite(token) {
+    let movieID = localStorage.getItem('movieId');
+    let username = localStorage.getItem('user');
+
+    axios.post(`https://murphmovies.herokuapp.com/users/${username}/Movies/${movieID}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(response => {
+        console.log(response.data);
+      });
+  }
+
   render() {
     const { movies } = this.props;
     const { user } = this.state;
@@ -71,7 +83,7 @@ export class ProfileView extends React.Component {
             <Card.Text>Password: {user.Password} </Card.Text>
             <Card.Text>Email: {user.Email}</Card.Text>
             <Card.Text>Birthday: {user.Birthday}</Card.Text>
-            Favorite Movies:
+            <Card.Text>Favorite Movies: {user.FavoriteMovies}</Card.Text>
             <Link to={'/users/update'}>
               <Button className="update-button">Update Profile</Button>
             </Link>

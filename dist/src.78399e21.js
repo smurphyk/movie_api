@@ -52500,6 +52500,20 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "handleAddFavorite",
+    value: function handleAddFavorite(token) {
+      var movieID = localStorage.getItem('movieId');
+      var username = localStorage.getItem('user');
+
+      _axios.default.post("https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/").concat(movieID), {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        console.log(response.data);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var movies = this.props.movies;
@@ -52508,7 +52522,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "profile-view"
       }, _react.default.createElement("h1", null, "My Profile"), _react.default.createElement(_Card.default, {
         className: "profile-card"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, null, "Username: ", user.Username, " "), _react.default.createElement(_Card.default.Text, null, "Password: ", user.Password, " "), _react.default.createElement(_Card.default.Text, null, "Email: ", user.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", user.Birthday), "Favorite Movies:", _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, null, "Username: ", user.Username, " "), _react.default.createElement(_Card.default.Text, null, "Password: ", user.Password, " "), _react.default.createElement(_Card.default.Text, null, "Email: ", user.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", user.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorite Movies: ", user.FavoriteMovies), _react.default.createElement(_reactRouterDom.Link, {
         to: '/users/update'
       }, _react.default.createElement(_Button.default, {
         className: "update-button"
