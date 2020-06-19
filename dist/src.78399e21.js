@@ -51855,8 +51855,6 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _axios = _interopRequireDefault(require("axios"));
 
-var _reactRouterDom = require("react-router-dom");
-
 var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
 
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
@@ -51972,7 +51970,7 @@ function RegistrationView(props) {
     onClick: handleSubmit
   }, "Register")));
 }
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -52137,8 +52135,22 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(MovieView, [{
+    key: "handleAddFavorite",
+    value: function handleAddFavorite(token) {
+      var username = localStorage.getItem('user');
+      var movieId = this.movie._id;
+
+      _axios.default.post("https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/").concat(movieId), {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var movie = this.props.movie;
       if (!movie) return null;
       return _react.default.createElement(_Container.default, {
@@ -52185,7 +52197,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         block: true,
         className: "favorite-button",
         onClick: function onClick() {
-          return localStorage.setItem('movieId', movie._id);
+          return _this2.handleAddFavorite;
         }
       }, "Add to Favorites"), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
@@ -52498,20 +52510,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         });
         this.getUser(accessToken);
       }
-    }
-  }, {
-    key: "handleAddFavorite",
-    value: function handleAddFavorite(token) {
-      var movieID = localStorage.getItem('movieId');
-      var username = localStorage.getItem('user');
-
-      _axios.default.post("https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/").concat(movieID), {
-        headers: {
-          Authorization: "Bearer ".concat(token)
-        }
-      }).then(function (response) {
-        console.log(response.data);
-      });
     }
   }, {
     key: "render",
@@ -52878,7 +52876,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53288" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49997" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
