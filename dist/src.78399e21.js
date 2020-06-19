@@ -52132,19 +52132,9 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, MovieView);
 
     _this = _super.call(this);
-    _this.state = {// FavoriteMovies: [],
-    };
+    _this.state = {};
     return _this;
-  } // handleAddFavorite(e => {
-  // e.preventDefault();
-  // axios.put(`https://murphmovies.herokuapp.com/users/:Username, {
-  // this.movie._id   
-  // })
-  // .then(response => {
-  // console.log(response)
-  //  })
-  //})
-
+  }
 
   _createClass(MovieView, [{
     key: "render",
@@ -52195,7 +52185,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         block: true,
         className: "favorite-button",
         onClick: function onClick() {
-          return console.log(movie);
+          return console.log(movie._id);
         }
       }, "Add to Favorites"), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
@@ -52874,7 +52864,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51425" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53288" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

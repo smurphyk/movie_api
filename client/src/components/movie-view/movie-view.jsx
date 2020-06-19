@@ -12,22 +12,10 @@ export class MovieView extends React.Component {
   constructor() {
     super();
 
-    this.state = {
-      // FavoriteMovies: [],
-    };
+    this.state = {};
   }
 
-  // handleAddFavorite(e => {
-  // e.preventDefault();
 
-  // axios.put(`https://murphmovies.herokuapp.com/users/:Username, {
-  // this.movie._id   
-  // })
-  // .then(response => {
-  // console.log(response)
-  //  })
-
-  //})
 
   render() {
     const { movie } = this.props;
@@ -62,7 +50,7 @@ export class MovieView extends React.Component {
           </Link>
           <br></br>
           <br></br>
-          <Button size="lg" block className="favorite-button" onClick={() => console.log(movie)}>Add to Favorites</Button>
+          <Button size="lg" block className="favorite-button" onClick={() => console.log(movie._id)}>Add to Favorites</Button>
           <Link to={`/`}>
             <Button className="back-button" size="lg" block>Back</Button>
           </Link>

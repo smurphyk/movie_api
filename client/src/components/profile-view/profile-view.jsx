@@ -72,6 +72,7 @@ export class ProfileView extends React.Component {
             <Card.Text>Email: {user.Email}</Card.Text>
             <Card.Text>Birthday: {user.Birthday}</Card.Text>
             Favorite Movies:
+
             <Link to={'/users/update'}>
               <Button className="update-button">Update Profile</Button>
             </Link>
