@@ -52185,7 +52185,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         block: true,
         className: "favorite-button",
         onClick: function onClick() {
-          return console.log(movie._id);
+          return localStorage.setItem('movieId', movie._id);
         }
       }, "Add to Favorites"), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
