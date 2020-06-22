@@ -15,7 +15,7 @@ export function RegistrationView(props) {
     e.preventDefault();
 
     axios
-      .post('https://murphmovies.herokuapp.com/users', null, {
+      .post(`https://murphmovies.herokuapp.com/users`, null, {
         params: {
           Username: username,
           Password: password,
