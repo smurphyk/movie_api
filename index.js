@@ -11,10 +11,11 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 const cors = require('cors');
-app.use(cors());
+
 const { check, validationResult } = require('express-validator');
 
 const passport = require('passport');
+
 require('./passport');
 
 const auth = require('./auth')(app);
@@ -26,6 +27,7 @@ mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnified
 app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
+app.use(cors());
 
 
 

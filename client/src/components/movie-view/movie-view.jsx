@@ -9,23 +9,29 @@ import './movie-view.scss';
 
 export class MovieView extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.state = {};
+    this.state = {
+      movies: []
+    };
+  }
+
+  componentDidMount() {
+
   }
 
   handleAddFavorite(token) {
-    let username = localStorage.getItem('user');
-    let movieId = this.movie._id;
+    const username = localStorage.getItem('user');
 
-    axios.post(`https://murphmovies.herokuapp.com/users/${username}/Movies/${movieId}`, {
-      headers: { Authorization: `Bearer ${token}` },
+    axios.post(`https://murphmovies.herokuapp.com/users/${username}/Movies/:MovieID`, {
+      headers: { Authorization: `Bearer ${token}` }
     });
   }
 
   render() {
     const { movie } = this.props;
+    const username = localStorage.getItem('user');
 
     if (!movie) return null;
 
@@ -57,7 +63,8 @@ export class MovieView extends React.Component {
           </Link>
           <br></br>
           <br></br>
-          <Button size="lg" block className="favorite-button" onClick={() => this.handleAddFavorite}>Add to Favorites</Button>
+          <Button size="lg" block className="favorite-button" movie={movies.find(m => m._id === match.params.movieId)}
+            onClick={(movie) => { this.handleAddFavorite(movie) }}>Add to Favorites</Button>
           <Link to={`/`}>
             <Button className="back-button" size="lg" block>Back</Button>
           </Link>

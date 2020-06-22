@@ -105,7 +105,7 @@ export class MainView extends React.Component {
         <Container className="main-view">
           <Route exact path="/" render={() => {
             if (!user)
-              return (<LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />);
+              return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
             return movies.map(m => <MovieCard key={m._id} movie={m} />);
           }} />
           <Route path="/register" render={() => <RegistrationView />} />

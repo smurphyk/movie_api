@@ -51905,7 +51905,7 @@ function RegistrationView(props) {
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
 
-    _axios.default.post("https://murphmovies.herokuapp.com/users", null, {
+    _axios.default.post('https://murphmovies.herokuapp.com/users', null, {
       params: {
         Username: username,
         Password: password,
@@ -51913,8 +51913,7 @@ function RegistrationView(props) {
         Birthday: birthday
       }
     }).then(function (response) {
-      var data = response.data; //alert("You now exist in the world of Murph's Movies! Please log in, if you dare!");
-
+      var data = response.data;
       console.log(data);
       window.open('/', '_self');
     }).catch(function (e) {
@@ -52124,23 +52123,27 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(MovieView);
 
-  function MovieView() {
+  function MovieView(props) {
     var _this;
 
     _classCallCheck(this, MovieView);
 
-    _this = _super.call(this);
-    _this.state = {};
+    _this = _super.call(this, props);
+    _this.state = {
+      movies: []
+    };
     return _this;
   }
 
   _createClass(MovieView, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
     key: "handleAddFavorite",
     value: function handleAddFavorite(token) {
       var username = localStorage.getItem('user');
-      var movieId = this.movie._id;
 
-      _axios.default.post("https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/").concat(movieId), {
+      _axios.default.post("https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/:MovieID"), {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
@@ -52152,6 +52155,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var movie = this.props.movie;
+      var username = localStorage.getItem('user');
       if (!movie) return null;
       return _react.default.createElement(_Container.default, {
         className: "movie-view"
@@ -52196,8 +52200,11 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         size: "lg",
         block: true,
         className: "favorite-button",
-        onClick: function onClick() {
-          return _this2.handleAddFavorite;
+        movie: movies.find(function (m) {
+          return m._id === match.params.movieId;
+        }),
+        onClick: function onClick(movie) {
+          _this2.handleAddFavorite(movie);
         }
       }, "Add to Favorites"), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"

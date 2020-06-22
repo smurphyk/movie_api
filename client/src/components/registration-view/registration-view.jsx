@@ -15,7 +15,7 @@ export function RegistrationView(props) {
     e.preventDefault();
 
     axios
-      .post(`https://murphmovies.herokuapp.com/users`, null, {
+      .post('https://murphmovies.herokuapp.com/users', null, {
         params: {
           Username: username,
           Password: password,
@@ -25,7 +25,6 @@ export function RegistrationView(props) {
       })
       .then(response => {
         const data = response.data;
-        //alert("You now exist in the world of Murph's Movies! Please log in, if you dare!");
         console.log(data);
         window.open('/', '_self');
       })
