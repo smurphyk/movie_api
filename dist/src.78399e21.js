@@ -52134,8 +52134,21 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(MovieView, [{
+    key: "handleAddFavorite",
+    value: function handleAddFavorite(token) {
+      var username = localStorage.getItem('user');
+
+      _axios.default.post("https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/:MovieID"), {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var movie = this.props.movie;
       if (!movie) return null;
       return _react.default.createElement(_Container.default, {
@@ -52181,10 +52194,11 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         size: "lg",
         block: true,
         className: "favorite-button",
+        value: movie._id,
         onClick: function onClick() {
-          return console.log(movie._id);
+          _this2.handleAddFavorite();
         }
-      }, "Add to Favorites"), _react.default.createElement(_reactRouterDom.Link, {
+      }, " Add to Favorites"), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_Button.default, {
         className: "back-button",
