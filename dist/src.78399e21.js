@@ -52129,33 +52129,14 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, MovieView);
 
     _this = _super.call(this, props);
-    _this.state = {
-      movies: []
-    };
+    _this.state = {};
     return _this;
   }
 
   _createClass(MovieView, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {}
-  }, {
-    key: "handleAddFavorite",
-    value: function handleAddFavorite(token) {
-      var username = localStorage.getItem('user');
-
-      _axios.default.post("https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/:MovieID"), {
-        headers: {
-          Authorization: "Bearer ".concat(token)
-        }
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       var movie = this.props.movie;
-      var username = localStorage.getItem('user');
       if (!movie) return null;
       return _react.default.createElement(_Container.default, {
         className: "movie-view"
@@ -52200,11 +52181,8 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         size: "lg",
         block: true,
         className: "favorite-button",
-        movie: movies.find(function (m) {
-          return m._id === match.params.movieId;
-        }),
-        onClick: function onClick(movie) {
-          _this2.handleAddFavorite(movie);
+        onClick: function onClick() {
+          return console.log(movie._id);
         }
       }, "Add to Favorites"), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
