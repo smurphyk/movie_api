@@ -52138,11 +52138,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
     value: function handleAddFavorite(token) {
       var username = localStorage.getItem('user');
 
-      _axios.default.post("https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/:MovieID"), {
-        headers: {
-          Authorization: "Bearer ".concat(token)
-        }
-      });
+      _axios.default.post("https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/:MovieID"));
     }
   }, {
     key: "render",
