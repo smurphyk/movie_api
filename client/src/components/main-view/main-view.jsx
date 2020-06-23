@@ -7,9 +7,9 @@ import {
   Button,
 } from 'react-bootstrap';
 
-import { Link } from 'react-router-dom';
-
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import { Link } from 'react-router-dom';
 
 import { RegistrationView } from "../registration-view/registration-view";
 import { LoginView } from '../login-view/login-view';
@@ -22,8 +22,8 @@ import { ProfileView } from '../profile-view/profile-view';
 import './main-view.scss';
 
 export class MainView extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     // Initialize the state to an empty object so we can destructrue it later
     this.state = {

@@ -51750,8 +51750,6 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _axios = _interopRequireDefault(require("axios"));
 
-var _reactRouterDom = require("react-router-dom");
-
 var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
 
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
@@ -51799,7 +51797,7 @@ function RegistrationView(props) {
       birthday = _useState8[0],
       createDob = _useState8[1];
 
-  var handleSubmit = function handleSubmit(e) {
+  var handleRegister = function handleRegister(e) {
     e.preventDefault();
 
     _axios.default.post("https://murphmovies.herokuapp.com/users", null, {
@@ -51813,8 +51811,8 @@ function RegistrationView(props) {
       var data = response.data;
       console.log(data);
       window.open('/', '_self');
-    }).catch(function (error) {
-      console.log(error);
+    }).catch(function (e) {
+      console.log('DO NOT PUNCH THE COMPUTER');
     });
   };
 
@@ -51863,10 +51861,10 @@ function RegistrationView(props) {
   })), _react.default.createElement(_Button.default, {
     className: "submit-user",
     type: "submit",
-    onClick: handleSubmit
+    onClick: handleRegister
   }, "Register")));
 }
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/login-view/login-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/login-view/login-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -52603,12 +52601,12 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(MainView);
 
-  function MainView() {
+  function MainView(props) {
     var _this;
 
     _classCallCheck(this, MainView);
 
-    _this = _super.call(this); // Initialize the state to an empty object so we can destructrue it later
+    _this = _super.call(this, props); // Initialize the state to an empty object so we can destructrue it later
 
     _this.state = {
       movies: [],

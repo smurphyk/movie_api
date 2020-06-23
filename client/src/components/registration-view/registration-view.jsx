@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -12,7 +11,7 @@ export function RegistrationView(props) {
   const [email, createEmail] = useState('');
   const [birthday, createDob] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
 
     axios.post(`https://murphmovies.herokuapp.com/users`, null, {
@@ -28,8 +27,8 @@ export function RegistrationView(props) {
         console.log(data);
         window.open('/', '_self');
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(e => {
+        console.log('DO NOT PUNCH THE COMPUTER')
       })
   }
 
@@ -71,7 +70,7 @@ export function RegistrationView(props) {
             value={birthday}
             onChange={(e) => createDob(e.target.value)} />
         </Form.Group>
-        <Button className="submit-user" type="submit" onClick={handleSubmit}>
+        <Button className="submit-user" type="submit" onClick={handleRegister}>
           Register
         </Button>
       </Form>
