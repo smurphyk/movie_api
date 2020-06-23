@@ -15,10 +15,13 @@ export class MovieView extends React.Component {
     this.state = {};
   }
 
-  handleAddFavorite(token) {
+  handleAddFavorite(token, e) {
+    e.preventDefault();
     const username = localStorage.getItem('user');
 
-    axios.post(`https://murphmovies.herokuapp.com/users/${username}/Movies/:MovieID`);
+    axios.post(`https://murphmovies.herokuapp.com/users/${username}/Movies/:MovieID`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
   }
 
   render() {

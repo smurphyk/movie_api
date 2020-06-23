@@ -3,6 +3,7 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import './registration-view.scss';
 
 export function RegistrationView(props) {
   const [username, createUsername] = useState('');
@@ -10,26 +11,25 @@ export function RegistrationView(props) {
   const [email, createEmail] = useState('');
   const [birthday, createDob] = useState('');
 
-  const handleRegister = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post(`https://murphmovies.herokuapp.com/users`, null, {
-      params: {
+    axios
+      .post('https://murphmovies.herokuapp.com/users', {
         Username: username,
         Password: password,
         Email: email,
         Birthday: birthday,
-      }
-    })
-      .then(response => {
+      })
+      .then((response) => {
         const data = response.data;
         console.log(data);
         window.open('/', '_self');
       })
-      .catch(e => {
-        console.log('DO NOT PUNCH THE COMPUTER')
-      })
-  }
+      .catch((e) => {
+        console.log('Error registering User')
+      });
+  };
 
   return (
     <Container className="registration-container">
@@ -69,7 +69,7 @@ export function RegistrationView(props) {
             value={birthday}
             onChange={(e) => createDob(e.target.value)} />
         </Form.Group>
-        <Button className="submit-user" type="submit" onClick={handleRegister}>
+        <Button className="submit-user" type="submit" onClick={handleSubmit}>
           Register
         </Button>
       </Form>
