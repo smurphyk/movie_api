@@ -15,8 +15,7 @@ export class MovieView extends React.Component {
     this.state = {};
   }
 
-  handleAddFavorite(token, e) {
-    e.preventDefault();
+  handleAddFavorite(token) {
     const username = localStorage.getItem('user');
 
     axios.post(`https://murphmovies.herokuapp.com/users/${username}/Movies/:MovieID`, {
@@ -26,6 +25,7 @@ export class MovieView extends React.Component {
 
   render() {
     const { movie } = this.props;
+    const movieId = this._id;
 
     if (!movie) return null;
 
@@ -58,7 +58,7 @@ export class MovieView extends React.Component {
           <br></br>
           <br></br>
           <Button size="lg" block className="favorite-button" value={movie._id}
-            onClick={() => { this.handleAddFavorite() }} > Add to Favorites</Button>
+            onClick={() => console.log(movie._id)} > Add to Favorites</Button>
           <Link to={`/`}>
             <Button className="back-button" size="lg" block>Back</Button>
           </Link>

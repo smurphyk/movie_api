@@ -52135,8 +52135,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
 
   _createClass(MovieView, [{
     key: "handleAddFavorite",
-    value: function handleAddFavorite(token, e) {
-      e.preventDefault();
+    value: function handleAddFavorite(token) {
       var username = localStorage.getItem('user');
 
       _axios.default.post("https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/:MovieID"), {
@@ -52148,9 +52147,8 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       var movie = this.props.movie;
+      var movieId = this._id;
       if (!movie) return null;
       return _react.default.createElement(_Container.default, {
         className: "movie-view"
@@ -52197,7 +52195,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "favorite-button",
         value: movie._id,
         onClick: function onClick() {
-          _this2.handleAddFavorite();
+          return console.log(movie._id);
         }
       }, " Add to Favorites"), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
@@ -52876,7 +52874,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62266" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53850" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
