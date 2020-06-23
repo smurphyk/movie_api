@@ -2,10 +2,15 @@ $primaryColor: #b5b5b5;
 $secondaryColor: #e93d04;
 $font-stack: sans-serif;
 
+.card-div {
+  margin-top: 15%;
+}
+
 .card-container {
   width: 100vw;
   background-color: #000;
-  margin: 10% auto;
+  margin: 0 auto;
+  margin-left: 15%;
 }
 
 .movie-card {

@@ -51750,6 +51750,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _axios = _interopRequireDefault(require("axios"));
 
+var _reactRouterDom = require("react-router-dom");
+
 var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
 
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
@@ -51811,8 +51813,8 @@ function RegistrationView(props) {
       var data = response.data;
       console.log(data);
       window.open('/', '_self');
-    }).catch(function (e) {
-      console.log('Swing and a miss! There was an error registering user');
+    }).catch(function (error) {
+      console.log(error);
     });
   };
 
@@ -51864,7 +51866,7 @@ function RegistrationView(props) {
     onClick: handleSubmit
   }, "Register")));
 }
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/login-view/login-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/login-view/login-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51921,7 +51923,7 @@ function LoginView(props) {
       setPassword = _useState4[1];
 
   var handleSubmit = function handleSubmit(e) {
-    e.preventDefault(); // Send request to server for auth
+    e.preventDefault();
 
     _axios.default.post("https://murphmovies.herokuapp.com/login", null, {
       params: {
@@ -52035,7 +52037,9 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var movie = this.props.movie;
-      return _react.default.createElement(_Container.default, {
+      return _react.default.createElement("div", {
+        className: "card-div"
+      }, _react.default.createElement(_Container.default, {
         className: "card-container"
       }, _react.default.createElement(_Card.default, {
         className: "movie-card"
@@ -52054,7 +52058,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
         size: "lg",
         block: true,
         className: "open-button"
-      }, "Open")))));
+      }, "Open"))))));
     }
   }]);
 
@@ -52871,7 +52875,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53740" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49996" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

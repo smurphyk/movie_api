@@ -2,7 +2,7 @@
   background-color: #b5b5b5;
   border: 5px groove #e93d04;
   border-radius: 5px;
-  margin: 33vh auto;
+  margin: 10vh auto;
   font-family: sans-serif;
   padding: 3%;
 }
@@ -43,10 +43,15 @@ Button:hover {
   font-weight: bold;
   text-decoration: none;
 }
+.card-div {
+  margin-top: 15%;
+}
+
 .card-container {
   width: 100vw;
   background-color: #000;
-  margin: 10% auto;
+  margin: 0 auto;
+  margin-left: 15%;
 }
 
 .movie-card {
