@@ -14,15 +14,14 @@ export function RegistrationView(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .post('https://murphmovies.herokuapp.com/users', null, {
-        params: {
-          Username: username,
-          Password: password,
-          Email: email,
-          Birthday: birthday,
-        }
-      })
+    axios.post(`https://murphmovies.herokuapp.com/users`, null, {
+      params: {
+        Username: username,
+        Password: password,
+        Email: email,
+        Birthday: birthday,
+      }
+    })
       .then(response => {
         const data = response.data;
         console.log(data);
