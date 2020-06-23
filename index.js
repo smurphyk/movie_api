@@ -11,6 +11,7 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 const cors = require('cors');
+app.use(cors());
 
 const { check, validationResult } = require('express-validator');
 
@@ -20,16 +21,13 @@ require('./passport');
 
 const auth = require('./auth')(app);
 
-
+//mongoose.connect('mongodb://localhost:27017/movie_apiDB', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Middleware
 app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
-app.use(cors());
-
-//mongoose.connect('mongodb://localhost:27017/movie_apiDB', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // GET requests
 
