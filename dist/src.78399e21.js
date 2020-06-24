@@ -52135,18 +52135,28 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
 
   _createClass(MovieView, [{
     key: "handleAddFavorite",
-    value: function handleAddFavorite(token) {
+    value: function handleAddFavorite(e, movie) {
+      e.preventDefault();
       var username = localStorage.getItem('user');
-
-      _axios.default.post("https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/:MovieID"), {
+      var token = localStorage.getItem('token');
+      console.log(token);
+      (0, _axios.default)({
+        method: 'post',
+        url: "https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/").concat(movie._id),
         headers: {
           Authorization: "Bearer ".concat(token)
         }
+      }).then(function (res) {
+        console.log("".concat(movie.Title, " was add to Favorites"));
+      }).catch(function (err) {
+        console.log(err);
       });
     }
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var movie = this.props.movie;
       var movieId = this._id;
       if (!movie) return null;
@@ -52194,8 +52204,8 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         block: true,
         className: "favorite-button",
         value: movie._id,
-        onClick: function onClick() {
-          return console.log(movie._id);
+        onClick: function onClick(e) {
+          return _this2.handleAddFavorite(e, movie);
         }
       }, " Add to Favorites"), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
