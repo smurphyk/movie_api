@@ -31,16 +31,12 @@ export class ProfileView extends React.Component {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(response => {
-        console.log(response.data);
-
         this.setState({
-          user: {
-            Username: response.data.Username,
-            Password: response.data.Password,
-            Email: response.data.Email,
-            Birthday: response.data.Birthday,
-            FavoriteMovies: response.data.FavoriteMovies
-          }
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: response.data.Birthday,
+          FavoriteMovies: response.data.FavoriteMovies
         });
       })
       .catch(function (error) {
@@ -60,18 +56,24 @@ export class ProfileView extends React.Component {
 
   render() {
     const { movies } = this.props;
-    const { user } = this.state;
 
     return (
       <Container className="profile-view">
         <h1>My Profile</h1>
         <Card className="profile-card">
           <Card.Body>
-            <Card.Text>Username: {user.Username} </Card.Text>
-            <Card.Text>Password: {user.Password} </Card.Text>
-            <Card.Text>Email: {user.Email}</Card.Text>
-            <Card.Text>Birthday: {user.Birthday}</Card.Text>
-            <Card.Text>Favorite Movies: {user.FavoriteMovies}</Card.Text>
+            <Card.Text>Username: {this.state.Username} </Card.Text>
+            <Card.Text>Password: ***** </Card.Text>
+            <Card.Text>Email: {this.state.Email}</Card.Text>
+            <Card.Text>Birthday: {this.state.Birthday}</Card.Text>
+            <Card.Text>Favorite Movies:</Card.Text>
+            <div className="favorites-container">
+              <ul className="favorites-list">
+                <li className="favorites-item">
+                  {this.state.FavoriteMovies}
+                </li>
+              </ul>
+            </div>
             <Link to={'/users/update'}>
               <Button className="update-button">Update Profile</Button>
             </Link>

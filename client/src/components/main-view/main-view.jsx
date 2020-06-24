@@ -22,8 +22,8 @@ import { ProfileView } from '../profile-view/profile-view';
 import './main-view.scss';
 
 export class MainView extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     // Initialize the state to an empty object so we can destructrue it later
     this.state = {
@@ -119,7 +119,7 @@ export class MainView extends React.Component {
             if (!movies) return <Container className="main-view" />;
             return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} />
           }} />
-          <Route exact path="/users/:username" render={({ match }) => {
+          <Route exact path="/users/:username" render={() => {
             return <ProfileView />
           }} />
         </Container>

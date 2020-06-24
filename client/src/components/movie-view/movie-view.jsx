@@ -19,7 +19,6 @@ export class MovieView extends React.Component {
     e.preventDefault();
     const username = localStorage.getItem('user');
     const token = localStorage.getItem('token');
-    console.log(token)
     axios({
       method: 'post',
       url: `https://murphmovies.herokuapp.com/users/${username}/Movies/${movie._id}`,
@@ -34,7 +33,6 @@ export class MovieView extends React.Component {
 
   render() {
     const { movie } = this.props;
-    const movieId = this._id;
 
     if (!movie) return null;
 
