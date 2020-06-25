@@ -75,6 +75,9 @@ export class ProfileView extends React.Component {
   render() {
     const { user } = this.state;
     const { movies } = this.props;
+    const favList = user.FavoriteMovies;
+    const favorites = movies.map(m => favList.find(id => id === m._id));
+    console.log(favorites);
 
 
     return (
@@ -87,9 +90,7 @@ export class ProfileView extends React.Component {
             <Card.Text>Email: {user.Email}</Card.Text>
             <Card.Text>Birthday: {user.Birthday}</Card.Text>
             Favorite Movies:
-            <div className="favorites-container">
 
-            </div>
             <Link to={'/users/update'}>
               <Button className="update-button">Update Profile</Button>
             </Link>
