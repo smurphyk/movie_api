@@ -212,7 +212,7 @@ h1 {
   margin-bottom: 5%;
 }
 
-.update-button {
+.update-button, .remove-favorite {
   color: #000;
   background-color: #e93d04;
   border: 2px solid #000;

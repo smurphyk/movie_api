@@ -52540,9 +52540,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       var user = this.state.user;
-      var _this$props = this.props,
-          movies = _this$props.movies,
-          title = _this$props.title;
+      var movies = this.props.movies;
       var favList = user.FavoriteMovies;
       var favorites = movies.map(function (m) {
         return favList.find(function (id) {
@@ -52559,7 +52557,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
             onClick: function onClick(e) {
               return _this3.handleRemoveFavorite(e, movie);
             }
-          }, "Remove from Favorites"));
+          }, "Remove"));
         }
       });
       console.log(favorites);
@@ -52819,10 +52817,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         path: "/users/:username",
         render: function render() {
           return _react.default.createElement(_profileView.ProfileView, {
-            movies: movies,
-            title: movies.find(function (m) {
-              return m.Title;
-            })
+            movies: movies
           });
         }
       })));

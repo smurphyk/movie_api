@@ -75,14 +75,14 @@ export class ProfileView extends React.Component {
 
   render() {
     const { user } = this.state;
-    const { movies, title } = this.props;
+    const { movies } = this.props;
     const favList = user.FavoriteMovies;
     const favorites = movies.map(m => favList.find(id => id === m._id));
     const favItem = favorites.map((movie) => {
       if (movie !== undefined) {
         return <li className="favorites-item">{movie}
           <Button size="sm" className="remove-favorite"
-            onClick={(e) => this.handleRemoveFavorite(e, movie)}>Remove from Favorites
+            onClick={(e) => this.handleRemoveFavorite(e, movie)}>Remove
           </Button>
         </li>
       }
