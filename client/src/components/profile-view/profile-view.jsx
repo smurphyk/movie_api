@@ -52,7 +52,7 @@ export class ProfileView extends React.Component {
     const token = localStorage.getItem('token');
     axios({
       method: 'delete',
-      url: `https://murphmovies.herokuapp.com/users/${username}/Movies/${movie._id}`,
+      url: `https://murphmovies.herokuapp.com/users/${username}/Movies/${movie}`,
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => {
@@ -77,7 +77,12 @@ export class ProfileView extends React.Component {
     const { movies } = this.props;
     const favList = user.FavoriteMovies;
     const favorites = movies.map(m => favList.find(id => id === m._id));
-    const favItem = favorites.map((movie) => { if (movie !== undefined) { return <li className="favorites-item">{movie}</li> } });
+    const favItem = favorites.map((movie) => {
+      if (movie !== undefined) {
+        return <li className="favorites-item">{movie}
+          <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie)}>Remove from Favorites</Button></li>
+      }
+    });
     console.log(favorites);
 
 

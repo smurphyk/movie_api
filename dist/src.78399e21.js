@@ -52511,7 +52511,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       var token = localStorage.getItem('token');
       (0, _axios.default)({
         method: 'delete',
-        url: "https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/").concat(movie._id),
+        url: "https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/").concat(movie),
         headers: {
           Authorization: "Bearer ".concat(token)
         }
@@ -52536,6 +52536,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       var user = this.state.user;
       var movies = this.props.movies;
       var favList = user.FavoriteMovies;
@@ -52548,7 +52550,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         if (movie !== undefined) {
           return _react.default.createElement("li", {
             className: "favorites-item"
-          }, movie);
+          }, movie, _react.default.createElement(_Button.default, {
+            size: "sm",
+            className: "remove-favorite",
+            onClick: function onClick(e) {
+              return _this3.handleRemoveFavorite(e, movie);
+            }
+          }, "Remove from Favorites"));
         }
       });
       console.log(favorites);
