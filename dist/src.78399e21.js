@@ -52511,12 +52511,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       var token = localStorage.getItem('token');
       (0, _axios.default)({
         method: 'delete',
-        url: "https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/").concat(movie._id),
+        url: "https://murphmovies.herokuapp.com/users/".concat(username, "/Movies/").concat(movie),
         headers: {
           Authorization: "Bearer ".concat(token)
         }
       }).then(function (res) {
         console.log("".concat(movie.Title, " was removed from Favorites"));
+        window.open('_self');
       }).catch(function (err) {
         console.log(err);
       });
@@ -52536,8 +52537,12 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       var user = this.state.user;
-      var movies = this.props.movies;
+      var _this$props = this.props,
+          movies = _this$props.movies,
+          title = _this$props.title;
       var favList = user.FavoriteMovies;
       var favorites = movies.map(function (m) {
         return favList.find(function (id) {
@@ -52548,7 +52553,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         if (movie !== undefined) {
           return _react.default.createElement("li", {
             className: "favorites-item"
-          }, movie);
+          }, movie, _react.default.createElement(_Button.default, {
+            size: "sm",
+            className: "remove-favorite",
+            onClick: function onClick(e) {
+              return _this3.handleRemoveFavorite(e, movie);
+            }
+          }, "Remove from Favorites"));
         }
       });
       console.log(favorites);
@@ -52913,7 +52924,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59388" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51996" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
