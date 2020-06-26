@@ -57,6 +57,7 @@ export class ProfileView extends React.Component {
     })
       .then(res => {
         console.log(`${movie.Title} was removed from Favorites`);
+        window.open('_self');
       }).catch(function (err) {
         console.log(err)
       })
@@ -74,13 +75,16 @@ export class ProfileView extends React.Component {
 
   render() {
     const { user } = this.state;
-    const { movies } = this.props;
+    const { movies, title } = this.props;
     const favList = user.FavoriteMovies;
     const favorites = movies.map(m => favList.find(id => id === m._id));
     const favItem = favorites.map((movie) => {
       if (movie !== undefined) {
         return <li className="favorites-item">{movie}
-          <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie)}>Remove from Favorites</Button></li>
+          <Button size="sm" className="remove-favorite"
+            onClick={(e) => this.handleRemoveFavorite(e, movie)}>Remove from Favorites
+          </Button>
+        </li>
       }
     });
     console.log(favorites);

@@ -52517,6 +52517,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         }
       }).then(function (res) {
         console.log("".concat(movie.Title, " was removed from Favorites"));
+        window.open('_self');
       }).catch(function (err) {
         console.log(err);
       });
@@ -52539,7 +52540,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       var user = this.state.user;
-      var movies = this.props.movies;
+      var _this$props = this.props,
+          movies = _this$props.movies,
+          title = _this$props.title;
       var favList = user.FavoriteMovies;
       var favorites = movies.map(function (m) {
         return favList.find(function (id) {
@@ -52816,7 +52819,10 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         path: "/users/:username",
         render: function render() {
           return _react.default.createElement(_profileView.ProfileView, {
-            movies: movies
+            movies: movies,
+            title: movies.find(function (m) {
+              return m.Title;
+            })
           });
         }
       })));
