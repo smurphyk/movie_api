@@ -52546,7 +52546,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       });
       var favItem = favorites.map(function (movie) {
         if (movie !== undefined) {
-          return _react.default.createElement("li", null, movie);
+          return _react.default.createElement("li", {
+            className: "favorites-item"
+          }, movie);
         }
       });
       console.log(favorites);

@@ -222,6 +222,10 @@ h1 {
   margin: 5px;
   font-weight: bold;
 }
+
+.favorites-item {
+  list-style-type: none;
+}
 .main-view {
   background-color: #000;
 }
