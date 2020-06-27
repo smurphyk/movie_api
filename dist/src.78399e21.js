@@ -52531,6 +52531,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       var _this$state = this.state,
           Username = _this$state.Username,
           Password = _this$state.Password,
@@ -52565,7 +52567,10 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
             key: movie._id
           }, movie.Title, _react.default.createElement(_Button.default, {
             size: "sm",
-            className: "remove-favorite"
+            className: "remove-favorite",
+            onClick: function onClick(e) {
+              return _this3.handleRemoveFavorite(e, movie);
+            }
           }, "Remove"));
         }
       }))), _react.default.createElement(_reactRouterDom.Link, {
@@ -52822,6 +52827,12 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           return _react.default.createElement(_profileView.ProfileView, {
             movies: movies
           });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
+        path: "users/:username/update",
+        render: function render() {
+          return _react.default.createElement(UpdateView, null);
         }
       })));
     }
