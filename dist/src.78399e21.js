@@ -52569,7 +52569,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
             size: "sm",
             className: "remove-favorite",
             onClick: function onClick(e) {
-              return _this3.handleRemoveFavorite(e, movie);
+              return _this3.handleRemoveFavorite(e, movie._id);
             }
           }, "Remove"));
         }

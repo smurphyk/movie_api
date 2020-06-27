@@ -80,7 +80,7 @@ export class ProfileView extends React.Component {
                   movies.map(movie => {
                     if (movie._id === FavoriteMovies.find(favMovie => favMovie === movie._id)) {
                       return <li className="favorites-item" key={movie._id}>{movie.Title}
-                        <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie)}>Remove</Button>
+                        <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie._id)}>Remove</Button>
                       </li>
                     }
                   })
