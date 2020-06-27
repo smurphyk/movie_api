@@ -52466,14 +52466,12 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      user: {
-        Username: null,
-        Password: null,
-        Email: null,
-        Birthday: null,
-        FavoriteMovies: [] // movies: [],
+      Username: null,
+      Password: null,
+      Email: null,
+      Birthday: null,
+      FavoriteMovies: [] // movies: [],
 
-      }
     };
     return _this;
   }
@@ -52501,13 +52499,11 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         }
       }).then(function (response) {
         _this2.setState({
-          user: {
-            Username: response.data.Username,
-            Password: response.data.Password,
-            Email: response.data.Email,
-            Birthday: response.data.Birthday,
-            FavoriteMovies: response.data.FavoriteMovies
-          }
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: response.data.Birthday,
+          FavoriteMovies: response.data.FavoriteMovies
         });
       }).catch(function (error) {
         console.log(error);
@@ -52542,32 +52538,38 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Birthday = _this$state.Birthday,
           FavoriteMovies = _this$state.FavoriteMovies;
       var movies = this.props.movies;
-      /* const favorites = movies.map(m => favList.find(id => id === m._id));
-      const favItem = favorites.map((movie) => {
-        if (movie !== undefined) {
-          return <li className="favorites-item">{movie}
-            <Button size="sm" className="remove-favorite"
-              onClick={(e) => this.handleRemoveFavorite(e, movie)}>Remove
-            </Button>
-          </li>
-        }
-      });
-      console.log(favorites); */
-
       return _react.default.createElement(_Container.default, {
         className: "profile-view"
       }, _react.default.createElement("h1", null, "My Profile"), _react.default.createElement(_Card.default, {
         className: "profile-card"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, null, "Username: ", Username, " "), _react.default.createElement(_Card.default.Text, null, "Password: ***** "), _react.default.createElement(_Card.default.Text, null, "Email: ", Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", Birthday), FavoriteMovies.length === 0 && _react.default.createElement("div", null, "You have no favorite movies."), "Favorite Movies:", _react.default.createElement("div", null, _react.default.createElement("ul", null, FavoriteMovies.length > 0 && movies.map(function (movie) {
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, {
+        className: "profile-item"
+      }, "Username:"), Username, _react.default.createElement(_Card.default.Text, {
+        className: "profile-item"
+      }, "Password:"), "*****", _react.default.createElement(_Card.default.Text, {
+        className: "profile-item"
+      }, "Email:"), Email, _react.default.createElement(_Card.default.Text, {
+        className: "profile-item"
+      }, "Birthday:"), Birthday, FavoriteMovies.length === 0 && _react.default.createElement("div", null, "You have no favorite movies."), _react.default.createElement(_Card.default.Text, {
+        className: "profile-item"
+      }, "Favorite Movies:"), _react.default.createElement("div", {
+        className: "favs-container"
+      }, _react.default.createElement("ul", {
+        className: "favs-list"
+      }, FavoriteMovies.length > 0 && movies.map(function (movie) {
         if (movie._id === FavoriteMovies.find(function (favMovie) {
           return favMovie === movie._id;
         })) {
           return _react.default.createElement("li", {
+            className: "favorites-item",
             key: movie._id
-          }, movie.Title);
+          }, movie.Title, _react.default.createElement(_Button.default, {
+            size: "sm",
+            className: "remove-favorite"
+          }, "Remove"));
         }
       }))), _react.default.createElement(_reactRouterDom.Link, {
-        to: "/users/".concat(username, "/update")
+        to: '/users/update'
       }, _react.default.createElement(_Button.default, {
         className: "update-button"
       }, "Update Profile")), _react.default.createElement(_reactRouterDom.Link, {
@@ -52821,12 +52823,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             movies: movies
           });
         }
-      }), _react.default.createElement(_reactRouterDom.Route, {
-        exact: true,
-        path: "users/:username/update",
-        render: function render() {
-          return _react.default.createElement(UpdateView, null);
-        }
       })));
     }
   }]);
@@ -52929,7 +52925,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61730" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50072" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

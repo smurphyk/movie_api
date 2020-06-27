@@ -4,17 +4,30 @@ $font-stack: sans-serif;
 
 .profile-view {
   width: 50vw;
-  margin: 5% auto;
+  margin: 5% 30%;
   background-color: $primaryColor;
   border: 8px groove $secondaryColor;
   border-radius: 10px;
   padding: 4%;
+
 }
 
 h1 {
   text-align: center;
   text-decoration: underline;
   margin-bottom: 5%;
+}
+
+.profile-item {
+  font-weight: bold;
+  display: block;
+  margin: 15px auto;
+  font-size: 120%;
+  text-decoration: underline;
+}
+
+.favs-container {
+  text-align: left;
 }
 
 .update-button, .remove-favorite {
@@ -29,9 +42,15 @@ h1 {
 }
 
 .remove-favorite {
-  
+  margin: 0 auto;
+  margin-left: 20px;
 }
 
 .favorites-item {
+  display: block;
   list-style-type: none;
+  text-align: left;
+  margin: 15px auto;
+  font-weight: bold;
+  font-size: 110%;
 }
