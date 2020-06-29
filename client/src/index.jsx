@@ -8,7 +8,7 @@ import moviesApp from './reducers/reducers';
 
 import './index.scss';
 
-const store = creatStore(moviesApp);
+const store = createStore(moviesApp);
 
 class MyFlixApplication extends React.Component {
   render() {
