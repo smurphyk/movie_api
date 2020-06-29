@@ -67,7 +67,7 @@ export class MovieView extends React.Component {
           <Button size="lg" block className="favorite-button" value={movie._id}
             onClick={(e) => this.handleAddFavorite(e, movie)} > Add to Favorites</Button>
           <Link to={`/`}>
-            <Button className="back-button" size="lg" block>Back</Button>
+            <Button className="movies-button" size="lg" block>Back</Button>
           </Link>
         </Container >
       </Container >

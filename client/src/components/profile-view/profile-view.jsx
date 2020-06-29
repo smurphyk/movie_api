@@ -89,6 +89,7 @@ export class ProfileView extends React.Component {
   render() {
     const { Username, Password, Email, Birthday, FavoriteMovies } = this.state;
     const { movies } = this.props;
+    const username = localStorage.getItem('user');
 
     return (
       <Container className="profile-view">
@@ -114,16 +115,17 @@ export class ProfileView extends React.Component {
                 }
               </ul>
             </div>
-            <Link to={'/users/update'}>
-              <Button className="update-button">Update Profile</Button>
-            </Link>
-            <Link to={`/`}>
-              <Button className="back-button">Back</Button>
-            </Link>
-            <br></br>
-            <Button className="delete-user" block onClick={(e) => this.handleDeregister(e)}>Delete Profile</Button>
+            <div className="button-container">
+              <Link to={`/users/${username}/update`}>
+                <Button className="update-button" block>Update Profile</Button>
+              </Link>
+              <Link to={`/`}>
+                <Button className="back-button" block>Back</Button>
+              </Link>
+              <Button className="delete-user" block onClick={(e) => this.handleDeregister(e)}>Delete Profile</Button>
+            </div>
           </Card.Body>
-        </Card>
+        </Card >
       </Container >
     );
   }

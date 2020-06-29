@@ -144,7 +144,7 @@ Button:hover {
   margin: 0 10px 0 0;
 }
 
-.back-button, .favorite-button {
+.movies-button, .favorite-button {
   color: #000;
   background-color: #e93d04;
   border: 2px solid #000;
@@ -224,14 +224,15 @@ h1 {
   text-align: left;
 }
 
-.update-button, .remove-favorite, .delete-user {
+.update-button, .remove-favorite, .delete-user, .back-button {
   color: #000;
   background-color: #e93d04;
   border: 2px solid #000;
   border-radius: 5px;
   padding: 5px;
   text-align: center;
-  margin: 5px;
+  margin: 5% auto;
+  margin-bottom: 1px;
   font-weight: bold;
 }
 
@@ -247,6 +248,25 @@ h1 {
   margin: 15px auto;
   font-weight: bold;
   font-size: 110%;
+}
+.registration-container {
+  background-color: #b5b5b5;
+  border: 5px groove #e93d04;
+  border-radius: 5px;
+  margin: 10vh auto;
+  font-family: sans-serif;
+  padding: 3%;
+}
+
+.update-user {
+  color: #000;
+  background-color: #e93d04;
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  margin: 5px;
+  font-weight: bold;
 }
 .main-view {
   background-color: #000;
