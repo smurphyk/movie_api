@@ -86,10 +86,10 @@ export class ProfileView extends React.Component {
         console.log('Error deregistering User')
       });
   };
+
   render() {
     const { Username, Password, Email, Birthday, FavoriteMovies } = this.state;
     const { movies } = this.props;
-    const username = localStorage.getItem('user');
 
     return (
       <Container className="profile-view">
@@ -97,9 +97,29 @@ export class ProfileView extends React.Component {
         <Card className="profile-card">
           <Card.Body>
             <Card.Text className="profile-item">Username:</Card.Text>{Username}
+            <span className="update">
+              <input
+                placeholder={Username}>
+              </input>
+            </span>
             <Card.Text className="profile-item">Password:</Card.Text>*****
+            <span className="update">
+              <input
+                placeholder={Password}>
+              </input>
+            </span>
             <Card.Text className="profile-item">Email:</Card.Text>{Email}
+            <span className="update">
+              <input
+                placeholder={Email}>
+              </input>
+            </span>
             <Card.Text className="profile-item">Birthday:</Card.Text>{Birthday}
+            <span className="update">
+              <input
+                placeholder={Birthday}>
+              </input>
+            </span>
             {FavoriteMovies.length === 0 && <div>You have no favorite movies.</div>}
             <Card.Text className="profile-item">Favorite Movies:</Card.Text>
             <div className="favs-container">
@@ -116,9 +136,7 @@ export class ProfileView extends React.Component {
               </ul>
             </div>
             <div className="button-container">
-              <Link to={`/users/${username}/update`}>
-                <Button className="update-button" block>Update Profile</Button>
-              </Link>
+              <Button className="update-button" block>Update Profile</Button>
               <Link to={`/`}>
                 <Button className="back-button" block>Back</Button>
               </Link>

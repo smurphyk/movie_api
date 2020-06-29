@@ -123,9 +123,6 @@ export class MainView extends React.Component {
           <Route exact path="/users/:username" render={() => {
             return <ProfileView movies={movies} />
           }} />
-          <Route exact path="/users/:username/update" render={() => {
-            return <UpdateView user={user} />
-          }} />
         </Container>
       </Router >
     );

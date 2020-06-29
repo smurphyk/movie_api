@@ -53000,14 +53000,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             movies: movies
           });
         }
-      }), _react.default.createElement(_reactRouterDom.Route, {
-        exact: true,
-        path: "/users/:username/update",
-        render: function render() {
-          return _react.default.createElement(_updateView.UpdateView, {
-            user: user
-          });
-        }
       })));
     }
   }]);
