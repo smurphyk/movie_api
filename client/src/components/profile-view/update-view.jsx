@@ -32,21 +32,21 @@ export function UpdateView(props) {
         const data = response.data;
         console.log(data);
         alert(`Successfully Updated ${username}'s Info`);
-        window.open('/', '_self');
+        window.open(`/users/${username}`, '_self');
       })
       .catch((e) => {
-        console.log('Error registering User')
+        console.log('Error Updating User')
       });
   };
 
   return (
-    <Container className="registration-container">
-      <Form className="registration-form">
+    <Container className="update-container">
+      <Form className="update-form">
         <Form.Group controlId="formBasicUsername">
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Username"
+            placeholder="Update Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)} />
         </Form.Group>
@@ -54,7 +54,7 @@ export function UpdateView(props) {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Password"
+            placeholder="Update Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)} />
         </Form.Group>
@@ -62,7 +62,7 @@ export function UpdateView(props) {
           <Form.Label>Email Address</Form.Label>
           <Form.Control
             type="email"
-            placeholder="Email Address"
+            placeholder="Update Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)} />
           <Form.Text className="text-muted">

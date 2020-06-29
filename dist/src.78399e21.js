@@ -52705,21 +52705,21 @@ function UpdateView(props) {
       var data = response.data;
       console.log(data);
       alert("Successfully Updated ".concat(username, "'s Info"));
-      window.open('/', '_self');
+      window.open("/users/".concat(username), '_self');
     }).catch(function (e) {
-      console.log('Error registering User');
+      console.log('Error Updating User');
     });
   };
 
   return _react.default.createElement(_Container.default, {
-    className: "registration-container"
+    className: "update-container"
   }, _react.default.createElement(_Form.default, {
-    className: "registration-form"
+    className: "update-form"
   }, _react.default.createElement(_Form.default.Group, {
     controlId: "formBasicUsername"
   }, _react.default.createElement(_Form.default.Label, null, "Username"), _react.default.createElement(_Form.default.Control, {
     type: "text",
-    placeholder: "Username",
+    placeholder: "Update Username",
     value: username,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
@@ -52728,7 +52728,7 @@ function UpdateView(props) {
     controlId: "formBasicPassword"
   }, _react.default.createElement(_Form.default.Label, null, "Password"), _react.default.createElement(_Form.default.Control, {
     type: "password",
-    placeholder: "Password",
+    placeholder: "Update Password",
     value: password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
@@ -52737,7 +52737,7 @@ function UpdateView(props) {
     controlId: "formBasicEmail"
   }, _react.default.createElement(_Form.default.Label, null, "Email Address"), _react.default.createElement(_Form.default.Control, {
     type: "email",
-    placeholder: "Email Address",
+    placeholder: "Update Email Address",
     value: email,
     onChange: function onChange(e) {
       return setEmail(e.target.value);
