@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import './profile-view.scss';
+
 export class ProfileView extends React.Component {
   constructor(props) {
     super(props);
@@ -17,6 +18,7 @@ export class ProfileView extends React.Component {
       // movies: [],
     };
   }
+
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     console.log(accessToken)
@@ -24,6 +26,7 @@ export class ProfileView extends React.Component {
       this.getUser(accessToken);
     }
   }
+
   getUser(token) {
     let username = localStorage.getItem('user');
     axios.get(`https://murphmovies.herokuapp.com/users/${username}`, {
@@ -42,6 +45,7 @@ export class ProfileView extends React.Component {
         console.log(error);
       });
   }
+
   handleRemoveFavorite(e, movie) {
     e.preventDefault();
 
@@ -59,6 +63,29 @@ export class ProfileView extends React.Component {
         console.log(err)
       })
   }
+
+  handleDeregister(e, user) {
+    e.preventDefault();
+
+    const username = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
+
+    axios({
+      method: 'delete',
+      url: `https://murphmovies.herokuapp.com/users/${username}`,
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then((response) => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        console.log(`${username} was deleted`);
+        alert('Profile Successfully Deleted');
+        window.open('/', '_self');
+      })
+      .catch((e) => {
+        console.log('Error deregistering User')
+      });
+  };
   render() {
     const { Username, Password, Email, Birthday, FavoriteMovies } = this.state;
     const { movies } = this.props;
@@ -93,9 +120,11 @@ export class ProfileView extends React.Component {
             <Link to={`/`}>
               <Button className="back-button">Back</Button>
             </Link>
+            <br></br>
+            <Button className="delete-user" block onClick={(e) => this.handleDeregister(e)}>Delete Profile</Button>
           </Card.Body>
         </Card>
-      </Container>
+      </Container >
     );
   }
 }

@@ -52529,6 +52529,28 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "handleDeregister",
+    value: function handleDeregister(e, user) {
+      e.preventDefault();
+      var username = localStorage.getItem('user');
+      var token = localStorage.getItem('token');
+      (0, _axios.default)({
+        method: 'delete',
+        url: "https://murphmovies.herokuapp.com/users/".concat(username),
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        console.log("".concat(username, " was deleted"));
+        alert('Profile Successfully Deleted');
+        window.open('/', '_self');
+      }).catch(function (e) {
+        console.log('Error deregistering User');
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -52581,7 +52603,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         to: "/"
       }, _react.default.createElement(_Button.default, {
         className: "back-button"
-      }, "Back")))));
+      }, "Back")), _react.default.createElement("br", null), _react.default.createElement(_Button.default, {
+        className: "delete-user",
+        block: true,
+        onClick: function onClick(e) {
+          return _this3.handleDeregister(e);
+        }
+      }, "Delete Profile"))));
     }
   }]);
 
@@ -52936,7 +52964,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50072" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58433" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
