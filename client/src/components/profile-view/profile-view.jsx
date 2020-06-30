@@ -68,6 +68,16 @@ export class ProfileView extends React.Component {
       })
   }
 
+  handleChange(e) {
+    const target = e.target;
+    const value = target.name === 'Username' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    })
+  }
+
   handleUpdate(e) {
     e.preventDefault();
 
@@ -110,7 +120,7 @@ export class ProfileView extends React.Component {
       .catch((e) => {
         console.log('Error deregistering User')
       });
-  };
+  }
 
   render() {
     const { Username, Password, Email, Birthday, FavoriteMovies } = this.state;
@@ -160,7 +170,7 @@ export class ProfileView extends React.Component {
                   name="newUsername"
                   type="text"
                   placeholder="Change Username"
-                  value={''}
+                  value={this.state.newUsername}
                   onChange={this.handleChange}
                 />
                 <Button className="update" type="submit" size="sm" onClick={this.handleUpdate}>Update</Button>

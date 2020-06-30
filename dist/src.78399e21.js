@@ -52436,6 +52436,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -52528,6 +52530,14 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }).catch(function (err) {
         console.log(err);
       });
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(e) {
+      var target = e.target;
+      var value = target.name === 'Username' ? target.checked : target.value;
+      var name = target.name;
+      this.setState(_defineProperty({}, name, value));
     }
   }, {
     key: "handleUpdate",
@@ -52646,7 +52656,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         name: "newUsername",
         type: "text",
         placeholder: "Change Username",
-        value: '',
+        value: this.state.newUsername,
         onChange: this.handleChange
       }), _react.default.createElement(_Button.default, {
         className: "update",
