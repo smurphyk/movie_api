@@ -68,7 +68,7 @@ export class ProfileView extends React.Component {
       })
   }
 
-  handleUpdate(e, user) {
+  handleUpdate(e) {
     e.preventDefault();
 
     const username = localStorage.getItem('user');
@@ -79,13 +79,8 @@ export class ProfileView extends React.Component {
       url: `https://murphmovies.herokuapp.com/users/${username}`,
       headers: { Authorization: `Bearer ${token}` }
     })
-      .then(response => {
-        this.setState({
-          Username: response.data.Username,
-          Password: response.data.Password,
-          Email: response.data.Email,
-          Birthday: response.data.Birthday,
-        });
+      .then((response) => {
+        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -118,6 +113,8 @@ export class ProfileView extends React.Component {
   render() {
     const { Username, Password, Email, Birthday, FavoriteMovies } = this.state;
     const { movies } = this.props;
+    const username = localStorage.getItem('user');
+    const token = localStorage.getItem('user');
 
     return (
       <Container className="profile-view">
@@ -162,7 +159,7 @@ export class ProfileView extends React.Component {
                 <Form.Control
                   type="text"
                   placeholder={Username}
-                  onChange={(e) => createUsername(e.target.value)}
+                  onChange={(e) => console.log(e.target.value)}
                 />
               </Form.Group>
               <Form.Group controlId="updatePassword">
@@ -170,7 +167,7 @@ export class ProfileView extends React.Component {
                 <Form.Control
                   type="password"
                   placeholder="******"
-                  onChange={(e) => createPassword(e.target.value)}
+                  onChange={(e) => console.log(e.target.value)}
                 />
               </Form.Group>
               <Form.Group controlId="updateEmail">
@@ -178,7 +175,7 @@ export class ProfileView extends React.Component {
                 <Form.Control
                   type="email"
                   placeholder={Email}
-                  onChange={(e) => createEmail(e.target.value)}
+                  onChange={(e) => console.log(e.target.value)}
                 />
               </Form.Group>
               <Form.Group controlId="updateBirthday">
@@ -186,10 +183,10 @@ export class ProfileView extends React.Component {
                 <Form.Control
                   type="date"
                   placeholder={Birthday}
-                  onChange={(e) => createDob(e.target.value)}
+                  onChange={(e) => console.log(e.target.value)}
                 />
               </Form.Group>
-              <Button className="update-button" type="submit" onClick={(e) => this.handleUpdate(e, user)}>Save Changes</Button>
+              <Button className="update-button" type="submit" onClick={(e) => this.handleUpdate(e.target.value)}>Save Changes</Button>
             </Form>
           </Tab>
         </Tabs>

@@ -52531,9 +52531,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleUpdate",
-    value: function handleUpdate(e, user) {
-      var _this3 = this;
-
+    value: function handleUpdate(e) {
       e.preventDefault();
       var username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
@@ -52544,12 +52542,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Authorization: "Bearer ".concat(token)
         }
       }).then(function (response) {
-        _this3.setState({
-          Username: response.data.Username,
-          Password: response.data.Password,
-          Email: response.data.Email,
-          Birthday: response.data.Birthday
-        });
+        console.log(response.data);
       }).catch(function (error) {
         console.log(error);
       });
@@ -52579,7 +52572,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var _this$state = this.state,
           Username = _this$state.Username,
@@ -52588,6 +52581,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Birthday = _this$state.Birthday,
           FavoriteMovies = _this$state.FavoriteMovies;
       var movies = this.props.movies;
+      var username = localStorage.getItem('user');
+      var token = localStorage.getItem('user');
       return _react.default.createElement(_Container.default, {
         className: "profile-view"
       }, _react.default.createElement(_reactBootstrap.Tabs, {
@@ -52623,7 +52618,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
             size: "sm",
             className: "remove-favorite",
             onClick: function onClick(e) {
-              return _this4.handleRemoveFavorite(e, movie._id);
+              return _this3.handleRemoveFavorite(e, movie._id);
             }
           }, "Remove"));
         }
@@ -52638,7 +52633,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "delete-user",
         block: true,
         onClick: function onClick(e) {
-          return _this4.handleDeregister(e);
+          return _this3.handleDeregister(e);
         }
       }, "Delete Profile"))))), _react.default.createElement(_reactBootstrap.Tab, {
         eventKey: "update",
@@ -52651,7 +52646,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         type: "text",
         placeholder: Username,
         onChange: function onChange(e) {
-          return createUsername(e.target.value);
+          return console.log(e.target.value);
         }
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "updatePassword"
@@ -52659,7 +52654,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         type: "password",
         placeholder: "******",
         onChange: function onChange(e) {
-          return createPassword(e.target.value);
+          return console.log(e.target.value);
         }
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "updateEmail"
@@ -52667,7 +52662,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         type: "email",
         placeholder: Email,
         onChange: function onChange(e) {
-          return createEmail(e.target.value);
+          return console.log(e.target.value);
         }
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "updateBirthday"
@@ -52675,13 +52670,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         type: "date",
         placeholder: Birthday,
         onChange: function onChange(e) {
-          return createDob(e.target.value);
+          return console.log(e.target.value);
         }
       })), _react.default.createElement(_Button.default, {
         className: "update-button",
         type: "submit",
         onClick: function onClick(e) {
-          return _this4.handleUpdate(e, user);
+          return _this3.handleUpdate(e.target.value);
         }
       }, "Save Changes")))));
     }
