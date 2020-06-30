@@ -224,7 +224,7 @@ h1 {
   text-align: left;
 }
 
-.update-button, .remove-favorite, .delete-user, .back-button {
+.update, .remove-favorite, .delete-user, .back-button {
   color: #000;
   background-color: #e93d04;
   border: 2px solid #000;
@@ -234,6 +234,10 @@ h1 {
   margin: 5% auto;
   margin-bottom: 1px;
   font-weight: bold;
+}
+
+.update {
+  margin: 0 auto;
 }
 
 .remove-favorite {

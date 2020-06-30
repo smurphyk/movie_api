@@ -52472,11 +52472,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       Password: null,
       Email: null,
       Birthday: null,
-      FavoriteMovies: [],
-      value: ''
+      FavoriteMovies: []
     };
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -52533,24 +52530,19 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "handleChange",
-    value: function handleChange(e) {
-      this.setState({
-        value: e.target.value
-      });
-    }
-  }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
+    key: "newUsername",
+    value: function newUsername(e) {
       e.preventDefault();
       var username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
-      (0, _axios.default)({
-        method: 'put',
-        url: "https://murphmovies.herokuapp.com/users/".concat(username),
+
+      _axios.default.put("https://murphmovies.herokuapp.com/users/".concat(username), {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
+      }).then(function () {
+        alert('Saved Changes');
+        window.open("/users/".concat(username), '_self');
       }).catch(function (error) {
         console.log(error);
       });
@@ -52645,42 +52637,21 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         eventKey: "update",
         title: "Update"
       }, _react.default.createElement("h1", null, "Update Profile"), _react.default.createElement(_reactBootstrap.Form, {
-        className: "update-form"
+        className: "update-form",
+        onSubmit: this.newUsername
       }, _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicUsername"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username"), _react.default.createElement(_reactBootstrap.Form.Control, {
+        name: "newUsername",
         type: "text",
-        placeholder: "Change Username",
-        value: this.state.newUsername,
-        onChange: this.handleChange
-      })), _react.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "formBasicPassword"
-      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
-        type: "password",
-        placeholder: "******",
-        value: this.state.newPassword,
-        onChange: this.handleChange
-      })), _react.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "formBasicEmail"
-      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
-        type: "email",
-        placeholder: Email,
-        value: this.state.newEmail,
-        onChange: this.handleChange
-      })), _react.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "formBasicBirthday"
-      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Birthday"), _react.default.createElement(_reactBootstrap.Form.Control, {
-        type: "date",
-        placeholder: Birthday,
-        value: this.state.newBirthday,
-        onChange: this.handleChange
-      })), _react.default.createElement(_Button.default, {
-        className: "update-button",
+        placeholder: "Change Username" //value={''}
+        //onChange={this.handleChange}
+
+      }), _react.default.createElement(_Button.default, {
+        className: "update",
         type: "submit",
-        onClick: function onClick(e) {
-          return _this3.handleSubmit(e);
-        }
-      }, "Save Changes")))));
+        size: "sm"
+      }, "Update"))))));
     }
   }]);
 

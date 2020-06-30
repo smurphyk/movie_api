@@ -20,10 +20,7 @@ export class ProfileView extends React.Component {
       Email: null,
       Birthday: null,
       FavoriteMovies: [],
-      value: '',
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -71,26 +68,18 @@ export class ProfileView extends React.Component {
       })
   }
 
-  handleChange(e) {
-    this.setState({
-      value: e.target.value
-    });
-  }
-
-  handleSubmit(e) {
+  newUsername(e) {
     e.preventDefault();
 
     const username = localStorage.getItem('user');
     const token = localStorage.getItem('token');
 
-    axios({
-      method: 'put',
-      url: `https://murphmovies.herokuapp.com/users/${username}`,
+    axios.put(`https://murphmovies.herokuapp.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
-      .then({
+      .then(() => {
         alert('Saved Changes');
-        window.open(`/users/${username}`);
+        window.open(`/users/${username}`, '_self');
       })
       .catch(function (error) {
         console.log(error);
@@ -161,19 +150,22 @@ export class ProfileView extends React.Component {
           </Tab>
           <Tab eventKey="update" title="Update">
             <h1>Update Profile</h1>
-            <Form className="update-form">
+            <Form className="update-form" onSubmit={this.newUsername}>
               <Form.Group controlId="formBasicUsername">
                 <Form.Label>Username</Form.Label>
                 <Form.Control
+                  name="newUsername"
                   type="text"
                   placeholder="Change Username"
-                  value={this.state.newUsername}
-                  onChange={this.handleChange}
+                //value={''}
+                //onChange={this.handleChange}
                 />
+                <Button className="update" type="submit" size="sm">Update</Button>
               </Form.Group>
-              <Form.Group controlId="formBasicPassword">
+              {/* <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  name="newPassword"
                   type="password"
                   placeholder="******"
                   value={this.state.newPassword}
@@ -183,6 +175,7 @@ export class ProfileView extends React.Component {
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
+                  name="newEmail"
                   type="email"
                   placeholder={Email}
                   value={this.state.newEmail}
@@ -192,13 +185,13 @@ export class ProfileView extends React.Component {
               <Form.Group controlId="formBasicBirthday">
                 <Form.Label>Birthday</Form.Label>
                 <Form.Control
+                  name="newBirthday"
                   type="date"
                   placeholder={Birthday}
                   value={this.state.newBirthday}
                   onChange={this.handleChange}
                 />
-              </Form.Group>
-              <Button className="update-button" type="submit" onClick={(e) => this.handleSubmit(e)}>Save Changes</Button>
+                  </Form.Group> */}
             </Form>
           </Tab>
         </Tabs>
