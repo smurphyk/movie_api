@@ -5,6 +5,11 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import './profile-view.scss';
+import {
+  Tabs,
+  Tab,
+  Form,
+} from 'react-bootstrap';
 
 export class ProfileView extends React.Component {
   constructor(props) {
@@ -63,6 +68,30 @@ export class ProfileView extends React.Component {
       })
   }
 
+  handleUpdate(e, user) {
+    e.preventDefault();
+
+    const username = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
+
+    axios({
+      method: 'put',
+      url: `https://murphmovies.herokuapp.com/users/${username}`,
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        this.setState({
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: response.data.Birthday,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   handleDeregister(e, user) {
     e.preventDefault();
 
@@ -92,57 +121,78 @@ export class ProfileView extends React.Component {
 
     return (
       <Container className="profile-view">
-        <h1>My Profile</h1>
-        <Card className="profile-card">
-          <Card.Body>
-            <Card.Text className="profile-item">Username:</Card.Text>{Username}
-            <span className="update">
-              <input
-                placeholder="Update Username">
-              </input>
-            </span>
-            <Card.Text className="profile-item">Password:</Card.Text>*****
-            <span className="update">
-              <input
-                placeholder="Update Password">
-              </input>
-            </span>
+        <Tabs defaultActiveKey="profile" className="profile-tabs">
+          <Tab eventKey="profile" title="Profile">
+            <h1>My Profile</h1>
+            <Card className="profile-card">
+              <Card.Body>
+                <Card.Text className="profile-item">Username:</Card.Text>{Username}
+                <Card.Text className="profile-item">Password:</Card.Text>*****
             <Card.Text className="profile-item">Email:</Card.Text>{Email}
-            <span className="update">
-              <input
-                placeholder="Update Email">
-              </input>
-            </span>
-            <Card.Text className="profile-item">Birthday:</Card.Text>{Birthday}
-            <span className="update">
-              <input
-                placeholder="Update Birthday">
-              </input>
-            </span>
-            {FavoriteMovies.length === 0 && <div>You have no favorite movies.</div>}
-            <Card.Text className="profile-item">Favorite Movies:</Card.Text>
-            <div className="favs-container">
-              <ul className="favs-list">
-                {FavoriteMovies.length > 0 &&
-                  movies.map(movie => {
-                    if (movie._id === FavoriteMovies.find(favMovie => favMovie === movie._id)) {
-                      return <li className="favorites-item" key={movie._id}>{movie.Title}
-                        <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie._id)}>Remove</Button>
-                      </li>
+                <Card.Text className="profile-item">Birthday:</Card.Text>{Birthday}
+                <Card.Text className="profile-item">Favorite Movies:</Card.Text>
+                {FavoriteMovies.length === 0 && <div>You have no favorite movies.</div>}
+                <div className="favs-container">
+                  <ul className="favs-list">
+                    {FavoriteMovies.length > 0 &&
+                      movies.map(movie => {
+                        if (movie._id === FavoriteMovies.find(favMovie => favMovie === movie._id)) {
+                          return <li className="favorites-item" key={movie._id}>{movie.Title}
+                            <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie._id)}>Remove</Button>
+                          </li>
+                        }
+                      })
                     }
-                  })
-                }
-              </ul>
-            </div>
-            <div className="button-container">
-              <Button className="update-button" block>Update Profile</Button>
-              <Link to={`/`}>
-                <Button className="back-button" block>Back</Button>
-              </Link>
-              <Button className="delete-user" block onClick={(e) => this.handleDeregister(e)}>Delete Profile</Button>
-            </div>
-          </Card.Body>
-        </Card >
+                  </ul>
+                </div>
+                <div className="button-container">
+                  <Link to={`/`}>
+                    <Button className="back-button" block>Back</Button>
+                  </Link>
+                  <Button className="delete-user" block onClick={(e) => this.handleDeregister(e)}>Delete Profile</Button>
+                </div>
+              </Card.Body>
+            </Card >
+          </Tab>
+          <Tab eventKey="update" title="Update">
+            <h1>Update Profile</h1>
+            <Form className="update-form">
+              <Form.Group controlId="updateUsername">
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder={Username}
+                  onChange={(e) => createUsername(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId="updatePassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="******"
+                  onChange={(e) => createPassword(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId="updateEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder={Email}
+                  onChange={(e) => createEmail(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId="updateBirthday">
+                <Form.Label>Birthday</Form.Label>
+                <Form.Control
+                  type="date"
+                  placeholder={Birthday}
+                  onChange={(e) => createDob(e.target.value)}
+                />
+              </Form.Group>
+              <Button className="update-button" type="submit" onClick={(e) => this.handleUpdate(e, user)}>Save Changes</Button>
+            </Form>
+          </Tab>
+        </Tabs>
       </Container >
     );
   }

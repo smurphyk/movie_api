@@ -52430,6 +52430,8 @@ var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
 
 require("./profile-view.scss");
 
+var _reactBootstrap = require("react-bootstrap");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -52528,6 +52530,31 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "handleUpdate",
+    value: function handleUpdate(e, user) {
+      var _this3 = this;
+
+      e.preventDefault();
+      var username = localStorage.getItem('user');
+      var token = localStorage.getItem('token');
+      (0, _axios.default)({
+        method: 'put',
+        url: "https://murphmovies.herokuapp.com/users/".concat(username),
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        _this3.setState({
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: response.data.Birthday
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
     key: "handleDeregister",
     value: function handleDeregister(e, user) {
       e.preventDefault();
@@ -52552,7 +52579,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var _this$state = this.state,
           Username = _this$state.Username,
@@ -52563,35 +52590,25 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       var movies = this.props.movies;
       return _react.default.createElement(_Container.default, {
         className: "profile-view"
+      }, _react.default.createElement(_reactBootstrap.Tabs, {
+        defaultActiveKey: "profile",
+        className: "profile-tabs"
+      }, _react.default.createElement(_reactBootstrap.Tab, {
+        eventKey: "profile",
+        title: "Profile"
       }, _react.default.createElement("h1", null, "My Profile"), _react.default.createElement(_Card.default, {
         className: "profile-card"
       }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
-      }, "Username:"), Username, _react.default.createElement("span", {
-        className: "update"
-      }, _react.default.createElement("input", {
-        placeholder: "Update Username"
-      })), _react.default.createElement(_Card.default.Text, {
+      }, "Username:"), Username, _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
-      }, "Password:"), "*****", _react.default.createElement("span", {
-        className: "update"
-      }, _react.default.createElement("input", {
-        placeholder: "Update Password"
-      })), _react.default.createElement(_Card.default.Text, {
+      }, "Password:"), "*****", _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
-      }, "Email:"), Email, _react.default.createElement("span", {
-        className: "update"
-      }, _react.default.createElement("input", {
-        placeholder: "Update Email"
-      })), _react.default.createElement(_Card.default.Text, {
+      }, "Email:"), Email, _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
-      }, "Birthday:"), Birthday, _react.default.createElement("span", {
-        className: "update"
-      }, _react.default.createElement("input", {
-        placeholder: "Update Birthday"
-      })), FavoriteMovies.length === 0 && _react.default.createElement("div", null, "You have no favorite movies."), _react.default.createElement(_Card.default.Text, {
+      }, "Birthday:"), Birthday, _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
-      }, "Favorite Movies:"), _react.default.createElement("div", {
+      }, "Favorite Movies:"), FavoriteMovies.length === 0 && _react.default.createElement("div", null, "You have no favorite movies."), _react.default.createElement("div", {
         className: "favs-container"
       }, _react.default.createElement("ul", {
         className: "favs-list"
@@ -52606,16 +52623,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
             size: "sm",
             className: "remove-favorite",
             onClick: function onClick(e) {
-              return _this3.handleRemoveFavorite(e, movie._id);
+              return _this4.handleRemoveFavorite(e, movie._id);
             }
           }, "Remove"));
         }
       }))), _react.default.createElement("div", {
         className: "button-container"
-      }, _react.default.createElement(_Button.default, {
-        className: "update-button",
-        block: true
-      }, "Update Profile"), _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_Button.default, {
         className: "back-button",
@@ -52624,9 +52638,52 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "delete-user",
         block: true,
         onClick: function onClick(e) {
-          return _this3.handleDeregister(e);
+          return _this4.handleDeregister(e);
         }
-      }, "Delete Profile")))));
+      }, "Delete Profile"))))), _react.default.createElement(_reactBootstrap.Tab, {
+        eventKey: "update",
+        title: "Update"
+      }, _react.default.createElement("h1", null, "Update Profile"), _react.default.createElement(_reactBootstrap.Form, {
+        className: "update-form"
+      }, _react.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "updateUsername"
+      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username"), _react.default.createElement(_reactBootstrap.Form.Control, {
+        type: "text",
+        placeholder: Username,
+        onChange: function onChange(e) {
+          return createUsername(e.target.value);
+        }
+      })), _react.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "updatePassword"
+      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
+        type: "password",
+        placeholder: "******",
+        onChange: function onChange(e) {
+          return createPassword(e.target.value);
+        }
+      })), _react.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "updateEmail"
+      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
+        type: "email",
+        placeholder: Email,
+        onChange: function onChange(e) {
+          return createEmail(e.target.value);
+        }
+      })), _react.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "updateBirthday"
+      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Birthday"), _react.default.createElement(_reactBootstrap.Form.Control, {
+        type: "date",
+        placeholder: Birthday,
+        onChange: function onChange(e) {
+          return createDob(e.target.value);
+        }
+      })), _react.default.createElement(_Button.default, {
+        className: "update-button",
+        type: "submit",
+        onClick: function onClick(e) {
+          return _this4.handleUpdate(e, user);
+        }
+      }, "Save Changes")))));
     }
   }]);
 
@@ -52634,7 +52691,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.ProfileView = ProfileView;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","./profile-view.scss":"components/profile-view/profile-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","./profile-view.scss":"components/profile-view/profile-view.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
