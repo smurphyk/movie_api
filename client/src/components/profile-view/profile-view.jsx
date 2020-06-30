@@ -88,6 +88,10 @@ export class ProfileView extends React.Component {
       url: `https://murphmovies.herokuapp.com/users/${username}`,
       headers: { Authorization: `Bearer ${token}` },
     })
+      .then({
+        alert('Saved Changes');
+        window.open(`/users/${username}`);
+      })
       .catch(function (error) {
         console.log(error);
       })
@@ -163,7 +167,7 @@ export class ProfileView extends React.Component {
                 <Form.Control
                   type="text"
                   placeholder="Change Username"
-                  value={this.state.value}
+                  value={this.state.newUsername}
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -172,6 +176,7 @@ export class ProfileView extends React.Component {
                 <Form.Control
                   type="password"
                   placeholder="******"
+                  value={this.state.newPassword}
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -180,6 +185,7 @@ export class ProfileView extends React.Component {
                 <Form.Control
                   type="email"
                   placeholder={Email}
+                  value={this.state.newEmail}
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -188,6 +194,7 @@ export class ProfileView extends React.Component {
                 <Form.Control
                   type="date"
                   placeholder={Birthday}
+                  value={this.state.newBirthday}
                   onChange={this.handleChange}
                 />
               </Form.Group>

@@ -52651,25 +52651,28 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
         placeholder: "Change Username",
-        value: this.state.value,
+        value: this.state.newUsername,
         onChange: this.handleChange
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicPassword"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "password",
         placeholder: "******",
+        value: this.state.newPassword,
         onChange: this.handleChange
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicEmail"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "email",
         placeholder: Email,
+        value: this.state.newEmail,
         onChange: this.handleChange
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicBirthday"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Birthday"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "date",
         placeholder: Birthday,
+        value: this.state.newBirthday,
         onChange: this.handleChange
       })), _react.default.createElement(_Button.default, {
         className: "update-button",
