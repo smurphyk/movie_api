@@ -15,7 +15,6 @@ export class ProfileView extends React.Component {
       Email: null,
       Birthday: null,
       FavoriteMovies: [],
-      // movies: [],
     };
   }
 
@@ -86,6 +85,7 @@ export class ProfileView extends React.Component {
         console.log('Error deregistering User')
       });
   };
+
   render() {
     const { Username, Password, Email, Birthday, FavoriteMovies } = this.state;
     const { movies } = this.props;
@@ -96,9 +96,29 @@ export class ProfileView extends React.Component {
         <Card className="profile-card">
           <Card.Body>
             <Card.Text className="profile-item">Username:</Card.Text>{Username}
+            <span className="update">
+              <input
+                placeholder="Update Username">
+              </input>
+            </span>
             <Card.Text className="profile-item">Password:</Card.Text>*****
+            <span className="update">
+              <input
+                placeholder="Update Password">
+              </input>
+            </span>
             <Card.Text className="profile-item">Email:</Card.Text>{Email}
+            <span className="update">
+              <input
+                placeholder="Update Email">
+              </input>
+            </span>
             <Card.Text className="profile-item">Birthday:</Card.Text>{Birthday}
+            <span className="update">
+              <input
+                placeholder="Update Birthday">
+              </input>
+            </span>
             {FavoriteMovies.length === 0 && <div>You have no favorite movies.</div>}
             <Card.Text className="profile-item">Favorite Movies:</Card.Text>
             <div className="favs-container">
@@ -114,16 +134,15 @@ export class ProfileView extends React.Component {
                 }
               </ul>
             </div>
-            <Link to={'/users/update'}>
-              <Button className="update-button">Update Profile</Button>
-            </Link>
-            <Link to={`/`}>
-              <Button className="back-button">Back</Button>
-            </Link>
-            <br></br>
-            <Button className="delete-user" block onClick={(e) => this.handleDeregister(e)}>Delete Profile</Button>
+            <div className="button-container">
+              <Button className="update-button" block>Update Profile</Button>
+              <Link to={`/`}>
+                <Button className="back-button" block>Back</Button>
+              </Link>
+              <Button className="delete-user" block onClick={(e) => this.handleDeregister(e)}>Delete Profile</Button>
+            </div>
           </Card.Body>
-        </Card>
+        </Card >
       </Container >
     );
   }
