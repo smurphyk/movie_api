@@ -20,7 +20,10 @@ export class ProfileView extends React.Component {
       Email: null,
       Birthday: null,
       FavoriteMovies: [],
+      value: '',
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -68,7 +71,13 @@ export class ProfileView extends React.Component {
       })
   }
 
-  handleUpdate(e) {
+  handleChange(e) {
+    this.setState({
+      value: e.target.value
+    });
+  }
+
+  handleSubmit(e) {
     e.preventDefault();
 
     const username = localStorage.getItem('user');
@@ -77,14 +86,11 @@ export class ProfileView extends React.Component {
     axios({
       method: 'put',
       url: `https://murphmovies.herokuapp.com/users/${username}`,
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
     })
-      .then((response) => {
-        console.log(response.data);
-      })
       .catch(function (error) {
         console.log(error);
-      });
+      })
   }
 
   handleDeregister(e, user) {
@@ -113,8 +119,6 @@ export class ProfileView extends React.Component {
   render() {
     const { Username, Password, Email, Birthday, FavoriteMovies } = this.state;
     const { movies } = this.props;
-    const username = localStorage.getItem('user');
-    const token = localStorage.getItem('user');
 
     return (
       <Container className="profile-view">
@@ -154,39 +158,40 @@ export class ProfileView extends React.Component {
           <Tab eventKey="update" title="Update">
             <h1>Update Profile</h1>
             <Form className="update-form">
-              <Form.Group controlId="updateUsername">
+              <Form.Group controlId="formBasicUsername">
                 <Form.Label>Username</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder={Username}
-                  onChange={(e) => console.log(e.target.value)}
+                  placeholder="Change Username"
+                  value={this.state.value}
+                  onChange={this.handleChange}
                 />
               </Form.Group>
-              <Form.Group controlId="updatePassword">
+              <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="******"
-                  onChange={(e) => console.log(e.target.value)}
+                  onChange={this.handleChange}
                 />
               </Form.Group>
-              <Form.Group controlId="updateEmail">
+              <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="email"
                   placeholder={Email}
-                  onChange={(e) => console.log(e.target.value)}
+                  onChange={this.handleChange}
                 />
               </Form.Group>
-              <Form.Group controlId="updateBirthday">
+              <Form.Group controlId="formBasicBirthday">
                 <Form.Label>Birthday</Form.Label>
                 <Form.Control
                   type="date"
                   placeholder={Birthday}
-                  onChange={(e) => console.log(e.target.value)}
+                  onChange={this.handleChange}
                 />
               </Form.Group>
-              <Button className="update-button" type="submit" onClick={(e) => this.handleUpdate(e.target.value)}>Save Changes</Button>
+              <Button className="update-button" type="submit" onClick={(e) => this.handleSubmit(e)}>Save Changes</Button>
             </Form>
           </Tab>
         </Tabs>

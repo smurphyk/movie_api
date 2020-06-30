@@ -52472,8 +52472,11 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       Password: null,
       Email: null,
       Birthday: null,
-      FavoriteMovies: []
+      FavoriteMovies: [],
+      value: ''
     };
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -52530,8 +52533,15 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "handleUpdate",
-    value: function handleUpdate(e) {
+    key: "handleChange",
+    value: function handleChange(e) {
+      this.setState({
+        value: e.target.value
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
       e.preventDefault();
       var username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
@@ -52541,8 +52551,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
-      }).then(function (response) {
-        console.log(response.data);
       }).catch(function (error) {
         console.log(error);
       });
@@ -52581,8 +52589,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Birthday = _this$state.Birthday,
           FavoriteMovies = _this$state.FavoriteMovies;
       var movies = this.props.movies;
-      var username = localStorage.getItem('user');
-      var token = localStorage.getItem('user');
       return _react.default.createElement(_Container.default, {
         className: "profile-view"
       }, _react.default.createElement(_reactBootstrap.Tabs, {
@@ -52641,42 +52647,35 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement("h1", null, "Update Profile"), _react.default.createElement(_reactBootstrap.Form, {
         className: "update-form"
       }, _react.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "updateUsername"
+        controlId: "formBasicUsername"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
-        placeholder: Username,
-        onChange: function onChange(e) {
-          return console.log(e.target.value);
-        }
+        placeholder: "Change Username",
+        value: this.state.value,
+        onChange: this.handleChange
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "updatePassword"
+        controlId: "formBasicPassword"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "password",
         placeholder: "******",
-        onChange: function onChange(e) {
-          return console.log(e.target.value);
-        }
+        onChange: this.handleChange
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "updateEmail"
+        controlId: "formBasicEmail"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "email",
         placeholder: Email,
-        onChange: function onChange(e) {
-          return console.log(e.target.value);
-        }
+        onChange: this.handleChange
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "updateBirthday"
+        controlId: "formBasicBirthday"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Birthday"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "date",
         placeholder: Birthday,
-        onChange: function onChange(e) {
-          return console.log(e.target.value);
-        }
+        onChange: this.handleChange
       })), _react.default.createElement(_Button.default, {
         className: "update-button",
         type: "submit",
         onClick: function onClick(e) {
-          return _this3.handleUpdate(e.target.value);
+          return _this3.handleSubmit(e);
         }
       }, "Save Changes")))));
     }
