@@ -52530,8 +52530,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "newPassword",
-    value: function newPassword(e) {
+    key: "handleUpdate",
+    value: function handleUpdate(e) {
       e.preventDefault();
       var username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
@@ -52541,9 +52541,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         headers: {
           Authorization: "Bearer ".concat(token)
         },
-        body: {
-          Password: e.target.value
-        }
+        body: {}
       }).then(function () {
         alert('Saved Changes');
         window.open("/users/".concat(username), '_self');
@@ -52641,8 +52639,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         eventKey: "update",
         title: "Update"
       }, _react.default.createElement("h1", null, "Update Profile"), _react.default.createElement(_reactBootstrap.Form, {
-        className: "update-form",
-        onSubmit: this.newUsername
+        className: "update-form"
       }, _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicUsername"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username"), _react.default.createElement(_reactBootstrap.Form.Control, {
@@ -52654,7 +52651,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }), _react.default.createElement(_Button.default, {
         className: "update",
         type: "submit",
-        size: "sm"
+        size: "sm",
+        onClick: this.handleUpdate
       }, "Update"))))));
     }
   }]);

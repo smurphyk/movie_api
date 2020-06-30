@@ -68,7 +68,7 @@ export class ProfileView extends React.Component {
       })
   }
 
-  newPassword(e) {
+  handleUpdate(e) {
     e.preventDefault();
 
     const username = localStorage.getItem('user');
@@ -78,9 +78,7 @@ export class ProfileView extends React.Component {
       method: 'put',
       url: `https://murphmovies.herokuapp.com/users/${username}`,
       headers: { Authorization: `Bearer ${token}` },
-      body: {
-        Password: e.target.value
-      }
+      body: {}
     })
       .then(() => {
         alert('Saved Changes');
@@ -155,7 +153,7 @@ export class ProfileView extends React.Component {
           </Tab>
           <Tab eventKey="update" title="Update">
             <h1>Update Profile</h1>
-            <Form className="update-form" onSubmit={this.newUsername}>
+            <Form className="update-form">
               <Form.Group controlId="formBasicUsername">
                 <Form.Label>Username</Form.Label>
                 <Form.Control
@@ -165,7 +163,7 @@ export class ProfileView extends React.Component {
                   value={''}
                   onChange={this.handleChange}
                 />
-                <Button className="update" type="submit" size="sm">Update</Button>
+                <Button className="update" type="submit" size="sm" onClick={this.handleUpdate}>Update</Button>
               </Form.Group>
               {/* <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
