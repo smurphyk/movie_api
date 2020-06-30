@@ -162,7 +162,7 @@ export class ProfileView extends React.Component {
                 />
                 <Button className="update" type="submit" size="sm">Update</Button>
               </Form.Group>
-              {/* <Form.Group controlId="formBasicPassword">
+              <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   name="newPassword"
@@ -171,8 +171,9 @@ export class ProfileView extends React.Component {
                   value={this.state.newPassword}
                   onChange={this.handleChange}
                 />
+                <Button className="update" type="submit" size="sm">Update</Button>
               </Form.Group>
-              <Form.Group controlId="formBasicEmail">
+              {/* <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   name="newEmail"
@@ -181,6 +182,7 @@ export class ProfileView extends React.Component {
                   value={this.state.newEmail}
                   onChange={this.handleChange}
                 />
+                <Button className="update" type="submit" size="sm">Update</Button>
               </Form.Group>
               <Form.Group controlId="formBasicBirthday">
                 <Form.Label>Birthday</Form.Label>
@@ -191,6 +193,7 @@ export class ProfileView extends React.Component {
                   value={this.state.newBirthday}
                   onChange={this.handleChange}
                 />
+                <Button className="update" type="submit" size="sm">Update</Button>
                   </Form.Group> */}
             </Form>
           </Tab>
