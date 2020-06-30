@@ -68,14 +68,19 @@ export class ProfileView extends React.Component {
       })
   }
 
-  newUsername(e) {
+  newPassword(e) {
     e.preventDefault();
 
     const username = localStorage.getItem('user');
     const token = localStorage.getItem('token');
 
-    axios.put(`https://murphmovies.herokuapp.com/users/${username}`, {
+    axios({
+      method: 'put',
+      url: `https://murphmovies.herokuapp.com/users/${username}`,
       headers: { Authorization: `Bearer ${token}` },
+      body: {
+        Password: e.target.value
+      }
     })
       .then(() => {
         alert('Saved Changes');
@@ -157,12 +162,12 @@ export class ProfileView extends React.Component {
                   name="newUsername"
                   type="text"
                   placeholder="Change Username"
-                //value={''}
-                //onChange={this.handleChange}
+                  value={''}
+                  onChange={this.handleChange}
                 />
                 <Button className="update" type="submit" size="sm">Update</Button>
               </Form.Group>
-              <Form.Group controlId="formBasicPassword">
+              {/* <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   name="newPassword"

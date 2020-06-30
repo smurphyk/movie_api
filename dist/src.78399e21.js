@@ -52530,15 +52530,19 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "newUsername",
-    value: function newUsername(e) {
+    key: "newPassword",
+    value: function newPassword(e) {
       e.preventDefault();
       var username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
-
-      _axios.default.put("https://murphmovies.herokuapp.com/users/".concat(username), {
+      (0, _axios.default)({
+        method: 'put',
+        url: "https://murphmovies.herokuapp.com/users/".concat(username),
         headers: {
           Authorization: "Bearer ".concat(token)
+        },
+        body: {
+          Password: e.target.value
         }
       }).then(function () {
         alert('Saved Changes');
@@ -52644,20 +52648,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username"), _react.default.createElement(_reactBootstrap.Form.Control, {
         name: "newUsername",
         type: "text",
-        placeholder: "Change Username" //value={''}
-        //onChange={this.handleChange}
-
-      }), _react.default.createElement(_Button.default, {
-        className: "update",
-        type: "submit",
-        size: "sm"
-      }, "Update")), _react.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "formBasicPassword"
-      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
-        name: "newPassword",
-        type: "password",
-        placeholder: "******",
-        value: this.state.newPassword,
+        placeholder: "Change Username",
+        value: '',
         onChange: this.handleChange
       }), _react.default.createElement(_Button.default, {
         className: "update",
@@ -53012,7 +53004,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52035" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52140" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
