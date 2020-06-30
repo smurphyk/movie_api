@@ -18,7 +18,6 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
-import { UpdateView } from '../profile-view/update-view';
 
 import './main-view.scss';
 
