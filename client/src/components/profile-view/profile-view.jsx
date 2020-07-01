@@ -20,7 +20,11 @@ export class ProfileView extends React.Component {
       Email: null,
       Birthday: null,
       FavoriteMovies: [],
+      value: '',
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -69,13 +73,10 @@ export class ProfileView extends React.Component {
   }
 
   handleChange(e) {
-    const target = e.target;
-    const value = target.name === 'Username' ? target.checked : target.value;
-    const name = target.name;
 
     this.setState({
-      [name]: value
-    })
+      value: e.target.value
+    });
   }
 
   handleUpdate(e) {
@@ -88,7 +89,6 @@ export class ProfileView extends React.Component {
       method: 'put',
       url: `https://murphmovies.herokuapp.com/users/${username}`,
       headers: { Authorization: `Bearer ${token}` },
-      body: {}
     })
       .then(() => {
         alert('Saved Changes');
@@ -167,10 +167,9 @@ export class ProfileView extends React.Component {
               <Form.Group controlId="formBasicUsername">
                 <Form.Label>Username</Form.Label>
                 <Form.Control
-                  name="newUsername"
                   type="text"
                   placeholder="Change Username"
-                  value={this.state.newUsername}
+                  value={this.handleChange.value}
                   onChange={this.handleChange}
                 />
                 <Button className="update" type="submit" size="sm" onClick={this.handleUpdate}>Update</Button>
