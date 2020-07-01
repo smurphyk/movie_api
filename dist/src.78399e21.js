@@ -52541,7 +52541,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleUpdate",
-    value: function handleUpdate(e) {
+    value: function handleUpdate(e, Username, Password, Email, Birthday) {
       e.preventDefault();
       var username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
@@ -52550,6 +52550,12 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         url: "https://murphmovies.herokuapp.com/users/".concat(username),
         headers: {
           Authorization: "Bearer ".concat(token)
+        },
+        params: {
+          Username: this.state.value,
+          Password: this.state.value,
+          Email: this.state.value,
+          Birthday: this.state.value
         }
       }).then(function () {
         alert('Saved Changes');
@@ -52590,7 +52596,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Password = _this$state.Password,
           Email = _this$state.Email,
           Birthday = _this$state.Birthday,
-          FavoriteMovies = _this$state.FavoriteMovies;
+          FavoriteMovies = _this$state.FavoriteMovies,
+          value = _this$state.value;
       var movies = this.props.movies;
       return _react.default.createElement(_Container.default, {
         className: "profile-view"
@@ -52647,21 +52654,25 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }, "Delete Profile"))))), _react.default.createElement(_reactBootstrap.Tab, {
         eventKey: "update",
         title: "Update"
-      }, _react.default.createElement("h1", null, "Update Profile"), _react.default.createElement(_reactBootstrap.Form, {
+      }, _react.default.createElement("h1", null, "Update Profile"), _react.default.createElement(_Card.default, {
+        className: "update-card"
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_reactBootstrap.Form, {
         className: "update-form"
       }, _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicUsername"
-      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username"), _react.default.createElement(_reactBootstrap.Form.Control, {
+      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
         placeholder: "Change Username",
-        value: this.handleChange.value,
+        value: this.state.value,
         onChange: this.handleChange
       }), _react.default.createElement(_Button.default, {
         className: "update",
         type: "submit",
         size: "sm",
-        onClick: this.handleUpdate
-      }, "Update"))))));
+        onClick: function onClick(e) {
+          return _this3.handleUpdate(e, Username, Password, Email, Birthday);
+        }
+      }, "Update"))))))));
     }
   }]);
 

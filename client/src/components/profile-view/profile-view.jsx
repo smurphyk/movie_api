@@ -79,7 +79,7 @@ export class ProfileView extends React.Component {
     });
   }
 
-  handleUpdate(e) {
+  handleUpdate(e, Username, Password, Email, Birthday) {
     e.preventDefault();
 
     const username = localStorage.getItem('user');
@@ -89,6 +89,12 @@ export class ProfileView extends React.Component {
       method: 'put',
       url: `https://murphmovies.herokuapp.com/users/${username}`,
       headers: { Authorization: `Bearer ${token}` },
+      params: {
+        Username: this.state.value,
+        Password: this.state.value,
+        Email: this.state.value,
+        Birthday: this.state.value
+      },
     })
       .then(() => {
         alert('Saved Changes');
@@ -123,7 +129,7 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { Username, Password, Email, Birthday, FavoriteMovies } = this.state;
+    const { Username, Password, Email, Birthday, FavoriteMovies, value } = this.state;
     const { movies } = this.props;
 
     return (
@@ -163,18 +169,20 @@ export class ProfileView extends React.Component {
           </Tab>
           <Tab eventKey="update" title="Update">
             <h1>Update Profile</h1>
-            <Form className="update-form">
-              <Form.Group controlId="formBasicUsername">
-                <Form.Label>Username</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Change Username"
-                  value={this.handleChange.value}
-                  onChange={this.handleChange}
-                />
-                <Button className="update" type="submit" size="sm" onClick={this.handleUpdate}>Update</Button>
-              </Form.Group>
-              {/* <Form.Group controlId="formBasicPassword">
+            <Card className="update-card">
+              <Card.Body>
+                <Form className="update-form">
+                  <Form.Group controlId="formBasicUsername">
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Change Username"
+                      value={this.state.value}
+                      onChange={this.handleChange}
+                    />
+                    <Button className="update" type="submit" size="sm" onClick={(e) => this.handleUpdate(e, Username, Password, Email, Birthday)}>Update</Button>
+                  </Form.Group>
+                  {/* <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   name="newPassword"
@@ -207,7 +215,9 @@ export class ProfileView extends React.Component {
                 />
                 <Button className="update" type="submit" size="sm">Update</Button>
                   </Form.Group> */}
-            </Form>
+                </Form>
+              </Card.Body>
+            </Card>
           </Tab>
         </Tabs>
       </Container >
