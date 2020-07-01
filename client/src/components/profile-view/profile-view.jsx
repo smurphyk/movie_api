@@ -93,8 +93,9 @@ export class ProfileView extends React.Component {
       },
     })
       .then(() => {
+        localStorage.setItem('user', this.state.Username);
         alert('Saved Changes');
-        this.getUser(token);
+        window.open(`/`, '_self');
       })
       .catch(function (error) {
         console.log(error);

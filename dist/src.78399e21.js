@@ -52551,9 +52551,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Birthday: newBirthday ? newBirthday : this.state.Birthday
         }
       }).then(function () {
+        localStorage.setItem('user', _this3.state.Username);
         alert('Saved Changes');
-
-        _this3.getUser(token);
+        window.open("/", '_self');
       }).catch(function (error) {
         console.log(error);
       });
