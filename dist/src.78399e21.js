@@ -52535,7 +52535,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     value: function handleUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
       var _this3 = this;
 
-      var form = e.currentTarget;
       e.preventDefault();
       var username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
@@ -52686,7 +52685,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
         name: "newPassword",
         type: "password",
-        placeholder: "******",
+        placeholder: "Change Password",
         defaultValue: Password,
         onChange: function onChange(e) {
           return _this4.setPassword(e.target.value);

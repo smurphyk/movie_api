@@ -76,7 +76,6 @@ export class ProfileView extends React.Component {
   }
 
   handleUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
-    const form = e.currentTarget;
     e.preventDefault();
 
     const username = localStorage.getItem('user');
@@ -199,7 +198,7 @@ export class ProfileView extends React.Component {
                     <Form.Control
                       name="newPassword"
                       type="password"
-                      placeholder="******"
+                      placeholder="Change Password"
                       defaultValue={Password}
                       onChange={e => this.setPassword(e.target.value)}
                     />
