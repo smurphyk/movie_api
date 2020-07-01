@@ -14,6 +14,12 @@ import {
 export class ProfileView extends React.Component {
   constructor(props) {
     super(props);
+
+    this.Username = null,
+      this.Password = null,
+      this.Email = null,
+      this.Birthday = null
+
     this.state = {
       Username: null,
       Password: null,
@@ -23,7 +29,10 @@ export class ProfileView extends React.Component {
       value: '',
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.setUsername = this.setUsername.bind(this);
+    this.setPassword = this.setPassword.bind(this);
+    this.setEmail = this.setEmail.bind(this);
+    this.setBirthday = this.setBirthday.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
   }
 
@@ -72,14 +81,8 @@ export class ProfileView extends React.Component {
       })
   }
 
-  handleChange(e) {
-
-    this.setState({
-      value: e.target.value
-    });
-  }
-
   handleUpdate(e, Username, Password, Email, Birthday) {
+    const form = e.currentTarget;
     e.preventDefault();
 
     const username = localStorage.getItem('user');
@@ -90,10 +93,10 @@ export class ProfileView extends React.Component {
       url: `https://murphmovies.herokuapp.com/users/${username}`,
       headers: { Authorization: `Bearer ${token}` },
       data: {
-        Username: Username ? Username : this.state.Username,
-        Password: Password ? Password : this.state.Password,
-        Email: Email ? Email : this.state.Email,
-        Birthday: Birthday ? Birthday : this.state.Birthday
+        Username: Username ? Username : this.Username,
+        Password: Password ? Password : this.Password,
+        Email: Email ? Email : this.Email,
+        Birthday: Birthday ? Birthday : this.Birthday
       },
     })
       .then(() => {
@@ -103,6 +106,22 @@ export class ProfileView extends React.Component {
       .catch(function (error) {
         console.log(error);
       })
+  }
+
+  setUsername(input) {
+    this.Username = input;
+  }
+
+  setPassword(input) {
+    this.Password = input;
+  }
+
+  setEmail(input) {
+    this.Email = input;
+  }
+
+  setBirthday(input) {
+    this.Birthday = input;
   }
 
   handleDeregister(e, user) {
@@ -177,44 +196,41 @@ export class ProfileView extends React.Component {
                     <Form.Control
                       type="text"
                       placeholder="Change Username"
-                      value={this.state.value}
-                      onChange={this.handleChange}
+                      defaultValue={Username}
+                      onChange={e => this.setUsername(e.target.value)}
                     />
-                    <Button className="update" type="submit" size="sm" onClick={(e) => this.handleUpdate(e, Username, Password, Email, Birthday)}>Update</Button>
                   </Form.Group>
-                  {/* <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  name="newPassword"
-                  type="password"
-                  placeholder="******"
-                  value={this.state.newPassword}
-                  onChange={this.handleChange}
-                />
-                <Button className="update" type="submit" size="sm">Update</Button>
-              </Form.Group>
-              {/* <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  name="newEmail"
-                  type="email"
-                  placeholder={Email}
-                  value={this.state.newEmail}
-                  onChange={this.handleChange}
-                />
-                <Button className="update" type="submit" size="sm">Update</Button>
-              </Form.Group>
-              <Form.Group controlId="formBasicBirthday">
-                <Form.Label>Birthday</Form.Label>
-                <Form.Control
-                  name="newBirthday"
-                  type="date"
-                  placeholder={Birthday}
-                  value={this.state.newBirthday}
-                  onChange={this.handleChange}
-                />
-                <Button className="update" type="submit" size="sm">Update</Button>
-                  </Form.Group> */}
+                  <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      name="newPassword"
+                      type="password"
+                      placeholder="******"
+                      defaultValue={Password}
+                      onChange={e => this.setPassword(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      name="newEmail"
+                      type="email"
+                      placeholder="Change Email"
+                      defaultValue={Email}
+                      onChange={e => this.setEmail(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formBasicBirthday">
+                    <Form.Label>Birthday</Form.Label>
+                    <Form.Control
+                      name="newBirthday"
+                      type="date"
+                      placeholder="Change Birthday"
+                      defaultValue={this.state.value}
+                      onChange={e => this.setBirthday(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Button className="update" type="submit" size="sm" onClick={e => this.handleUpdate(e, this.Username, this.Password, this.Email, this.Birthday)}>Update</Button>
                 </Form>
               </Card.Body>
             </Card>

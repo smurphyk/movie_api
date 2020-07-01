@@ -52467,6 +52467,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, ProfileView);
 
     _this = _super.call(this, props);
+    _this.Username = null, _this.Password = null, _this.Email = null, _this.Birthday = null;
     _this.state = {
       Username: null,
       Password: null,
@@ -52475,7 +52476,10 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       FavoriteMovies: [],
       value: ''
     };
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.setUsername = _this.setUsername.bind(_assertThisInitialized(_this));
+    _this.setPassword = _this.setPassword.bind(_assertThisInitialized(_this));
+    _this.setEmail = _this.setEmail.bind(_assertThisInitialized(_this));
+    _this.setBirthday = _this.setBirthday.bind(_assertThisInitialized(_this));
     _this.handleUpdate = _this.handleUpdate.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -52533,15 +52537,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "handleChange",
-    value: function handleChange(e) {
-      this.setState({
-        value: e.target.value
-      });
-    }
-  }, {
     key: "handleUpdate",
     value: function handleUpdate(e, Username, Password, Email, Birthday) {
+      var form = e.currentTarget;
       e.preventDefault();
       var username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
@@ -52552,10 +52550,10 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Authorization: "Bearer ".concat(token)
         },
         data: {
-          Username: Username ? Username : this.state.Username,
-          Password: Password ? Password : this.state.Password,
-          Email: Email ? Email : this.state.Email,
-          Birthday: Birthday ? Birthday : this.state.Birthday
+          Username: Username ? Username : this.Username,
+          Password: Password ? Password : this.Password,
+          Email: Email ? Email : this.Email,
+          Birthday: Birthday ? Birthday : this.Birthday
         }
       }).then(function () {
         alert('Saved Changes');
@@ -52563,6 +52561,26 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }).catch(function (error) {
         console.log(error);
       });
+    }
+  }, {
+    key: "setUsername",
+    value: function setUsername(input) {
+      this.Username = input;
+    }
+  }, {
+    key: "setPassword",
+    value: function setPassword(input) {
+      this.Password = input;
+    }
+  }, {
+    key: "setEmail",
+    value: function setEmail(input) {
+      this.Email = input;
+    }
+  }, {
+    key: "setBirthday",
+    value: function setBirthday(input) {
+      this.Birthday = input;
     }
   }, {
     key: "handleDeregister",
@@ -52663,16 +52681,48 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
         placeholder: "Change Username",
-        value: this.state.value,
-        onChange: this.handleChange
-      }), _react.default.createElement(_Button.default, {
+        defaultValue: Username,
+        onChange: function onChange(e) {
+          return _this3.setUsername(e.target.value);
+        }
+      })), _react.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "formBasicPassword"
+      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
+        name: "newPassword",
+        type: "password",
+        placeholder: "******",
+        defaultValue: Password,
+        onChange: function onChange(e) {
+          return _this3.setPassword(e.target.value);
+        }
+      })), _react.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "formBasicEmail"
+      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
+        name: "newEmail",
+        type: "email",
+        placeholder: "Change Email",
+        defaultValue: Email,
+        onChange: function onChange(e) {
+          return _this3.setEmail(e.target.value);
+        }
+      })), _react.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "formBasicBirthday"
+      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Birthday"), _react.default.createElement(_reactBootstrap.Form.Control, {
+        name: "newBirthday",
+        type: "date",
+        placeholder: "Change Birthday",
+        defaultValue: this.state.value,
+        onChange: function onChange(e) {
+          return _this3.setBirthday(e.target.value);
+        }
+      })), _react.default.createElement(_Button.default, {
         className: "update",
         type: "submit",
         size: "sm",
         onClick: function onClick(e) {
-          return _this3.handleUpdate(e, Username, Password, Email, Birthday);
+          return _this3.handleUpdate(e, _this3.Username, _this3.Password, _this3.Email, _this3.Birthday);
         }
-      }, "Update"))))))));
+      }, "Update")))))));
     }
   }]);
 
