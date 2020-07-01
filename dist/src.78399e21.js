@@ -52473,14 +52473,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       Password: null,
       Email: null,
       Birthday: null,
-      FavoriteMovies: [],
-      value: ''
+      FavoriteMovies: []
     };
-    _this.setUsername = _this.setUsername.bind(_assertThisInitialized(_this));
-    _this.setPassword = _this.setPassword.bind(_assertThisInitialized(_this));
-    _this.setEmail = _this.setEmail.bind(_assertThisInitialized(_this));
-    _this.setBirthday = _this.setBirthday.bind(_assertThisInitialized(_this));
-    _this.handleUpdate = _this.handleUpdate.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -52550,10 +52544,10 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Authorization: "Bearer ".concat(token)
         },
         data: {
-          Username: Username ? Username : this.Username,
-          Password: Password ? Password : this.Password,
-          Email: Email ? Email : this.Email,
-          Birthday: Birthday ? Birthday : this.Birthday
+          Username: Username ? Username : this.state.Username,
+          Password: Password ? Password : this.state.Password,
+          Email: Email ? Email : this.state.Email,
+          Birthday: Birthday ? Birthday : this.state.Birthday
         }
       }).then(function () {
         alert('Saved Changes');
@@ -52614,11 +52608,11 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Password = _this$state.Password,
           Email = _this$state.Email,
           Birthday = _this$state.Birthday,
-          FavoriteMovies = _this$state.FavoriteMovies,
-          value = _this$state.value;
+          FavoriteMovies = _this$state.FavoriteMovies;
       var movies = this.props.movies;
       return _react.default.createElement(_Container.default, {
-        className: "profile-view"
+        className: "profile-view",
+        fluid: "true"
       }, _react.default.createElement(_reactBootstrap.Tabs, {
         defaultActiveKey: "profile",
         className: "profile-tabs"
@@ -52691,7 +52685,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         name: "newPassword",
         type: "password",
         placeholder: "******",
-        defaultValue: Password,
+        defaultValue: "",
         onChange: function onChange(e) {
           return _this3.setPassword(e.target.value);
         }
@@ -52711,7 +52705,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         name: "newBirthday",
         type: "date",
         placeholder: "Change Birthday",
-        defaultValue: this.state.value,
+        defaultValue: Birthday,
         onChange: function onChange(e) {
           return _this3.setBirthday(e.target.value);
         }
@@ -52720,7 +52714,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         type: "submit",
         size: "sm",
         onClick: function onClick(e) {
-          return _this3.handleUpdate(e, _this3.Username, _this3.Password, _this3.Email, _this3.Birthday);
+          return _this3.handleUpdate(e, _this3.Username, _this3.Password, _this3.Email, _this3.Birthday, Username, Password, Email, Birthday);
         }
       }, "Update")))))));
     }

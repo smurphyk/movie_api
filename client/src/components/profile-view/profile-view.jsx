@@ -21,19 +21,9 @@ export class ProfileView extends React.Component {
       this.Birthday = null
 
     this.state = {
-      Username: null,
-      Password: null,
-      Email: null,
-      Birthday: null,
+      userInfo: null,
       FavoriteMovies: [],
-      value: '',
     };
-
-    this.setUsername = this.setUsername.bind(this);
-    this.setPassword = this.setPassword.bind(this);
-    this.setEmail = this.setEmail.bind(this);
-    this.setBirthday = this.setBirthday.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -45,17 +35,13 @@ export class ProfileView extends React.Component {
   }
 
   getUser(token) {
-    let username = localStorage.getItem('user');
-    axios.get(`https://murphmovies.herokuapp.com/users/${username}`, {
+    let user = localStorage.getItem('user');
+    axios.get(`https://murphmovies.herokuapp.com/users/${user}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(response => {
         this.setState({
-          Username: response.data.Username,
-          Password: response.data.Password,
-          Email: response.data.Email,
-          Birthday: response.data.Birthday,
-          FavoriteMovies: response.data.FavoriteMovies
+          userInfo: response.data
         });
       })
       .catch(function (error) {
@@ -66,7 +52,7 @@ export class ProfileView extends React.Component {
   handleRemoveFavorite(e, movie) {
     e.preventDefault();
 
-    const username = localStorage.getItem('user');
+    const user = localStorage.getItem('user');
     const token = localStorage.getItem('token');
     axios({
       method: 'delete',
@@ -81,27 +67,27 @@ export class ProfileView extends React.Component {
       })
   }
 
-  handleUpdate(e, Username, Password, Email, Birthday) {
+  handleUpdate(e, username, password, email, birthday, userInfo) {
     const form = e.currentTarget;
     e.preventDefault();
 
-    const username = localStorage.getItem('user');
+    const user = localStorage.getItem('user');
     const token = localStorage.getItem('token');
 
     axios({
       method: 'put',
-      url: `https://murphmovies.herokuapp.com/users/${username}`,
+      url: `https://murphmovies.herokuapp.com/users/${user}`,
       headers: { Authorization: `Bearer ${token}` },
       data: {
-        Username: Username ? Username : this.Username,
-        Password: Password ? Password : this.Password,
-        Email: Email ? Email : this.Email,
-        Birthday: Birthday ? Birthday : this.Birthday
+        Username: username ? username : userInfo.username,
+        Password: password ? password : userInfo.password,
+        Email: email ? email : userInfo.email,
+        Birthday: birthday ? birthday : userInfo.birthday
       },
     })
       .then(() => {
         alert('Saved Changes');
-        window.open(`/users/${username}`, '_self');
+        window.open(`/users/${user}`, '_self');
       })
       .catch(function (error) {
         console.log(error);
@@ -109,19 +95,19 @@ export class ProfileView extends React.Component {
   }
 
   setUsername(input) {
-    this.Username = input;
+    this.username = input;
   }
 
   setPassword(input) {
-    this.Password = input;
+    this.password = input;
   }
 
   setEmail(input) {
-    this.Email = input;
+    this.email = input;
   }
 
   setBirthday(input) {
-    this.Birthday = input;
+    this.birthday = input;
   }
 
   handleDeregister(e, user) {
@@ -132,7 +118,7 @@ export class ProfileView extends React.Component {
 
     axios({
       method: 'delete',
-      url: `https://murphmovies.herokuapp.com/users/${username}`,
+      url: `https://murphmovies.herokuapp.com/users/${user}`,
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => {
@@ -148,11 +134,11 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { Username, Password, Email, Birthday, FavoriteMovies, value } = this.state;
+    const { userInfo } = this.state;
     const { movies } = this.props;
 
     return (
-      <Container className="profile-view">
+      <Container className="profile-view" fluid="true">
         <Tabs defaultActiveKey="profile" className="profile-tabs">
           <Tab eventKey="profile" title="Profile">
             <h1>My Profile</h1>
@@ -195,8 +181,8 @@ export class ProfileView extends React.Component {
                     <Form.Label>Username:</Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="Change Username"
-                      defaultValue={Username}
+                      placeholder="Enter Username"
+                      defaultValue=""
                       onChange={e => this.setUsername(e.target.value)}
                     />
                   </Form.Group>
@@ -205,8 +191,8 @@ export class ProfileView extends React.Component {
                     <Form.Control
                       name="newPassword"
                       type="password"
-                      placeholder="******"
-                      defaultValue={Password}
+                      placeholder="Enter Password"
+                      defaultValue=""
                       onChange={e => this.setPassword(e.target.value)}
                     />
                   </Form.Group>
@@ -215,8 +201,8 @@ export class ProfileView extends React.Component {
                     <Form.Control
                       name="newEmail"
                       type="email"
-                      placeholder="Change Email"
-                      defaultValue={Email}
+                      placeholder="Enter Email"
+                      defaultValue=""
                       onChange={e => this.setEmail(e.target.value)}
                     />
                   </Form.Group>
@@ -225,12 +211,12 @@ export class ProfileView extends React.Component {
                     <Form.Control
                       name="newBirthday"
                       type="date"
-                      placeholder="Change Birthday"
-                      defaultValue={this.state.value}
+                      placeholder="Enter Birthday"
+                      defaultValue=""
                       onChange={e => this.setBirthday(e.target.value)}
                     />
                   </Form.Group>
-                  <Button className="update" type="submit" size="sm" onClick={e => this.handleUpdate(e, this.Username, this.Password, this.Email, this.Birthday)}>Update</Button>
+                  <Button className="update" type="submit" size="sm" onClick={e => this.handleUpdate(e, this.username, this.password, this.email, this.birthday, userInfo)}>Update</Button>
                 </Form>
               </Card.Body>
             </Card>
