@@ -52473,7 +52473,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       Password: null,
       Email: null,
       Birthday: null,
-      FavoriteMovies: []
+      FavoriteMovies: [],
+      userInfo: null
     };
     return _this;
   }
@@ -52501,11 +52502,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         }
       }).then(function (response) {
         _this2.setState({
-          Username: response.data.Username,
-          Password: response.data.Password,
-          Email: response.data.Email,
-          Birthday: response.data.Birthday,
-          FavoriteMovies: response.data.FavoriteMovies
+          userInfo: {
+            Username: response.data.Username,
+            Password: response.data.Password,
+            Email: response.data.Email,
+            Birthday: response.data.Birthday,
+            FavoriteMovies: response.data.FavoriteMovies
+          }
         });
       }).catch(function (error) {
         console.log(error);
@@ -52533,7 +52536,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleUpdate",
     value: function handleUpdate(e, Username, Password, Email, Birthday) {
-      var form = e.currentTarget;
+      var _this3 = this;
+
       e.preventDefault();
       var username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
@@ -52544,14 +52548,16 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Authorization: "Bearer ".concat(token)
         },
         data: {
-          Username: Username ? Username : this.state.Username,
-          Password: Password ? Password : this.state.Password,
-          Email: Email ? Email : this.state.Email,
-          Birthday: Birthday ? Birthday : this.state.Birthday
+          Username: Username ? Username : userInfo.Username,
+          Password: Password ? Password : userInfo.Password,
+          Email: Email ? Email : userInfo.Email,
+          Birthday: Birthday ? Birthday : userInfo.Birthday
         }
       }).then(function () {
         alert('Saved Changes');
         window.open("/users/".concat(username), '_self');
+
+        _this3.getUser(token);
       }).catch(function (error) {
         console.log(error);
       });
@@ -52601,18 +52607,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
-      var _this$state = this.state,
-          Username = _this$state.Username,
-          Password = _this$state.Password,
-          Email = _this$state.Email,
-          Birthday = _this$state.Birthday,
-          FavoriteMovies = _this$state.FavoriteMovies;
+      var userInfo = this.state.userInfo;
       var movies = this.props.movies;
+      if (!userInfo) return _react.default.createElement("div", null, "Keep your pants on!");
       return _react.default.createElement(_Container.default, {
-        className: "profile-view",
-        fluid: "true"
+        className: "profile-view"
       }, _react.default.createElement(_reactBootstrap.Tabs, {
         defaultActiveKey: "profile",
         className: "profile-tabs"
@@ -52623,20 +52624,20 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "profile-card"
       }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
-      }, "Username:"), Username, _react.default.createElement(_Card.default.Text, {
+      }, "Username:"), " ", userInfo.Username, _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
       }, "Password:"), "*****", _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
-      }, "Email:"), Email, _react.default.createElement(_Card.default.Text, {
+      }, "Email:"), userInfo.Email, _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
-      }, "Birthday:"), Birthday, _react.default.createElement(_Card.default.Text, {
+      }, "Birthday:"), userInfo.Birthday, _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
-      }, "Favorite Movies:"), FavoriteMovies.length === 0 && _react.default.createElement("div", null, "You have no favorite movies."), _react.default.createElement("div", {
+      }, "Favorite Movies:"), userInfo.FavoriteMovies.length === 0 && _react.default.createElement("div", null, "You have no favorite movies."), _react.default.createElement("div", {
         className: "favs-container"
       }, _react.default.createElement("ul", {
         className: "favs-list"
-      }, FavoriteMovies.length > 0 && movies.map(function (movie) {
-        if (movie._id === FavoriteMovies.find(function (favMovie) {
+      }, userInfo.FavoriteMovies.length > 0 && movies.map(function (movie) {
+        if (movie._id === userInfo.FavoriteMovies.find(function (favMovie) {
           return favMovie === movie._id;
         })) {
           return _react.default.createElement("li", {
@@ -52646,7 +52647,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
             size: "sm",
             className: "remove-favorite",
             onClick: function onClick(e) {
-              return _this3.handleRemoveFavorite(e, movie._id);
+              return _this4.handleRemoveFavorite(e, movie._id);
             }
           }, "Remove"));
         }
@@ -52661,7 +52662,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "delete-user",
         block: true,
         onClick: function onClick(e) {
-          return _this3.handleDeregister(e);
+          return _this4.handleDeregister(e);
         }
       }, "Delete Profile"))))), _react.default.createElement(_reactBootstrap.Tab, {
         eventKey: "update",
@@ -52677,7 +52678,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         placeholder: "Change Username",
         defaultValue: Username,
         onChange: function onChange(e) {
-          return _this3.setUsername(e.target.value);
+          return _this4.setUsername(e.target.value);
         }
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicPassword"
@@ -52685,9 +52686,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         name: "newPassword",
         type: "password",
         placeholder: "******",
-        defaultValue: "",
+        defaultValue: Password,
         onChange: function onChange(e) {
-          return _this3.setPassword(e.target.value);
+          return _this4.setPassword(e.target.value);
         }
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicEmail"
@@ -52697,7 +52698,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         placeholder: "Change Email",
         defaultValue: Email,
         onChange: function onChange(e) {
-          return _this3.setEmail(e.target.value);
+          return _this4.setEmail(e.target.value);
         }
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicBirthday"
@@ -52705,16 +52706,16 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         name: "newBirthday",
         type: "date",
         placeholder: "Change Birthday",
-        defaultValue: Birthday,
+        defaultValue: this.state.value,
         onChange: function onChange(e) {
-          return _this3.setBirthday(e.target.value);
+          return _this4.setBirthday(e.target.value);
         }
       })), _react.default.createElement(_Button.default, {
         className: "update",
         type: "submit",
         size: "sm",
         onClick: function onClick(e) {
-          return _this3.handleUpdate(e, _this3.Username, _this3.Password, _this3.Email, _this3.Birthday, Username, Password, Email, Birthday);
+          return _this4.handleUpdate(e, _this4.Username, _this4.Password, _this4.Email, _this4.Birthday);
         }
       }, "Update")))))));
     }
@@ -53065,7 +53066,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52140" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55516" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
