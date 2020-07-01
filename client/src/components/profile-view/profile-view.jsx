@@ -89,11 +89,11 @@ export class ProfileView extends React.Component {
       method: 'put',
       url: `https://murphmovies.herokuapp.com/users/${username}`,
       headers: { Authorization: `Bearer ${token}` },
-      params: {
-        Username: this.state.value,
-        Password: this.state.value,
-        Email: this.state.value,
-        Birthday: this.state.value
+      data: {
+        Username: Username ? Username : this.state.Username,
+        Password: Password ? Password : this.state.Password,
+        Email: Email ? Email : this.state.Email,
+        Birthday: Birthday ? Birthday : this.state.Birthday
       },
     })
       .then(() => {
