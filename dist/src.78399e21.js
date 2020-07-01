@@ -52473,8 +52473,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       Password: null,
       Email: null,
       Birthday: null,
-      FavoriteMovies: [],
-      userInfo: null
+      FavoriteMovies: []
     };
     return _this;
   }
@@ -52502,13 +52501,11 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         }
       }).then(function (response) {
         _this2.setState({
-          userInfo: {
-            Username: response.data.Username,
-            Password: response.data.Password,
-            Email: response.data.Email,
-            Birthday: response.data.Birthday,
-            FavoriteMovies: response.data.FavoriteMovies
-          }
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: response.data.Birthday,
+          FavoriteMovies: response.data.FavoriteMovies
         });
       }).catch(function (error) {
         console.log(error);
@@ -52535,9 +52532,10 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleUpdate",
-    value: function handleUpdate(e, Username, Password, Email, Birthday) {
+    value: function handleUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
       var _this3 = this;
 
+      var form = e.currentTarget;
       e.preventDefault();
       var username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
@@ -52548,14 +52546,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Authorization: "Bearer ".concat(token)
         },
         data: {
-          Username: Username ? Username : userInfo.Username,
-          Password: Password ? Password : userInfo.Password,
-          Email: Email ? Email : userInfo.Email,
-          Birthday: Birthday ? Birthday : userInfo.Birthday
+          Username: newUsername ? newUsername : this.state.Username,
+          Password: newPassword ? newPassword : this.state.Password,
+          Email: newEmail ? newEmail : this.state.Email,
+          Birthday: newBirthday ? newBirthday : this.state.Birthday
         }
       }).then(function () {
         alert('Saved Changes');
-        window.open("/users/".concat(username), '_self');
 
         _this3.getUser(token);
       }).catch(function (error) {
@@ -52609,9 +52606,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      var userInfo = this.state.userInfo;
+      var _this$state = this.state,
+          Username = _this$state.Username,
+          Password = _this$state.Password,
+          Email = _this$state.Email,
+          Birthday = _this$state.Birthday,
+          FavoriteMovies = _this$state.FavoriteMovies;
       var movies = this.props.movies;
-      if (!userInfo) return _react.default.createElement("div", null, "Keep your pants on!");
       return _react.default.createElement(_Container.default, {
         className: "profile-view"
       }, _react.default.createElement(_reactBootstrap.Tabs, {
@@ -52624,20 +52625,20 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "profile-card"
       }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
-      }, "Username:"), " ", userInfo.Username, _react.default.createElement(_Card.default.Text, {
+      }, "Username:"), Username, _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
       }, "Password:"), "*****", _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
-      }, "Email:"), userInfo.Email, _react.default.createElement(_Card.default.Text, {
+      }, "Email:"), Email, _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
-      }, "Birthday:"), userInfo.Birthday, _react.default.createElement(_Card.default.Text, {
+      }, "Birthday:"), Birthday, _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
-      }, "Favorite Movies:"), userInfo.FavoriteMovies.length === 0 && _react.default.createElement("div", null, "You have no favorite movies."), _react.default.createElement("div", {
+      }, "Favorite Movies:"), FavoriteMovies.length === 0 && _react.default.createElement("div", null, "You have no favorite movies."), _react.default.createElement("div", {
         className: "favs-container"
       }, _react.default.createElement("ul", {
         className: "favs-list"
-      }, userInfo.FavoriteMovies.length > 0 && movies.map(function (movie) {
-        if (movie._id === userInfo.FavoriteMovies.find(function (favMovie) {
+      }, FavoriteMovies.length > 0 && movies.map(function (movie) {
+        if (movie._id === FavoriteMovies.find(function (favMovie) {
           return favMovie === movie._id;
         })) {
           return _react.default.createElement("li", {
@@ -52706,7 +52707,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         name: "newBirthday",
         type: "date",
         placeholder: "Change Birthday",
-        defaultValue: this.state.value,
+        defaultValue: Birthday,
         onChange: function onChange(e) {
           return _this4.setBirthday(e.target.value);
         }

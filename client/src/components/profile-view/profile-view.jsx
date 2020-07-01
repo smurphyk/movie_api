@@ -26,7 +26,6 @@ export class ProfileView extends React.Component {
       Email: null,
       Birthday: null,
       FavoriteMovies: [],
-      userInfo: null
     };
   }
 
@@ -46,13 +45,11 @@ export class ProfileView extends React.Component {
       .then(response => {
 
         this.setState({
-          userInfo: {
-            Username: response.data.Username,
-            Password: response.data.Password,
-            Email: response.data.Email,
-            Birthday: response.data.Birthday,
-            FavoriteMovies: response.data.FavoriteMovies
-          }
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: response.data.Birthday,
+          FavoriteMovies: response.data.FavoriteMovies
         });
       })
       .catch(function (error) {
@@ -78,7 +75,8 @@ export class ProfileView extends React.Component {
       })
   }
 
-  handleUpdate(e, Username, Password, Email, Birthday) {
+  handleUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
+    const form = e.currentTarget;
     e.preventDefault();
 
     const username = localStorage.getItem('user');
@@ -89,15 +87,14 @@ export class ProfileView extends React.Component {
       url: `https://murphmovies.herokuapp.com/users/${username}`,
       headers: { Authorization: `Bearer ${token}` },
       data: {
-        Username: Username ? Username : userInfo.Username,
-        Password: Password ? Password : userInfo.Password,
-        Email: Email ? Email : userInfo.Email,
-        Birthday: Birthday ? Birthday : userInfo.Birthday
+        Username: newUsername ? newUsername : this.state.Username,
+        Password: newPassword ? newPassword : this.state.Password,
+        Email: newEmail ? newEmail : this.state.Email,
+        Birthday: newBirthday ? newBirthday : this.state.Birthday
       },
     })
       .then(() => {
         alert('Saved Changes');
-        window.open(`/users/${username}`, '_self');
         this.getUser(token);
       })
       .catch(function (error) {
@@ -145,10 +142,8 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { userInfo } = this.state;
+    const { Username, Password, Email, Birthday, FavoriteMovies } = this.state;
     const { movies } = this.props;
-
-    if (!userInfo) return <div>Keep your pants on!</div>
 
     return (
       <Container className="profile-view">
@@ -157,17 +152,17 @@ export class ProfileView extends React.Component {
             <h1>My Profile</h1>
             <Card className="profile-card">
               <Card.Body>
-                <Card.Text className="profile-item">Username:</Card.Text> {userInfo.Username}
+                <Card.Text className="profile-item">Username:</Card.Text>{Username}
                 <Card.Text className="profile-item">Password:</Card.Text>*****
-            <Card.Text className="profile-item">Email:</Card.Text>{userInfo.Email}
-                <Card.Text className="profile-item">Birthday:</Card.Text>{userInfo.Birthday}
+            <Card.Text className="profile-item">Email:</Card.Text>{Email}
+                <Card.Text className="profile-item">Birthday:</Card.Text>{Birthday}
                 <Card.Text className="profile-item">Favorite Movies:</Card.Text>
-                {userInfo.FavoriteMovies.length === 0 && <div>You have no favorite movies.</div>}
+                {FavoriteMovies.length === 0 && <div>You have no favorite movies.</div>}
                 <div className="favs-container">
                   <ul className="favs-list">
-                    {userInfo.FavoriteMovies.length > 0 &&
+                    {FavoriteMovies.length > 0 &&
                       movies.map(movie => {
-                        if (movie._id === userInfo.FavoriteMovies.find(favMovie => favMovie === movie._id)) {
+                        if (movie._id === FavoriteMovies.find(favMovie => favMovie === movie._id)) {
                           return <li className="favorites-item" key={movie._id}>{movie.Title}
                             <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie._id)}>Remove</Button>
                           </li>
@@ -225,7 +220,7 @@ export class ProfileView extends React.Component {
                       name="newBirthday"
                       type="date"
                       placeholder="Change Birthday"
-                      defaultValue={this.state.value}
+                      defaultValue={Birthday}
                       onChange={e => this.setBirthday(e.target.value)}
                     />
                   </Form.Group>
