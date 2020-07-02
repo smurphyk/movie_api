@@ -52693,8 +52693,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         controlId: "formBasicPassword"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "password",
-        placeholder: "Change Password",
-        defaultValue: Password,
+        placeholder: "Enter Password",
+        defaultValue: "",
         onChange: function onChange(e) {
           return _this4.setPassword(e.target.value);
         }
@@ -52966,8 +52966,16 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         exact: true,
         path: "/users/:username",
         render: function render() {
+          if (!user) return _react.default.createElement(_loginView.LoginView, {
+            onLoggedIn: function onLoggedIn(user) {
+              return _this3.onLoggedIn(user);
+            }
+          });
           return _react.default.createElement(_profileView.ProfileView, {
-            movies: movies
+            movies: movies,
+            onLoggedIn: function onLoggedIn(user) {
+              return _this3.onLoggedIn(user);
+            }
           });
         }
       })));
@@ -53072,7 +53080,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59906" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60042" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
