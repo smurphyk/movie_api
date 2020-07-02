@@ -52550,10 +52550,19 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Email: newEmail ? newEmail : this.state.Email,
           Birthday: newBirthday ? newBirthday : this.state.Birthday
         }
-      }).then(function () {
-        localStorage.setItem('user', _this3.Username);
+      }).then(function (response) {
         alert('Saved Changes');
-        window.open("/", '_self');
+
+        _this3.setState({
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: response.data.Birthday
+        });
+
+        localStorage.setItem('user', _this3.state.Username);
+        window.open("/users/".concat(username), '_self');
+        console.log(response.data);
       }).catch(function (error) {
         console.log(error);
       });
@@ -52683,7 +52692,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicPassword"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
-        name: "newPassword",
         type: "password",
         placeholder: "Change Password",
         defaultValue: Password,
@@ -52693,7 +52701,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicEmail"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
-        name: "newEmail",
         type: "email",
         placeholder: "Change Email",
         defaultValue: Email,
@@ -52703,7 +52710,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicBirthday"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Birthday"), _react.default.createElement(_reactBootstrap.Form.Control, {
-        name: "newBirthday",
         type: "date",
         placeholder: "Change Birthday",
         defaultValue: Birthday,

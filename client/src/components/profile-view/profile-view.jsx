@@ -92,10 +92,17 @@ export class ProfileView extends React.Component {
         Birthday: newBirthday ? newBirthday : this.state.Birthday
       },
     })
-      .then(() => {
-        localStorage.setItem('user', this.Username);
+      .then((response) => {
         alert('Saved Changes');
-        window.open(`/`, '_self');
+        this.setState({
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: response.data.Birthday
+        })
+        localStorage.setItem('user', this.state.Username);
+        window.open(`/users/${username}`, '_self');
+        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -197,7 +204,6 @@ export class ProfileView extends React.Component {
                   <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
-                      name="newPassword"
                       type="password"
                       placeholder="Change Password"
                       defaultValue={Password}
@@ -207,7 +213,6 @@ export class ProfileView extends React.Component {
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email</Form.Label>
                     <Form.Control
-                      name="newEmail"
                       type="email"
                       placeholder="Change Email"
                       defaultValue={Email}
@@ -217,7 +222,6 @@ export class ProfileView extends React.Component {
                   <Form.Group controlId="formBasicBirthday">
                     <Form.Label>Birthday</Form.Label>
                     <Form.Control
-                      name="newBirthday"
                       type="date"
                       placeholder="Change Birthday"
                       defaultValue={Birthday}
