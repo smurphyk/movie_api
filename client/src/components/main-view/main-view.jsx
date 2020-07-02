@@ -120,9 +120,7 @@ export class MainView extends React.Component {
             return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} />
           }} />
           <Route exact path="/users/:username" render={() => {
-            if (!user)
-              return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
-            return <ProfileView movies={movies} onLoggedIn={(user) => this.onLoggedIn(user)} />
+            return <ProfileView movies={movies} />
           }} />
         </Container>
       </Router >
