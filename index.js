@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 // GET requests
 
 app.get('/', (req, res) => {
-  // res.send("Welcome to Murph's Movie API! If we don't have it, you don't need it!");
+  res.send("Welcome to Murph's Movie API! If we don't have it, you don't need it!");
 });
 
 // Gets data for all movies
