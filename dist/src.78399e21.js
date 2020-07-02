@@ -52589,7 +52589,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleDeregister",
-    value: function handleDeregister(e, user) {
+    value: function handleDeregister(e) {
       e.preventDefault();
       var username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
@@ -52694,10 +52694,10 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "password",
         placeholder: "Enter Password",
-        defaultValue: "",
         onChange: function onChange(e) {
           return _this4.setPassword(e.target.value);
-        }
+        },
+        required: true
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicEmail"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {

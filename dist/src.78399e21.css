@@ -43,15 +43,10 @@ Button:hover {
   font-weight: bold;
   text-decoration: none;
 }
-.card-div {
-  margin-top: 15%;
-}
-
 .card-container {
   width: 100vw;
   background-color: #000;
   margin: 0 auto;
-  margin-left: 15%;
 }
 
 .movie-card {
@@ -272,10 +267,11 @@ h1 {
 
 .navbar {
   background-color: #b5b5b5;
-  position: fixed;
+  position: static;
   border: 1px solid #e93d04;
   border-radius: 5px;
   margin-bottom: 30px;
+  display: inline-block;
 }
 body {
   background-color: #000;

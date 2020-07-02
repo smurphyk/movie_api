@@ -8,8 +8,9 @@ $font-stack: sans-serif;
 
 .navbar {
   background-color: $primaryColor;
-  position: fixed;
+  position: static;
   border: 1px solid $secondaryColor;
   border-radius: 5px;
   margin-bottom: 30px;
+  display: inline-block;
 }

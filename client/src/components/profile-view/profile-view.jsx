@@ -125,7 +125,7 @@ export class ProfileView extends React.Component {
     this.Birthday = input;
   }
 
-  handleDeregister(e, user) {
+  handleDeregister(e) {
     e.preventDefault();
 
     const username = localStorage.getItem('user');
@@ -206,8 +206,8 @@ export class ProfileView extends React.Component {
                     <Form.Control
                       type="password"
                       placeholder="Enter Password"
-                      defaultValue=''
                       onChange={e => this.setPassword(e.target.value)}
+                      required
                     />
                   </Form.Group>
                   <Form.Group controlId="formBasicEmail">
