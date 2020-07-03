@@ -90,6 +90,7 @@ export class ProfileView extends React.Component {
       })
       return;
     }
+    e.preventDefault();
 
     const username = localStorage.getItem('user');
     const token = localStorage.getItem('token');

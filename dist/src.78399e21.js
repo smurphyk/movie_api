@@ -52550,6 +52550,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         return;
       }
 
+      e.preventDefault();
       var username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
       (0, _axios.default)({
