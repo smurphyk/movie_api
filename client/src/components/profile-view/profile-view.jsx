@@ -77,6 +77,9 @@ export class ProfileView extends React.Component {
   }
 
   handleUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
+    this.setState({
+      validated: null
+    })
 
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
@@ -85,6 +88,7 @@ export class ProfileView extends React.Component {
       this.setState({
         validated: true,
       })
+      return;
     }
 
     const username = localStorage.getItem('user');
@@ -96,7 +100,7 @@ export class ProfileView extends React.Component {
       headers: { Authorization: `Bearer ${token}` },
       data: {
         Username: newUsername ? newUsername : this.state.Username,
-        Password: newPassword ? newPassword : this.state.Password,
+        Password: this.Password,
         Email: newEmail ? newEmail : this.state.Email,
         Birthday: newBirthday ? newBirthday : this.state.Birthday
       },
@@ -209,9 +213,6 @@ export class ProfileView extends React.Component {
                       defaultValue={Username}
                       onChange={e => this.setUsername(e.target.value)}
                     />
-                    <Form.Control.Feedback type="invalid">
-                      A password is required
-                    </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
@@ -219,8 +220,8 @@ export class ProfileView extends React.Component {
                       type="password"
                       placeholder="Enter Password"
                       defaultValue=""
-                      required
                       onChange={e => this.setPassword(e.target.value)}
+                      required
                     />
                   </Form.Group>
                   <Form.Group controlId="formBasicEmail">
@@ -231,6 +232,9 @@ export class ProfileView extends React.Component {
                       defaultValue={Email}
                       onChange={e => this.setEmail(e.target.value)}
                     />
+                    <Form.Control.Feedback type="invalid">
+                      A password is required
+                    </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group controlId="formBasicBirthday">
                     <Form.Label>Birthday</Form.Label>

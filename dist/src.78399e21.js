@@ -52536,6 +52536,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     value: function handleUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
       var _this3 = this;
 
+      this.setState({
+        validated: null
+      });
       var form = e.currentTarget;
 
       if (form.checkValidity() === false) {
@@ -52544,6 +52547,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         this.setState({
           validated: true
         });
+        return;
       }
 
       var username = localStorage.getItem('user');
@@ -52556,7 +52560,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         },
         data: {
           Username: newUsername ? newUsername : this.state.Username,
-          Password: newPassword ? newPassword : this.state.Password,
+          Password: this.Password,
           Email: newEmail ? newEmail : this.state.Email,
           Birthday: newBirthday ? newBirthday : this.state.Birthday
         }
@@ -52705,18 +52709,16 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         onChange: function onChange(e) {
           return _this4.setUsername(e.target.value);
         }
-      }), _react.default.createElement(_reactBootstrap.Form.Control.Feedback, {
-        type: "invalid"
-      }, "A password is required")), _react.default.createElement(_reactBootstrap.Form.Group, {
+      })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicPassword"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "password",
         placeholder: "Enter Password",
         defaultValue: "",
-        required: true,
         onChange: function onChange(e) {
           return _this4.setPassword(e.target.value);
-        }
+        },
+        required: true
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicEmail"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
@@ -52726,7 +52728,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         onChange: function onChange(e) {
           return _this4.setEmail(e.target.value);
         }
-      })), _react.default.createElement(_reactBootstrap.Form.Group, {
+      }), _react.default.createElement(_reactBootstrap.Form.Control.Feedback, {
+        type: "invalid"
+      }, "A password is required")), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicBirthday"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Birthday"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "date",
