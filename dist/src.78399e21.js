@@ -52473,7 +52473,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       Password: null,
       Email: null,
       Birthday: null,
-      FavoriteMovies: []
+      FavoriteMovies: [],
+      validated: null
     };
     return _this;
   }
@@ -52535,7 +52536,16 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     value: function handleUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
       var _this3 = this;
 
-      e.preventDefault();
+      var form = e.currentTarget;
+
+      if (form.checkValidity() === false) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.setState({
+          validated: true
+        });
+      }
+
       var username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
       (0, _axios.default)({
@@ -52619,7 +52629,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Password = _this$state.Password,
           Email = _this$state.Email,
           Birthday = _this$state.Birthday,
-          FavoriteMovies = _this$state.FavoriteMovies;
+          FavoriteMovies = _this$state.FavoriteMovies,
+          validated = _this$state.validated;
       var movies = this.props.movies;
       return _react.default.createElement(_Container.default, {
         className: "profile-view"
@@ -52679,7 +52690,12 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement("h1", null, "Update Profile"), _react.default.createElement(_Card.default, {
         className: "update-card"
       }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_reactBootstrap.Form, {
-        className: "update-form"
+        noValidate: true,
+        validated: validated,
+        className: "update-form",
+        onSubmit: function onSubmit(e) {
+          return _this4.handleUpdate(e, _this4.Username, _this4.Password, _this4.Email, _this4.Birthday);
+        }
       }, _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicUsername"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), _react.default.createElement(_reactBootstrap.Form.Control, {
@@ -52689,15 +52705,18 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         onChange: function onChange(e) {
           return _this4.setUsername(e.target.value);
         }
-      })), _react.default.createElement(_reactBootstrap.Form.Group, {
+      }), _react.default.createElement(_reactBootstrap.Form.Control.Feedback, {
+        type: "invalid"
+      }, "A password is required")), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicPassword"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "password",
         placeholder: "Enter Password",
+        defaultValue: "",
+        required: true,
         onChange: function onChange(e) {
           return _this4.setPassword(e.target.value);
-        },
-        required: true
+        }
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicEmail"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
@@ -52719,10 +52738,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       })), _react.default.createElement(_Button.default, {
         className: "update",
         type: "submit",
-        size: "sm",
-        onClick: function onClick(e) {
-          return _this4.handleUpdate(e, _this4.Username, _this4.Password, _this4.Email, _this4.Birthday);
-        }
+        size: "sm"
       }, "Update")))))));
     }
   }]);
@@ -53018,6 +53034,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+// const store = createStore(moviesApp);
 // Main component (will eventrually use all the others)
 var MyFlixApplication = /*#__PURE__*/function (_React$Component) {
   _inherits(MyFlixApplication, _React$Component);
@@ -53033,7 +53050,10 @@ var MyFlixApplication = /*#__PURE__*/function (_React$Component) {
   _createClass(MyFlixApplication, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement(_mainView.MainView, null);
+      return (// <Provider store={store}>
+        _react.default.createElement(_mainView.MainView, null) // </Provider>
+
+      );
     }
   }]);
 

@@ -26,6 +26,7 @@ export class ProfileView extends React.Component {
       Email: null,
       Birthday: null,
       FavoriteMovies: [],
+      validated: null,
     };
   }
 
@@ -76,7 +77,15 @@ export class ProfileView extends React.Component {
   }
 
   handleUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
-    e.preventDefault();
+
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.setState({
+        validated: true,
+      })
+    }
 
     const username = localStorage.getItem('user');
     const token = localStorage.getItem('token');
@@ -149,7 +158,7 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { Username, Password, Email, Birthday, FavoriteMovies } = this.state;
+    const { Username, Password, Email, Birthday, FavoriteMovies, validated } = this.state;
     const { movies } = this.props;
 
     return (
@@ -191,7 +200,7 @@ export class ProfileView extends React.Component {
             <h1>Update Profile</h1>
             <Card className="update-card">
               <Card.Body>
-                <Form className="update-form">
+                <Form noValidate validated={validated} className="update-form" onSubmit={(e) => this.handleUpdate(e, this.Username, this.Password, this.Email, this.Birthday)}>
                   <Form.Group controlId="formBasicUsername">
                     <Form.Label>Username:</Form.Label>
                     <Form.Control
@@ -200,14 +209,18 @@ export class ProfileView extends React.Component {
                       defaultValue={Username}
                       onChange={e => this.setUsername(e.target.value)}
                     />
+                    <Form.Control.Feedback type="invalid">
+                      A password is required
+                    </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                       type="password"
                       placeholder="Enter Password"
-                      onChange={e => this.setPassword(e.target.value)}
+                      defaultValue=""
                       required
+                      onChange={e => this.setPassword(e.target.value)}
                     />
                   </Form.Group>
                   <Form.Group controlId="formBasicEmail">
@@ -228,7 +241,7 @@ export class ProfileView extends React.Component {
                       onChange={e => this.setBirthday(e.target.value)}
                     />
                   </Form.Group>
-                  <Button className="update" type="submit" size="sm" onClick={e => this.handleUpdate(e, this.Username, this.Password, this.Email, this.Birthday)}>Update</Button>
+                  <Button className="update" type="submit" size="sm">Update</Button>
                 </Form>
               </Card.Body>
             </Card>
