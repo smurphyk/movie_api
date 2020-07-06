@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -15,7 +16,7 @@ export class DirectorView extends React.Component {
   }
 
   render() {
-    const { movie, director } = this.props;
+    const { director } = this.props;
 
     if (!director) return null;
 
@@ -36,3 +37,12 @@ export class DirectorView extends React.Component {
     );
   }
 }
+
+DirectorView.propTypes = {
+  director: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    // Add images to directors in database
+    // imageUrl: PropTypes.string.isRequired,
+    bio: PropTypes.string.isRequired
+  }).isRequired
+};
