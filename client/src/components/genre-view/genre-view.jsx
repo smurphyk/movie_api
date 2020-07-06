@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -15,7 +16,7 @@ export class GenreView extends React.Component {
   }
 
   render() {
-    const { movie, genre } = this.props;
+    const { genre } = this.props;
 
     if (!genre) return null;
 
@@ -34,3 +35,10 @@ export class GenreView extends React.Component {
     );
   }
 }
+
+GenreView.propTypes = {
+  genre: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired
+  }).isRequired
+};
