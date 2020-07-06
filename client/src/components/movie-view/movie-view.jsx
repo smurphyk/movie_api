@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { setFavorite } from '../../actions/actions';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';

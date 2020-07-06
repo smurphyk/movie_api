@@ -13,8 +13,8 @@ export function LoginView(props) {
   const [login, setLogin] = useState('');
 
   const handleSubmit = (e) => {
-    const from = e.currentTarget;
-    if (Form.checkValidity() === false) {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
       setLogin(null);
@@ -23,7 +23,7 @@ export function LoginView(props) {
     }
     e.preventDefault();
 
-    axios.post(`https://murphmovies.herokuapp.com/login`, {
+    axios.post('https://murphmovies.herokuapp.com/login', {
       Username: username,
       Password: password
     })
@@ -41,17 +41,15 @@ export function LoginView(props) {
       });
   };
 
-  const setLoginUsername (e) => {
+  const setUsernameAndLogin = (e) => {
     setUsername(e.target.value);
     setLogin(null);
   }
 
-  const setLoginPassword = (e) => {
+  const setPasswordAndLogin = (e) => {
     setPassword(e.target.value);
     setLogin(null);
   }
-
-
 
   return (
     <Container className="login-view" fluid="true">
@@ -62,32 +60,39 @@ export function LoginView(props) {
           <Form.Control
             type="text"
             placeholder="Enter Username"
-            pattern="[a-zA-Z0-9]{6}"
-            title="Username must contain at least 6 characters and may only include numbers, 
-            lowercase letters, and uppercase letters, e.g. User12."
+            pattern="^[a-zA-Z0-9]{6,}"
             required
             value={username}
-            onChange={e => setLoginUsername(e)} />
+            onChange={e => setUsernameAndLogin(e)} />
+          <Form.Control.Feedback type="invalid">
+            Username Must contain at least 6 characters and may only include numbers,
+            lowercase letters, and uppercase letters, e.g. User12.
+            </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="formPassword">
           <Form.Label>Password:</Form.Label>
           <Form.Control
             type="password"
             placeholder="Enter Password"
-            pattern="[a-zA-Z0-9]{8}"
-            title="Password must contain at least 8 characters and may only include numbers, 
-            lowercase letters, and uppercase letters, e.g. Pword1234."
-            required
             value={password}
-            onChange={e => setLoginPassword(e)} />
+            required
+            onChange={e => setPasswordAndLogin(e)} />
+          <Form.Control.Feedback type="invalid">
+            Password is Required.
+            </Form.Control.Feedback>
+          {!login ? null
+            :
+            <Form.Text className="idiot-message">
+              Incorrect Username or Password.
+              </Form.Text>}
         </Form.Group>
-        <Button className="submit-login" type="submit">
+        <Button className="submit-button" type="submit" block>
           Login
           </Button>
         <Form.Group className="registration" controlId="formRegistration">
           <Form.Text className="text-muted">First time? Let's get you an account!</Form.Text>
           <Link to={`/register`}>
-            <Button className="register-button" type="submit">
+            <Button className="register-button" type="submit" block>
               Register
           </Button>
           </Link>

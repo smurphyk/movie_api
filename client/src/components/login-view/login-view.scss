@@ -8,8 +8,12 @@ $font-stack: sans-serif;
   border-radius: 5px;
   margin: 33vh auto;
   font-family: sans-serif;
-  width: 40vw;
+  width: 45vw;
   padding: 3%;
+}
+
+.login-title {
+  font-weight: bold;
 }
 
 .register-button, .submit-login {
@@ -21,6 +25,14 @@ $font-stack: sans-serif;
   text-align: center;
   margin: 5px;
   font-weight: bold;
+}
+
+.registration {
+  margin-top: 5%;
+}
+
+.text-muted {
+  text-align: center;
 }
 
 Button:hover {
