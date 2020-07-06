@@ -1,5 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+
+import { connect } from 'react-redux';
+
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+import { setMovies } from '../../actions/actions';
+
 import Container from 'react-bootstrap/Container';
 import {
   Navbar,
@@ -7,10 +14,7 @@ import {
   Button,
 } from 'react-bootstrap';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
-import { Link } from 'react-router-dom';
-
+import MoviesList from '../movies-list/movies-list';
 import { RegistrationView } from "../registration-view/registration-view";
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
@@ -25,26 +29,9 @@ export class MainView extends React.Component {
   constructor(props) {
     super(props);
 
-    // Initialize the state to an empty object so we can destructrue it later
     this.state = {
-      movies: [],
       user: null
     };
-  }
-
-  getMovies(token) {
-    axios.get('https://murphmovies.herokuapp.com/movies', {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then(response => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
   componentDidMount() {
@@ -57,8 +44,19 @@ export class MainView extends React.Component {
     }
   }
 
+  getMovies(token) {
+    axios.get('https://murphmovies.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(response => {
+        this.props.setMovies(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   onLoggedIn(authData) {
-    console.log(authData);
     this.setState({
       user: authData.user.Username
     });
@@ -79,34 +77,30 @@ export class MainView extends React.Component {
 
   render() {
 
-    // Before data is initially loaded
-    const { user, movies } = this.state;
-    const username = localStorage.getItem('user');
-
-    // Before movies have been loaded
-    if (!movies) return <div className="main-view" />;
+    let { movies } = this.props;
+    let { user } = this.state;
 
     return (
       <Router>
-        <Navbar expand="lg">
-          <Navbar.Brand as={Link} to="/">Murph's Movie API</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link as={Link} to="/">Home</Nav.Link>
-              <Nav.Link as={Link} to={`/users/${username}`}>Profile</Nav.Link>
-              <Button size="sm" onClick={() => this.onLoggedOut()}>
-                <b>Log Out</b>
-              </Button>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-        <br></br>
-        <Container className="main-view">
+        <Container className="main-view" fluid="true">
+          <Navbar expand="lg">
+            <Navbar.Brand as={Link} to="/">Murph's Movie API</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                <Nav.Link as={Link} to="/">Home</Nav.Link>
+                <Nav.Link as={Link} to={`/users/${username}`}>Profile</Nav.Link>
+                <Button size="sm" onClick={() => this.onLoggedOut()}>
+                  <b>Log Out</b>
+                </Button>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+          <br></br>
           <Route exact path="/" render={() => {
             if (!user)
               return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
-            return movies.map(m => <MovieCard key={m._id} movie={m} />);
+            return <MoviesList movies={movies} />;
           }} />
           <Route path="/register" render={() => <RegistrationView />} />
           <Route exact path="/movies/:movieId" render={({ match }) =>
@@ -127,3 +121,9 @@ export class MainView extends React.Component {
     );
   }
 }
+
+let mapStateToProps = state => {
+  return { movies: state.movies }
+}
+
+export default connect(mapStateToProps, { setMovies })(MainView);
