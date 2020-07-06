@@ -54632,17 +54632,40 @@ function LoginView(props) {
       password = _useState4[0],
       setPassword = _useState4[1];
 
+  var _useState5 = (0, _react.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      validated = _useState6[0],
+      setValidated = _useState6[1];
+
+  var _useState7 = (0, _react.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      login = _useState8[0],
+      setLogin = _useState8[1];
+
   var handleSubmit = function handleSubmit(e) {
+    var from = e.currentTarget;
+
+    if (_Form.default.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+      setLogin(null);
+      setValidated(true);
+      return;
+    }
+
     e.preventDefault();
 
-    _axios.default.post("https://murphmovies.herokuapp.com/login", null, {
-      params: {
-        Username: username,
-        Password: password
-      }
+    _axios.default.post("https://murphmovies.herokuapp.com/login", {
+      Username: username,
+      Password: password
     }).then(function (response) {
       var data = response.data;
-      props.onLoggedIn(data);
+
+      if (!response.data.user) {
+        setLogin(true);
+      } else {
+        props.onLoggedIn(data);
+      }
     }).catch(function (e) {
       console.log('no such user');
     });
