@@ -129,22 +129,22 @@ MainView.propTypes = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      genre: PropTypes.shape({
+      Title: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired,
+      Genre: PropTypes.shape({
         _id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired
+        Name: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired
       }),
-      director: PropTypes.shape({
+      Director: PropTypes.shape({
         _id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
+        Name: PropTypes.string.isRequired,
         // imageUrl: PropTypes.string.isRequired,
-        bio: PropTypes.string.isRequired,
-        birthdate: PropTypes.string.isRequired
+        Bio: PropTypes.string.isRequired,
+        Birthdate: PropTypes.string.isRequired
       }),
       imageUrl: PropTypes.string.isRequired,
-      featured: PropTypes.bool.isRequired
+      Featured: PropTypes.bool.isRequired
     })
   ),
   user: PropTypes.string.isRequired

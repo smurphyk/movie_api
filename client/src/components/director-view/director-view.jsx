@@ -39,10 +39,10 @@ export class DirectorView extends React.Component {
 }
 
 DirectorView.propTypes = {
-  director: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+  Director: PropTypes.shape({
+    Name: PropTypes.string.isRequired,
     // Add images to directors in database
     // imageUrl: PropTypes.string.isRequired,
-    bio: PropTypes.string.isRequired
+    Bio: PropTypes.string.isRequired
   }).isRequired
 };
