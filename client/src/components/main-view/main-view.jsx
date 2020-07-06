@@ -14,7 +14,7 @@ import {
   Button,
 } from 'react-bootstrap';
 
-import MoviesList from '../movies-list/movies-list';
+import MoviesList from '../movies-list/movies-list.jsx';
 import { RegistrationView } from "../registration-view/registration-view";
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
@@ -81,7 +81,7 @@ export class MainView extends React.Component {
     let { user } = this.state;
 
     return (
-      <Router>
+      <Router basename="/client">
         <Container className="main-view" fluid="true">
           <Navbar expand="lg">
             <Navbar.Brand as={Link} to="/">Murph's Movie API</Navbar.Brand>

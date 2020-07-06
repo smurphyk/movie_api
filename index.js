@@ -10,6 +10,8 @@ const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 
+const path = require('path');
+
 const cors = require('cors');
 app.use(cors());
 
@@ -25,13 +27,14 @@ mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnified
 
 // Middleware
 app.use(express.static('public'));
+app.use('/client', express.static(path.join(__dirname, 'client', 'dist')));
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
 // GET requests
 
-app.get('/', (req, res) => {
-  res.send("Welcome to Murph's Movie API! If we don't have it, you don't need it!");
+app.get('/client/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
 
 // Gets data for all movies
