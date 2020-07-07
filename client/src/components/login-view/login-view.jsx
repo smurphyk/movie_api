@@ -24,12 +24,14 @@ export function LoginView(props) {
     e.preventDefault();
 
     axios.post(`https://murphmovies.herokuapp.com/login`, null, {
-      Username: username,
-      Password: password
+      params: {
+        Username: username,
+        Password: password
+      }
     })
       .then(response => {
         const data = response.data;
-        console.log(data);
+
         if (!response.data.user) {
           setLogin(true);
         }
@@ -63,24 +65,31 @@ export function LoginView(props) {
           <Form.Control
             type="text"
             placeholder="Enter Username"
-            pattern="[a-zA-Z0-9]{6}"
-            title="Username must contain at least 6 characters and may only include numbers, 
-            lowercase letters, and uppercase letters, e.g. User12."
+            pattern="[a-zA-Z0-9]{6,}"
             required
             value={username}
             onChange={e => setLoginUsername(e)} />
+          <Form.Control.Feedback type="invalid">
+            Username must be at least 6 alphanumeric characters long.
+            </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="formPassword">
           <Form.Label>Password:</Form.Label>
           <Form.Control
             type="password"
             placeholder="Enter Password"
-            pattern="[a-zA-Z0-9]{8}"
-            title="Password must contain at least 8 characters and may only include numbers, 
-            lowercase letters, and uppercase letters, e.g. Pword1234."
+            pattern="[a-zA-Z0-9]{8,}"
             required
             value={password}
             onChange={e => setLoginPassword(e)} />
+          <Form.Control.Feedback type="invalid">
+            A password of at least 8 alphanumeric characters is required.
+            </Form.Control.Feedback>
+          {!login ? null
+            :
+            <Form.Text className="invalid-text">
+              Invalid Username and/or Password
+              </Form.Text>}
         </Form.Group>
         <Button className="submit-login" type="submit" block>
           Login

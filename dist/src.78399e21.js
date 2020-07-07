@@ -54463,11 +54463,12 @@ function LoginView(props) {
     e.preventDefault();
 
     _axios.default.post("https://murphmovies.herokuapp.com/login", null, {
-      Username: username,
-      Password: password
+      params: {
+        Username: username,
+        Password: password
+      }
     }).then(function (response) {
       var data = response.data;
-      console.log(data);
 
       if (!response.data.user) {
         setLogin(true);
@@ -54504,26 +54505,30 @@ function LoginView(props) {
   }, _react.default.createElement(_Form.default.Label, null, "Username:"), _react.default.createElement(_Form.default.Control, {
     type: "text",
     placeholder: "Enter Username",
-    pattern: "[a-zA-Z0-9]{6}",
-    title: "Username must contain at least 6 characters and may only include numbers, \r lowercase letters, and uppercase letters, e.g. User12.",
+    pattern: "[a-zA-Z0-9]{6,}",
     required: true,
     value: username,
     onChange: function onChange(e) {
       return setLoginUsername(e);
     }
-  })), _react.default.createElement(_Form.default.Group, {
+  }), _react.default.createElement(_Form.default.Control.Feedback, {
+    type: "invalid"
+  }, "Username must be at least 6 alphanumeric characters long.")), _react.default.createElement(_Form.default.Group, {
     controlId: "formPassword"
   }, _react.default.createElement(_Form.default.Label, null, "Password:"), _react.default.createElement(_Form.default.Control, {
     type: "password",
     placeholder: "Enter Password",
-    pattern: "[a-zA-Z0-9]{8}",
-    title: "Password must contain at least 8 characters and may only include numbers, \r lowercase letters, and uppercase letters, e.g. Pword1234.",
+    pattern: "[a-zA-Z0-9]{8,}",
     required: true,
     value: password,
     onChange: function onChange(e) {
       return setLoginPassword(e);
     }
-  })), _react.default.createElement(_Button.default, {
+  }), _react.default.createElement(_Form.default.Control.Feedback, {
+    type: "invalid"
+  }, "A password of at least 8 alphanumeric characters is required."), !login ? null : _react.default.createElement(_Form.default.Text, {
+    className: "invalid-text"
+  }, "Invalid Username and/or Password")), _react.default.createElement(_Button.default, {
     className: "submit-login",
     type: "submit",
     block: true
@@ -55912,7 +55917,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65226" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49763" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
