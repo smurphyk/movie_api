@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
 import { MovieCard } from '../movie-card/movie-card';
@@ -22,10 +23,12 @@ function MoviesList(props) {
 
   if (!movies) return <Container className="main-view" />;
 
-  return <Container className="movies-list">
-    <VisibilityFilterInput visibilityFilter={visibilityFilter} />
-    {filteredMovies.map(m => <MovieCard key={m._id} movie={m} />)}
-  </Container>;
+  return <Row className="movies-row">
+    <Container className="movies-list">
+      <VisibilityFilterInput visibilityFilter={visibilityFilter} />
+      {filteredMovies.map(m => <MovieCard key={m._id} movie={m} />)}
+    </Container>
+  </Row>;
 }
 
 export default connect(mapStateToProps)(MoviesList);

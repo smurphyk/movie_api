@@ -24,7 +24,7 @@ function MovieView(props) {
   let token = localStorage.getItem('token');
 
   (function () {
-    axios.get(`https://murphmovies.herokuapp.com/users/${username}/Movies/${props.movie._id}`, {
+    axios.get(`https://murphmovies.herokuapp.com/users/${username}/Movies/${movie._id}`, {
       headers: { Authorization: `Bearer: ${token}` }
     })
       .then(response => {
@@ -41,7 +41,7 @@ function MovieView(props) {
     let token = localStorage.getItem('token');
     axios({
       method: 'post',
-      url: `https://murphmovies.herokuapp.com/users/${username}/Movies/${props.movie._id}`,
+      url: `https://murphmovies.herokuapp.com/users/${username}/Movies/${movie._id}`,
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -54,9 +54,9 @@ function MovieView(props) {
 
   var featured = '';
 
-  if (!props.movie) return null;
+  if (!movie) return null;
 
-  if (props.movie.featured) {
+  if (movie.featured) {
     featured = 'Yes';
   }
   else {
@@ -65,16 +65,16 @@ function MovieView(props) {
     return (
       <Container className="movie-view">
         <Card className="movie-view-card">
-          <Card.Img variant="top" src={props.movie.imageUrl} />
+          <Card.Img variant="top" src={movie.ImagePath} />
           <Card.Body>
-            <Card.Title className="movie-title">{props.movie.Title}</Card.Title>
-            <Card.Text className="movie-description">{props.movie.description}</Card.Text>
+            <Card.Title className="movie-title">{movie.Title}</Card.Title>
+            <Card.Text className="movie-description">{movie.description}</Card.Text>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                Genre: {props.movie.Genre.Name}
+                Genre: {movie.Genre.Name}
               </ListGroup.Item>
               <ListGroup.Item>
-                Director: {props.movie.Director.Name}
+                Director: {movie.Director.Name}
               </ListGroup.Item>
               <ListGroup.Item>
                 Featured: {featured}
@@ -100,15 +100,15 @@ function MovieView(props) {
 }
 
 export default connect(mapStateToProps, { setFavorite })(MovieView);
-
 MovieView.propTypes = {
   movie: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
     Genre: PropTypes.shape({
       Name: PropTypes.string.isRequired
     }),
-    imageUrl: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
     Featured: PropTypes.bool.isRequired
   }).isRequired
 };
