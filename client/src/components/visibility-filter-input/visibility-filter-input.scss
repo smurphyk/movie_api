@@ -1,0 +1,10 @@
+$primaryColor: #b5b5b5;
+$secondaryColor: #e93d04;
+$font-stack: sans-serif;
+
+.filter-field {
+  width: 80%;
+  margin: 0 auto;
+  border: 5px outset $secondaryColor;
+  padding: 2.5%;
+}

@@ -21,6 +21,7 @@ $font-stack: sans-serif;
   padding: 2%;
   color: #000;
   font-weight: bold;
+  font-size: 120%;
   width: 40rem;
   margin: 0 auto;
 }
@@ -33,9 +34,12 @@ $font-stack: sans-serif;
 }
 
 .movie-title {
-  text-decoration: underline;
-  font-size: 180%;
+  border: 5px outset $secondaryColor;
+  border-radius: 15px;
+  width: 18rem;
+  font-size: 200%;
   color: $secondaryColor;
+  padding: 5px 0;
 }
 
 .button-container {

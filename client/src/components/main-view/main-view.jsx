@@ -70,7 +70,7 @@ export class MainView extends React.Component {
 
   render() {
 
-    let { movies, user, button } = this.props;
+    let { movies, user } = this.props;
     let username = localStorage.getItem('user');
 
     if (!movies) return <Container className="main-view" fluid="true" />;
@@ -83,9 +83,10 @@ export class MainView extends React.Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="main-nav">
-                <Nav.Link as={Link} to="/">Home</Nav.Link>
-                <Nav.Link as={Link} to={`/users/${username}`}>Profile</Nav.Link>
-                <Button size="sm" block onClick={() => this.onLoggedOut()}>
+                <Nav.Link className="nav-link" as={Link} to="/">Home</Nav.Link>
+                <Nav.Link className="nav-link" as={Link} to={`/users/${username}`}>Profile</Nav.Link>
+                <br></br>
+                <Button size="md" className="logout-button" onClick={() => this.onLoggedOut()}>
                   <b>Log Out</b>
                 </Button>
               </Nav>
@@ -137,7 +138,6 @@ MainView.propTypes = {
       }),
       Director: PropTypes.shape({
         Name: PropTypes.string.isRequired,
-        // imageUrl: PropTypes.string.isRequired,
         Bio: PropTypes.string.isRequired,
         Birth: PropTypes.string.isRequired
       }),

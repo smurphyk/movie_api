@@ -54545,7 +54545,12 @@ function LoginView(props) {
     block: true
   }, "Register")))));
 }
-},{"react":"../node_modules/react/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js"}],"components/visibility-filter-input/visibility-filter-input.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js"}],"components/visibility-filter-input/visibility-filter-input.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../../../../../../home/smurphyk/.nvm/versions/node/v12.16.3/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/visibility-filter-input/visibility-filter-input.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54563,16 +54568,21 @@ var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
 
 var _actions = require("../../actions/actions");
 
+require("./visibility-filter-input.scss");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function VisibilityFilterInput(props) {
-  return _react.default.createElement(_Form.default.Control, {
+  return _react.default.createElement("div", {
+    className: "filter-div"
+  }, _react.default.createElement(_Form.default.Control, {
+    className: "filter-field",
     onChange: function onChange(e) {
       return props.setFilter(e.target.value);
     },
     value: props.visibilityFilter,
     placeholder: "Filter Movies"
-  });
+  }));
 }
 
 var _default = (0, _reactRedux.connect)(null, {
@@ -54580,7 +54590,7 @@ var _default = (0, _reactRedux.connect)(null, {
 })(VisibilityFilterInput);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","../../actions/actions":"actions/actions.js"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","../../actions/actions":"actions/actions.js","./visibility-filter-input.scss":"components/visibility-filter-input/visibility-filter-input.scss"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -54671,7 +54681,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
         size: "lg",
         block: true,
         className: "open-button"
-      }, "Open")))));
+      }, "Details")))));
     }
   }]);
 
@@ -55016,8 +55026,6 @@ exports.DirectorView = DirectorView;
 DirectorView.propTypes = {
   Director: _propTypes.default.shape({
     Name: _propTypes.default.string.isRequired,
-    // Add images to directors in database
-    // imageUrl: PropTypes.string.isRequired,
     Bio: _propTypes.default.string.isRequired
   }).isRequired
 };
@@ -55600,8 +55608,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
       var _this$props = this.props,
           movies = _this$props.movies,
-          user = _this$props.user,
-          button = _this$props.button;
+          user = _this$props.user;
       var username = localStorage.getItem('user');
       if (!movies) return _react.default.createElement(_Container.default, {
         className: "main-view",
@@ -55624,14 +55631,16 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_reactBootstrap.Nav, {
         className: "main-nav"
       }, _react.default.createElement(_reactBootstrap.Nav.Link, {
+        className: "nav-link",
         as: _reactRouterDom.Link,
         to: "/"
       }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
+        className: "nav-link",
         as: _reactRouterDom.Link,
         to: "/users/".concat(username)
-      }, "Profile"), _react.default.createElement(_reactBootstrap.Button, {
-        size: "sm",
-        block: true,
+      }, "Profile"), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
+        size: "md",
+        className: "logout-button",
         onClick: function onClick() {
           return _this2.onLoggedOut();
         }
@@ -55746,7 +55755,6 @@ MainView.propTypes = {
     }),
     Director: _propTypes.default.shape({
       Name: _propTypes.default.string.isRequired,
-      // imageUrl: PropTypes.string.isRequired,
       Bio: _propTypes.default.string.isRequired,
       Birth: _propTypes.default.string.isRequired
     }),
