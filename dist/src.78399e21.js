@@ -55003,15 +55003,6 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var director = this.props.director;
       if (!director) return null;
-      var birthday = new Date(director.Birthday);
-      var age = calculateAge(birthday);
-
-      function calculateAge(birthday) {
-        var ageDifMs = Date.now() - birthday;
-        var ageDate = new Date(ageDifMs);
-        return Math.abs(ageDate.getUTCFullYear() - 1950);
-      }
-
       return _react.default.createElement(_Container.default, {
         className: "director-view"
       }, _react.default.createElement(_Card.default, {
@@ -55025,7 +55016,7 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
         className: "director-name"
       }, director.Name), _react.default.createElement(_Card.default.Text, null, director.Bio), _react.default.createElement(_ListGroup.default, {
         variant: "flush"
-      }, _react.default.createElement(_ListGroup.default.Item, null, "Birthday: ", birthday.toDateString(), " (", age, " years old)")), _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_ListGroup.default.Item, null, "Born: ", director.Birth)), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_Button.default, {
         className: "back-button",
@@ -55979,7 +55970,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53002" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49740" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -21,15 +21,6 @@ export class DirectorView extends React.Component {
 
     if (!director) return null;
 
-    let birthday = new Date(director.Birthday);
-    let age = calculateAge(birthday);
-
-    function calculateAge(birthday) {
-      var ageDifMs = Date.now() - birthday;
-      var ageDate = new Date(ageDifMs);
-      return Math.abs(ageDate.getUTCFullYear() - 1950);
-    }
-
     return (
       <Container className="director-view">
         <Card className="director-card">
@@ -38,7 +29,7 @@ export class DirectorView extends React.Component {
             <Card.Title className='director-name'>{director.Name}</Card.Title>
             <Card.Text>{director.Bio}</Card.Text>
             <ListGroup variant="flush">
-              <ListGroup.Item>Birthday: {birthday.toDateString()} ({age} years old)</ListGroup.Item>
+              <ListGroup.Item>Born: {director.Birth}</ListGroup.Item>
             </ListGroup>
             <Link to={`/`}>
               <Button className="back-button" variant="outline-link" size="lg">Back</Button>
