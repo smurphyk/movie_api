@@ -2,10 +2,6 @@ $primaryColor: #b5b5b5;
 $secondaryColor: #e93d04;
 $font-stack: sans-serif;
 
-.card-div {
-  //margin-top: 15%;
-}
-
 .card-container {
   width: 100vw;
   background-color: #000;
@@ -40,6 +36,7 @@ $font-stack: sans-serif;
   font-size: 200%;
   color: $secondaryColor;
   padding: 5px;
+  background-color: #000;
 }
 
 .button-container {

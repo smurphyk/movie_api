@@ -27,7 +27,6 @@ const auth = require('./auth')(app);
 //mongoose.connect('mongodb://localhost:27017/movie_apiDB', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// Middleware
 app.use(express.static('public'));
 app.use('/client', express.static(path.join(__dirname, 'client', 'dist')));
 app.get('/client/*', (req, res) => {
@@ -37,7 +36,6 @@ app.get('/client/*', (req, res) => {
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
-// Gets data for all movies
 app.get('/movies', passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Movies.find()
@@ -50,7 +48,6 @@ app.get('/movies', passport.authenticate('jwt', { session: false }),
       });
   });
 
-// Gets data about a single movie, by title
 app.get('/movies/:title', passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Movies.findOne({ Title: req.params.title })
@@ -64,8 +61,6 @@ app.get('/movies/:title', passport.authenticate('jwt', { session: false }),
   }
 );
 
-
-// Gets data about director, by name
 app.get('/directors/:name', passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Movies.findOne({ 'Director.Name': req.params.name })
@@ -79,7 +74,6 @@ app.get('/directors/:name', passport.authenticate('jwt', { session: false }),
   }
 );
 
-// Gets data about genre, by name
 app.get('/genres/:name', passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Movies.findOne({ 'Genre.Name': req.params.name })
@@ -93,7 +87,6 @@ app.get('/genres/:name', passport.authenticate('jwt', { session: false }),
   }
 );
 
-// Gets a list of all users
 app.get('/users', passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Users.find()
@@ -106,16 +99,6 @@ app.get('/users', passport.authenticate('jwt', { session: false }),
       });
   });
 
-// Add a User
-/* Expect Json in this format:
-{
-  ID: Integer,
-  Username: String,
-  Password: String,
-  Email: String,
-  Birthday: Date
-} */
-
 app.post('/users',
   [
     check('Username', 'Username is required').isLength({ min: 6 }),
@@ -123,7 +106,6 @@ app.post('/users',
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
   ], (req, res) => {
-    // check validation object for errors
     let errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -156,7 +138,6 @@ app.post('/users',
       });
   });
 
-// Get a user by username
 app.get('/users/:Username', passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Users.findOne({ Username: req.params.Username })
@@ -168,18 +149,6 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }),
         res.status(500).send('Error: ' + err);
       });
   });
-
-// Update user info, by Username
-/* Expect Json in this format:
-{
-  Username: String,
-  (required)
-  Password: String,
-  (required)
-  Email: String,
-  (required)
-  Birthday: Date
-} */
 
 app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -193,7 +162,7 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
         Birthday: req.body.Birthday
       }
     },
-      { new: true }, // This line makes sure that the updated document is returned
+      { new: true },
       (err, updatedUser) => {
         if (err) {
           console.error(err);
@@ -203,9 +172,6 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
         }
       });
   });
-
-
-// Allows user to add a movie to list of favorites
 
 app.post('/users/:Username/Movies/:MovieID', passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -223,7 +189,6 @@ app.post('/users/:Username/Movies/:MovieID', passport.authenticate('jwt', { sess
       });
   });
 
-// Allows user to remove a movie from list of favorites by title
 app.delete('/users/:Username/Movies/:MovieID', passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Users.findOneAndUpdate(
@@ -241,8 +206,6 @@ app.delete('/users/:Username/Movies/:MovieID', passport.authenticate('jwt', { se
     );
   }
 );
-
-// Delete a user by username
 
 app.delete('/users/:Username', passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -265,7 +228,6 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something made an Uh-Oh!');
 });
 
-//listen for requests
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
   console.log('All Ears on Port ' + port + '!');

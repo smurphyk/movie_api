@@ -93,23 +93,23 @@ export class MainView extends React.Component {
             </Navbar.Collapse>
           </Navbar>
           <br></br>
-          <Route exact path="/" render={() => {
+          <Route exact path="/client" render={() => {
             if (!user)
               return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
             return <MoviesList movies={movies} />;
           }} />
-          <Route path="/register" render={() => <RegistrationView />} />
+          <Route path="/client/register" render={() => <RegistrationView />} />
           <Route exact path="/movies/:movieId" render={({ match }) =>
             <MovieView movie={movies.find(m => m._id === match.params.movieId)} />} />
-          <Route exact path="/genres/:name" render={({ match }) => {
+          <Route exact path="/client/genres/:name" render={({ match }) => {
             if (!movies) return <Container className="main-view" />;
             return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} />
           }} />
-          <Route exact path="/directors/:name" render={({ match }) => {
+          <Route exact path="/client/directors/:name" render={({ match }) => {
             if (!movies) return <Container className="main-view" />;
             return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} />
           }} />
-          <Route exact path="/users/:username" render={() => {
+          <Route exact path="/client/users/:username" render={() => {
             if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
             if (movies.length === 0) return <Container className="main-view" />;
             return <ProfileView movies={movies} onLoggedOut={user => this.onLoggedOut(!user)} />
