@@ -116,12 +116,12 @@ Button:hover {
 }
 .movie-view {
   text-align: center;
-  width: 40vw;
+  width: 75vw;
   margin: 0 auto;
   background-color: #b5b5b5;
   border: 8px groove #e93d04;
   border-radius: 10px;
-  padding: 5%;
+  padding: 3%;
 }
 
 .movie-title {
@@ -139,7 +139,7 @@ Button:hover {
 }
 
 .movie-genre {
-  margin: 3vh auto;
+  margin-top: 3vh;
 }
 
 .director-button, .genre-button {
@@ -163,10 +163,6 @@ Button:hover {
   text-align: center;
   margin: 3% auto;
   font-weight: bold;
-}
-
-.button-container {
-  margin: 5% auto;
 }
 
 .label {

@@ -1,114 +1,76 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
-import { setFavorite } from '../../actions/actions';
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import ListGroup from 'react-bootstrap/ListGroup';
-
-import { connect } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 
 import './movie-view.scss';
 
-const mapStateToProps = state => {
-  const { favorite } = state;
-  return { favorite };
-};
+export class MovieView extends React.Component {
 
-function MovieView(props) {
-  const { movie, favorite } = props;
-  let username = localStorage.getItem('user');
-  let token = localStorage.getItem('token');
+  constructor(props) {
+    super(props);
 
-  (function () {
-    axios.get(`https://murphmovies.herokuapp.com/users/${username}/Movies/${movie._id}`, {
-      headers: { Authorization: `Bearer: ${token}` }
-    })
-      .then(response => {
-        props.setFavorite(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  })();
+    this.state = {};
+  }
 
-  const addFavorite = (e) => {
+  handleAddFavorite(e, movie) {
     e.preventDefault();
-    let username = localStorage.getItem('user');
-    let token = localStorage.getItem('token');
+    const username = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
     axios({
       method: 'post',
       url: `https://murphmovies.herokuapp.com/users/${username}/Movies/${movie._id}`,
       headers: { Authorization: `Bearer ${token}` }
     })
-      .then(response => {
-        props.setFavorite(true);
+      .then(res => {
+        console.log(`${movie.Title} was add to Favorites`);
+      }).catch(function (err) {
+        console.log(err)
       })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
-  var featured = '';
+  render() {
+    const { movie } = this.props;
 
-  if (!movie) return null;
-
-  if (movie.featured) {
-    featured = 'Yes';
-  }
-  else {
-    featured = 'No';
+    if (!movie) return null;
 
     return (
       <Container className="movie-view">
-        <Card className="movie-view-card">
-          <Card.Img variant="top" src={movie.ImagePath} />
-          <Card.Body>
-            <Card.Title className="movie-title">{movie.Title}</Card.Title>
-            <Card.Text className="movie-description">{movie.description}</Card.Text>
-            <ListGroup variant="flush">
-              <ListGroup.Item>
-                Genre: {movie.Genre.Name}
-              </ListGroup.Item>
-              <ListGroup.Item>
-                Director: {movie.Director.Name}
-              </ListGroup.Item>
-              <ListGroup.Item>
-                Featured: {featured}
-              </ListGroup.Item>
-              {favorite ?
-                <ListGroup.Item>
-                  <Button className="disabled-button" disabled>Favorited</Button>
-                </ListGroup.Item>
-                :
-                <ListGroup.Item>
-                  <Button className="back-button" onClick={addFavorite}>Add to Favorites</Button>
-                </ListGroup.Item>
-              }
-            </ListGroup>
-            <Link to={`/`}>
-              <Button className="back-button">Back</Button>
-            </Link>
-          </Card.Body>
-        </Card>
+        <img className="movieView-poster" src={movie.ImagePath} />
+        <div className="movie-title">
+          <span className="value">{movie.Title}</span>
+        </div>
+        <div className="movie-description">
+          <span className="label">Description: </span>
+          <span className="value">{movie.Description}</span>
+        </div>
+        <div className="movie-genre">
+          <span className="label">Genre: </span>
+          <span className="value">{movie.Genre.Name}</span>
+        </div>
+        <div className="movie-director">
+          <span className="label">Director: </span>
+          <span className="value">{movie.Director.Name}</span>
+        </div>
+        <br></br>
+        <Container className="button-container">
+          <Link to={`/directors/${movie.Director.Name}`}>
+            <Button className="director-button" size="lg">Director Info</Button>
+          </Link>
+          <Link to={`/genres/${movie.Genre.Name}`}>
+            <Button className="genre-button" size="lg">Genre Info</Button>
+          </Link>
+          <br></br>
+          <br></br>
+          <Button size="lg" block className="favorite-button" value={movie._id}
+            onClick={(e) => this.handleAddFavorite(e, movie)} > Add to Favorites</Button>
+          <Link to={`/`}>
+            <Button className="movies-button" size="lg" block>Back</Button>
+          </Link>
+        </Container >
       </Container >
     );
   }
 }
-
-export default connect(mapStateToProps, { setFavorite })(MovieView);
-MovieView.propTypes = {
-  movie: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    Title: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired,
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired
-    }),
-    ImagePath: PropTypes.string.isRequired,
-    Featured: PropTypes.bool.isRequired
-  }).isRequired
-};

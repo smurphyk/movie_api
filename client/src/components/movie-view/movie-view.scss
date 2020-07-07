@@ -4,12 +4,12 @@ $font-stack: sans-serif;
 
 .movie-view {
   text-align: center;
-  width: 40vw;
+  width: 75vw;
   margin: 0 auto;
   background-color: $primaryColor;
   border: 8px groove $secondaryColor;
   border-radius: 10px;
-  padding: 5%;
+  padding: 3%;
 }
 
 .movie-title {
@@ -27,7 +27,7 @@ $font-stack: sans-serif;
 }
 
 .movie-genre {
-  margin: 3vh auto;
+  margin-top: 3vh;
 }
 
 .director-button, .genre-button {
@@ -51,10 +51,6 @@ $font-stack: sans-serif;
   text-align: center;
   margin: 3% auto;
   font-weight: bold;  
-}
-
-.button-container {
-  margin: 5% auto;
 }
 
 .label {

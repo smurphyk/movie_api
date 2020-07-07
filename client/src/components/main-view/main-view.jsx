@@ -1,76 +1,149 @@
 import React from 'react';
 import axios from 'axios';
-import Button from 'react-bootstrap/Button';
+import PropTypes from 'prop-types';
+
+import { connect } from 'react-redux';
+
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+import { setMovies, setUser, setButton } from '../../actions/actions';
+
 import Container from 'react-bootstrap/Container';
+import {
+  Navbar,
+  Nav,
+  Button,
+} from 'react-bootstrap';
 
-import { Link } from 'react-router-dom';
+import { RegistrationView } from "../registration-view/registration-view";
+import { LoginView } from '../login-view/login-view';
+import MoviesList from '../movies-list/movies-list.jsx';
+import { MovieView } from '../movie-view/movie-view';
+import { DirectorView } from '../director-view/director-view';
+import { GenreView } from '../genre-view/genre-view';
+import { ProfileView } from '../profile-view/profile-view';
 
-import './movie-view.scss';
+import './main-view.scss';
 
-export class MovieView extends React.Component {
-
+export class MainView extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {};
   }
 
-  handleAddFavorite(e, movie) {
-    e.preventDefault();
-    const username = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
-    axios({
-      method: 'post',
-      url: `https://murphmovies.herokuapp.com/users/${username}/Movies/${movie._id}`,
-      headers: { Authorization: `Bearer ${token}` }
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    let user = localStorage.getItem('user')
+    if (accessToken !== null) {
+      this.props.setUser(user);
+      this.getMovies(accessToken);
+    }
+  }
+
+  onLoggedIn(authData) {
+    this.props.setUser(authData.user.Username);
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);
+  }
+
+  onLoggedOut(user) {
+    localStorage.clear();
+    window.open('/client', '_self');
+    this.props.setUser(user);
+  }
+
+  viewButtons(view) {
+    this.props.setButton(view);
+  }
+
+  getMovies(token) {
+    axios.get('https://murphmovies.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}` },
     })
-      .then(res => {
-        console.log(`${movie.Title} was add to Favorites`);
-      }).catch(function (err) {
-        console.log(err)
+      .then(response => {
+        this.props.setMovies(response.data);
       })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
-    const { movie } = this.props;
 
-    if (!movie) return null;
+    let { movies, user, button } = this.props;
+    let username = localStorage.getItem('user');
+
+    if (!movies) return <Container className="main-view" fluid="true" />;
 
     return (
-      <Container className="movie-view">
-        <img className="movieView-poster" src={movie.ImagePath} />
-        <div className="movie-title">
-          <span className="value">{movie.Title}</span>
-        </div>
-        <div className="movie-description">
-          <span className="label">Description: </span>
-          <span className="value">{movie.Description}</span>
-        </div>
-        <div className="movie-genre">
-          <span className="label">Genre: </span>
-          <span className="value">{movie.Genre.Name}</span>
-        </div>
-        <div className="movie-director">
-          <span className="label">Director: </span>
-          <span className="value">{movie.Director.Name}</span>
-        </div>
-        <br></br>
-        <Container className="button-container">
-          <Link to={`/directors/${movie.Director.Name}`}>
-            <Button className="director-button" size="lg">Director Info</Button>
-          </Link>
-          <Link to={`/genres/${movie.Genre.Name}`}>
-            <Button className="genre-button" size="lg">Genre Info</Button>
-          </Link>
+      <Router basename="/client">
+        <Container className="main-view" fluid="true">
+          <Navbar expand="lg">
+            <Navbar.Brand as={Link} to="/">Murph's Movie API</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="main-nav">
+                <Nav.Link as={Link} to="/">Home</Nav.Link>
+                <Nav.Link as={Link} to={`/users/${username}`}>Profile</Nav.Link>
+                <Button size="sm" block onClick={() => this.onLoggedOut()}>
+                  <b>Log Out</b>
+                </Button>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
           <br></br>
-          <br></br>
-          <Button size="lg" block className="favorite-button" value={movie._id}
-            onClick={(e) => this.handleAddFavorite(e, movie)} > Add to Favorites</Button>
-          <Link to={`/`}>
-            <Button className="movies-button" size="lg" block>Back</Button>
-          </Link>
-        </Container >
-      </Container >
+          <Route exact path="/" render={() => {
+            if (!user)
+              return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
+            return <MoviesList movies={movies} />;
+          }} />
+          <Route path="/register" render={() => <RegistrationView />} />
+          <Route exact path="/movies/:movieId" render={({ match }) =>
+            <MovieView movie={movies.find(m => m._id === match.params.movieId)} />} />
+          <Route exact path="/genres/:name" render={({ match }) => {
+            if (!movies) return <Container className="main-view" />;
+            return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} />
+          }} />
+          <Route exact path="/directors/:name" render={({ match }) => {
+            if (!movies) return <Container className="main-view" />;
+            return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} />
+          }} />
+          <Route exact path="/users/:username" render={() => {
+            if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+            if (movies.length === 0) return <Container className="main-view" />;
+            return <ProfileView movies={movies} onLoggedOut={user => this.onLoggedOut(!user)} />
+          }} />
+        </Container>
+      </Router >
     );
   }
 }
+
+let mapStateToProps = state => {
+  return { movies: state.movies, user: state.user, button: state.button }
+}
+
+export default connect(mapStateToProps, { setMovies, setUser, setButton })(MainView);
+
+MainView.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      Title: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired,
+      Genre: PropTypes.shape({
+        Name: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired
+      }),
+      Director: PropTypes.shape({
+        Name: PropTypes.string.isRequired,
+        // imageUrl: PropTypes.string.isRequired,
+        Bio: PropTypes.string.isRequired,
+        Birth: PropTypes.string.isRequired
+      }),
+      ImagePath: PropTypes.string.isRequired,
+      Featured: PropTypes.bool.isRequired
+    })
+  ),
+  user: PropTypes.string.isRequired
+};
