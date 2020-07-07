@@ -79,22 +79,19 @@ export class MainView extends React.Component {
     return (
       <Router basename="/client">
         <Container className="main-view" fluid="true">
-          {this.props.user ?
-            <Navbar className="navbar" expand="lg">
-              <h1 className="main-title">Murph's Movie API</h1>
-              {this.props.user && window.location.href.includes('users') && button ?
-                <Link to={`/`}>
-                  <Button className="main-back-button" onClick={() => this.switchButtons(false)}>Back</Button>
-                </Link> :
-                <Link to={`/users/${username}`}>
-                  <Button className="profile-button" onClick={() => this.switchButtons(true)}>Profile</Button>
-                </Link>}
-              <Link to={`/`}>
-                <Button className="logout-button" onClick={user => this.onLoggedOut(!user)}>Logout</Button>
-              </Link>
-            </Navbar>
-            : null
-          }
+          <Navbar expand="lg">
+            <Navbar.Brand as={Link} to="/">Murph's Movie API</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                <Nav.Link as={Link} to="/">Home</Nav.Link>
+                <Nav.Link as={Link} to={`/users/${username}`}>Profile</Nav.Link>
+                <Button size="sm" onClick={() => this.onLoggedOut()}>
+                  <b>Log Out</b>
+                </Button>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
           <br></br>
           <Route exact path="/" render={() => {
             if (!user)

@@ -54462,11 +54462,12 @@ function LoginView(props) {
 
     e.preventDefault();
 
-    _axios.default.post('https://murphmovies.herokuapp.com/login', {
+    _axios.default.post("https://murphmovies.herokuapp.com/login", null, {
       Username: username,
       Password: password
     }).then(function (response) {
       var data = response.data;
+      console.log(data);
 
       if (!response.data.user) {
         setLogin(true);
@@ -54478,12 +54479,12 @@ function LoginView(props) {
     });
   };
 
-  var setUsernameAndLogin = function setUsernameAndLogin(e) {
+  var setLoginUsername = function setLoginUsername(e) {
     setUsername(e.target.value);
     setLogin(null);
   };
 
-  var setPasswordAndLogin = function setPasswordAndLogin(e) {
+  var setLoginPassword = function setLoginPassword(e) {
     setPassword(e.target.value);
     setLogin(null);
   };
@@ -54503,30 +54504,27 @@ function LoginView(props) {
   }, _react.default.createElement(_Form.default.Label, null, "Username:"), _react.default.createElement(_Form.default.Control, {
     type: "text",
     placeholder: "Enter Username",
-    pattern: "^[a-zA-Z0-9]{6,}",
+    pattern: "[a-zA-Z0-9]{6}",
+    title: "Username must contain at least 6 characters and may only include numbers, \r lowercase letters, and uppercase letters, e.g. User12.",
     required: true,
     value: username,
     onChange: function onChange(e) {
-      return setUsernameAndLogin(e);
+      return setLoginUsername(e);
     }
-  }), _react.default.createElement(_Form.default.Control.Feedback, {
-    type: "invalid"
-  }, "Username Must contain at least 6 characters and may only include numbers, lowercase letters, and uppercase letters, e.g. User12.")), _react.default.createElement(_Form.default.Group, {
+  })), _react.default.createElement(_Form.default.Group, {
     controlId: "formPassword"
   }, _react.default.createElement(_Form.default.Label, null, "Password:"), _react.default.createElement(_Form.default.Control, {
     type: "password",
     placeholder: "Enter Password",
-    value: password,
+    pattern: "[a-zA-Z0-9]{8}",
+    title: "Password must contain at least 8 characters and may only include numbers, \r lowercase letters, and uppercase letters, e.g. Pword1234.",
     required: true,
+    value: password,
     onChange: function onChange(e) {
-      return setPasswordAndLogin(e);
+      return setLoginPassword(e);
     }
-  }), _react.default.createElement(_Form.default.Control.Feedback, {
-    type: "invalid"
-  }, "Password is Required."), !login ? null : _react.default.createElement(_Form.default.Text, {
-    className: "idiot-message"
-  }, "Incorrect Username or Password.")), _react.default.createElement(_Button.default, {
-    className: "submit-button",
+  })), _react.default.createElement(_Button.default, {
+    className: "submit-login",
     type: "submit",
     block: true
   }, "Login"), _react.default.createElement(_Form.default.Group, {
@@ -55582,33 +55580,29 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_Container.default, {
         className: "main-view",
         fluid: "true"
-      }, this.props.user ? _react.default.createElement(_reactBootstrap.Navbar, {
-        className: "navbar",
+      }, _react.default.createElement(_reactBootstrap.Navbar, {
         expand: "lg"
-      }, _react.default.createElement("h1", {
-        className: "main-title"
-      }, "Murph's Movie API"), this.props.user && window.location.href.includes('users') && button ? _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_reactBootstrap.Navbar.Brand, {
+        as: _reactRouterDom.Link,
         to: "/"
-      }, _react.default.createElement(_reactBootstrap.Button, {
-        className: "main-back-button",
-        onClick: function onClick() {
-          return _this2.switchButtons(false);
-        }
-      }, "Back")) : _react.default.createElement(_reactRouterDom.Link, {
+      }, "Murph's Movie API"), _react.default.createElement(_reactBootstrap.Navbar.Toggle, {
+        "aria-controls": "basic-navbar-nav"
+      }), _react.default.createElement(_reactBootstrap.Navbar.Collapse, {
+        id: "basic-navbar-nav"
+      }, _react.default.createElement(_reactBootstrap.Nav, {
+        className: "mr-auto"
+      }, _react.default.createElement(_reactBootstrap.Nav.Link, {
+        as: _reactRouterDom.Link,
+        to: "/"
+      }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
+        as: _reactRouterDom.Link,
         to: "/users/".concat(username)
-      }, _react.default.createElement(_reactBootstrap.Button, {
-        className: "profile-button",
+      }, "Profile"), _react.default.createElement(_reactBootstrap.Button, {
+        size: "sm",
         onClick: function onClick() {
-          return _this2.switchButtons(true);
+          return _this2.onLoggedOut();
         }
-      }, "Profile")), _react.default.createElement(_reactRouterDom.Link, {
-        to: "/"
-      }, _react.default.createElement(_reactBootstrap.Button, {
-        className: "logout-button",
-        onClick: function onClick(user) {
-          return _this2.onLoggedOut(!user);
-        }
-      }, "Logout"))) : null, _react.default.createElement("br", null), _react.default.createElement(_reactRouterDom.Route, {
+      }, _react.default.createElement("b", null, "Log Out"))))), _react.default.createElement("br", null), _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/",
         render: function render() {
@@ -55918,7 +55912,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62942" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65226" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

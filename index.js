@@ -9,6 +9,8 @@ const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
+const Directors = Models.Director;
+const Genres = Models.Genre;
 
 const path = require('path');
 
@@ -28,14 +30,12 @@ mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnified
 // Middleware
 app.use(express.static('public'));
 app.use('/client', express.static(path.join(__dirname, 'client', 'dist')));
-app.use(morgan('common'));
-app.use(bodyParser.json());
-
-// GET requests
-
 app.get('/client/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
+
+app.use(morgan('common'));
+app.use(bodyParser.json());
 
 // Gets data for all movies
 app.get('/movies', passport.authenticate('jwt', { session: false }),
