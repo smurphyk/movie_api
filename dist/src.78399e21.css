@@ -93,10 +93,10 @@ Button:hover {
 .movie-title {
   border: 5px outset #e93d04;
   border-radius: 15px;
-  width: 18rem;
+  width: 30rem;
   font-size: 200%;
   color: #e93d04;
-  padding: 5px 0;
+  padding: 5px;
 }
 
 .button-container {
@@ -220,6 +220,7 @@ Button:hover {
   border: 8px groove #e93d04;
   border-radius: 10px;
   padding: 4%;
+  text-align: center;
 }
 
 h1 {
@@ -232,12 +233,8 @@ h1 {
   font-weight: bold;
   display: block;
   margin: 15px auto;
-  font-size: 120%;
+  font-size: 140%;
   text-decoration: underline;
-}
-
-.favs-container {
-  text-align: left;
 }
 
 .update, .remove-favorite, .delete-user, .back-button {
@@ -264,7 +261,7 @@ h1 {
 .favorites-item {
   display: block;
   list-style-type: none;
-  text-align: left;
+  text-align: center;
   margin: 15px auto;
   font-weight: bold;
   font-size: 110%;
@@ -281,6 +278,17 @@ Label {
 
 h1 {
   margin-top: 15px;
+}
+
+.profile-tabs {
+  font-weight: bold;
+  color: #000;
+}
+
+.tab-item {
+  background-color: #e93d04;
+  border: 2px outset #000;
+  border-radius: 10px;
 }
 .main-view {
   background-color: #000;

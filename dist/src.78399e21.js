@@ -54749,7 +54749,7 @@ function MoviesList(props) {
 
   if (visibilityFilter !== '') {
     filteredMovies = movies.filter(function (m) {
-      return m.Title.includes(visibilityFilter);
+      return m.Title.toLowerCase().includes(visibilityFilter.toLowerCase());
     });
   }
 
@@ -55354,7 +55354,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 
       var _this$state = this.state,
           Username = _this$state.Username,
-          Password = _this$state.Password,
           Email = _this$state.Email,
           Birthday = _this$state.Birthday,
           FavoriteMovies = _this$state.FavoriteMovies,
@@ -55366,9 +55365,12 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         defaultActiveKey: "profile",
         className: "profile-tabs"
       }, _react.default.createElement(_reactBootstrap.Tab, {
+        className: "tab-item",
         eventKey: "profile",
         title: "Profile"
-      }, _react.default.createElement("h1", null, "My Profile"), _react.default.createElement(_Card.default, {
+      }, _react.default.createElement("h1", {
+        className: "profile-title"
+      }, Username, "'s Profile"), _react.default.createElement(_Card.default, {
         className: "profile-card"
       }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
@@ -55413,6 +55415,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           return _this4.handleDeregister(e);
         }
       }, "Delete Profile"))))), _react.default.createElement(_reactBootstrap.Tab, {
+        className: "tab-item",
         eventKey: "update",
         title: "Update"
       }, _react.default.createElement("h1", null, "Update Profile"), _react.default.createElement(_Card.default, {
@@ -55426,7 +55429,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         }
       }, _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicUsername"
-      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), _react.default.createElement(_reactBootstrap.Form.Control, {
+      }, _react.default.createElement(_reactBootstrap.Form.Label, {
+        className: "form-label"
+      }, "Username:"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
         placeholder: "Change Username",
         defaultValue: Username,
@@ -55435,7 +55440,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         }
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicPassword"
-      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
+      }, _react.default.createElement(_reactBootstrap.Form.Label, {
+        className: "form-label"
+      }, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "password",
         placeholder: "Enter Password",
         defaultValue: "",
@@ -55445,7 +55452,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         required: true
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicEmail"
-      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
+      }, _react.default.createElement(_reactBootstrap.Form.Label, {
+        className: "form-label"
+      }, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "email",
         placeholder: "Change Email",
         defaultValue: Email,
@@ -55456,7 +55465,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         type: "invalid"
       }, "A password is required")), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicBirthday"
-      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Birthday"), _react.default.createElement(_reactBootstrap.Form.Control, {
+      }, _react.default.createElement(_reactBootstrap.Form.Label, {
+        className: "form-label"
+      }, "Birthday"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "date",
         placeholder: "Change Birthday",
         defaultValue: Birthday,

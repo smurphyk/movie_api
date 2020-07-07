@@ -163,14 +163,14 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { Username, Password, Email, Birthday, FavoriteMovies, validated } = this.state;
+    const { Username, Email, Birthday, FavoriteMovies, validated } = this.state;
     const { movies } = this.props;
 
     return (
       <Container className="profile-view">
         <Tabs defaultActiveKey="profile" className="profile-tabs">
-          <Tab eventKey="profile" title="Profile">
-            <h1>My Profile</h1>
+          <Tab className="tab-item" eventKey="profile" title="Profile">
+            <h1 className="profile-title">{Username}'s Profile</h1>
             <Card className="profile-card">
               <Card.Body>
                 <Card.Text className="profile-item">Username:</Card.Text>{Username}
@@ -201,13 +201,13 @@ export class ProfileView extends React.Component {
               </Card.Body>
             </Card >
           </Tab>
-          <Tab eventKey="update" title="Update">
+          <Tab className="tab-item" eventKey="update" title="Update">
             <h1>Update Profile</h1>
             <Card className="update-card">
               <Card.Body>
                 <Form noValidate validated={validated} className="update-form" onSubmit={(e) => this.handleUpdate(e, this.Username, this.Password, this.Email, this.Birthday)}>
                   <Form.Group controlId="formBasicUsername">
-                    <Form.Label>Username:</Form.Label>
+                    <Form.Label className="form-label">Username:</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Change Username"
@@ -216,7 +216,7 @@ export class ProfileView extends React.Component {
                     />
                   </Form.Group>
                   <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label className="form-label">Password</Form.Label>
                     <Form.Control
                       type="password"
                       placeholder="Enter Password"
@@ -226,7 +226,7 @@ export class ProfileView extends React.Component {
                     />
                   </Form.Group>
                   <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label className="form-label">Email</Form.Label>
                     <Form.Control
                       type="email"
                       placeholder="Change Email"
@@ -238,7 +238,7 @@ export class ProfileView extends React.Component {
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group controlId="formBasicBirthday">
-                    <Form.Label>Birthday</Form.Label>
+                    <Form.Label className="form-label">Birthday</Form.Label>
                     <Form.Control
                       type="date"
                       placeholder="Change Birthday"
