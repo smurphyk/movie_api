@@ -79,7 +79,7 @@ Button:hover {
   color: #000;
   font-weight: bold;
   font-size: 120%;
-  width: 40rem;
+  width: 35rem;
   margin: 0 auto;
 }
 
@@ -93,7 +93,7 @@ Button:hover {
 .movie-title {
   border: 5px outset #e93d04;
   border-radius: 15px;
-  width: 30rem;
+  width: 25rem;
   font-size: 200%;
   color: #e93d04;
   padding: 5px;
@@ -225,8 +225,7 @@ Button:hover {
 
 h1 {
   text-align: center;
-  text-decoration: underline;
-  margin-bottom: 5%;
+  margin-bottom: 4%;
 }
 
 .profile-item {
