@@ -12,6 +12,11 @@ $font-stack: sans-serif;
   padding: 4%;
 }
 
+.director-card {
+  border: 4px outset $primaryColor;
+  border-radius: 10px;
+}
+
 .director-name {
   color: $secondaryColor;
   font-size: 200%;

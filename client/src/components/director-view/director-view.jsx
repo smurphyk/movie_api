@@ -21,14 +21,25 @@ export class DirectorView extends React.Component {
 
     if (!director) return null;
 
+    let birthday = new Date(director.Birthday);
+    let age = calculateAge(birthday);
+
+    function calculateAge(birthday) {
+      var ageDifMs = Date.now() - birthday;
+      var ageDate = new Date(ageDifMs);
+      return Math.abs(ageDate.getUTCFullYear() - 1950);
+    }
+
     return (
       <Container className="director-view">
         <Card className="director-card">
+          <Card.Img variant="top" src={director.ImagePath} />
           <Card.Body className="director-body">
             <Card.Title className='director-name'>{director.Name}</Card.Title>
-            <Card.Text>Bio: {director.Bio}</Card.Text>
-            <Card.Text> Birth Year: {director.Birth}</Card.Text>
-            <Card.Text> Death Year: {director.Death}</Card.Text>
+            <Card.Text>{director.Bio}</Card.Text>
+            <ListGroup variant="flush">
+              <ListGroup.Item>Birthday: {birthday.toDateString()} ({age} years old)</ListGroup.Item>
+            </ListGroup>
             <Link to={`/`}>
               <Button className="back-button" variant="outline-link" size="lg">Back</Button>
             </Link>
@@ -41,6 +52,7 @@ export class DirectorView extends React.Component {
 
 DirectorView.propTypes = {
   Director: PropTypes.shape({
+    ImagePath: PropTypes.string.isRequired,
     Name: PropTypes.string.isRequired,
     Bio: PropTypes.string.isRequired
   }).isRequired
