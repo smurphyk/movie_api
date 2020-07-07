@@ -1,91 +1,96 @@
-const express = require('express');
-const app = express();
-const morgan = require('morgan');
+const express = require('express'),
+  morgan = require('morgan'),
+  bodyParser = require('body-parser'),
+  uuid = require('uuid'),
+  mongoose = require('mongoose'),
+  Models = require('./models.js'),
+  passport = require('passport'),
+  app = express(),
+  path = require('path');
 
-const bodyParser = require('body-parser');
-const uuid = require('uuid');
-const mongoose = require('mongoose');
+const cors = require('cors');
+const { check, validationResult } = require('express-validator');
 
-const Models = require('./models.js');
+require('./passport');
+
 const Movies = Models.Movie;
 const Users = Models.User;
 const Directors = Models.Director;
 const Genres = Models.Genre;
 
-const path = require('path');
-
-const cors = require('cors');
-app.use(cors());
-
-const { check, validationResult } = require('express-validator');
-
-const passport = require('passport');
-require('./passport');
-
-const auth = require('./auth')(app);
-
 //mongoose.connect('mongodb://localhost:27017/movie_apiDB', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-app.use(express.static('public'));
+app.use(morgan('common'));
+app.use(bodyParser.json());
+app.use(cors());
+auth = require('./auth')(app);
+
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'https://murphmovies.herokuapp.com'];
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      var message = 'The CORS policy for this application does not allow access from origin ' + origin;
+      return callback(new Error(message), false);
+    }
+    return callback(null, true);
+  }
+}));
+
 app.use('/client', express.static(path.join(__dirname, 'client', 'dist')));
 app.get('/client/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
+app.use(express.static('public'));
 
-app.use(morgan('common'));
-app.use(bodyParser.json());
+app.get('/', (req, res) => {
+  res.send("WELCOME TO THE WONDERFUL WORLD OF MURPH'S MOVIES! WHEN IT COMES TO MOVIES, IF WE DON'T HAVE IT, YOU DON'T NEED IT!")
+});
 
 app.get('/movies', passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Movies.find()
-      .then((movies) => {
-        res.status(201).json(movies);
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).send('Error: ' + error);
+    Movies.find({})
+      .populate('Director')
+      .populate('Genre')
+      .exec((err, movie) => {
+        if (err) return console.error(err);
+        res.status(201).json(movie)
       });
   });
 
 app.get('/movies/:title', passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Movies.findOne({ Title: req.params.title })
-      .then((movie) => {
-        res.status(201).json(movie);
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).send('Error: ' + error);
+    Movies.findOne({ Title: req.params.title }, '-_id')
+      .populate('director')
+      .populate('genre')
+      .exec((err, movie) => {
+        if (err) return console.error(err);
+        res.status(201).json(movie)
       });
-  }
-);
+  });
 
 app.get('/directors/:name', passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Movies.findOne({ 'Director.Name': req.params.name })
-      .then((movies) => {
-        res.status(201).json(movies.Director);
+    Directors.findOne({ Name: req.params.name })
+      .then((director) => {
+        res.status(201).json(director)
       })
-      .catch((error) => {
-        cosole.error(error);
-        res.status(500).send('Error: ' + error);
-      });
-  }
-);
+      .catch((err) => {
+        res.status(500).send("Error: " + err);
+      })
+  });
 
 app.get('/genres/:name', passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Movies.findOne({ 'Genre.Name': req.params.name })
-      .then((movies) => {
-        res.status(201).json(movies.Genre);
+    Genres.findOne({ Name: req.params.name })
+      .then((genre) => {
+        res.status(201).json(genre)
       })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).send('Error: ' + error);
-      });
-  }
-);
+      .catch((err) => {
+        res.status(500).sent("Error: " + err);
+      })
+  });
 
 app.get('/users', passport.authenticate('jwt', { session: false }),
   (req, res) => {
