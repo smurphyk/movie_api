@@ -10,7 +10,6 @@ import {
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { setMovies, setUser } from '../../actions/actions';
 
 import { LoginView } from '../login-view/login-view';
@@ -67,8 +66,7 @@ export class MainView extends React.Component {
   render() {
 
     let { movies, user } = this.props;
-
-    let username = localStorage.getItem('user');
+    if (!movies) return <Container className="main-view" fluid="true" />
 
     return (
       <Router basename="/client">
