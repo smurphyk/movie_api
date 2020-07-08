@@ -48,9 +48,14 @@ export class MainView extends React.Component {
   }
 
   onLoggedOut(user) {
-    localStorage.clear();
-    window.open('/client', '_self');
-    this.props.setUser(user);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.props.setUser(null);
+    window.open('/', '_self');
+  }
+
+  viewButtons(view) {
+    this.props.setButton(view);
   }
 
   getMovies(token) {
@@ -67,7 +72,7 @@ export class MainView extends React.Component {
 
   render() {
 
-    let { movies, user } = this.props;
+    let { movies, user, button } = this.props;
     let username = localStorage.getItem('user');
 
     if (!movies) return <Container className="main-view" fluid="true" />;
@@ -80,9 +85,13 @@ export class MainView extends React.Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="main-nav">
-                <Nav.Link className="nav-link" as={Link} to={`/`}>Home</Nav.Link>
-                <Nav.Link className="nav-link" as={Link} to={`/users/${username}`}>Profile</Nav.Link>
-                <br></br>
+                {this.props.user && window.location.href.includes('users') && button ?
+                  <Link to={`/`}>
+                    <Button className="home-button" onClick={() => this.viewButtons(false)}>Home</Button>
+                  </Link> :
+                  <Link to={`/users/${username}`}>
+                    <Button className="profile-button" onClick={() => this.viewButtons(true)}>Profile</Button>
+                  </Link>}
                 <Button size="md" className="logout-button" onClick={() => this.onLoggedOut()}>
                   <b>Log Out</b>
                 </Button>
