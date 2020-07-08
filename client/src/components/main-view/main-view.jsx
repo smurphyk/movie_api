@@ -72,7 +72,7 @@ export class MainView extends React.Component {
 
   render() {
 
-    let { movies, user, button } = this.props;
+    let { movies, user } = this.props;
     let username = localStorage.getItem('user');
 
     if (!movies) return <Container className="main-view" fluid="true" />;
@@ -85,13 +85,12 @@ export class MainView extends React.Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="main-nav">
-                {this.props.user && window.location.href.includes('users') && button ?
-                  <Link to={`/`}>
-                    <Button className="home-button" onClick={() => this.viewButtons(true)}>Home</Button>
-                  </Link> :
-                  <Link to={`/users/${username}`}>
-                    <Button className="profile-button" onClick={() => this.viewButtons(true)}>Profile</Button>
-                  </Link>}
+                <Link to={`/`}>
+                  <Button className="home-button" onClick={() => this.viewButtons(true)}>Home</Button>
+                </Link>
+                <Link to={`/users/${username}`}>
+                  <Button className="profile-button" onClick={() => this.viewButtons(true)}>Profile</Button>
+                </Link>
                 <Button size="md" className="logout-button" onClick={() => this.onLoggedOut()}>
                   <b>Log Out</b>
                 </Button>
