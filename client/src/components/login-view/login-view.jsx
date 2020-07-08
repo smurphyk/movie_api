@@ -9,17 +9,8 @@ import { Link } from 'react-router-dom';
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [validated, setValidated] = useState('');
 
   const handleSubmit = (e) => {
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-      setLogin(null);
-      setValidated(true);
-      return;
-    }
     e.preventDefault();
 
     axios.post(`https://murphmovies.herokuapp.com/login`, null, {
@@ -42,7 +33,7 @@ export function LoginView(props) {
   return (
     <Container className="login-view" fluid="true">
       <h1 className="login-title">Murph's Movies Login</h1>
-      <Form noValidate validated={validated} className="login-form">
+      <Form className="login-form">
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
@@ -69,7 +60,7 @@ export function LoginView(props) {
             A password of at least 8 alphanumeric characters is required.
             </Form.Control.Feedback>
         </Form.Group>
-        <Button className="submit-login" type="submit" block onClick={handleSubmit}>
+        <Button className="submit-login" variant="button" type="submit" block onClick={handleSubmit}>
           Login
           </Button>
         <Form.Group className="registration" controlId="formRegistration">

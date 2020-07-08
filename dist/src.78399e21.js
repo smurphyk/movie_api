@@ -54310,22 +54310,7 @@ function LoginView(props) {
       password = _useState4[0],
       setPassword = _useState4[1];
 
-  var _useState5 = (0, _react.useState)(''),
-      _useState6 = _slicedToArray(_useState5, 2),
-      validated = _useState6[0],
-      setValidated = _useState6[1];
-
   var handleSubmit = function handleSubmit(e) {
-    var form = e.currentTarget;
-
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-      setLogin(null);
-      setValidated(true);
-      return;
-    }
-
     e.preventDefault();
 
     _axios.default.post("https://murphmovies.herokuapp.com/login", null, {
@@ -54347,8 +54332,6 @@ function LoginView(props) {
   }, _react.default.createElement("h1", {
     className: "login-title"
   }, "Murph's Movies Login"), _react.default.createElement(_Form.default, {
-    noValidate: true,
-    validated: validated,
     className: "login-form"
   }, _react.default.createElement(_Form.default.Group, {
     controlId: "formUsername"
@@ -54378,6 +54361,7 @@ function LoginView(props) {
     type: "invalid"
   }, "A password of at least 8 alphanumeric characters is required.")), _react.default.createElement(_Button.default, {
     className: "submit-login",
+    variant: "button",
     type: "submit",
     block: true,
     onClick: handleSubmit
@@ -55567,21 +55551,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "getMovies",
-    value: function getMovies(token) {
-      var _this = this;
-
-      _axios.default.get('https://murphmovies.herokuapp.com/movies', {
-        headers: {
-          Authorization: "Bearer ".concat(token)
-        }
-      }).then(function (response) {
-        _this.props.setMovies(response.data);
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-  }, {
     key: "onLoggedIn",
     value: function onLoggedIn(authData) {
       this.props.setUser(authData.user.Username);
@@ -55596,6 +55565,21 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       localStorage.removeItem('user');
       this.props.setUser(!user);
       window.open('/client', '_self');
+    }
+  }, {
+    key: "getMovies",
+    value: function getMovies(token) {
+      var _this = this;
+
+      _axios.default.get('https://murphmovies.herokuapp.com/movies', {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        _this.props.setMovies(response.data);
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   }, {
     key: "render",

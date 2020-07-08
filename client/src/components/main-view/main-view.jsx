@@ -38,18 +38,6 @@ export class MainView extends React.Component {
     }
   }
 
-  getMovies(token) {
-    axios.get('https://murphmovies.herokuapp.com/movies', {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then(response => {
-        this.props.setMovies(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
   onLoggedIn(authData) {
     this.props.setUser(authData.user.Username);
     localStorage.setItem('token', authData.token);
@@ -62,6 +50,18 @@ export class MainView extends React.Component {
     localStorage.removeItem('user');
     this.props.setUser(!user)
     window.open('/client', '_self');
+  }
+
+  getMovies(token) {
+    axios.get('https://murphmovies.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(response => {
+        this.props.setMovies(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
