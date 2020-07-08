@@ -81,13 +81,13 @@ export class MainView extends React.Component {
       <Router basename="/client">
         <Container className="main-view" fluid="true">
           <Navbar expand="lg">
-            <Navbar.Brand as={Link} to="/">Murph's Movie API</Navbar.Brand>
+            <Navbar.Brand as={Link} to={`/`}>Murph's Movie API</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="main-nav">
                 {this.props.user && window.location.href.includes('users') && button ?
                   <Link to={`/`}>
-                    <Button className="home-button" onClick={() => this.viewButtons(false)}>Home</Button>
+                    <Button className="home-button" onClick={() => this.viewButtons(true)}>Home</Button>
                   </Link> :
                   <Link to={`/users/${username}`}>
                     <Button className="profile-button" onClick={() => this.viewButtons(true)}>Profile</Button>
