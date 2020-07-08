@@ -84,7 +84,7 @@ export class MainView extends React.Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="main-nav">
-                <Nav.Link className="nav-link" as={Link} to="/">Home</Nav.Link>
+                <Nav.Link className="nav-link" as={Link} to={`/client`}>Home</Nav.Link>
                 <Nav.Link className="nav-link" as={Link} to={`/users/${username}`}>Profile</Nav.Link>
                 <br></br>
                 <Button size="md" className="logout-button" onClick={() => this.onLoggedOut()}>
@@ -95,8 +95,7 @@ export class MainView extends React.Component {
           </Navbar>
           <br></br>
           <Route exact path="/client" render={() => {
-            if (!user)
-              return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
+            if (!user) return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
             return <MoviesList movies={movies} />;
           }} />
           <Route path="/register" render={() => <RegistrationView />} />
