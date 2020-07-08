@@ -23,11 +23,9 @@ function MoviesList(props) {
 
   if (!movies) return <Container className="main-view" />;
 
-  return <Row className="movies-row">
-    <Container className="movies-list">
-      <VisibilityFilterInput visibilityFilter={visibilityFilter} />
-      {filteredMovies.map(m => <MovieCard key={m._id} movie={m} />)}
-    </Container>
+  return <Row className="movies-list">
+    <VisibilityFilterInput visibilityFilter={visibilityFilter} />
+    {filteredMovies.map(m => <MovieCard key={m._id} movie={m} />)}
   </Row>;
 }
 
