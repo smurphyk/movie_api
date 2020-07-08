@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { setMovies, setUser, setButton } from '../../actions/actions';
 
