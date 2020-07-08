@@ -22,9 +22,6 @@ module.exports = (router) => {
             user: user
           });
         }
-        if (error) {
-          return res.status(500).send(error)
-        }
         req.login(user, { session: false }, (error) => {
           if (error) {
             res.send(error);
