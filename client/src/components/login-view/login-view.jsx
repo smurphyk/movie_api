@@ -42,7 +42,7 @@ export function LoginView(props) {
             pattern="[a-zA-Z0-9]{6,}"
             required
             value={username}
-            onChange={(e) => setUsername(e.target.value)} />
+            onChange={e => setUsername(e.target.value)} />
           <Form.Control.Feedback type="invalid">
             Username must be at least 6 alphanumeric characters long.
             </Form.Control.Feedback>
@@ -55,7 +55,7 @@ export function LoginView(props) {
             pattern="[a-zA-Z0-9]{8,}"
             required
             value={password}
-            onChange={(e) => setPassword(e.target.value)} />
+            onChange={e => setPassword(e.target.value)} />
           <Form.Control.Feedback type="invalid">
             A password of at least 8 alphanumeric characters is required.
             </Form.Control.Feedback>
