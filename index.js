@@ -44,10 +44,6 @@ app.get('/client/*', (req, res) => {
 });
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-  res.send("WELCOME TO THE WONDERFUL WORLD OF MURPH'S MOVIES! WHEN IT COMES TO MOVIES, IF WE DON'T HAVE IT, YOU DON'T NEED IT!")
-});
-
 app.get('/movies', passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Movies.find({})
