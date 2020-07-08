@@ -46,25 +46,28 @@ app.use(express.static('public'));
 
 app.get('/movies', passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Movies.find({})
-      .populate('Director')
-      .populate('Genre')
-      .exec((err, movie) => {
-        if (err) return console.error(err);
-        res.status(201).json(movie)
+    Movies.find()
+      .then((movies) => {
+        res.status(201).json(movies);
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send('Error: ' + error);
       });
   });
 
 app.get('/movies/:title', passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Movies.findOne({ Title: req.params.title }, '-_id')
-      .populate('director')
-      .populate('genre')
-      .exec((err, movie) => {
-        if (err) return console.error(err);
-        res.status(201).json(movie)
+    Movies.findOne({ Title: req.params.title })
+      .then((movie) => {
+        res.status(201).json(movie);
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send('Error: ' + error);
       });
-  });
+  }
+);
 
 app.get('/directors/:name', passport.authenticate('jwt', { session: false }),
   (req, res) => {
