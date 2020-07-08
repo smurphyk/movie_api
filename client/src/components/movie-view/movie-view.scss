@@ -13,33 +13,24 @@ $font-stack: sans-serif;
 }
 
 .movie-title {
-  margin: 3vh auto;
+  margin: 3rem auto;
 }
 
 .movie-description {
   color: #000;
 }
 
-.movieView-poster {
-    border: 7px outset #cecece;
-    border-radius: 15px;
-    width: 25vw;
+.movie-poster {
+  width: 50%;
+  margin: 0 auto;
+  border: 5px outset $secondaryColor;
+  border-radius: 15px;
+  margin-top: 1rem;
 }
 
-.movie-genre {
-  margin-top: 3vh;
-}
-
-.director-button, .genre-button {
-  color: #000;
-  background-color: $secondaryColor;
-  border: 2px solid #000;
-  border-radius: 5px;
-  padding: 5px;
-  text-align: center;
-  font-weight: bold;
-  display: inline-block;
-  margin: 0 10px 0 0;
+.movie-genre, .movie-director {
+  background-color: $primaryColor;
+  font-size: 120%;
 }
 
 .movies-button, .favorite-button {
@@ -49,12 +40,13 @@ $font-stack: sans-serif;
   border-radius: 5px;
   padding: 5px;
   text-align: center;
-  margin: 3% auto;
+  margin: 5px auto;
   font-weight: bold;  
 }
 
-.label {
+.genre-label, .director-label {
   font-weight: bold;
-  font-size: 120%;
+  font-size: 130%;
   color: $secondaryColor;
+  text-decoration: underline;
 }

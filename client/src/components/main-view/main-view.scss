@@ -9,9 +9,9 @@ $font-stack: sans-serif;
 .navbar {
   background-color: $primaryColor;
   position: static;
-  border: 1px solid $secondaryColor;
+  border: 3px outset $secondaryColor;
   border-radius: 5px;
-  margin-bottom: 5%;
+  margin: 1rem;
   font-size: 130%;
   width: 50vw;
   padding: 15px;

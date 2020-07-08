@@ -17,18 +17,30 @@ export class MovieCard extends React.Component {
     const { movie } = this.props;
 
     return (
-      <Container className="card-container">
-        <Card className="movie-card">
-          <Card.Img className="movie-poster" variant="top" src={movie.ImagePath} />
-          <Card.Body>
-            <Card.Title className="movie-title">{movie.Title}</Card.Title>
-            <Card.Text className="movie-description">{movie.Description}</Card.Text>
-            <Link to={`/movies/${movie._id}`}>
-              <Button variant="link" size="lg" block className="open-button">Details</Button>
-            </Link>
-          </Card.Body>
-        </Card>
-      </Container >
+      <Card className="movie-card">
+        <Card.Img className="movie-poster" variant="top" src={movie.ImagePath} />
+        <Card.Body>
+          <Card.Title className="movie-title">{movie.Title}</Card.Title>
+          <ListGroup variant="flush">
+            <ListGroup.Item className="movie-description">{movie.Description}</ListGroup.Item>
+            <ListGroup.Item className="button-container">
+              <Link to={`/movies/${movie._id}`}>
+                <Button variant="link" size="lg" block className="open-button">Details</Button>
+              </Link>
+            </ListGroup.Item>
+            <ListGroup.Item className="button-container">
+              <Link to={`/directors/${movie.Director.Name}`}>
+                <Button className="director-button" size="lg" block>Director Info</Button>
+              </Link>
+            </ListGroup.Item>
+            <ListGroup.Item className="button-container">
+              <Link to={`/genres/${movie.Genre.Name}`}>
+                <Button className="genre-button" size="lg" block>Genre Info</Button>
+              </Link>
+            </ListGroup.Item>
+          </ListGroup>
+        </Card.Body>
+      </Card>
     );
   }
 }

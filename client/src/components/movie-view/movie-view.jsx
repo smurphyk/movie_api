@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 import { Link } from 'react-router-dom';
 
@@ -38,40 +39,26 @@ export class MovieView extends React.Component {
     if (!movie) return null;
 
     return (
-      <Container className="movie-view">
-        <img className="movieView-poster" src={movie.ImagePath} />
-        <div className="movie-title">
-          <span className="value">{movie.Title}</span>
-        </div>
-        <div className="movie-description">
-          <span className="label">Description: </span>
-          <span className="value">{movie.Description}</span>
-        </div>
-        <div className="movie-genre">
-          <span className="label">Genre: </span>
-          <span className="value">{movie.Genre.Name}</span>
-        </div>
-        <div className="movie-director">
-          <span className="label">Director: </span>
-          <span className="value">{movie.Director.Name}</span>
-        </div>
+      <Card className="movie-view">
+        <Card.Img className="movie-poster" src={movie.ImagePath}></Card.Img>
+        <Card.Title className="movie-title">{movie.Title}</Card.Title>
+        <Card.Text className="movie-description">{movie.Description}</Card.Text>
         <br></br>
-        <Container className="button-container">
-          <Link to={`/directors/${movie.Director.Name}`}>
-            <Button className="director-button" size="lg">Director Info</Button>
-          </Link>
-          <Link to={`/genres/${movie.Genre.Name}`}>
-            <Button className="genre-button" size="lg">Genre Info</Button>
-          </Link>
-          <br></br>
-          <br></br>
-          <Button size="lg" block className="favorite-button" value={movie._id}
-            onClick={(e) => this.handleAddFavorite(e, movie)} > Add to Favorites</Button>
-          <Link to={`/`}>
-            <Button className="movies-button" size="lg" block>Back</Button>
-          </Link>
-        </Container >
-      </Container >
+        <ListGroup variant="flush">
+          <ListGroup.Item className="movie-genre"><span className="genre-label">Genre</span>
+            <br></br>
+            {movie.Genre.Name}</ListGroup.Item>
+          <ListGroup.Item className="movie-director"><span className="director-label">Director</span>
+            <br></br>
+            {movie.Director.Name}</ListGroup.Item>
+        </ListGroup>
+        <br></br>
+        <Button size="lg" className="favorite-button" value={movie._id}
+          onClick={(e) => this.handleAddFavorite(e, movie)} > Add to Favorites</Button>
+        <Link to={`/`}>
+          <Button className="movies-button" size="lg">Back</Button>
+        </Link>
+      </Card >
     );
   }
 }
