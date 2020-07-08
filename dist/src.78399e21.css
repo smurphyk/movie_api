@@ -8,17 +8,16 @@
   padding: 3%;
 }
 
-.submit-login {
+/* .submit-login {
   color: #000;
-  background-color: #e93d04;
+  background-color: $secondaryColor;
   border: 2px solid #000;
   border-radius: 5px;
   padding: 5px;
   text-align: center;
   margin-top: 5%;
   font-weight: bold;
-}
-
+} */
 .registration {
   margin-top: 5%;
 }
