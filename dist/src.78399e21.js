@@ -55598,14 +55598,10 @@ var MainView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "onLoggedOut",
     value: function onLoggedOut(user) {
-      localStorage.clear();
-      window.open('/client', '_self');
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
       this.props.setUser(user);
-    }
-  }, {
-    key: "viewButtons",
-    value: function viewButtons(view) {
-      this.props.setButton(view);
+      window.open('/', '_self');
     }
   }, {
     key: "getMovies",
@@ -55652,14 +55648,12 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_reactBootstrap.Nav, {
         className: "main-nav"
       }, _react.default.createElement(_reactBootstrap.Nav.Link, {
-        className: "nav-link",
         as: _reactRouterDom.Link,
         to: "/"
       }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
-        className: "nav-link",
         as: _reactRouterDom.Link,
         to: "/users/".concat(username)
-      }, "Profile"), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
+      }, "Profile"), _react.default.createElement(_reactBootstrap.Button, {
         size: "md",
         className: "logout-button",
         onClick: function onClick() {
@@ -55667,7 +55661,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         }
       }, _react.default.createElement("b", null, "Log Out"))))), _react.default.createElement("br", null), _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
-        path: "/",
+        path: "/client",
         render: function render() {
           if (!user) return _react.default.createElement(_loginView.LoginView, {
             onLoggedIn: function onLoggedIn(user) {
@@ -55972,7 +55966,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49740" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57455" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

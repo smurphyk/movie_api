@@ -50,12 +50,8 @@ export class MainView extends React.Component {
   onLoggedOut(user) {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.props.setUser(null);
+    this.props.setUser(user);
     window.open('/', '_self');
-  }
-
-  viewButtons(view) {
-    this.props.setButton(view);
   }
 
   getMovies(token) {
@@ -85,12 +81,8 @@ export class MainView extends React.Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="main-nav">
-                <Link to={`/`}>
-                  <Button className="home-button" onClick={() => this.viewButtons(true)}>Home</Button>
-                </Link>
-                <Link to={`/users/${username}`}>
-                  <Button className="profile-button" onClick={() => this.viewButtons(true)}>Profile</Button>
-                </Link>
+                <Nav.Link as={Link} to="/">Home</Nav.Link>
+                <Nav.Link as={Link} to={`/users/${username}`}>Profile</Nav.Link>
                 <Button size="md" className="logout-button" onClick={() => this.onLoggedOut()}>
                   <b>Log Out</b>
                 </Button>
