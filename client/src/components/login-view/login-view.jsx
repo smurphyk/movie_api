@@ -9,31 +9,55 @@ import { Link } from 'react-router-dom';
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [validated, setValidated] = useState('');
+  const [login, setLogin] = useState('');
 
   const handleSubmit = (e) => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+      setLogin(null);
+      setValidated(true);
+      return;
+    }
     e.preventDefault();
 
-    axios.post(`https://murphmovies.herokuapp.com/login`, null, {
-      params: {
-        Username: username,
-        Password: password
-      }
+    axios.post(`https://murphmovies.herokuapp.com/login`, {
+      Username: username,
+      Password: password
     })
       .then(response => {
         const data = response.data;
-        props.onLoggedIn(data);
+
+        if (!response.data.user) {
+          setLogin(true);
+        }
+        else {
+          props.onLoggedIn(data);
+        }
       })
       .catch(e => {
         console.log('no such user')
       });
   };
 
+  const setLoginUsername = (e) => {
+    setUsername(e.target.value);
+    setLogin(null);
+  }
+
+  const setLoginPassword = (e) => {
+    setPassword(e.target.value);
+    setLogin(null);
+  }
+
 
 
   return (
     <Container className="login-view" fluid="true">
       <h1 className="login-title">Murph's Movies Login</h1>
-      <Form className="login-form">
+      <Form noValidate validated={validated} onSubmit={handleSubmit} className="login-form">
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
@@ -42,7 +66,7 @@ export function LoginView(props) {
             pattern="[a-zA-Z0-9]{6,}"
             required
             value={username}
-            onChange={e => setUsername(e.target.value)} />
+            onChange={e => setLoginUsername(e)} />
           <Form.Control.Feedback type="invalid">
             Username must be at least 6 alphanumeric characters long.
             </Form.Control.Feedback>
@@ -55,12 +79,17 @@ export function LoginView(props) {
             pattern="[a-zA-Z0-9]{8,}"
             required
             value={password}
-            onChange={e => setPassword(e.target.value)} />
+            onChange={e => setLoginPassword(e)} />
           <Form.Control.Feedback type="invalid">
             A password of at least 8 alphanumeric characters is required.
             </Form.Control.Feedback>
+          {!login ? null
+            :
+            <Form.Text className="invalid-text">
+              Invalid Username and/or Password
+              </Form.Text>}
         </Form.Group>
-        <Button className="submit-login" variant="button" type="submit" block onClick={handleSubmit}>
+        <Button className="submit-login" type="submit" block>
           Login
           </Button>
         <Form.Group className="registration" controlId="formRegistration">

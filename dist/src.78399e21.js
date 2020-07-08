@@ -54300,20 +54300,53 @@ function LoginView(props) {
       password = _useState4[0],
       setPassword = _useState4[1];
 
+  var _useState5 = (0, _react.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      validated = _useState6[0],
+      setValidated = _useState6[1];
+
+  var _useState7 = (0, _react.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      login = _useState8[0],
+      setLogin = _useState8[1];
+
   var handleSubmit = function handleSubmit(e) {
+    var form = e.currentTarget;
+
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+      setLogin(null);
+      setValidated(true);
+      return;
+    }
+
     e.preventDefault();
 
-    _axios.default.post("https://murphmovies.herokuapp.com/login", null, {
-      params: {
-        Username: username,
-        Password: password
-      }
+    _axios.default.post("https://murphmovies.herokuapp.com/login", {
+      Username: username,
+      Password: password
     }).then(function (response) {
       var data = response.data;
-      props.onLoggedIn(data);
+
+      if (!response.data.user) {
+        setLogin(true);
+      } else {
+        props.onLoggedIn(data);
+      }
     }).catch(function (e) {
       console.log('no such user');
     });
+  };
+
+  var setLoginUsername = function setLoginUsername(e) {
+    setUsername(e.target.value);
+    setLogin(null);
+  };
+
+  var setLoginPassword = function setLoginPassword(e) {
+    setPassword(e.target.value);
+    setLogin(null);
   };
 
   return _react.default.createElement(_Container.default, {
@@ -54322,6 +54355,9 @@ function LoginView(props) {
   }, _react.default.createElement("h1", {
     className: "login-title"
   }, "Murph's Movies Login"), _react.default.createElement(_Form.default, {
+    noValidate: true,
+    validated: validated,
+    onSubmit: handleSubmit,
     className: "login-form"
   }, _react.default.createElement(_Form.default.Group, {
     controlId: "formUsername"
@@ -54332,7 +54368,7 @@ function LoginView(props) {
     required: true,
     value: username,
     onChange: function onChange(e) {
-      return setUsername(e.target.value);
+      return setLoginUsername(e);
     }
   }), _react.default.createElement(_Form.default.Control.Feedback, {
     type: "invalid"
@@ -54345,16 +54381,16 @@ function LoginView(props) {
     required: true,
     value: password,
     onChange: function onChange(e) {
-      return setPassword(e.target.value);
+      return setLoginPassword(e);
     }
   }), _react.default.createElement(_Form.default.Control.Feedback, {
     type: "invalid"
-  }, "A password of at least 8 alphanumeric characters is required.")), _react.default.createElement(_Button.default, {
+  }, "A password of at least 8 alphanumeric characters is required."), !login ? null : _react.default.createElement(_Form.default.Text, {
+    className: "invalid-text"
+  }, "Invalid Username and/or Password")), _react.default.createElement(_Button.default, {
     className: "submit-login",
-    variant: "button",
     type: "submit",
-    block: true,
-    onClick: handleSubmit
+    block: true
   }, "Login"), _react.default.createElement(_Form.default.Group, {
     className: "registration",
     controlId: "formRegistration"
@@ -55886,7 +55922,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60821" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56949" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

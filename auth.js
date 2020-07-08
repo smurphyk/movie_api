@@ -13,7 +13,7 @@ function generateJWTToken(user) {
 }
 
 module.exports = (router) => {
-  router.post('/login', (req, res) => {
+  router.post(`/login`, (req, res) => {
     passport.authenticate('local', { session: false },
       (error, user) => {
         if (!user) {
@@ -21,6 +21,9 @@ module.exports = (router) => {
             message: 'Invalid Username and/or Password',
             user: user
           });
+        }
+        if (error) {
+          return res.status(500).send(error)
         }
         req.login(user, { session: false }, (error) => {
           if (error) {
