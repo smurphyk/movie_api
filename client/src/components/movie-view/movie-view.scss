@@ -13,7 +13,7 @@ $font-stack: sans-serif;
 }
 
 .movie-title {
-  margin: 3rem auto;
+  margin: 1rem auto;
 }
 
 .movie-description {
@@ -23,7 +23,7 @@ $font-stack: sans-serif;
 .movie-poster {
   width: 50%;
   margin: 0 auto;
-  border: 5px outset $secondaryColor;
+  border: 6px outset #919191;
   border-radius: 15px;
   margin-top: 1rem;
 }
