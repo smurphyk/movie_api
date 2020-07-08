@@ -168,7 +168,7 @@ export class ProfileView extends React.Component {
 
     return (
       <Container className="profile-view">
-        <Tabs defaultActiveKey="profile" className="profile-tabs">
+        <Tabs defaultActiveKey="profile" transition={false} className="profile-tabs">
           <Tab className="tab-item" eventKey="profile" title="Profile">
             <h1 className="profile-title">{Username}'s Profile</h1>
             <Card className="profile-card">

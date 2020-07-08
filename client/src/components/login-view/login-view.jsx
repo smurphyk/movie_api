@@ -10,7 +10,6 @@ export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [validated, setValidated] = useState('');
-  const [login, setLogin] = useState('');
 
   const handleSubmit = (e) => {
     const form = e.currentTarget;
@@ -31,35 +30,19 @@ export function LoginView(props) {
     })
       .then(response => {
         const data = response.data;
-
-        if (!response.data.user) {
-          setLogin(true);
-        }
-        else {
-          props.onLoggedIn(data);
-        }
+        props.onLoggedIn(data);
       })
       .catch(e => {
         console.log('no such user')
       });
   };
 
-  const setLoginUsername = (e) => {
-    setUsername(e.target.value);
-    setLogin(null);
-  }
-
-  const setLoginPassword = (e) => {
-    setPassword(e.target.value);
-    setLogin(null);
-  }
-
 
 
   return (
     <Container className="login-view" fluid="true">
       <h1 className="login-title">Murph's Movies Login</h1>
-      <Form noValidate validated={validated} onSubmit={handleSubmit} className="login-form">
+      <Form noValidate validated={validated} className="login-form">
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
@@ -68,7 +51,7 @@ export function LoginView(props) {
             pattern="[a-zA-Z0-9]{6,}"
             required
             value={username}
-            onChange={e => setLoginUsername(e)} />
+            onChange={(e) => setUsername(e.target.value)} />
           <Form.Control.Feedback type="invalid">
             Username must be at least 6 alphanumeric characters long.
             </Form.Control.Feedback>
@@ -81,17 +64,12 @@ export function LoginView(props) {
             pattern="[a-zA-Z0-9]{8,}"
             required
             value={password}
-            onChange={e => setLoginPassword(e)} />
+            onChange={(e) => setPassword(e.target.value)} />
           <Form.Control.Feedback type="invalid">
             A password of at least 8 alphanumeric characters is required.
             </Form.Control.Feedback>
-          {!login ? null
-            :
-            <Form.Text className="invalid-text">
-              Invalid Username and/or Password
-              </Form.Text>}
         </Form.Group>
-        <Button className="submit-login" type="submit" block>
+        <Button className="submit-login" type="submit" block onClick={handleSubmit}>
           Login
           </Button>
         <Form.Group className="registration" controlId="formRegistration">

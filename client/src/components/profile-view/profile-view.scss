@@ -3,13 +3,13 @@ $secondaryColor: #e93d04;
 $font-stack: sans-serif;
 
 .profile-view {
-  width: 50vw;
-  margin: 5% 30%;
+  text-align: center;
+  width: 45vw;
+  margin: 15vh auto;
   background-color: $primaryColor;
   border: 8px groove $secondaryColor;
   border-radius: 10px;
   padding: 4%;
-  text-align: center;
 }
 
 h1 {
