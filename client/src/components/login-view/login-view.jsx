@@ -23,11 +23,9 @@ export function LoginView(props) {
     }
     e.preventDefault();
 
-    axios.post(`https://murphmovies.herokuapp.com/login`, null, {
-      params: {
-        Username: username,
-        Password: password
-      }
+    axios.post(`https://murphmovies.herokuapp.com/login`, {
+      Username: username,
+      Password: password
     })
       .then(response => {
         const data = response.data;
