@@ -80,7 +80,7 @@ export class MainView extends React.Component {
       <Router basename="/client">
         <Container className="main-view" fluid="true">
           <Navbar expand="lg">
-            <Navbar.Brand as={Link} to="/">Murph's Movie API</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/client">Murph's Movie API</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="main-nav">
@@ -94,7 +94,7 @@ export class MainView extends React.Component {
             </Navbar.Collapse>
           </Navbar>
           <br></br>
-          <Route exact path="/" render={() => {
+          <Route exact path="/client" render={() => {
             if (!user)
               return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
             return <MoviesList movies={movies} />;
