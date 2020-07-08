@@ -111,7 +111,7 @@ export class MainView extends React.Component {
 }
 
 let mapStateToProps = state => {
-  return { movies: state.movies }
+  return { movies: state.movies, user: state.user }
 }
 
 export default connect(mapStateToProps, { setMovies, setUser })(MainView);
@@ -135,5 +135,6 @@ MainView.propTypes = {
       ImagePath: PropTypes.string.isRequired,
       Featured: PropTypes.bool.isRequired
     })
-  )
+  ),
+  user: PropTypes.string.isRequired
 };
