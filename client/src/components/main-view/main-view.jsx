@@ -53,10 +53,6 @@ export class MainView extends React.Component {
     this.props.setUser(user);
   }
 
-  viewButtons(view) {
-    this.props.setButton(view);
-  }
-
   getMovies(token) {
     axios.get('https://murphmovies.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` },
@@ -80,11 +76,11 @@ export class MainView extends React.Component {
       <Router basename="/client">
         <Container className="main-view" fluid="true">
           <Navbar expand="lg">
-            <Navbar.Brand as={Link} to="/client">Murph's Movie API</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/">Murph's Movie API</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="main-nav">
-                <Nav.Link className="nav-link" as={Link} to={`/client`}>Home</Nav.Link>
+                <Nav.Link className="nav-link" as={Link} to={`/`}>Home</Nav.Link>
                 <Nav.Link className="nav-link" as={Link} to={`/users/${username}`}>Profile</Nav.Link>
                 <br></br>
                 <Button size="md" className="logout-button" onClick={() => this.onLoggedOut()}>
