@@ -55600,7 +55600,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     value: function onLoggedOut(user) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      this.props.setUser(user);
+      this.props.setUser(!user);
       window.open('/', '_self');
     }
   }, {
@@ -55661,7 +55661,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         }
       }, _react.default.createElement("b", null, "Log Out"))))), _react.default.createElement("br", null), _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
-        path: "/client",
+        path: "/",
         render: function render() {
           if (!user) return _react.default.createElement(_loginView.LoginView, {
             onLoggedIn: function onLoggedIn(user) {
