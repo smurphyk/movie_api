@@ -2,16 +2,20 @@ $primaryColor: #b5b5b5;
 $secondaryColor: #e93d04;
 $font-stack: sans-serif;
 
+.card-columns {
+  margin: 3rem;
+}
+
 .movie-card {
+  display: inline;
   text-align: center;
-  margin: 15vh auto;
+  margin: 0 auto;
   background-color: $primaryColor;
   border: 8px outset #919191;
   border-radius: 15px;
 }
 
 .movie-poster {
-  width: 60%;
   margin: 0 auto;
   border: 5px outset #919191;
   border-radius: 15px;
@@ -20,7 +24,6 @@ $font-stack: sans-serif;
 
 .movie-title {
   display: inline-block;
-  width: 30rem;
   background-color: #000;
   font-size: 200%;
   color: $secondaryColor;
@@ -39,7 +42,6 @@ $font-stack: sans-serif;
 }
 
 .open-button, .director-button, .genre-button {
-  width: 50%;
   color: $secondaryColor;
   background-color: #000;
   border: 5px outset $secondaryColor;

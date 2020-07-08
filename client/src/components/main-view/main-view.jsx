@@ -7,6 +7,7 @@ import {
   Nav,
   Button,
 } from 'react-bootstrap';
+import './main-view.scss';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -20,8 +21,6 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
-
-import './main-view.scss';
 
 export class MainView extends React.Component {
   constructor() {
