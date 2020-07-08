@@ -80,6 +80,8 @@ export class MainView extends React.Component {
     let { movies } = this.props;
     let { user } = this.state;
 
+    let username = localStorage.getItem('user');
+
     return (
       <Router basename="/client">
         <Container className="main-view" fluid="true">
