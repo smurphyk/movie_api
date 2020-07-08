@@ -43,6 +43,10 @@ app.get('/client/*', (req, res) => {
 });
 app.use(express.static('public'));
 
+app.get('/', (req, res) => {
+  res.send('This is my movie API! If you are underwhelmed, add /client to the end of the URL!')
+});
+
 app.get('/movies', passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Movies.find()
