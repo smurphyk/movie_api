@@ -173,7 +173,7 @@ Button:hover {
   width: 50vw;
   margin: 0 auto;
   background-color: #b5b5b5;
-  border: 8px groove #e93d04;
+  border: 8px outset #e93d04;
   border-radius: 10px;
   padding: 3%;
 }
@@ -223,7 +223,7 @@ Button:hover {
   width: 45vw;
   margin: 15vh auto;
   background-color: #b5b5b5;
-  border: 8px groove #e93d04;
+  border: 8px outset #e93d04;
   border-radius: 10px;
   padding: 4%;
 }
@@ -266,7 +266,7 @@ Button:hover {
   width: 45vw;
   margin: 15vh auto;
   background-color: #b5b5b5;
-  border: 8px groove #e93d04;
+  border: 8px outset #e93d04;
   border-radius: 10px;
   padding: 4%;
 }
