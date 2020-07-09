@@ -8,13 +8,13 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from 'react-router-dom';
 
 import './movie-view.scss';
+import { setMovie } from '../../actions/actions';
+import { connect } from 'react-redux';
 
 export class MovieView extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {};
   }
 
   handleAddFavorite(e, movie) {
@@ -62,3 +62,24 @@ export class MovieView extends React.Component {
     );
   }
 }
+
+let mapStateToProps = state => {
+  return { movie: state.movie }
+}
+
+export default connect(mapStateToProps, { setMovie })(MovieView);
+
+MovieView.propTypes = {
+  movie: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    Genre: PropTypes.shape({
+      Name: PropTypes.string.isRequired
+    }),
+    Director: PropTypes.shape({
+      Name: PropTypes.string.isRequired
+    }),
+    ImagePath: PropTypes.string.isRequired,
+    Featured: PropTypes.bool.isRequired
+  })
+};

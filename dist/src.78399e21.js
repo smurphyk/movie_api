@@ -54211,16 +54211,16 @@ Object.defineProperty(exports, "__esModule", {
 exports.setMovies = setMovies;
 exports.setFilter = setFilter;
 exports.setUser = setUser;
-exports.setFavorite = setFavorite;
-exports.SET_FAVORITE = exports.SET_USER = exports.SET_FILTER = exports.SET_MOVIES = void 0;
+exports.setMovie = setMovie;
+exports.SET_MOVIE = exports.SET_USER = exports.SET_FILTER = exports.SET_MOVIES = void 0;
 var SET_MOVIES = 'SET_MOVIES';
 exports.SET_MOVIES = SET_MOVIES;
 var SET_FILTER = 'SET_FILTER';
 exports.SET_FILTER = SET_FILTER;
 var SET_USER = 'SET_USER';
 exports.SET_USER = SET_USER;
-var SET_FAVORITE = 'SET_FAVORITE';
-exports.SET_FAVORITE = SET_FAVORITE;
+var SET_MOVIE = 'SET_MOVIE';
+exports.SET_MOVIE = SET_MOVIE;
 
 function setMovies(value) {
   return {
@@ -54243,9 +54243,9 @@ function setUser(value) {
   };
 }
 
-function setFavorite(value) {
+function setMovie(value) {
   return {
-    type: SET_FAVORITE,
+    type: SET_MOVIE,
     value: value
   };
 }
@@ -54810,7 +54810,7 @@ module.hot.accept(reloadCSS);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.MovieView = void 0;
+exports.default = exports.MovieView = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -54827,6 +54827,10 @@ var _ListGroup = _interopRequireDefault(require("react-bootstrap/ListGroup"));
 var _reactRouterDom = require("react-router-dom");
 
 require("./movie-view.scss");
+
+var _actions = require("../../actions/actions");
+
+var _reactRedux = require("react-redux");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -54858,13 +54862,9 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(MovieView);
 
   function MovieView(props) {
-    var _this;
-
     _classCallCheck(this, MovieView);
 
-    _this = _super.call(this, props);
-    _this.state = {};
-    return _this;
+    return _super.call(this, props);
   }
 
   _createClass(MovieView, [{
@@ -54888,7 +54888,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this = this;
 
       var movie = this.props.movie;
       if (!movie) return null;
@@ -54916,7 +54916,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "favorite-button",
         value: movie._id,
         onClick: function onClick(e) {
-          return _this2.handleAddFavorite(e, movie);
+          return _this.handleAddFavorite(e, movie);
         }
       }, " Add to Favorites"), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
@@ -54931,7 +54931,33 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.MovieView = MovieView;
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./movie-view.scss":"components/movie-view/movie-view.scss"}],"components/director-view/director-view.scss":[function(require,module,exports) {
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    movie: state.movie
+  };
+};
+
+var _default = (0, _reactRedux.connect)(mapStateToProps, {
+  setMovie: _actions.setMovie
+})(MovieView);
+
+exports.default = _default;
+MovieView.propTypes = {
+  movie: _propTypes.default.shape({
+    Title: _propTypes.default.string.isRequired,
+    Description: _propTypes.default.string.isRequired,
+    Genre: _propTypes.default.shape({
+      Name: _propTypes.default.string.isRequired
+    }),
+    Director: _propTypes.default.shape({
+      Name: _propTypes.default.string.isRequired
+    }),
+    ImagePath: _propTypes.default.string.isRequired,
+    Featured: _propTypes.default.bool.isRequired
+  })
+};
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./movie-view.scss":"components/movie-view/movie-view.scss","../../actions/actions":"actions/actions.js","react-redux":"../node_modules/react-redux/es/index.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -55033,7 +55059,7 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
 
 exports.DirectorView = DirectorView;
 DirectorView.propTypes = {
-  Director: _propTypes.default.shape({
+  director: _propTypes.default.shape({
     ImagePath: _propTypes.default.string.isRequired,
     Name: _propTypes.default.string.isRequired,
     Bio: _propTypes.default.string.isRequired
@@ -55130,7 +55156,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
 
 exports.GenreView = GenreView;
 GenreView.propTypes = {
-  Genre: _propTypes.default.shape({
+  genre: _propTypes.default.shape({
     Name: _propTypes.default.string.isRequired,
     Description: _propTypes.default.string.isRequired
   }).isRequired
@@ -55675,7 +55701,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           return _react.default.createElement(_registrationView.RegistrationView, null);
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        exact: true,
         path: "/movies/:movieId",
         render: function render(_ref) {
           var match = _ref.match;
@@ -55686,11 +55711,10 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        exact: true,
         path: "/genres/:name",
         render: function render(_ref2) {
           var match = _ref2.match;
-          if (!movies) return _react.default.createElement(_Container.default, {
+          if (movies.length === 0) return _react.default.createElement(_Container.default, {
             className: "main-view"
           });
           return _react.default.createElement(_genreView.GenreView, {
@@ -55700,11 +55724,10 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        exact: true,
         path: "/directors/:name",
         render: function render(_ref3) {
           var match = _ref3.match;
-          if (!movies) return _react.default.createElement(_Container.default, {
+          if (movies.length === 0) return _react.default.createElement(_Container.default, {
             className: "main-view"
           });
           return _react.default.createElement(_directorView.DirectorView, {
@@ -55714,9 +55737,16 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        exact: true,
         path: "/users/:username",
         render: function render() {
+          if (!user) return _react.default.createElement(_loginView.LoginView, {
+            onLoggedIn: function onLoggedIn(user) {
+              return _this2.onLoggedIn(user);
+            }
+          });
+          if (movies.length === 0) return _react.default.createElement(_Container.default, {
+            className: "main-view"
+          });
           return _react.default.createElement(_profileView.ProfileView, {
             movies: movies
           });
@@ -55814,12 +55844,12 @@ function user() {
   }
 }
 
-function favorite() {
+function movie() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case _actions.SET_FAVORITE:
+    case _actions.SET_MOVIE:
       return action.value;
 
     default:
@@ -55831,7 +55861,7 @@ var moviesApp = (0, _redux.combineReducers)({
   visibilityFilter: visibilityFilter,
   movies: movies,
   user: user,
-  favorite: favorite
+  movie: movie
 });
 var _default = moviesApp;
 exports.default = _default;

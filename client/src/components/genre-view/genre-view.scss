@@ -12,6 +12,12 @@ $font-stack: sans-serif;
   padding: 4%;
 }
 
+.genre-card {
+  border: 4px outset $primaryColor;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
 .genre-name {
   color: $secondaryColor;
   text-decoration: underline;
