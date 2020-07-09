@@ -19,10 +19,14 @@ $font-stack: sans-serif;
 }
 
 .genre-name {
+  background-color: #000;
+  border: 8px outset $secondaryColor;
+  border-radius: 10px;
   color: $secondaryColor;
-  text-decoration: underline;
-  font-size: 200%;
-  margin-bottom: 7%;
+  text-align: center;
+  margin: 2rem auto;
+  width: 80%;
+  padding: 0.3rem;
 }
 
 .genback-button {

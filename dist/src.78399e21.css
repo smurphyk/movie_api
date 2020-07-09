@@ -33,36 +33,48 @@
 }
 .login-view {
   background-color: #b5b5b5;
-  border: 5px groove #e93d04;
+  border: 5px outset #e93d04;
   border-radius: 5px;
   margin: 0 auto;
+  margin-bottom: 2rem;
   font-family: sans-serif;
-  width: 50vw;
+  width: 45vw;
   padding: 3%;
 }
 
+.login-title {
+  background-color: #000;
+  border: 8px outset #e93d04;
+  border-radius: 10px;
+  color: #e93d04;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
 .submit-login {
-  color: #000;
-  background-color: #e93d04;
-  border: 2px solid #000;
-  border-radius: 5px;
+  color: #e93d04;
+  background-color: #000;
+  border: 5px outset #e93d04;
+  border-radius: 15px;
   padding: 5px;
   text-align: center;
-  margin-top: 5%;
+  margin: 0 auto;
+  margin-top: 2rem;
   font-weight: bold;
 }
 
 .registration {
-  margin-top: 5%;
+  margin-top: 1rem;
 }
 
 .register-button {
-  color: #000;
-  background-color: #e93d04;
-  border: 2px solid #000;
-  border-radius: 5px;
+  color: #e93d04;
+  background-color: #000;
+  border: 5px outset #e93d04;
+  border-radius: 15px;
   padding: 5px;
   text-align: center;
+  margin: 0.5rem auto;
   font-weight: bold;
 }
 
@@ -278,10 +290,14 @@ Button:hover {
 }
 
 .genre-name {
+  background-color: #000;
+  border: 8px outset #e93d04;
+  border-radius: 10px;
   color: #e93d04;
-  text-decoration: underline;
-  font-size: 200%;
-  margin-bottom: 7%;
+  text-align: center;
+  margin: 2rem auto;
+  width: 80%;
+  padding: 0.3rem;
 }
 
 .genback-button {

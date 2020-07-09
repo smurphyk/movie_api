@@ -54483,7 +54483,6 @@ function RegistrationView(props) {
       Birthday: birthday
     }).then(function (response) {
       var data = response.data;
-      console.log(data);
       window.open('/client', '_self');
     }).catch(function (e) {
       console.log('Error registering User');
@@ -54553,8 +54552,6 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
 var _reactRedux = require("react-redux");
 
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
@@ -54583,7 +54580,7 @@ var _default = (0, _reactRedux.connect)(null, {
 })(VisibilityFilterInput);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","../../actions/actions":"actions/actions.js","./visibility-filter-input.scss":"components/visibility-filter-input/visibility-filter-input.scss"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","../../actions/actions":"actions/actions.js","./visibility-filter-input.scss":"components/visibility-filter-input/visibility-filter-input.scss"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -54608,15 +54605,17 @@ var _ListGroup = _interopRequireDefault(require("react-bootstrap/ListGroup"));
 
 var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
 
-var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
-
 var _reactRouterDom = require("react-router-dom");
 
 require("./movie-card.scss");
 
+var _PropTypes$shape;
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -54709,7 +54708,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
 
 exports.MovieCard = MovieCard;
 MovieCard.propTypes = {
-  movie: _propTypes.default.shape({
+  movie: _propTypes.default.shape((_PropTypes$shape = {
     ImagePath: _propTypes.default.string.isRequired,
     Title: _propTypes.default.string.isRequired,
     Description: _propTypes.default.string.isRequired,
@@ -54718,12 +54717,10 @@ MovieCard.propTypes = {
     }),
     Director: _propTypes.default.shape({
       Name: _propTypes.default.string.isRequired
-    }),
-    // imageUrl: PropTypes.string.isRequired,
-    Featured: _propTypes.default.bool.isRequired
-  }).isRequired
+    })
+  }, _defineProperty(_PropTypes$shape, "ImagePath", _propTypes.default.string.isRequired), _defineProperty(_PropTypes$shape, "Featured", _propTypes.default.bool.isRequired), _PropTypes$shape)).isRequired
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movies-list/movies-list.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movies-list/movies-list.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -54880,7 +54877,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
           Authorization: "Bearer ".concat(token)
         }
       }).then(function (res) {
-        console.log("".concat(movie.Title, " was add to Favorites"));
+        alert("".concat(movie.Title, " was add to Favorites"));
       }).catch(function (err) {
         console.log(err);
       });
@@ -55140,9 +55137,9 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
         className: "genre-view"
       }, _react.default.createElement(_Card.default, {
         className: "genre-card"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement("h1", {
         className: "genre-name"
-      }, genre.Name), _react.default.createElement(_Card.default.Text, null, "Description: ", genre.Description), _react.default.createElement(_reactRouterDom.Link, {
+      }, genre.Name), _react.default.createElement(_Card.default.Text, null, genre.Description), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_Button.default, {
         className: "genback-button",
@@ -55243,7 +55240,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var accessToken = localStorage.getItem('token');
-      console.log(accessToken);
 
       if (accessToken !== null) {
         this.getUser(accessToken);
@@ -55285,7 +55281,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Authorization: "Bearer ".concat(token)
         }
       }).then(function (res) {
-        console.log("".concat(movie.Title, " was removed from Favorites"));
+        alert("Successfully removed from Favorites");
         window.open('_self');
       }).catch(function (err) {
         console.log(err);
@@ -55293,7 +55289,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleUpdate",
-    value: function handleUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
+    value: function handleUpdate(e, newUsername, newEmail, newBirthday) {
       var _this3 = this;
 
       this.setState({
@@ -55336,8 +55332,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         });
 
         localStorage.setItem('user', _this3.state.Username);
-        window.open("/users/".concat(username), '_self');
-        console.log(response.data);
+        window.open("/client/users/".concat(username), '_self');
       }).catch(function (error) {
         console.log(error);
       });
@@ -55377,9 +55372,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }).then(function (response) {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
-        console.log("".concat(username, " was deleted"));
         alert('Profile Successfully Deleted');
-        window.open('/', '_self');
+        window.open('/client', '_self');
       }).catch(function (e) {
         console.log('Error deregistering User');
       });
@@ -55568,8 +55562,6 @@ var _loginView = require("../login-view/login-view");
 var _registrationView = require("../registration-view/registration-view");
 
 var _moviesList = _interopRequireDefault(require("../movies-list/movies-list.jsx"));
-
-var _movieCard = require("../movie-card/movie-card");
 
 var _movieView = require("../movie-view/movie-view");
 
@@ -55811,7 +55803,7 @@ MainView.propTypes = {
   })),
   user: _propTypes.default.string.isRequired
 };
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./main-view.scss":"components/main-view/main-view.scss","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","react-redux":"../node_modules/react-redux/es/index.js","../../actions/actions":"actions/actions.js","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movies-list/movies-list.jsx":"components/movies-list/movies-list.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx"}],"reducers/reducers.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./main-view.scss":"components/main-view/main-view.scss","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","react-redux":"../node_modules/react-redux/es/index.js","../../actions/actions":"actions/actions.js","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movies-list/movies-list.jsx":"components/movies-list/movies-list.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx"}],"reducers/reducers.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55985,7 +55977,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50977" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55244" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

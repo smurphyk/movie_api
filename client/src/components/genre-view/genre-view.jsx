@@ -24,8 +24,8 @@ export class GenreView extends React.Component {
       <Container className="genre-view">
         <Card className="genre-card">
           <Card.Body>
-            <Card.Title className="genre-name">{genre.Name}</Card.Title>
-            <Card.Text>Description: {genre.Description}</Card.Text>
+            <h1 className="genre-name">{genre.Name}</h1>
+            <Card.Text>{genre.Description}</Card.Text>
             <Link to={`/`}>
               <Button className="genback-button" size="lg">Back</Button>
             </Link>

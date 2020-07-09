@@ -33,7 +33,6 @@ export class ProfileView extends React.Component {
 
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
-    console.log(accessToken)
     if (accessToken !== null) {
       this.getUser(accessToken);
     }
@@ -70,7 +69,7 @@ export class ProfileView extends React.Component {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => {
-        console.log(`${movie.Title} was removed from Favorites`);
+        alert(`Successfully removed from Favorites`);
         window.open('_self');
       }).catch(function (err) {
         console.log(err)
@@ -117,7 +116,6 @@ export class ProfileView extends React.Component {
         })
         localStorage.setItem('user', this.state.Username);
         window.open(`/client/users/${username}`, '_self');
-        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -154,9 +152,8 @@ export class ProfileView extends React.Component {
       .then((response) => {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
-        console.log(`${username} was deleted`);
         alert('Profile Successfully Deleted');
-        window.open('/', '_self');
+        window.open('/client', '_self');
       })
       .catch((e) => {
         console.log('Error deregistering User')

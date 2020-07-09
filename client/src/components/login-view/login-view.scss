@@ -4,36 +4,48 @@ $font-stack: sans-serif;
 
 .login-view {
   background-color: $primaryColor;
-  border: 5px groove $secondaryColor;
+  border: 5px outset $secondaryColor;
   border-radius: 5px;
   margin: 0 auto;
+  margin-bottom: 2rem;
   font-family: sans-serif;
-  width: 50vw;
+  width: 45vw;
   padding: 3%;
 }
 
+.login-title {
+  background-color: #000;
+  border: 8px outset $secondaryColor;
+  border-radius: 10px;
+  color: $secondaryColor;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
 .submit-login {
-  color: #000;
-  background-color: $secondaryColor;
-  border: 2px solid #000;
-  border-radius: 5px;
+  color: $secondaryColor;
+  background-color: #000;
+  border: 5px outset $secondaryColor;
+  border-radius: 15px;
   padding: 5px;
   text-align: center;
-  margin-top: 5%;
+  margin: 0 auto;
+  margin-top: 2rem;
   font-weight: bold;
 }
 
 .registration {
-  margin-top: 5%;
+  margin-top: 1rem;
 }
 
 .register-button {
-  color: #000;
-  background-color: $secondaryColor;
-  border: 2px solid #000;
-  border-radius: 5px;
+  color: $secondaryColor;
+  background-color: #000;
+  border: 5px outset $secondaryColor;
+  border-radius: 15px;
   padding: 5px;
   text-align: center;
+  margin: 0.5rem auto;
   font-weight: bold;
 }
 
