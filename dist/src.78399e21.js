@@ -54895,7 +54895,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       return _react.default.createElement(_Card.default, {
         className: "movie-view"
       }, _react.default.createElement(_Card.default.Img, {
-        className: "movie-poster",
+        className: "movieView-poster",
         src: movie.ImagePath
       }), _react.default.createElement(_Card.default.Title, {
         className: "movie-title"
@@ -55009,6 +55009,7 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_Card.default, {
         className: "director-card"
       }, _react.default.createElement(_Card.default.Img, {
+        className: "director-pic",
         variant: "top",
         src: director.ImagePath
       }), _react.default.createElement(_Card.default.Body, {
@@ -55020,8 +55021,8 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_ListGroup.default.Item, null, "Born: ", director.Birth)), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_Button.default, {
-        className: "back-button",
-        variant: "outline-link",
+        className: "dirback-button",
+        variant: "button",
         size: "lg"
       }, "Back")))));
     }
@@ -55118,8 +55119,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
       }, genre.Name), _react.default.createElement(_Card.default.Text, null, "Description: ", genre.Description), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_Button.default, {
-        className: "back-button",
-        variant: "outline-link",
+        className: "genback-button",
         size: "lg"
       }, "Back")))));
     }

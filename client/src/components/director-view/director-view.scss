@@ -15,6 +15,14 @@ $font-stack: sans-serif;
 .director-card {
   border: 4px outset $primaryColor;
   border-radius: 10px;
+  padding: 1rem;
+}
+
+.director-pic {
+  width: 50%;
+  margin: 0 auto;
+  border: 3px outset #7a7a7a;
+  border-radius: 15px;
 }
 
 .director-name {
@@ -23,4 +31,17 @@ $font-stack: sans-serif;
   font-weight: bold;
   text-decoration: underline;
   margin-bottom: 7%;
+}
+
+.dirback-button {
+  width: 8rem;
+  color: $secondaryColor;
+  background-color: #000;
+  border: 5px outset $secondaryColor;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 1rem;
+  font-weight: bold; 
 }

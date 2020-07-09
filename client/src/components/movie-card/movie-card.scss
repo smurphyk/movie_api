@@ -12,11 +12,12 @@ $font-stack: sans-serif;
   text-align: center;
   margin: 0 auto;
   background-color: $primaryColor;
-  border: 8px outset #919191;
+  border: 8px outset $secondaryColor;
   border-radius: 15px;
 }
 
 .movie-poster {
+  width: 75%;
   margin: 0 auto;
   border: 5px outset #919191;
   border-radius: 15px;

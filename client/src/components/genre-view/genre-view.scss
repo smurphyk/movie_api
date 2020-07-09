@@ -18,3 +18,15 @@ $font-stack: sans-serif;
   font-size: 200%;
   margin-bottom: 7%;
 }
+
+.genback-button {
+  width: 8rem;
+  color: $secondaryColor;
+  background-color: #000;
+  border: 5px outset $secondaryColor;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  margin: 5px auto;
+  font-weight: bold; 
+}

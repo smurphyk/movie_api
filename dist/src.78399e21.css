@@ -112,11 +112,12 @@ Button:hover {
   text-align: center;
   margin: 0 auto;
   background-color: #b5b5b5;
-  border: 8px outset #919191;
+  border: 8px outset #e93d04;
   border-radius: 15px;
 }
 
 .movie-poster {
+  width: 75%;
   margin: 0 auto;
   border: 5px outset #919191;
   border-radius: 15px;
@@ -169,7 +170,7 @@ Button:hover {
 }
 .movie-view {
   text-align: center;
-  width: 75vw;
+  width: 50vw;
   margin: 0 auto;
   background-color: #b5b5b5;
   border: 8px groove #e93d04;
@@ -178,14 +179,15 @@ Button:hover {
 }
 
 .movie-title {
-  margin: 1rem auto;
+  width: 20rem;
+  margin: 2rem auto;
 }
 
 .movie-description {
   color: #000;
 }
 
-.movie-poster {
+.movieView-poster {
   width: 50%;
   margin: 0 auto;
   border: 6px outset #919191;
@@ -199,9 +201,10 @@ Button:hover {
 }
 
 .movies-button, .favorite-button {
-  color: #000;
-  background-color: #e93d04;
-  border: 2px solid #000;
+  width: 12rem;
+  color: #e93d04;
+  background-color: #000;
+  border: 5px outset #e93d04;
   border-radius: 5px;
   padding: 5px;
   text-align: center;
@@ -228,6 +231,14 @@ Button:hover {
 .director-card {
   border: 4px outset #b5b5b5;
   border-radius: 10px;
+  padding: 1rem;
+}
+
+.director-pic {
+  width: 50%;
+  margin: 0 auto;
+  border: 3px outset #7a7a7a;
+  border-radius: 15px;
 }
 
 .director-name {
@@ -236,6 +247,19 @@ Button:hover {
   font-weight: bold;
   text-decoration: underline;
   margin-bottom: 7%;
+}
+
+.dirback-button {
+  width: 8rem;
+  color: #e93d04;
+  background-color: #000;
+  border: 5px outset #e93d04;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 1rem;
+  font-weight: bold;
 }
 .genre-view {
   text-align: center;
@@ -252,6 +276,18 @@ Button:hover {
   text-decoration: underline;
   font-size: 200%;
   margin-bottom: 7%;
+}
+
+.genback-button {
+  width: 8rem;
+  color: #e93d04;
+  background-color: #000;
+  border: 5px outset #e93d04;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  margin: 5px auto;
+  font-weight: bold;
 }
 .profile-view {
   text-align: center;

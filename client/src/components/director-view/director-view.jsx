@@ -24,7 +24,7 @@ export class DirectorView extends React.Component {
     return (
       <Container className="director-view">
         <Card className="director-card">
-          <Card.Img variant="top" src={director.ImagePath} />
+          <Card.Img className="director-pic" variant="top" src={director.ImagePath} />
           <Card.Body className="director-body">
             <Card.Title className='director-name'>{director.Name}</Card.Title>
             <Card.Text>{director.Bio}</Card.Text>
@@ -32,7 +32,7 @@ export class DirectorView extends React.Component {
               <ListGroup.Item>Born: {director.Birth}</ListGroup.Item>
             </ListGroup>
             <Link to={`/`}>
-              <Button className="back-button" variant="outline-link" size="lg">Back</Button>
+              <Button className="dirback-button" variant="button" size="lg">Back</Button>
             </Link>
           </Card.Body>
         </Card>
