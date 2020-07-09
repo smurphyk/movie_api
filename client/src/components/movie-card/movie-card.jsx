@@ -4,9 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-
-
 import { Link } from 'react-router-dom';
 
 import './movie-card.scss';
@@ -23,7 +20,6 @@ export class MovieCard extends React.Component {
           <Card.Body>
             <Card.Title className="movie-title">{movie.Title}</Card.Title>
             <ListGroup variant="flush">
-              {/*} <ListGroup.Item className="movie-description">{movie.Description}</ListGroup.Item> */}
               <ListGroup.Item className="button-container">
                 <Link to={`/movies/${movie._id}`}>
                   <Button variant="link" size="lg" block className="open-button">Details</Button>
@@ -58,7 +54,7 @@ MovieCard.propTypes = {
     Director: PropTypes.shape({
       Name: PropTypes.string.isRequired
     }),
-    // imageUrl: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
     Featured: PropTypes.bool.isRequired
   }).isRequired
 };

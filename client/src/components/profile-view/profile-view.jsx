@@ -77,7 +77,7 @@ export class ProfileView extends React.Component {
       })
   }
 
-  handleUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
+  handleUpdate(e, newUsername, newEmail, newBirthday) {
     this.setState({
       validated: null
     })
@@ -116,7 +116,7 @@ export class ProfileView extends React.Component {
           Birthday: response.data.Birthday
         })
         localStorage.setItem('user', this.state.Username);
-        window.open(`/users/${username}`, '_self');
+        window.open(`/client/users/${username}`, '_self');
         console.log(response.data);
       })
       .catch(function (error) {
