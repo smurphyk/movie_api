@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 
 
 import { Link } from 'react-router-dom';
@@ -16,13 +17,13 @@ export class MovieCard extends React.Component {
     const { movie } = this.props;
 
     return (
-      <Col className="card-columns" style={{ maxWidth: '70rem', minWidth: '70rem' }}>
-        <Card className="movie-card" fluid="true">
+      <Col className="card-columns" fluid="true" style={{ maxWidth: '25rem', minWidth: '25rem' }}>
+        <Card className="movie-card" fluid="true" style={{ maxWidth: '25rem', minWidth: '25rem' }}>
           <Card.Img className="movie-poster" variant="top" src={movie.ImagePath} />
           <Card.Body>
             <Card.Title className="movie-title">{movie.Title}</Card.Title>
             <ListGroup variant="flush">
-              <ListGroup.Item className="movie-description">{movie.Description}</ListGroup.Item>
+              {/*} <ListGroup.Item className="movie-description">{movie.Description}</ListGroup.Item> */}
               <ListGroup.Item className="button-container">
                 <Link to={`/movies/${movie._id}`}>
                   <Button variant="link" size="lg" block className="open-button">Details</Button>

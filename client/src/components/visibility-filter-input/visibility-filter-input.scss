@@ -2,8 +2,15 @@ $primaryColor: #b5b5b5;
 $secondaryColor: #e93d04;
 $font-stack: sans-serif;
 
+.filter-div {
+  width: 100vw;
+}
+
 .filter-field {
-  margin: 0 auto;
+  width: 30%;
+  margin-right: 6rem;
+  position: static;
+  float: right;
   border: 5px outset $secondaryColor;
   padding: 2.5%;
 }

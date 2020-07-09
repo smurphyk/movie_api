@@ -54608,6 +54608,8 @@ var _ListGroup = _interopRequireDefault(require("react-bootstrap/ListGroup"));
 
 var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
 
+var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
+
 var _reactRouterDom = require("react-router-dom");
 
 require("./movie-card.scss");
@@ -54653,13 +54655,18 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
       var movie = this.props.movie;
       return _react.default.createElement(_Col.default, {
         className: "card-columns",
+        fluid: "true",
         style: {
-          maxWidth: '70rem',
-          minWidth: '70rem'
+          maxWidth: '25rem',
+          minWidth: '25rem'
         }
       }, _react.default.createElement(_Card.default, {
         className: "movie-card",
-        fluid: "true"
+        fluid: "true",
+        style: {
+          maxWidth: '25rem',
+          minWidth: '25rem'
+        }
       }, _react.default.createElement(_Card.default.Img, {
         className: "movie-poster",
         variant: "top",
@@ -54669,8 +54676,6 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
       }, movie.Title), _react.default.createElement(_ListGroup.default, {
         variant: "flush"
       }, _react.default.createElement(_ListGroup.default.Item, {
-        className: "movie-description"
-      }, movie.Description), _react.default.createElement(_ListGroup.default.Item, {
         className: "button-container"
       }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/movies/".concat(movie._id)
@@ -54718,7 +54723,7 @@ MovieCard.propTypes = {
     Featured: _propTypes.default.bool.isRequired
   }).isRequired
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movies-list/movies-list.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movies-list/movies-list.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -54740,6 +54745,8 @@ var _reactRedux = require("react-redux");
 var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
 
 var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
+
+var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
 
 var _visibilityFilterInput = _interopRequireDefault(require("../visibility-filter-input/visibility-filter-input"));
 
@@ -54792,7 +54799,7 @@ MoviesList.propTypes = {
   })),
   visibilityFilter: _propTypes.default.string.isRequired
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","../visibility-filter-input/visibility-filter-input":"components/visibility-filter-input/visibility-filter-input.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","./movies-list.scss":"components/movies-list/movies-list.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","../visibility-filter-input/visibility-filter-input":"components/visibility-filter-input/visibility-filter-input.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","./movies-list.scss":"components/movies-list/movies-list.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -55928,7 +55935,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51864" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50977" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -90,13 +90,21 @@ Button:hover {
   margin: 5px;
   font-weight: bold;
 }
+.filter-div {
+  width: 100vw;
+}
+
 .filter-field {
-  margin: 0 auto;
+  width: 30%;
+  margin-right: 6rem;
+  position: static;
+  float: right;
   border: 5px outset #e93d04;
   padding: 2.5%;
 }
 .card-columns {
-  margin: 3rem;
+  margin: 3rem auto;
+  padding: 0;
 }
 
 .movie-card {
