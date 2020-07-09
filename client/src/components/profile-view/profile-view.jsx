@@ -170,8 +170,8 @@ export class ProfileView extends React.Component {
       <Container className="profile-view">
         <Tabs defaultActiveKey="profile" transition={false} className="profile-tabs">
           <Tab className="tab-item" eventKey="profile" title="Profile">
-            <h1 className="profile-title">{Username}'s Profile</h1>
             <Card className="profile-card">
+              <h1 className="profile-title">{Username}'s Profile</h1>
               <Card.Body>
                 <Card.Text className="profile-item">Username:</Card.Text>{Username}
                 <Card.Text className="profile-item">Password:</Card.Text>*****
@@ -202,8 +202,8 @@ export class ProfileView extends React.Component {
             </Card >
           </Tab>
           <Tab className="tab-item" eventKey="update" title="Update">
-            <h1>Update Profile</h1>
             <Card className="update-card">
+              <h1 className="profile-title">Update Profile</h1>
               <Card.Body>
                 <Form noValidate validated={validated} className="update-form" onSubmit={(e) => this.handleUpdate(e, this.Username, this.Password, this.Email, this.Birthday)}>
                   <Form.Group controlId="formBasicUsername">

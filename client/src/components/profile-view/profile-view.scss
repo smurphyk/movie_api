@@ -7,12 +7,23 @@ $font-stack: sans-serif;
   width: 45vw;
   margin: 15vh auto;
   background-color: $primaryColor;
-  border: 8px groove $secondaryColor;
+  border: 8px outset $secondaryColor;
   border-radius: 10px;
   padding: 4%;
 }
 
-h1 {
+.profile-card, .update-card {
+  font-weight: bold;
+  border: 4px outset $primaryColor;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.profile-title {
+  background-color: #000;
+  border: 8px outset $secondaryColor;
+  border-radius: 10px;
+  color: $secondaryColor;
   text-align: center;
   margin-bottom: 4%;
 }
@@ -25,15 +36,18 @@ h1 {
   text-decoration: underline;
 }
 
+.button-container {
+  background-color: #fff;
+}
+
 .update, .remove-favorite, .delete-user, .back-button {
-  color: #000;
-  background-color: $secondaryColor;
-  border: 2px solid #000;
-  border-radius: 5px;
+  color: $secondaryColor;
+  background-color: #000;
+  border: 5px outset $secondaryColor;
+  border-radius: 15px;
   padding: 5px;
   text-align: center;
-  margin: 5% auto;
-  margin-bottom: 1px;
+  margin: 0.5rem auto;
   font-weight: bold;
 }
 
@@ -53,10 +67,6 @@ h1 {
   margin: 15px auto;
   font-weight: bold;
   font-size: 110%;
-}
-
-.update-card {
-  font-weight: bold;
 }
 
 Label {

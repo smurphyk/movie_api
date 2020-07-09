@@ -55378,11 +55378,11 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "tab-item",
         eventKey: "profile",
         title: "Profile"
+      }, _react.default.createElement(_Card.default, {
+        className: "profile-card"
       }, _react.default.createElement("h1", {
         className: "profile-title"
-      }, Username, "'s Profile"), _react.default.createElement(_Card.default, {
-        className: "profile-card"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, {
+      }, Username, "'s Profile"), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
       }, "Username:"), Username, _react.default.createElement(_Card.default.Text, {
         className: "profile-item"
@@ -55428,9 +55428,11 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "tab-item",
         eventKey: "update",
         title: "Update"
-      }, _react.default.createElement("h1", null, "Update Profile"), _react.default.createElement(_Card.default, {
+      }, _react.default.createElement(_Card.default, {
         className: "update-card"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_reactBootstrap.Form, {
+      }, _react.default.createElement("h1", {
+        className: "profile-title"
+      }, "Update Profile"), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_reactBootstrap.Form, {
         noValidate: true,
         validated: validated,
         className: "update-form",
