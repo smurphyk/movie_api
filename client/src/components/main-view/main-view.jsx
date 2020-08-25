@@ -7,7 +7,6 @@ import {
   Nav,
   Button,
 } from 'react-bootstrap';
-import './main-view.scss';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -20,6 +19,8 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
+
+import './main-view.scss';
 
 export class MainView extends React.Component {
   constructor() {
@@ -68,17 +69,27 @@ export class MainView extends React.Component {
 
     return (
       <Router basename="/client">
-        <Container className="main-view" fluid="true">
-          <Navbar expand="lg">
-            <Navbar.Brand as={Link} to="/">Murph's Movie API</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto">
-                <Nav.Link as={Link} to="/">Home</Nav.Link>
-                <Nav.Link as={Link} to={`/users/${user}`}>Profile</Nav.Link>
-                <Button size="sm" onClick={() => this.onLoggedOut()}>
-                  <b>Log Out</b>
-                </Button>
+        <Container className="main__view" fluid="true">
+          <Navbar expand="lg" className="navbar">
+            <Navbar.Brand as={Link} to="/" className="navbar__brand">
+              <p className="navbar__brand-text">Murph's Movies API</p>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic__navbar-nav" />
+            <Navbar.Collapse id="basic__navbar-nav">
+              <Nav className="nav">
+                <div className="nav__link-container">
+                  <Nav.Link as={Link} to="/" className="nav__link">
+                    <p className="nav__link-label">Home</p>
+                  </Nav.Link>
+                  <Nav.Link as={Link} to={`/users/${user}`} className="nav__link">
+                    <p className="nav__link-label">Profile</p>
+                  </Nav.Link>
+                  <div className="logout__button-container">
+                    <Button className="logout__button" size="sm" onClick={() => this.onLoggedOut()}>
+                      <b>Log Out</b>
+                    </Button>
+                  </div>
+                </div>
               </Nav>
             </Navbar.Collapse>
           </Navbar>

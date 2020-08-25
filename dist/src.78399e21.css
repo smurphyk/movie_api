@@ -1,37 +1,3 @@
-.main-view {
-  background-color: #000;
-}
-
-.navbar {
-  background-color: #b5b5b5;
-  position: static;
-  border: 3px outset #e93d04;
-  border-radius: 5px;
-  margin: 1rem;
-  font-size: 130%;
-  font-weight: bold;
-  width: 50vw;
-  padding: 15px;
-}
-
-.navbar-brand {
-  font-size: 130%;
-}
-
-.nav-link {
-  margin: 0 1rem;
-}
-
-.logout-button {
-  color: #000;
-  background-color: #e93d04;
-  border: 2px solid #000;
-  border-radius: 5px;
-  width: 40%;
-  text-align: center;
-  font-weight: bold;
-  margin-left: 10%;
-}
 .login-view {
   background-color: #b5b5b5;
   border: 5px outset #e93d04;
@@ -398,7 +364,69 @@ h1 {
   border: 2px outset #000;
   border-radius: 10px;
 }
+.main__view {
+  background-color: #000;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 6rem;
+  filter: drop-shadow(0.5rem 0.5rem 2rem #e93d04);
+  margin-bottom: 5rem;
+  background-color: #b5b5b5;
+  background-image: url("https://media.giphy.com/media/fq8HxnZAkoTybqirPN/giphy.gif");
+  background-size: cover;
+  background-repeat: none;
+  background-position: center;
+  position: static;
+  font-family: "Orbitron", sans-serif;
+  font-weight: bold;
+  padding: 1.5rem;
+}
+
+.navbar__brand-text {
+  margin: 0 auto;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.nav__link-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: right;
+}
+
+.nav__link-label {
+  margin: 0 1rem;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.logout__button-container {
+  width: 100%;
+}
+
+.logout__button {
+  width: 80%;
+  justify-content: center;
+  background-color: #e93d04;
+  border: 2px solid #000;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  margin-left: 10%;
+}
+* {
+  box-sizing: border-box;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   background-color: #000;
 }
 

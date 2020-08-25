@@ -1,1 +1,1 @@
-{"version":3,"sources":["index.scss"],"names":[],"mappings":"AAEA;EACE","file":"src.80ee2152.css","sourceRoot":"../client/src","sourcesContent":["$color: steelblue;\r\n\r\nbody {\r\n  background-color: #000;\r\n}"]}
+{"version":3,"sources":["index.scss"],"names":[],"mappings":"AAEA;EACE;;;AAGF;EACE;EACA;EACA;EACA","file":"src.80ee2152.css","sourceRoot":"../client/src","sourcesContent":["$color: steelblue;\r\n\r\n* {\r\n  box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n  display: flex;\r\n  flex-direction: column;\r\n  width: 100%;\r\n  background-color: #000;\r\n}"]}
