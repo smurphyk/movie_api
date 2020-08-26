@@ -3,14 +3,17 @@ $secondaryColor: #e93d04;
 $font-stack: sans-serif;
 
 .filter-div {
-  width: 100vw;
+  width: 100%;
 }
 
 .filter-field {
-  width: 30%;
-  margin-right: 6rem;
+  display: block;
+  width: 95%;
+  margin: 2rem;
   position: static;
   float: right;
   border: 5px outset $secondaryColor;
   padding: 2.5%;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
 }

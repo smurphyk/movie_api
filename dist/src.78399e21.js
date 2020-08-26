@@ -54648,50 +54648,52 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var movie = this.props.movie;
       return _react.default.createElement(_Col.default, {
-        className: "card-columns",
+        className: "card__columns",
         fluid: "true",
         style: {
           maxWidth: '25rem',
           minWidth: '25rem'
         }
       }, _react.default.createElement(_Card.default, {
-        className: "movie-card",
+        className: "movie__card",
         fluid: "true",
         style: {
           maxWidth: '25rem',
           minWidth: '25rem'
         }
       }, _react.default.createElement(_Card.default.Img, {
-        className: "movie-poster",
+        className: "movie__poster",
         variant: "top",
         src: movie.ImagePath
       }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
-        className: "movie-title"
+        className: "movie__title"
       }, movie.Title), _react.default.createElement(_ListGroup.default, {
         variant: "flush"
       }, _react.default.createElement(_ListGroup.default.Item, {
-        className: "button-container"
+        className: "button__container"
       }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/movies/".concat(movie._id)
       }, _react.default.createElement(_Button.default, {
-        variant: "link",
+        variant: "button",
         size: "lg",
         block: true,
-        className: "open-button"
+        className: "open__button"
       }, "Details"))), _react.default.createElement(_ListGroup.default.Item, {
-        className: "button-container"
+        className: "button__container"
       }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/directors/".concat(movie.Director.Name)
       }, _react.default.createElement(_Button.default, {
-        className: "director-button",
+        variant: "button",
+        className: "director__button",
         size: "lg",
         block: true
       }, "Director Info"))), _react.default.createElement(_ListGroup.default.Item, {
-        className: "button-container"
+        className: "button__container"
       }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/genres/".concat(movie.Genre.Name)
       }, _react.default.createElement(_Button.default, {
-        className: "genre-button",
+        variant: "button",
+        className: "genre__button",
         size: "lg",
         block: true
       }, "Genre Info")))))));
@@ -54885,27 +54887,27 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       var movie = this.props.movie;
       if (!movie) return null;
       return _react.default.createElement(_Card.default, {
-        className: "movie-view"
+        className: "movie__view"
       }, _react.default.createElement(_Card.default.Img, {
-        className: "movieView-poster",
+        className: "movieView__poster",
         src: movie.ImagePath
       }), _react.default.createElement(_Card.default.Title, {
-        className: "movie-title"
+        className: "movie__title"
       }, movie.Title), _react.default.createElement(_Card.default.Text, {
-        className: "movie-description"
+        className: "movie__description"
       }, movie.Description), _react.default.createElement("br", null), _react.default.createElement(_ListGroup.default, {
         variant: "flush"
       }, _react.default.createElement(_ListGroup.default.Item, {
-        className: "movie-genre"
+        className: "movie__genre"
       }, _react.default.createElement("span", {
-        className: "genre-label"
+        className: "genre__label"
       }, "Genre"), _react.default.createElement("br", null), movie.Genre.Name), _react.default.createElement(_ListGroup.default.Item, {
-        className: "movie-director"
+        className: "movie__director"
       }, _react.default.createElement("span", {
-        className: "director-label"
+        className: "director__label"
       }, "Director"), _react.default.createElement("br", null), movie.Director.Name)), _react.default.createElement("br", null), _react.default.createElement(_Button.default, {
         size: "lg",
-        className: "favorite-button",
+        className: "favorite__button",
         value: movie._id,
         onClick: function onClick(e) {
           return _this.handleAddFavorite(e, movie);
@@ -54913,7 +54915,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, " Add to Favorites"), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_Button.default, {
-        className: "movies-button",
+        className: "movies__button",
         size: "lg"
       }, "Back")));
     }
@@ -55386,80 +55388,80 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           validated = _this$state.validated;
       var movies = this.props.movies;
       return _react.default.createElement(_Container.default, {
-        className: "profile-view"
+        className: "profile__view"
       }, _react.default.createElement(_reactBootstrap.Tabs, {
         defaultActiveKey: "profile",
         transition: false,
-        className: "profile-tabs"
+        className: "profile__tabs"
       }, _react.default.createElement(_reactBootstrap.Tab, {
-        className: "tab-item",
+        className: "tab__item",
         eventKey: "profile",
         title: "Profile"
       }, _react.default.createElement(_Card.default, {
-        className: "profile-card"
+        className: "profile__card"
       }, _react.default.createElement("h1", {
-        className: "profile-title"
+        className: "profile__title"
       }, Username, "'s Profile"), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, {
-        className: "profile-item"
+        className: "profile__item"
       }, "Username:"), Username, _react.default.createElement(_Card.default.Text, {
-        className: "profile-item"
+        className: "profile__item"
       }, "Password:"), "*****", _react.default.createElement(_Card.default.Text, {
-        className: "profile-item"
+        className: "profile__item"
       }, "Email:"), Email, _react.default.createElement(_Card.default.Text, {
-        className: "profile-item"
+        className: "profile__item"
       }, "Birthday:"), Birthday, _react.default.createElement(_Card.default.Text, {
-        className: "profile-item"
+        className: "profile__item"
       }, "Favorite Movies:"), FavoriteMovies.length === 0 && _react.default.createElement("div", null, "You have no favorite movies."), _react.default.createElement("div", {
-        className: "favs-container"
+        className: "favorites__container"
       }, _react.default.createElement("ul", {
-        className: "favs-list"
+        className: "favorites__list"
       }, FavoriteMovies.length > 0 && movies.map(function (movie) {
         if (movie._id === FavoriteMovies.find(function (favMovie) {
           return favMovie === movie._id;
         })) {
           return _react.default.createElement("li", {
-            className: "favorites-item",
+            className: "favorites__item",
             key: movie._id
           }, movie.Title, _react.default.createElement(_Button.default, {
             size: "sm",
-            className: "remove-favorite",
+            className: "remove__favorite",
             onClick: function onClick(e) {
               return _this4.handleRemoveFavorite(e, movie._id);
             }
           }, "Remove"));
         }
       }))), _react.default.createElement("div", {
-        className: "button-container"
+        className: "button__container"
       }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_Button.default, {
-        className: "back-button",
+        className: "back__button",
         block: true
       }, "Back")), _react.default.createElement(_Button.default, {
-        className: "delete-user",
+        className: "delete__user",
         block: true,
         onClick: function onClick(e) {
           return _this4.handleDeregister(e);
         }
       }, "Delete Profile"))))), _react.default.createElement(_reactBootstrap.Tab, {
-        className: "tab-item",
+        className: "tab__item",
         eventKey: "update",
         title: "Update"
       }, _react.default.createElement(_Card.default, {
-        className: "update-card"
+        className: "update__card"
       }, _react.default.createElement("h1", {
-        className: "profile-title"
+        className: "profile__title"
       }, "Update Profile"), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_reactBootstrap.Form, {
         noValidate: true,
         validated: validated,
-        className: "update-form",
+        className: "update__form",
         onSubmit: function onSubmit(e) {
           return _this4.handleUpdate(e, _this4.Username, _this4.Password, _this4.Email, _this4.Birthday);
         }
       }, _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicUsername"
       }, _react.default.createElement(_reactBootstrap.Form.Label, {
-        className: "form-label"
+        className: "form__label"
       }, "Username:"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
         placeholder: "Change Username",
@@ -55470,7 +55472,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicPassword"
       }, _react.default.createElement(_reactBootstrap.Form.Label, {
-        className: "form-label"
+        className: "form__label"
       }, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "password",
         placeholder: "Enter Password",
@@ -55482,7 +55484,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicEmail"
       }, _react.default.createElement(_reactBootstrap.Form.Label, {
-        className: "form-label"
+        className: "form__label"
       }, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "email",
         placeholder: "Change Email",
@@ -55495,7 +55497,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }, "A password is required")), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formBasicBirthday"
       }, _react.default.createElement(_reactBootstrap.Form.Label, {
-        className: "form-label"
+        className: "form__label"
       }, "Birthday"), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "date",
         placeholder: "Change Birthday",
@@ -55680,29 +55682,19 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         id: "basic__navbar-nav"
       }, _react.default.createElement(_reactBootstrap.Nav, {
         className: "nav"
-      }, _react.default.createElement("div", {
-        className: "nav__link-container"
       }, _react.default.createElement(_reactBootstrap.Nav.Link, {
-        as: _reactRouterDom.Link,
-        to: "/",
-        className: "nav__link"
-      }, _react.default.createElement("p", {
-        className: "nav__link-label"
-      }, "Home")), _react.default.createElement(_reactBootstrap.Nav.Link, {
         as: _reactRouterDom.Link,
         to: "/users/".concat(user),
         className: "nav__link"
       }, _react.default.createElement("p", {
         className: "nav__link-label"
-      }, "Profile")), _react.default.createElement("div", {
-        className: "logout__button-container"
-      }, _react.default.createElement(_reactBootstrap.Button, {
+      }, "Profile"))), _react.default.createElement(_reactBootstrap.Button, {
         className: "logout__button",
         size: "sm",
         onClick: function onClick() {
           return _this2.onLoggedOut();
         }
-      }, _react.default.createElement("b", null, "Log Out"))))))), _react.default.createElement("br", null), _react.default.createElement(_reactRouterDom.Route, {
+      }, _react.default.createElement("b", null, "Log Out")))), _react.default.createElement("br", null), _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/",
         render: function render() {
@@ -55992,7 +55984,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52780" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64712" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

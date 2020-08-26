@@ -165,47 +165,47 @@ export class ProfileView extends React.Component {
     const { movies } = this.props;
 
     return (
-      <Container className="profile-view">
-        <Tabs defaultActiveKey="profile" transition={false} className="profile-tabs">
-          <Tab className="tab-item" eventKey="profile" title="Profile">
-            <Card className="profile-card">
-              <h1 className="profile-title">{Username}'s Profile</h1>
+      <Container className="profile__view">
+        <Tabs defaultActiveKey="profile" transition={false} className="profile__tabs">
+          <Tab className="tab__item" eventKey="profile" title="Profile">
+            <Card className="profile__card">
+              <h1 className="profile__title">{Username}'s Profile</h1>
               <Card.Body>
-                <Card.Text className="profile-item">Username:</Card.Text>{Username}
-                <Card.Text className="profile-item">Password:</Card.Text>*****
-            <Card.Text className="profile-item">Email:</Card.Text>{Email}
-                <Card.Text className="profile-item">Birthday:</Card.Text>{Birthday}
-                <Card.Text className="profile-item">Favorite Movies:</Card.Text>
+                <Card.Text className="profile__item">Username:</Card.Text>{Username}
+                <Card.Text className="profile__item">Password:</Card.Text>*****
+            <Card.Text className="profile__item">Email:</Card.Text>{Email}
+                <Card.Text className="profile__item">Birthday:</Card.Text>{Birthday}
+                <Card.Text className="profile__item">Favorite Movies:</Card.Text>
                 {FavoriteMovies.length === 0 && <div>You have no favorite movies.</div>}
-                <div className="favs-container">
-                  <ul className="favs-list">
+                <div className="favorites__container">
+                  <ul className="favorites__list">
                     {FavoriteMovies.length > 0 &&
                       movies.map(movie => {
                         if (movie._id === FavoriteMovies.find(favMovie => favMovie === movie._id)) {
-                          return <li className="favorites-item" key={movie._id}>{movie.Title}
-                            <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie._id)}>Remove</Button>
+                          return <li className="favorites__item" key={movie._id}>{movie.Title}
+                            <Button size="sm" className="remove__favorite" onClick={(e) => this.handleRemoveFavorite(e, movie._id)}>Remove</Button>
                           </li>
                         }
                       })
                     }
                   </ul>
                 </div>
-                <div className="button-container">
+                <div className="button__container">
                   <Link to={`/`}>
-                    <Button className="back-button" block>Back</Button>
+                    <Button className="back__button" block>Back</Button>
                   </Link>
-                  <Button className="delete-user" block onClick={(e) => this.handleDeregister(e)}>Delete Profile</Button>
+                  <Button className="delete__user" block onClick={(e) => this.handleDeregister(e)}>Delete Profile</Button>
                 </div>
               </Card.Body>
             </Card >
           </Tab>
-          <Tab className="tab-item" eventKey="update" title="Update">
-            <Card className="update-card">
-              <h1 className="profile-title">Update Profile</h1>
+          <Tab className="tab__item" eventKey="update" title="Update">
+            <Card className="update__card">
+              <h1 className="profile__title">Update Profile</h1>
               <Card.Body>
-                <Form noValidate validated={validated} className="update-form" onSubmit={(e) => this.handleUpdate(e, this.Username, this.Password, this.Email, this.Birthday)}>
+                <Form noValidate validated={validated} className="update__form" onSubmit={(e) => this.handleUpdate(e, this.Username, this.Password, this.Email, this.Birthday)}>
                   <Form.Group controlId="formBasicUsername">
-                    <Form.Label className="form-label">Username:</Form.Label>
+                    <Form.Label className="form__label">Username:</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Change Username"
@@ -214,7 +214,7 @@ export class ProfileView extends React.Component {
                     />
                   </Form.Group>
                   <Form.Group controlId="formBasicPassword">
-                    <Form.Label className="form-label">Password</Form.Label>
+                    <Form.Label className="form__label">Password</Form.Label>
                     <Form.Control
                       type="password"
                       placeholder="Enter Password"
@@ -224,7 +224,7 @@ export class ProfileView extends React.Component {
                     />
                   </Form.Group>
                   <Form.Group controlId="formBasicEmail">
-                    <Form.Label className="form-label">Email</Form.Label>
+                    <Form.Label className="form__label">Email</Form.Label>
                     <Form.Control
                       type="email"
                       placeholder="Change Email"
@@ -236,7 +236,7 @@ export class ProfileView extends React.Component {
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group controlId="formBasicBirthday">
-                    <Form.Label className="form-label">Birthday</Form.Label>
+                    <Form.Label className="form__label">Birthday</Form.Label>
                     <Form.Control
                       type="date"
                       placeholder="Change Birthday"

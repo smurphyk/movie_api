@@ -1,29 +1,32 @@
 .login-view {
   background-color: #b5b5b5;
-  border: 5px outset #e93d04;
   border-radius: 5px;
   margin: 0 auto;
   margin-bottom: 2rem;
   font-family: sans-serif;
   width: 45vw;
   padding: 3%;
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.1rem;
+  box-shadow: 0.5rem 0.5rem 1rem #e93d04;
 }
 
 .login-title {
   background-color: #000;
-  border: 8px outset #e93d04;
-  border-radius: 10px;
+  border-radius: 5rem;
   color: #e93d04;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 0.2rem 0.5rem, 0 0.2rem 0.5rem #e93d04;
+  padding: 0.5rem;
 }
 
 .submit-login {
   color: #e93d04;
   background-color: #000;
-  border: 5px outset #e93d04;
-  border-radius: 15px;
-  padding: 5px;
+  box-shadow: 0 0.2rem 0.5rem, 0 0.2rem 0.5rem #e93d04;
+  border-radius: 5rem;
+  padding: 0.5rem;
   text-align: center;
   margin: 0 auto;
   margin-top: 2rem;
@@ -37,9 +40,9 @@
 .register-button {
   color: #e93d04;
   background-color: #000;
-  border: 5px outset #e93d04;
-  border-radius: 15px;
-  padding: 5px;
+  box-shadow: 0 0.2rem 0.5rem, 0 0.2rem 0.5rem #e93d04;
+  border-radius: 5rem;
+  padding: 0.5rem;
   text-align: center;
   margin: 0.5rem auto;
   font-weight: bold;
@@ -70,70 +73,84 @@ Button:hover {
   font-weight: bold;
 }
 .filter-div {
-  width: 100vw;
+  width: 100%;
 }
 
 .filter-field {
-  width: 30%;
-  margin-right: 6rem;
+  display: block;
+  width: 95%;
+  margin: 2rem;
   position: static;
   float: right;
   border: 5px outset #e93d04;
   padding: 2.5%;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.5rem;
 }
-.card-columns {
+.card__columns {
   margin: 3rem auto;
   padding: 0;
 }
 
-.movie-card {
-  display: inline;
+.movie__card {
+  display: flex;
   text-align: center;
   margin: 0 auto;
   background-color: #b5b5b5;
-  border: 8px outset #e93d04;
+  box-shadow: 0 0.5rem 1rem #e93d04, 0 -0.5rem 1rem #e93d04;
   border-radius: 15px;
 }
 
-.movie-poster {
+.movie__poster {
   width: 75%;
   margin: 0 auto;
-  border: 5px outset #919191;
+  box-shadow: 0 0.5rem 1rem #000, 0 -0.5rem 1rem #000;
   border-radius: 15px;
   margin-top: 2rem;
 }
 
-.movie-title {
+.movie__title {
   display: inline-block;
   background-color: #000;
   font-size: 200%;
   color: #e93d04;
-  padding: 7px;
-  border: 5px outset #e93d04;
-  border-radius: 15px;
+  padding: 0.7rem;
+  box-shadow: 0 0.5rem 1rem #e93d04, 0 -0.5rem 1rem #e93d04;
+  border-radius: 0.5rem;
+  margin: 1rem auto;
+  width: 100%;
+  font-family: "Orbitron", sans-serif;
 }
 
-.movie-description {
+.movie__description {
   margin: 0 auto;
   background-color: #b5b5b5;
+  font-family: "Orbitron", sans-serif;
 }
 
-.button-container {
+.button__container {
   background-color: #b5b5b5;
+  margin: 1rem 0;
 }
 
-.open-button, .director-button, .genre-button {
+.open__button, .director__button, .genre__button {
   color: #e93d04;
   background-color: #000;
-  border: 5px outset #e93d04;
-  border-radius: 15px;
-  padding: 5px;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
   text-align: center;
   margin: 0.5rem auto;
   font-weight: bold;
+  font-family: "Orbitron", sans-serif;
 }
 
-.favorite-button {
+.open__button:hover, .director__button:hover, .genre__button:hover {
+  background-color: #e93d04;
+  color: #000;
+  box-shadow: 0.3rem 0.3rem 1rem #000, -0.3rem -0.3rem 1rem #000;
+}
+
+.favorite__button {
   color: #000;
   background-color: #e93d04;
   border: 2px outset #7a7a7a;
@@ -147,51 +164,57 @@ Button:hover {
   margin: 0 auto;
   width: 100%;
 }
-.movie-view {
+.movie__view {
   text-align: center;
-  width: 50vw;
-  margin: 0 auto;
+  width: 50%;
+  margin: 3rem auto;
   background-color: #b5b5b5;
-  border: 8px outset #e93d04;
+  box-shadow: 0 0.5rem 1rem #e93d04, 0 -0.5rem 1rem #e93d04;
   border-radius: 10px;
   padding: 3%;
 }
 
-.movie-title {
-  width: 20rem;
-  margin: 2rem auto;
+.movie__title {
+  width: 100%;
+  margin: 4rem auto;
 }
 
-.movie-description {
+.movie__description {
   color: #000;
 }
 
-.movieView-poster {
+.movieView__poster {
   width: 50%;
   margin: 0 auto;
-  border: 6px outset #919191;
+  box-shadow: 0 0.5rem 1rem #000, 0 -0.5rem 1rem #000;
   border-radius: 15px;
   margin-top: 1rem;
 }
 
-.movie-genre, .movie-director {
+.movie__genre, .movie__director {
   background-color: #b5b5b5;
   font-size: 120%;
+  font-family: "Orbitron", sans-serif;
 }
 
-.movies-button, .favorite-button {
-  width: 12rem;
+.movies__button, .favorite__button {
+  width: 100%;
   color: #e93d04;
   background-color: #000;
-  border: 5px outset #e93d04;
-  border-radius: 5px;
-  padding: 5px;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
   text-align: center;
-  margin: 5px auto;
-  font-weight: bold;
+  margin: 0.8rem auto;
+  font-family: "Orbitron", sans-serif;
 }
 
-.genre-label, .director-label {
+.movies__button:hover, .favorite__button:hover {
+  background-color: #e93d04;
+  color: #000;
+  box-shadow: 0.3rem 0.3rem 1rem #000, -0.3rem -0.3rem 1rem #000;
+}
+
+.genre__label, .director__label {
   font-weight: bold;
   font-size: 130%;
   color: #e93d04;
@@ -278,33 +301,34 @@ Button:hover {
   margin: 5px auto;
   font-weight: bold;
 }
-.profile-view {
+.profile__view {
   text-align: center;
   width: 45vw;
   margin: 15vh auto;
   background-color: #b5b5b5;
-  border: 8px outset #e93d04;
+  box-shadow: 0 0.5rem 1rem #e93d04, 0 -0.5rem 1rem #e93d04;
   border-radius: 10px;
   padding: 4%;
+  font-family: "Orbitron", sans-serif;
 }
 
-.profile-card, .update-card {
+.profile__card, .update__card {
   font-weight: bold;
   border: 4px outset #b5b5b5;
   border-radius: 10px;
   padding: 1rem;
 }
 
-.profile-title {
+.profile__title {
   background-color: #000;
-  border: 8px outset #e93d04;
+  box-shadow: 0 0.5rem 1rem #e93d04, 0 -0.5rem 1rem #e93d04;
   border-radius: 10px;
   color: #e93d04;
   text-align: center;
   margin-bottom: 4%;
 }
 
-.profile-item {
+.profile__item {
   font-weight: bold;
   display: block;
   margin: 15px auto;
@@ -312,31 +336,38 @@ Button:hover {
   text-decoration: underline;
 }
 
-.button-container {
+.button__container {
   background-color: #fff;
+  margin: 1rem;
 }
 
-.update, .remove-favorite, .delete-user, .back-button {
+.update, .remove__favorite, .delete__user, .back__button {
+  width: 100%;
   color: #e93d04;
   background-color: #000;
-  border: 5px outset #e93d04;
-  border-radius: 15px;
-  padding: 5px;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
   text-align: center;
-  margin: 0.5rem auto;
-  font-weight: bold;
+  margin: 1rem auto;
+  font-family: "Orbitron", sans-serif;
+}
+
+.update:hover, .remove__favorite:hover, .delete__user:hover, .back__button:hover {
+  background-color: #e93d04;
+  color: #000;
+  box-shadow: 0.3rem 0.3rem 1rem #000, -0.3rem -0.3rem 1rem #000;
 }
 
 .update {
   margin: 0 auto;
 }
 
-.remove-favorite {
+.remove__favorite {
   margin: 0 auto;
   margin-left: 20px;
 }
 
-.favorites-item {
+.favorites__item {
   display: block;
   list-style-type: none;
   text-align: center;
@@ -345,21 +376,21 @@ Button:hover {
   font-size: 110%;
 }
 
-Label {
+.form__label {
   text-decoration: underline;
   font-size: 120%;
 }
 
-h1 {
+.profile__title {
   margin-top: 15px;
 }
 
-.profile-tabs {
+.profile__tabs {
   font-weight: bold;
   color: #000;
 }
 
-.tab-item {
+.tab__item {
   background-color: #e93d04;
   border: 2px outset #000;
   border-radius: 10px;
@@ -392,11 +423,12 @@ h1 {
   color: #fff;
 }
 
-.nav__link-container {
-  display: flex;
-  flex-direction: row;
+.navbar__brand-text:hover {
+  color: #e93d04;
+}
+
+.nav {
   width: 100%;
-  justify-content: right;
 }
 
 .nav__link-label {
@@ -405,19 +437,23 @@ h1 {
   color: #fff;
 }
 
-.logout__button-container {
-  width: 100%;
+.nav__link-label:hover {
+  color: #e93d04;
 }
 
 .logout__button {
-  width: 80%;
-  justify-content: center;
+  width: 15%;
+  line-height: 2rem;
   background-color: #e93d04;
   border: 2px solid #000;
   border-radius: 5px;
   text-align: center;
   font-weight: bold;
-  margin-left: 10%;
+}
+
+.logout__button:hover {
+  background-color: black;
+  color: #e93d04;
 }
 * {
   box-sizing: border-box;

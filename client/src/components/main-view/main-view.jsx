@@ -77,20 +77,13 @@ export class MainView extends React.Component {
             <Navbar.Toggle aria-controls="basic__navbar-nav" />
             <Navbar.Collapse id="basic__navbar-nav">
               <Nav className="nav">
-                <div className="nav__link-container">
-                  <Nav.Link as={Link} to="/" className="nav__link">
-                    <p className="nav__link-label">Home</p>
-                  </Nav.Link>
-                  <Nav.Link as={Link} to={`/users/${user}`} className="nav__link">
-                    <p className="nav__link-label">Profile</p>
-                  </Nav.Link>
-                  <div className="logout__button-container">
-                    <Button className="logout__button" size="sm" onClick={() => this.onLoggedOut()}>
-                      <b>Log Out</b>
-                    </Button>
-                  </div>
-                </div>
+                <Nav.Link as={Link} to={`/users/${user}`} className="nav__link">
+                  <p className="nav__link-label">Profile</p>
+                </Nav.Link>
               </Nav>
+              <Button className="logout__button" size="sm" onClick={() => this.onLoggedOut()}>
+                <b>Log Out</b>
+              </Button>
             </Navbar.Collapse>
           </Navbar>
           <br></br>

@@ -30,11 +30,12 @@ $font: 'Orbitron', sans-serif;
   color: #fff;
 }
 
-.nav__link-container {
-  display: flex;
-  flex-direction: row;
+.navbar__brand-text:hover {
+  color: $secondaryColor;
+}
+
+.nav {
   width: 100%;
-  justify-content: right;
 }
 
 .nav__link-label{
@@ -43,17 +44,21 @@ $font: 'Orbitron', sans-serif;
   color: #fff;
 }
 
-.logout__button-container {
-  width: 100%;
+.nav__link-label:hover {
+  color: $secondaryColor;
 }
 
 .logout__button {
-  width: 80%;
-  justify-content: center;
+  width: 15%;
+  line-height: 2rem;
   background-color: $secondaryColor;
   border: 2px solid #000;
   border-radius: 5px;
   text-align: center;
   font-weight: bold;
-  margin-left: 10%;
+}
+
+.logout__button:hover {
+  background-color: black;
+  color: $secondaryColor;
 }

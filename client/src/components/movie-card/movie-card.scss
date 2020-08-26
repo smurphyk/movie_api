@@ -2,59 +2,70 @@ $primaryColor: #b5b5b5;
 $secondaryColor: #e93d04;
 $font-stack: sans-serif;
 
-.card-columns {
+.card__columns {
   margin: 3rem auto;
   padding: 0;
 }
 
-.movie-card {
-  display: inline;
+.movie__card {
+  display: flex;
   text-align: center;
   margin: 0 auto;
   background-color: $primaryColor;
-  border: 8px outset $secondaryColor;
+  box-shadow: 0 .5rem 1rem $secondaryColor, 0 -.5rem 1rem $secondaryColor;
   border-radius: 15px;
 }
 
-.movie-poster {
+.movie__poster {
   width: 75%;
   margin: 0 auto;
-  border: 5px outset #919191;
+  box-shadow: 0 .5rem 1rem #000, 0 -.5rem 1rem #000;
   border-radius: 15px;
   margin-top: 2rem;
 }
 
-.movie-title {
+.movie__title {
   display: inline-block;
   background-color: #000;
   font-size: 200%;
   color: $secondaryColor;
-  padding: 7px;
-  border: 5px outset $secondaryColor;
-  border-radius: 15px;
+  padding: .7rem;
+  box-shadow: 0 .5rem 1rem $secondaryColor, 0 -.5rem 1rem $secondaryColor;
+  border-radius: .5rem;
+  margin: 1rem auto;
+  width: 100%;
+  font-family: 'Orbitron', sans-serif;
 }
 
-.movie-description {
+.movie__description {
   margin: 0 auto;
   background-color: $primaryColor;
+  font-family: 'Orbitron', sans-serif;
 }
 
-.button-container {
+.button__container {
   background-color: $primaryColor;
+  margin: 1rem 0;
 }
 
-.open-button, .director-button, .genre-button {
+.open__button, .director__button, .genre__button {
   color: $secondaryColor;
   background-color: #000;
-  border: 5px outset $secondaryColor;
-  border-radius: 15px;
-  padding: 5px;
+  border-radius: .5rem;
+  padding: .5rem;
   text-align: center;
   margin: 0.5rem auto;
-  font-weight: bold;  
+  font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
 }
 
-.favorite-button {
+.open__button:hover, .director__button:hover, .genre__button:hover {
+  background-color: $secondaryColor;
+  color: #000;
+  box-shadow: .3rem .3rem 1rem #000, -.3rem -.3rem 1rem #000;
+}
+
+.favorite__button {
   color: #000;
   background-color: $secondaryColor;
   border: 2px outset #7a7a7a;

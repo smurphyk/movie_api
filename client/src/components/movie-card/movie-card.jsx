@@ -14,25 +14,25 @@ export class MovieCard extends React.Component {
     const { movie } = this.props;
 
     return (
-      <Col className="card-columns" fluid="true" style={{ maxWidth: '25rem', minWidth: '25rem' }}>
-        <Card className="movie-card" fluid="true" style={{ maxWidth: '25rem', minWidth: '25rem' }}>
-          <Card.Img className="movie-poster" variant="top" src={movie.ImagePath} />
+      <Col className="card__columns" fluid="true" style={{ maxWidth: '25rem', minWidth: '25rem' }}>
+        <Card className="movie__card" fluid="true" style={{ maxWidth: '25rem', minWidth: '25rem' }}>
+          <Card.Img className="movie__poster" variant="top" src={movie.ImagePath} />
           <Card.Body>
-            <Card.Title className="movie-title">{movie.Title}</Card.Title>
+            <Card.Title className="movie__title">{movie.Title}</Card.Title>
             <ListGroup variant="flush">
-              <ListGroup.Item className="button-container">
+              <ListGroup.Item className="button__container">
                 <Link to={`/movies/${movie._id}`}>
-                  <Button variant="link" size="lg" block className="open-button">Details</Button>
+                  <Button variant="button" size="lg" block className="open__button">Details</Button>
                 </Link>
               </ListGroup.Item>
-              <ListGroup.Item className="button-container">
+              <ListGroup.Item className="button__container">
                 <Link to={`/directors/${movie.Director.Name}`}>
-                  <Button className="director-button" size="lg" block>Director Info</Button>
+                  <Button variant="button" className="director__button" size="lg" block>Director Info</Button>
                 </Link>
               </ListGroup.Item>
-              <ListGroup.Item className="button-container">
+              <ListGroup.Item className="button__container">
                 <Link to={`/genres/${movie.Genre.Name}`}>
-                  <Button className="genre-button" size="lg" block>Genre Info</Button>
+                  <Button variant="button" className="genre__button" size="lg" block>Genre Info</Button>
                 </Link>
               </ListGroup.Item>
             </ListGroup>

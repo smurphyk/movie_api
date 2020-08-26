@@ -2,33 +2,34 @@ $primaryColor: #b5b5b5;
 $secondaryColor: #e93d04;
 $font-stack: sans-serif;
 
-.profile-view {
+.profile__view {
   text-align: center;
   width: 45vw;
   margin: 15vh auto;
   background-color: $primaryColor;
-  border: 8px outset $secondaryColor;
+  box-shadow: 0 .5rem 1rem $secondaryColor, 0 -.5rem 1rem $secondaryColor;
   border-radius: 10px;
   padding: 4%;
+  font-family: 'Orbitron', sans-serif;
 }
 
-.profile-card, .update-card {
+.profile__card, .update__card {
   font-weight: bold;
   border: 4px outset $primaryColor;
   border-radius: 10px;
   padding: 1rem;
 }
 
-.profile-title {
+.profile__title {
   background-color: #000;
-  border: 8px outset $secondaryColor;
+  box-shadow: 0 .5rem 1rem $secondaryColor, 0 -.5rem 1rem $secondaryColor;
   border-radius: 10px;
   color: $secondaryColor;
   text-align: center;
   margin-bottom: 4%;
 }
 
-.profile-item {
+.profile__item {
   font-weight: bold;
   display: block;
   margin: 15px auto;
@@ -36,31 +37,38 @@ $font-stack: sans-serif;
   text-decoration: underline;
 }
 
-.button-container {
+.button__container {
   background-color: #fff;
+  margin: 1rem;
 }
 
-.update, .remove-favorite, .delete-user, .back-button {
+.update, .remove__favorite, .delete__user, .back__button {
+  width: 100%;
   color: $secondaryColor;
   background-color: #000;
-  border: 5px outset $secondaryColor;
-  border-radius: 15px;
-  padding: 5px;
+  border-radius: .5rem;
+  padding: .5rem;
   text-align: center;
-  margin: 0.5rem auto;
-  font-weight: bold;
+  margin: 1rem auto;  
+  font-family: 'Orbitron', sans-serif;
+}
+
+.update:hover, .remove__favorite:hover, .delete__user:hover, .back__button:hover {
+  background-color: $secondaryColor;
+  color: #000;
+  box-shadow: .3rem .3rem 1rem #000, -.3rem -.3rem 1rem #000;
 }
 
 .update {
   margin: 0 auto;
 }
 
-.remove-favorite {
+.remove__favorite {
   margin: 0 auto;
   margin-left: 20px;
 }
 
-.favorites-item {
+.favorites__item {
   display: block;
   list-style-type: none;
   text-align: center;
@@ -69,21 +77,21 @@ $font-stack: sans-serif;
   font-size: 110%;
 }
 
-Label {
+.form__label {
   text-decoration: underline;
   font-size: 120%;
 }
 
-h1 {
+.profile__title {
   margin-top: 15px;
 }
 
-.profile-tabs {
+.profile__tabs {
   font-weight: bold;
   color: #000;
 }
 
-.tab-item {
+.tab__item {
   background-color: $secondaryColor;
   border: 2px outset #000;
   border-radius: 10px;

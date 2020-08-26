@@ -39,24 +39,24 @@ export class MovieView extends React.Component {
     if (!movie) return null;
 
     return (
-      <Card className="movie-view">
-        <Card.Img className="movieView-poster" src={movie.ImagePath}></Card.Img>
-        <Card.Title className="movie-title">{movie.Title}</Card.Title>
-        <Card.Text className="movie-description">{movie.Description}</Card.Text>
+      <Card className="movie__view">
+        <Card.Img className="movieView__poster" src={movie.ImagePath}></Card.Img>
+        <Card.Title className="movie__title">{movie.Title}</Card.Title>
+        <Card.Text className="movie__description">{movie.Description}</Card.Text>
         <br></br>
         <ListGroup variant="flush">
-          <ListGroup.Item className="movie-genre"><span className="genre-label">Genre</span>
+          <ListGroup.Item className="movie__genre"><span className="genre__label">Genre</span>
             <br></br>
             {movie.Genre.Name}</ListGroup.Item>
-          <ListGroup.Item className="movie-director"><span className="director-label">Director</span>
+          <ListGroup.Item className="movie__director"><span className="director__label">Director</span>
             <br></br>
             {movie.Director.Name}</ListGroup.Item>
         </ListGroup>
         <br></br>
-        <Button size="lg" className="favorite-button" value={movie._id}
+        <Button size="lg" className="favorite__button" value={movie._id}
           onClick={(e) => this.handleAddFavorite(e, movie)} > Add to Favorites</Button>
         <Link to={`/`}>
-          <Button className="movies-button" size="lg">Back</Button>
+          <Button className="movies__button" size="lg">Back</Button>
         </Link>
       </Card >
     );
