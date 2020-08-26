@@ -20,17 +20,17 @@ export class MovieCard extends React.Component {
           <Card.Body>
             <Card.Title className="movie__title">{movie.Title}</Card.Title>
             <ListGroup variant="flush">
-              <ListGroup.Item className="button__container">
+              <ListGroup.Item className="card__button-container">
                 <Link to={`/movies/${movie._id}`}>
                   <Button variant="button" size="lg" block className="open__button">Details</Button>
                 </Link>
               </ListGroup.Item>
-              <ListGroup.Item className="button__container">
+              <ListGroup.Item className="card__button-container">
                 <Link to={`/directors/${movie.Director.Name}`}>
                   <Button variant="button" className="director__button" size="lg" block>Director Info</Button>
                 </Link>
               </ListGroup.Item>
-              <ListGroup.Item className="button__container">
+              <ListGroup.Item className="card__button-container">
                 <Link to={`/genres/${movie.Genre.Name}`}>
                   <Button variant="button" className="genre__button" size="lg" block>Genre Info</Button>
                 </Link>

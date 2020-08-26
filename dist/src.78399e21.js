@@ -54670,7 +54670,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
       }, movie.Title), _react.default.createElement(_ListGroup.default, {
         variant: "flush"
       }, _react.default.createElement(_ListGroup.default.Item, {
-        className: "button__container"
+        className: "card__button-container"
       }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/movies/".concat(movie._id)
       }, _react.default.createElement(_Button.default, {
@@ -54679,7 +54679,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
         block: true,
         className: "open__button"
       }, "Details"))), _react.default.createElement(_ListGroup.default.Item, {
-        className: "button__container"
+        className: "card__button-container"
       }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/directors/".concat(movie.Director.Name)
       }, _react.default.createElement(_Button.default, {
@@ -54688,7 +54688,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
         size: "lg",
         block: true
       }, "Director Info"))), _react.default.createElement(_ListGroup.default.Item, {
-        className: "button__container"
+        className: "card__button-container"
       }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/genres/".concat(movie.Genre.Name)
       }, _react.default.createElement(_Button.default, {
