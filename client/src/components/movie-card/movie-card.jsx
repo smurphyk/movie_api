@@ -14,8 +14,8 @@ export class MovieCard extends React.Component {
     const { movie } = this.props;
 
     return (
-      <Col className="card__columns" fluid="true" style={{ maxWidth: '25rem', minWidth: '25rem' }}>
-        <Card className="movie__card" fluid="true" style={{ maxWidth: '25rem', minWidth: '25rem' }}>
+      <Col className="card__columns" fluid="true" style={{ maxWidth: '30rem', minWidth: '25rem' }}>
+        <Card className="movie__card" fluid="true" style={{ maxWidth: '30rem', minWidth: '25rem' }}>
           <Card.Img className="movie__poster" variant="top" src={movie.ImagePath} />
           <Card.Body>
             <Card.Title className="movie__title">{movie.Title}</Card.Title>
